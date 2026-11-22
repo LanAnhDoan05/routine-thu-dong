@@ -281,7 +281,7 @@ async function sendOrderInvoiceEmail({ order, customerEmail, customerName }) {
     })
     .join('');
 
-  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const frontendUrl = process.env.FRONTEND_URL || (process.env.NODE_ENV === 'production' ? 'https://routine-thu-dong-zify.vercel.app' : 'http://localhost:3000');
   const orderTrackingUrl = `${frontendUrl}/orders`;
 
   const subject = `[Routine] Hóa đơn xác nhận đơn hàng #${orderId}`;
@@ -453,7 +453,7 @@ async function sendWelcomeEmail({
 }) {
   if (!toEmail) return { success: false, error: 'Không có địa chỉ email' };
 
-  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const frontendUrl = process.env.FRONTEND_URL || (process.env.NODE_ENV === 'production' ? 'https://routine-thu-dong-zify.vercel.app' : 'http://localhost:3000');
   const shopUrl = `${frontendUrl}/smart-outfit`;
   const subject = `[Routine] Chào mừng bạn! Tặng bạn Voucher ${couponCode} giảm 15% cho đơn hàng đầu tiên`;
 

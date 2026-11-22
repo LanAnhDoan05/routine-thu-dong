@@ -106,7 +106,7 @@ async function createPaymentUrl({
     config.vnp_TmnCode.includes('your-') ||
     config.vnp_TmnCode === 'DEMO';
 
-  const frontendBaseUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const frontendBaseUrl = process.env.FRONTEND_URL || (process.env.NODE_ENV === 'production' ? 'https://routine-thu-dong-zify.vercel.app' : 'http://localhost:3000');
   const gatewayUrl = `${frontendBaseUrl}/checkout/payment/vnpay-gateway?orderId=${encodeURIComponent(orderId)}&amount=${finalAmount}&orderInfo=${encodeURIComponent(cleanOrderInfo)}`;
   const officialVnpayUrl = `${config.vnp_Url}?${qs.stringify(sortedParams, { encode: false })}`;
 
@@ -262,7 +262,7 @@ async function createEmbeddedVNPayQR({
     console.warn('[vnpayService] Lỗi tạo paymentTransaction:', txErr.message);
   }
 
-  const frontendBaseUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const frontendBaseUrl = process.env.FRONTEND_URL || (process.env.NODE_ENV === 'production' ? 'https://routine-thu-dong-zify.vercel.app' : 'http://localhost:3000');
   const gatewayUrl = `${frontendBaseUrl}/checkout/payment/vnpay-gateway?orderId=${encodeURIComponent(orderId)}&amount=${finalAmount}&orderInfo=${encodeURIComponent(cleanOrderInfo)}`;
 
   return {
