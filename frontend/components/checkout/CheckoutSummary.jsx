@@ -24,33 +24,40 @@ export default function CheckoutSummary({
   const [welcomeSuggestion, setWelcomeSuggestion] = useState(null);
   const { showToast } = useToast();
 
-  useEffect(() => {
-    if (voucherCode) {
-      setInputCode(voucherCode);
-    }
-  }, [voucherCode]);
+  const [prevVoucherCode, setPrevVoucherCode] = useState(voucherCode);
+  if (voucherCode !== prevVoucherCode) {
+    setPrevVoucherCode(voucherCode);
+    if (voucherCode) setInputCode(voucherCode);
+  }
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const storedVoucher = window.sessionStorage.getItem("routine_welcome_voucher");
-        const storedCode = window.sessionStorage.getItem("routine_welcome_voucher_code");
-        if (storedVoucher) {
-          const parsed = JSON.parse(storedVoucher);
-          setWelcomeSuggestion(parsed);
-          if (!inputCode && !voucherCode) {
-            setInputCode(parsed.code || "");
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) return;
+      if (typeof window !== "undefined") {
+        try {
+          const storedVoucher = window.sessionStorage.getItem("routine_welcome_voucher");
+          const storedCode = window.sessionStorage.getItem("routine_welcome_voucher_code");
+          if (storedVoucher) {
+            const parsed = JSON.parse(storedVoucher);
+            setWelcomeSuggestion(parsed);
+            if (!voucherCode) {
+              setInputCode((current) => current || parsed.code || "");
+            }
+          } else if (storedCode) {
+            setWelcomeSuggestion({ code: storedCode, description: "Ưu đãi thành viên mới giảm 15%" });
+            if (!voucherCode) {
+              setInputCode((current) => current || storedCode);
+            }
           }
-        } else if (storedCode) {
-          setWelcomeSuggestion({ code: storedCode, description: "Ưu đãi thành viên mới giảm 15%" });
-          if (!inputCode && !voucherCode) {
-            setInputCode(storedCode);
-          }
+        } catch {
+          // ignore
         }
-      } catch {
-        // ignore
       }
-    }
+    });
+    return () => {
+      ignore = true;
+    };
   }, [voucherCode]);
 
   const shipping = subtotal === 0 ? 0 : getShippingFee(shippingMethod, address, subtotal);

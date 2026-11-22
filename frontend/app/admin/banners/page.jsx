@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import PageHeader from "@/components/admin/PageHeader";
 import ImageUploader from "@/components/admin/ImageUploader";
@@ -101,7 +101,7 @@ export default function BannersPage() {
   }, []);
 
   // Load Styles list
-  async function fetchStylesData() {
+  const fetchStylesData = useCallback(async () => {
     setStylesLoading(true);
     try {
       const res = await getStyles();
@@ -112,11 +112,17 @@ export default function BannersPage() {
     } finally {
       setStylesLoading(false);
     }
-  }
+  }, [showToast]);
 
   useEffect(() => {
-    fetchStylesData();
-  }, []);
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) fetchStylesData();
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [fetchStylesData]);
 
   // ==================== HERO BANNERS SAVE ====================
   async function handleSaveHero() {

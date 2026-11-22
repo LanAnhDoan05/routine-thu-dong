@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import InteractiveOutfitCard from "./InteractiveOutfitCard";
 import { sendStylistChatMessage } from "@/lib/aiStylistService";
 import { fetchApi } from "@/lib/api";
@@ -34,27 +35,27 @@ function getWelcomeConfig(user) {
 
   if (gender === "women") {
     return {
-      text: `Xin chào${name} 👋! Tôi là Trợ lý Thời trang AI Stylist của Routine. Rất vui được hỗ trợ tư vấn trang phục nữ chuẩn phong cách cho bạn. Hôm nay bạn muốn tìm đồ theo dịp nào (công sở, dạo phố, hẹn hò)?`,
+      text: `Xin chào${name} 👋! Tôi là Trợ lý Thời trang AI Stylist của Routine Thu Đông. Rất vui được hỗ trợ tư vấn trang phục nữ chuẩn phong cách cho bạn. Hôm nay bạn muốn tìm đồ theo dịp nào (công sở, dạo phố, hẹn hò)?`,
       chips: GENDER_QUICK_CHIPS.women,
     };
   }
 
   if (gender === "men") {
     return {
-      text: `Xin chào${name} 👋! Tôi là Trợ lý Thời trang AI Stylist của Routine. Rất vui được hỗ trợ tư vấn trang phục nam chuẩn gu cho bạn. Hôm nay bạn muốn tìm đồ theo dịp nào (công sở, dạo phố, hẹn hò)?`,
+      text: `Xin chào${name} 👋! Tôi là Trợ lý Thời trang AI Stylist của Routine Thu Đông. Rất vui được hỗ trợ tư vấn trang phục nam chuẩn gu cho bạn. Hôm nay bạn muốn tìm đồ theo dịp nào (công sở, dạo phố, hẹn hò)?`,
       chips: GENDER_QUICK_CHIPS.men,
     };
   }
 
   if (gender === "unisex") {
     return {
-      text: `Xin chào${name} 👋! Tôi là Trợ lý Thời trang AI Stylist của Routine. Tôi sẵn sàng gợi ý và phối đồ từ tất cả bộ sưu tập thời trang trong kho cho bạn. Hôm nay bạn muốn tìm đồ theo phong cách nào?`,
+      text: `Xin chào${name} 👋! Tôi là Trợ lý Thời trang AI Stylist của Routine Thu Đông. Tôi sẵn sàng gợi ý và phối đồ từ tất cả bộ sưu tập thời trang trong kho cho bạn. Hôm nay bạn muốn tìm đồ theo phong cách nào?`,
       chips: GENDER_QUICK_CHIPS.default,
     };
   }
 
   return {
-    text: "Xin chào 👋! Tôi là Trợ lý Thời trang AI Stylist của Routine. Hôm nay bạn muốn tìm trang phục theo dịp nào, dáng mặc (form rộng, vừa, ôm) hay phong cách gì?",
+    text: "Xin chào 👋! Tôi là Trợ lý Thời trang AI Stylist của Routine Thu Đông. Hôm nay bạn muốn tìm trang phục theo dịp nào, dáng mặc (form rộng, vừa, ôm) hay phong cách gì?",
     chips: GENDER_QUICK_CHIPS.default,
   };
 }
@@ -127,7 +128,7 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
           const metaProducts = Array.isArray(message.metadata?.products) ? message.metadata.products : [];
           const displayOutfit = metaOutfit || (metaProducts.length > 0 ? {
             id: `restored-outfit-${message.id}`,
-            title: metaProducts.length === 1 ? metaProducts[0].name : "Sản phẩm Routine phù hợp",
+            title: metaProducts.length === 1 ? metaProducts[0].name : "Sản phẩm Routine Thu Đông phù hợp",
             products: metaProducts,
             items: metaProducts,
             total: metaProducts.reduce((sum, p) => sum + Number(p.price || 0), 0),
@@ -322,7 +323,7 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
       const displayOutfit = response.outfit || (responseProducts.length > 0
         ? {
           id: `products-${Date.now()}`,
-          title: responseProducts.length === 1 ? responseProducts[0].name : "Sản phẩm Routine phù hợp",
+          title: responseProducts.length === 1 ? responseProducts[0].name : "Sản phẩm Routine Thu Đông phù hợp",
           style: response.intent?.style || null,
           products: responseProducts,
           total: response.total || responseProducts.reduce((sum, product) => sum + Number(product.price || 0), 0),
@@ -365,7 +366,7 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
       });
       setHandoffDecision(consent ? "ACCEPTED" : "DECLINED");
       const confirmText = res?.message || (consent
-        ? "Mình đã ghi nhận yêu cầu kết nối chuyên viên tư vấn. Bạn vui lòng chờ chuyên viên Routine tiếp nhận nhé!"
+        ? "Mình đã ghi nhận yêu cầu kết nối chuyên viên tư vấn. Bạn vui lòng chờ chuyên viên Routine Thu Đông tiếp nhận nhé!"
         : "Đã rõ. Bạn có thể tiếp tục trò chuyện với AI Stylist nhé!");
       setMessages((current) => [
         ...current,
@@ -406,16 +407,16 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
             className={`${styles.chatBubbleWrapper} ${msg.role !== "user" ? styles.isAi : styles.isUser}`}
           >
             {msg.role !== "user" && (
-              <div className={styles.stylistAvatar} title={msg.role === "staff" ? "Chuyên viên Routine" : "Routine AI Stylist"}>
+              <div className={styles.stylistAvatar} title={msg.role === "staff" ? "Chuyên viên Routine Thu Đông" : "Routine Thu Đông AI Stylist"}>
                 <span>{msg.role === "staff" ? "S" : "R"}</span>
               </div>
             )}
 
             <div className={styles.chatBubbleContent}>
               <div className={`${styles.chatBubble} ${msg.role !== "user" ? styles.isAi : styles.isUser}`}>
-                {msg.role === "staff" && <strong>Chuyên viên Routine</strong>}
+                {msg.role === "staff" && <strong>Chuyên viên Routine Thu Đông</strong>}
                 {msg.image && (
-                  <img src={msg.image} alt="Uploaded outfit" className={styles.userImageThumb} />
+                  <Image src={msg.image} alt="Uploaded outfit" width={200} height={200} className={styles.userImageThumb} />
                 )}
                 <div className={styles.bubbleText}>{renderMessageText(msg.text)}</div>
               </div>
@@ -539,8 +540,8 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
 
             {quizStep === 2 && (
               <div className={styles.quizOptionsGrid}>
-                <button type="button" className={styles.quizOptionBtn} onClick={() => handleQuizAnswer("style", "Routine giữ ấm layer")}>
-                  🍂 Routine
+                <button type="button" className={styles.quizOptionBtn} onClick={() => handleQuizAnswer("style", "Routine Thu Đông giữ ấm layer")}>
+                  🍂 Routine Thu Đông
                 </button>
                 <button type="button" className={styles.quizOptionBtn} onClick={() => handleQuizAnswer("style", "tối giản thanh lịch Minimalist")}>
                   ✨ Tối giản Minimal
@@ -578,7 +579,7 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
       <div className={styles.aiChatInputArea}>
         {selectedImage && (
           <div className={styles.imagePreviewBar}>
-            <img src={selectedImage} alt="Preview" className={styles.imagePreviewThumb} />
+            <Image src={selectedImage} alt="Preview" width={60} height={60} className={styles.imagePreviewThumb} />
             <span className={styles.imagePreviewInfo}>Đã đính kèm ảnh trang phục (Gemini Vision sẽ phân tích phong cách)</span>
             <button type="button" className={styles.btnRemoveImage} onClick={() => setSelectedImage(null)} title="Hủy ảnh">
               ✕

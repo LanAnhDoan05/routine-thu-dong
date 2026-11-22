@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { IconUpload, IconX, IconStar, IconGrip, IconImage } from "./icons";
 import { uploadImageFile } from "@/lib/uploadService";
 import styles from "./ImageUploader.module.css";
@@ -104,9 +105,11 @@ export default function ImageUploader({ images, onChange, error }) {
             onDragOver={(e) => e.preventDefault()}
             onDrop={() => handleCardDrop(index)}
           >
-            <img
+            <Image
               src={img.url}
-              alt=""
+              alt={`Upload ${index + 1}`}
+              width={120}
+              height={120}
               className={styles.thumb}
               onError={(e) => {
                 e.currentTarget.style.display = "none";

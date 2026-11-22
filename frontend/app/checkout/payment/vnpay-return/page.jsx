@@ -110,7 +110,7 @@ function VNPayReturnInner() {
             </div>
             <h1 className="result-title">THANH TOÁN THÀNH CÔNG</h1>
             <p className="result-subtitle">
-              Cảm ơn bạn đã mua sắm tại Routine. Giao dịch qua cổng VNPay đã được xác nhận.
+              Cảm ơn bạn đã mua sắm tại Routine Thu Đông. Giao dịch qua cổng VNPay đã được xác nhận.
             </p>
 
             <div className="result-details">

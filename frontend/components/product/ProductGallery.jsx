@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import PlaceholderImage from "@/components/common/PlaceholderImage";
 
 export default function ProductGallery({ images = [], productName = "Product", isOutOfStock = false }) {
@@ -24,9 +25,11 @@ export default function ProductGallery({ images = [], productName = "Product", i
         }}
       >
         {currentImg && !currentImg.includes("undefined") ? (
-          <img
+          <Image
             src={currentImg}
             alt={productName}
+            width={600}
+            height={750}
             style={{
               width: "100%",
               height: "100%",
@@ -100,9 +103,11 @@ export default function ProductGallery({ images = [], productName = "Product", i
               }}
             >
               {img && !img.includes("undefined") ? (
-                <img
+                <Image
                   src={img}
-                  alt=""
+                  alt={productName || `Thumbnail ${idx + 1}`}
+                  width={100}
+                  height={125}
                   style={{
                     width: "100%",
                     height: "100%",

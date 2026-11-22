@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import { slugify } from "@/data/products";
 import { IconX, IconUpload } from "./icons";
 import { uploadImageFile } from "@/lib/uploadService";
@@ -42,22 +43,29 @@ export default function CategoryFormModal({ open, category, parentOptions, onSav
   }
 
   useEffect(() => {
-    if (open) {
-      setForm(
-        category
-          ? {
-              name: category.name,
-              slug: category.slug,
-              parentId: category.parentId || "",
-              description: category.description || "",
-              imageUrl: category.imageUrl || category.image || "",
-              status: category.status,
-            }
-          : emptyForm()
-      );
-      setSlugTouched(!!category);
-      setError("");
-    }
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) return;
+      if (open) {
+        setForm(
+          category
+            ? {
+                name: category.name,
+                slug: category.slug,
+                parentId: category.parentId || "",
+                description: category.description || "",
+                imageUrl: category.imageUrl || category.image || "",
+                status: category.status,
+              }
+            : emptyForm()
+        );
+        setSlugTouched(!!category);
+        setError("");
+      }
+    });
+    return () => {
+      ignore = true;
+    };
   }, [open, category]);
 
   if (!open) return null;
@@ -149,9 +157,11 @@ export default function CategoryFormModal({ open, category, parentOptions, onSav
             {form.imageUrl ? (
               <div style={{ display: "flex", alignItems: "center", gap: 16, padding: "12px", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", background: "var(--color-bg-secondary)" }}>
                 <div style={{ width: 80, height: 80, borderRadius: "50%", overflow: "hidden", border: "2px solid var(--color-primary)", flexShrink: 0, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img
+                  <Image
                     src={form.imageUrl}
                     alt="Category preview"
+                    width={80}
+                    height={80}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     onLoad={(e) => { delete e.currentTarget.dataset.fallbackAttempted; }}
                     onError={(e) => {

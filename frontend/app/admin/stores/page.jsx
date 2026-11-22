@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import PageHeader from "@/components/admin/PageHeader";
 import ConfirmModal from "@/components/admin/ConfirmModal";
 import { useToast } from "@/components/admin/ToastProvider";
@@ -83,7 +83,7 @@ export default function StoresAdminPage() {
   const [resetting, setResetting] = useState(false);
 
   // Load stores & stats
-  async function loadData() {
+  const loadData = useCallback(async () => {
     setLoading(true);
     try {
       const [storesData, statsData] = await Promise.all([
@@ -103,12 +103,17 @@ export default function StoresAdminPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [regionFilter, cityFilter, statusFilter, search, showToast]);
 
   useEffect(() => {
-    loadData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [regionFilter, cityFilter, statusFilter]);
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) loadData();
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [loadData]);
 
   // Handle search submit
   const handleSearchSubmit = (e) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import PageHeader from "@/components/admin/PageHeader";
 import { useToast } from "@/components/admin/ToastProvider";
 import {
@@ -39,7 +39,7 @@ export default function AdminOrdersPage() {
   const [sendingInvoice, setSendingInvoice] = useState(false);
 
   // Load orders from Backend MySQL API
-  async function loadOrders() {
+  const loadOrders = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetchAdminOrders({
@@ -54,11 +54,17 @@ export default function AdminOrdersPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [statusFilter, searchQuery, showToast]);
 
   useEffect(() => {
-    loadOrders();
-  }, [statusFilter]);
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) loadOrders();
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [loadOrders]);
 
   // Lắng nghe sự kiện đơn hàng thời gian thực từ Backend
   useEffect(() => {
@@ -83,7 +89,7 @@ export default function AdminOrdersPage() {
       window.removeEventListener("routine:order_status_updated", handleRealtimeStatus);
       window.removeEventListener("routine:payment_confirmed", handleRealtimeStatus);
     };
-  }, []);
+  }, [loadOrders, showToast]);
 
   function handleSearchSubmit(e) {
     e.preventDefault();
@@ -224,7 +230,7 @@ export default function AdminOrdersPage() {
     <div className={styles.container}>
       <PageHeader
         title="Quản lý Đơn hàng"
-        subtitle="Theo dõi, duyệt đơn, cập nhật tiến độ giao hàng và xử lý hóa đơn cho toàn bộ đơn hàng của Routine"
+        subtitle="Theo dõi, duyệt đơn, cập nhật tiến độ giao hàng và xử lý hóa đơn cho toàn bộ đơn hàng của Routine Thu Đông"
         actions={
           <button
             type="button"

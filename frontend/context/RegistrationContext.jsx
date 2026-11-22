@@ -31,16 +31,23 @@ export function RegistrationProvider({ children }) {
 
   // Hydrate từ sessionStorage sau khi mount (chỉ chạy ở client).
   useEffect(() => {
-    try {
-      const raw = window.sessionStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        setData({ ...emptyData, ...JSON.parse(raw) });
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) return;
+      try {
+        const raw = window.sessionStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          setData({ ...emptyData, ...JSON.parse(raw) });
+        }
+      } catch {
+        // sessionStorage không khả dụng (ví dụ: chế độ duyệt web riêng tư).
+      } finally {
+        setIsHydrated(true);
       }
-    } catch {
-      // sessionStorage không khả dụng (ví dụ: chế độ duyệt web riêng tư).
-    } finally {
-      setIsHydrated(true);
-    }
+    });
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const persist = useCallback((next) => {

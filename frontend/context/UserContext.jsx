@@ -26,29 +26,33 @@ export function UserProvider({ children }) {
 
   // 1. Nạp user từ localStorage khi mount
   useEffect(() => {
-    try {
-      const rawUser = window.localStorage.getItem(USER_STORAGE_KEY);
-      if (rawUser) {
-        const parsedUser = JSON.parse(rawUser);
-        // Storefront UserContext là phiên dành riêng cho Khách hàng (CUSTOMER)
-        // Tuyệt đối không nạp tài khoản Quản trị viên (ADMIN) vào giao diện khách hàng
-        if (parsedUser?.role === "ADMIN") {
-          window.localStorage.removeItem(USER_STORAGE_KEY);
-          setUser(null);
-        } else {
-          setUser(parsedUser);
-          if (parsedUser?.id) {
-            const rawAddress = window.localStorage.getItem(getAddressStorageKey(parsedUser.id));
-            if (rawAddress) setSavedAddressState(JSON.parse(rawAddress));
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) return;
+      try {
+        const rawUser = window.localStorage.getItem(USER_STORAGE_KEY);
+        if (rawUser) {
+          const parsedUser = JSON.parse(rawUser);
+          if (parsedUser?.role === "ADMIN") {
+            window.localStorage.removeItem(USER_STORAGE_KEY);
+            setUser(null);
+          } else {
+            setUser(parsedUser);
+            if (parsedUser?.id) {
+              const rawAddress = window.localStorage.getItem(getAddressStorageKey(parsedUser.id));
+              if (rawAddress) setSavedAddressState(JSON.parse(rawAddress));
+            }
           }
         }
+        window.localStorage.removeItem("routine_saved_address_v1");
+      } catch (err) {
+        console.error("Failed to load user from storage", err);
       }
-      // Dọn sạch key toàn cục cũ nếu có
-      window.localStorage.removeItem("routine_saved_address_v1");
-    } catch (err) {
-      console.error("Failed to load user from storage", err);
-    }
-    setHydrated(true);
+      setHydrated(true);
+    });
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   // 2. Đồng bộ user vào localStorage
@@ -68,22 +72,29 @@ export function UserProvider({ children }) {
   // 3. Khi user thay đổi (đổi tài khoản / đăng xuất): tự động nạp hoặc làm sạch địa chỉ
   useEffect(() => {
     if (!hydrated) return;
-    if (!user || !user.id) {
-      setSavedAddressState(null);
-      return;
-    }
-    try {
-      const key = getAddressStorageKey(user.id);
-      const rawAddress = window.localStorage.getItem(key);
-      if (rawAddress) {
-        setSavedAddressState(JSON.parse(rawAddress));
-      } else {
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) return;
+      if (!user || !user.id) {
         setSavedAddressState(null);
+        return;
       }
-    } catch (err) {
-      console.error("Failed to load address for user", err);
-    }
-  }, [user?.id, hydrated]);
+      try {
+        const key = getAddressStorageKey(user.id);
+        const rawAddress = window.localStorage.getItem(key);
+        if (rawAddress) {
+          setSavedAddressState(JSON.parse(rawAddress));
+        } else {
+          setSavedAddressState(null);
+        }
+      } catch (err) {
+        console.error("Failed to load address for user", err);
+      }
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [user, hydrated]);
 
   // 4. Lưu địa chỉ riêng biệt theo tài khoản đang đăng nhập
   const setSavedAddress = useCallback(
@@ -102,7 +113,7 @@ export function UserProvider({ children }) {
         }
       }
     },
-    [user?.id]
+    [user]
   );
 
   const login = useCallback((userData = "Khách hàng", stylePreference = "minimal", token = null) => {

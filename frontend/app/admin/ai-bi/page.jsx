@@ -51,7 +51,7 @@ export default function BusinessIntelligencePage() {
   const [chatMessages, setChatMessages] = useState([
     {
       role: "ai",
-      text: "Xin chào Quản trị viên! Tôi là Trợ lý AI Quản Trị Kinh Doanh của Routine. Tôi đã kết nối dữ liệu thời gian thực từ MySQL (doanh thu, đơn hàng, tồn kho, khách hàng). Bạn cần tôi hỗ trợ phân tích vấn đề gì?",
+      text: "Xin chào Quản trị viên! Tôi là Trợ lý AI Quản Trị Kinh Doanh của Routine Thu Đông. Tôi đã kết nối dữ liệu thời gian thực từ MySQL (doanh thu, đơn hàng, tồn kho, khách hàng). Bạn cần tôi hỗ trợ phân tích vấn đề gì?",
       time: "Vừa xong",
     },
   ]);
@@ -83,7 +83,13 @@ export default function BusinessIntelligencePage() {
   }, [revInterval]);
 
   useEffect(() => {
-    loadAllData();
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) loadAllData();
+    });
+    return () => {
+      ignore = true;
+    };
   }, [loadAllData]);
 
   // Request AI Insight

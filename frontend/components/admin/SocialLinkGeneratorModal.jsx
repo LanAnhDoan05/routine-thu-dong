@@ -19,22 +19,26 @@ export default function SocialLinkGeneratorModal({ isOpen, onClose, initialProdu
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (isOpen) {
-      const origin = getSiteOrigin();
-      setCurrentOrigin(origin);
-      if (!customDomain) {
-        setCustomDomain(origin);
-      }
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) return;
+      if (isOpen) {
+        const origin = getSiteOrigin();
+        setCurrentOrigin(origin);
+        setCustomDomain((prev) => prev || origin);
 
-      getProducts().then((data) => {
-        if (Array.isArray(data)) {
-          setProducts(data);
-          if (!selectedProductId && data.length > 0) {
-            setSelectedProductId(initialProductId || data[0].id);
+        getProducts().then((data) => {
+          if (ignore) return;
+          if (Array.isArray(data)) {
+            setProducts(data);
+            setSelectedProductId((prev) => prev || initialProductId || data[0]?.id || "");
           }
-        }
-      });
-    }
+        });
+      }
+    });
+    return () => {
+      ignore = true;
+    };
   }, [isOpen, initialProductId]);
 
   const effectiveOrigin = useMemo(() => {

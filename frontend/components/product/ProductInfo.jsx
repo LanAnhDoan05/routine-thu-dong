@@ -172,13 +172,13 @@ export default function ProductInfo({ product, isOutOfStock: propOutOfStock }) {
   const { addToCart } = useCart();
   const { showToast } = useToast();
 
-  useEffect(() => {
-    if (product.colors && product.colors.length > 0) {
-      if (!selectedColor || !product.colors.includes(selectedColor)) {
-        setSelectedColor(product.colors[0]);
-      }
+  const [prevColors, setPrevColors] = useState(product.colors);
+  if (product.colors !== prevColors) {
+    setPrevColors(product.colors);
+    if (product.colors && product.colors.length > 0 && (!selectedColor || !product.colors.includes(selectedColor))) {
+      setSelectedColor(product.colors[0]);
     }
-  }, [product.colors]);
+  }
 
   function handleAddToCart() {
     if (isOutOfStock) {

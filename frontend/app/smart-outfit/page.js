@@ -26,11 +26,13 @@ export default function SmartOutfitPage() {
   const [featured, setFeatured] = useState([]);
   const [styleList, setStyleList] = useState([]);
 
-  useEffect(() => {
+  const [prevGender, setPrevGender] = useState(user?.gender);
+  if (user?.gender !== prevGender) {
+    setPrevGender(user?.gender);
     if (user?.gender && (user.gender === "men" || user.gender === "women")) {
       setActiveGender(user.gender);
     }
-  }, [user]);
+  }
 
   useEffect(() => {
     getOutfits().then((items) => {

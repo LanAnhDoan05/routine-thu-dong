@@ -18,37 +18,41 @@ export default function WishlistPage() {
   useEffect(() => {
     let isMounted = true;
 
-    if (!isLoggedIn) {
-      setWishlistProducts([]);
-      setLoading(false);
-      return;
-    }
+    Promise.resolve().then(() => {
+      if (!isMounted) return;
 
-    if (!productIds || productIds.length === 0) {
-      setWishlistProducts([]);
-      setLoading(false);
-      return;
-    }
+      if (!isLoggedIn) {
+        setWishlistProducts([]);
+        setLoading(false);
+        return;
+      }
 
-    // Nếu trong context đã có danh sách items đầy đủ và khớp với productIds
-    if (Array.isArray(contextItems) && contextItems.length === productIds.length) {
-      setWishlistProducts(contextItems);
-      setLoading(false);
-      return;
-    }
+      if (!productIds || productIds.length === 0) {
+        setWishlistProducts([]);
+        setLoading(false);
+        return;
+      }
 
-    // Nếu chưa có chi tiết, gọi nạp chi tiết sản phẩm theo productIds
-    setLoading(true);
-    fetchProductsByIds(productIds)
-      .then((items) => {
-        if (isMounted) {
-          setWishlistProducts(items || []);
-          setLoading(false);
-        }
-      })
-      .catch(() => {
-        if (isMounted) setLoading(false);
-      });
+      // Nếu trong context đã có danh sách items đầy đủ và khớp với productIds
+      if (Array.isArray(contextItems) && contextItems.length === productIds.length) {
+        setWishlistProducts(contextItems);
+        setLoading(false);
+        return;
+      }
+
+      // Nếu chưa có chi tiết, gọi nạp chi tiết sản phẩm theo productIds
+      setLoading(true);
+      fetchProductsByIds(productIds)
+        .then((items) => {
+          if (isMounted) {
+            setWishlistProducts(items || []);
+            setLoading(false);
+          }
+        })
+        .catch(() => {
+          if (isMounted) setLoading(false);
+        });
+    });
 
     return () => {
       isMounted = false;

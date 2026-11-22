@@ -122,7 +122,7 @@ function VerifyOtpContent() {
           <h1 className={styles.successTitle}>Xác thực thành công</h1>
           <p className={styles.successSubtitle}>
             {flow === "register"
-              ? "Chào mừng bạn đến với Routine."
+              ? "Chào mừng bạn đến với Routine Thu Đông."
               : "Đăng nhập thành công."}
           </p>
         </div>

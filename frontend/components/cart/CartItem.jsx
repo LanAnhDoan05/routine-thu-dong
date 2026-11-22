@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import PlaceholderImage from "@/components/common/PlaceholderImage";
 import WishlistButton from "@/components/wishlist/WishlistButton";
 import { useCart } from "@/context/CartContext";
@@ -14,9 +15,11 @@ export default function CartItem({ item, editable = true }) {
     <div className="cart-item">
       <Link href={`/product/${item.productId}`} className="cart-item-image">
         {itemImg && !itemImg.includes("undefined") ? (
-          <img
+          <Image
             src={itemImg}
             alt={item.name}
+            width={88}
+            height={117}
             style={{
               width: "100%",
               height: "100%",

@@ -90,7 +90,13 @@ export default function AdminNotificationCenter() {
 
   // Lấy unread count khi khởi động hoặc đổi tuyến đường
   useEffect(() => {
-    loadNotifications(true);
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) loadNotifications(true);
+    });
+    return () => {
+      ignore = true;
+    };
   }, [loadNotifications, pathname]);
 
   // Lắng nghe sự kiện SSE thời gian thực từ Window CustomEvents

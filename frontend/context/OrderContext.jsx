@@ -28,7 +28,13 @@ export function OrderProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    refreshOrders();
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) refreshOrders();
+    });
+    return () => {
+      ignore = true;
+    };
   }, [refreshOrders, user]);
 
   const createOrder = useCallback(async (orderInput) => {

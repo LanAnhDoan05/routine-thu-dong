@@ -32,68 +32,66 @@ export function CartProvider({ children }) {
     let isCurrent = true;
     const userId = user?.id || null;
 
-    if (!isLoggedIn || !userId) {
-      // Khách vãng lai: nạp giỏ hàng guest từ localStorage và đồng bộ backend
-      const guestCached = loadCart(null);
-      if (guestCached && guestCached.length > 0) {
-        setItems(guestCached);
-      } else {
-        setItems([]);
-      }
-      prevUserIdRef.current = null;
-      setHydrated(true);
-
-      async function syncGuestCart() {
-        try {
-          const remoteCart = await fetchCartApi();
-          if (!isCurrent) return;
-          if (remoteCart && Array.isArray(remoteCart.items) && remoteCart.items.length > 0) {
-            setItems(remoteCart.items);
-            saveCart(remoteCart.items, null);
-          }
-        } catch (err) {}
-      }
-      syncGuestCart();
-      return;
-    }
-
-    // Nếu đổi tài khoản khác: dọn sạch state ngay lập tức để không lưu giữ đồ của tài khoản trước
-    if (prevUserIdRef.current !== userId) {
-      setItems([]);
-      clearLocalCart(prevUserIdRef.current);
-    }
-    prevUserIdRef.current = userId;
-
-    // Nạp cache của chính tài khoản này (nếu có)
-    const userCached = loadCart(userId);
-    if (userCached && userCached.length > 0) {
-      setItems(userCached);
-    }
-    setHydrated(true);
-
-    async function syncWithDatabase() {
-      try {
-        const remoteCart = await fetchCartApi();
-        if (!isCurrent) return;
-
-        if (remoteCart && Array.isArray(remoteCart.items)) {
-          setItems(remoteCart.items);
-          saveCart(remoteCart.items, userId);
+    Promise.resolve().then(() => {
+      if (!isCurrent) return;
+      if (!isLoggedIn || !userId) {
+        // Khách vãng lai: nạp giỏ hàng guest từ localStorage và đồng bộ backend
+        const guestCached = loadCart(null);
+        if (guestCached && guestCached.length > 0) {
+          setItems(guestCached);
         } else {
           setItems([]);
-          saveCart([], userId);
         }
-      } catch (err) {
-        console.warn("Lỗi đồng bộ giỏ hàng với Database:", err.message);
-      }
-    }
+        prevUserIdRef.current = null;
+        setHydrated(true);
 
-    syncWithDatabase();
+        fetchCartApi()
+          .then((remoteCart) => {
+            if (!isCurrent) return;
+            if (remoteCart && Array.isArray(remoteCart.items) && remoteCart.items.length > 0) {
+              setItems(remoteCart.items);
+              saveCart(remoteCart.items, null);
+            }
+          })
+          .catch(() => {});
+        return;
+      }
+
+      // Nếu đổi tài khoản khác: dọn sạch state ngay lập tức để không lưu giữ đồ của tài khoản trước
+      if (prevUserIdRef.current !== userId) {
+        setItems([]);
+        clearLocalCart(prevUserIdRef.current);
+      }
+      prevUserIdRef.current = userId;
+
+      // Nạp cache của chính tài khoản này (nếu có)
+      const userCached = loadCart(userId);
+      if (userCached && userCached.length > 0) {
+        setItems(userCached);
+      }
+      setHydrated(true);
+
+      fetchCartApi()
+        .then((remoteCart) => {
+          if (!isCurrent) return;
+
+          if (remoteCart && Array.isArray(remoteCart.items)) {
+            setItems(remoteCart.items);
+            saveCart(remoteCart.items, userId);
+          } else {
+            setItems([]);
+            saveCart([], userId);
+          }
+        })
+        .catch((err) => {
+          console.warn("Lỗi đồng bộ giỏ hàng với Database:", err.message);
+        });
+    });
 
     return () => {
       isCurrent = false;
     };
-  }, [isLoggedIn, user?.id]);
+  }, [isLoggedIn, user]);
 
   // Luôn lưu cache localStorage riêng biệt ứng với tài khoản đang đăng nhập
   useEffect(() => {
@@ -222,7 +220,7 @@ export function CartProvider({ children }) {
       clearLocalCart(null);
     }
     clearCartApi().catch((e) => console.warn("Lỗi dọn sạch DB:", e.message));
-  }, [user?.id]);
+  }, [user]);
 
   const getCartTotal = useCallback(() => calculateSubtotal(items), [items]);
 

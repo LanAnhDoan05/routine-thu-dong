@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import PageHeader from "@/components/admin/PageHeader";
 import StatusBadge from "@/components/admin/StatusBadge";
 import EmptyState from "@/components/admin/EmptyState";
@@ -30,7 +31,13 @@ export default function StylesPage() {
   }
 
   useEffect(() => {
-    load();
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) load();
+    });
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   function openAdd() {
@@ -101,9 +108,11 @@ export default function StylesPage() {
                     <td className={styles.nameCell}>
                       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                         <div style={{ width: 38, height: 38, borderRadius: "50%", overflow: "hidden", border: "1px solid var(--color-border)", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                          <img
+                          <Image
                             src={s.imageUrl || s.image || "/images/styles/basic.jpg"}
                             alt={s.name}
+                            width={38}
+                            height={38}
                             style={{ width: "100%", height: "100%", objectFit: "cover" }}
                             onError={(e) => { e.currentTarget.src = "/images/styles/basic.jpg"; }}
                           />

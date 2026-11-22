@@ -40,7 +40,7 @@ export default function ProductReviews({ productId }) {
   const [submitting, setSubmitting] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
 
-  const loadReviews = (starFilter = filterRating) => {
+  const loadReviews = useCallback((starFilter = filterRating) => {
     if (!productId) return;
     setLoading(true);
     fetchProductReviews(productId, { rating: starFilter || undefined })
@@ -51,10 +51,25 @@ export default function ProductReviews({ productId }) {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  };
+  }, [productId, filterRating]);
 
   useEffect(() => {
-    loadReviews(filterRating);
+    if (!productId) return;
+    let isCurrent = true;
+    fetchProductReviews(productId, { rating: filterRating || undefined })
+      .then((data) => {
+        if (!isCurrent) return;
+        if (data) {
+          setReviewsData(data);
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (isCurrent) setLoading(false);
+      });
+    return () => {
+      isCurrent = false;
+    };
   }, [productId, filterRating]);
 
   const handleSubmitReview = async (e) => {

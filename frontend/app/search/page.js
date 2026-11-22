@@ -49,17 +49,36 @@ function SearchPageInner() {
   const [sortKey, setSortKey] = useState("recommended");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
+  const [prevInitialQuery, setPrevInitialQuery] = useState(initialQuery);
+  if (initialQuery !== prevInitialQuery) {
+    setPrevInitialQuery(initialQuery);
+    setQuery(initialQuery);
+  }
+
   useEffect(() => {
-    setRecent(loadRecent());
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) setRecent(loadRecent());
+    });
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   useEffect(() => {
-    setQuery(initialQuery);
+    let ignore = false;
     if (initialQuery) {
-      searchProducts(initialQuery).then(setResults);
+      searchProducts(initialQuery).then((res) => {
+        if (!ignore) setResults(res || []);
+      });
     } else {
-      setResults([]);
+      Promise.resolve().then(() => {
+        if (!ignore) setResults([]);
+      });
     }
+    return () => {
+      ignore = true;
+    };
   }, [initialQuery]);
 
   function handleSearch(value) {

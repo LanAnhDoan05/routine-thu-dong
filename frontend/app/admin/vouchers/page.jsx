@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import PageHeader from "@/components/admin/PageHeader";
 import { useToast } from "@/components/admin/ToastProvider";
 import {
@@ -38,7 +38,7 @@ export default function AdminVouchersPage() {
   });
 
   // Load coupons from Backend MySQL API
-  async function loadCoupons() {
+  const loadCoupons = useCallback(async () => {
     setLoading(true);
     try {
       const list = await fetchAdminCoupons({
@@ -52,11 +52,17 @@ export default function AdminVouchersPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [statusFilter, searchQuery, showToast]);
 
   useEffect(() => {
-    loadCoupons();
-  }, [statusFilter]);
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) loadCoupons();
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [loadCoupons]);
 
   function handleSearchSubmit(e) {
     e.preventDefault();
@@ -238,7 +244,7 @@ export default function AdminVouchersPage() {
     <div className={styles.container}>
       <PageHeader
         title="Quản lý Mã giảm giá (Vouchers)"
-        subtitle="Quản lý kho mã khuyến mãi, thiết lập điều kiện áp dụng, tỷ lệ giảm giá và trạng thái kích hoạt trên toàn hệ thống Routine"
+        subtitle="Quản lý kho mã khuyến mãi, thiết lập điều kiện áp dụng, tỷ lệ giảm giá và trạng thái kích hoạt trên toàn hệ thống Routine Thu Đông"
         actions={
           <button
             type="button"

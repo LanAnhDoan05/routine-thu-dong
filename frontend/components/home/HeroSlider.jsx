@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import styles from "./HeroSlider.module.css";
 
 export default function HeroSlider({
@@ -28,10 +29,13 @@ export default function HeroSlider({
   if (validImages.length === 0) {
     return (
       <div className={`${styles.sliderContainer} ${className}`} style={style}>
-        <img
+        <Image
           src="/images/hero/hero-right-1.svg"
           alt="Hero"
+          width={1200}
+          height={800}
           className={styles.slideImage}
+          priority
         />
       </div>
     );
@@ -53,10 +57,13 @@ export default function HeroSlider({
             className={`${styles.slide} ${isActive ? styles.slideActive : ""}`}
             aria-hidden={!isActive}
           >
-            <img
+            <Image
               src={src}
-              alt={img.title || "Routine Hero Look"}
+              alt={img.title || "Routine Thu Đông Hero Look"}
+              width={1200}
+              height={800}
               className={styles.slideImage}
+              priority={i === 0}
               onError={(e) => {
                 e.currentTarget.src = "/images/hero/hero-right-1.svg";
               }}

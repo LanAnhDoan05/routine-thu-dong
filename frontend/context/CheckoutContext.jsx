@@ -42,13 +42,20 @@ export function CheckoutProvider({ children }) {
   }, [user?.id, reset]);
 
   useEffect(() => {
-    try {
-      const raw = window.sessionStorage.getItem(STORAGE_KEY);
-      if (raw) setState({ ...defaultState, ...JSON.parse(raw) });
-    } catch (err) {
-      console.error("Failed to load checkout state from storage", err);
-    }
-    setHydrated(true);
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) return;
+      try {
+        const raw = window.sessionStorage.getItem(STORAGE_KEY);
+        if (raw) setState({ ...defaultState, ...JSON.parse(raw) });
+      } catch (err) {
+        console.error("Failed to load checkout state from storage", err);
+      }
+      setHydrated(true);
+    });
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   useEffect(() => {

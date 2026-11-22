@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import StatusBadge from "./StatusBadge";
 import EmptyState from "./EmptyState";
 import { IconMoreVertical, IconEye, IconEdit, IconCopy, IconTrash, IconProducts } from "./icons";
@@ -97,9 +98,11 @@ function ProductRow({ product, checked, onToggleSelect, onDuplicate, onDeleteReq
         <input type="checkbox" aria-label={`Chọn ${product.name}`} checked={checked} onChange={onToggleSelect} />
       </td>
       <td>
-        <img
+        <Image
           src={image.url}
           alt={product.name || ""}
+          width={44}
+          height={44}
           className={styles.thumb}
           onError={(e) => {
             e.currentTarget.onerror = null;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import Link from "next/link";
 import PageHeader from "@/components/admin/PageHeader";
 import ProductFilters from "@/components/admin/ProductFilters";
@@ -70,13 +70,15 @@ export default function ProductsPage() {
     getStyles().then((sts) => {
       if (active && Array.isArray(sts)) setAllStyles(sts);
     });
-    loadStats();
+    Promise.resolve().then(() => {
+      if (active) loadStats();
+    });
     return () => {
       active = false;
     };
   }, []);
 
-  async function loadProducts() {
+  const loadProducts = useCallback(async () => {
     setProducts(null);
     setLoadError("");
     try {
@@ -86,12 +88,17 @@ export default function ProductsPage() {
       setProducts([]);
       setLoadError(error.message || "Không thể tải sản phẩm từ máy chủ.");
     }
-  }
+  }, [filters]);
 
   useEffect(() => {
-    loadProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) loadProducts();
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [loadProducts]);
 
   // Lắng nghe sự kiện đồng bộ thời gian thực từ Backend
   useEffect(() => {
@@ -111,7 +118,7 @@ export default function ProductsPage() {
       window.removeEventListener("routine:product_status_changed", handleRealtimeSync);
       window.removeEventListener("routine:stock_updated", handleRealtimeSync);
     };
-  }, []);
+  }, [loadProducts]);
 
   function handleFilterChange(field, value) {
     setFilters((prev) => ({ ...prev, [field]: value }));

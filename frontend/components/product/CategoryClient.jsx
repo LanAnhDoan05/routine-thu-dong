@@ -23,7 +23,6 @@ export default function CategoryClient({ initialCategory, initialProducts = [], 
     if (!slug) return;
 
     if (!initialCategory || initialProducts.length === 0) {
-      setLoading(true);
       Promise.all([
         getCategoryBySlug(slug),
         fetchProductsByCategory(slug),

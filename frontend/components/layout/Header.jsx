@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
@@ -38,6 +38,14 @@ export default function Header() {
   }, []);
 
   const router = useRouter();
+  const pathname = usePathname();
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setSearchOpen(false);
+    setMobileMenuOpen(false);
+    setUserMenuOpen(false);
+  }
   const { itemCount } = useCart();
   const { count: wishlistCount } = useWishlist();
   const { user, isLoggedIn, logout } = useUser();
@@ -80,11 +88,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setSearchOpen(false);
-    setMobileMenuOpen(false);
-    setUserMenuOpen(false);
-  }, [router]);
 
   useEffect(() => {
     if (!userMenuOpen) return;
@@ -210,7 +213,7 @@ export default function Header() {
                     <>
                       <div className={styles.userDropdownHeader}>
                         <p className={styles.userDropdownName}>
-                          {adminSession?.fullName || adminSession?.name || "Quản Trị Viên Routine"}
+                          {adminSession?.fullName || adminSession?.name || "Quản Trị Viên Routine Thu Đông"}
                         </p>
                         <p className={styles.userDropdownSub} style={{ color: "#d97706", fontWeight: "600" }}>
                           Quản trị viên (Admin)
@@ -246,9 +249,9 @@ export default function Header() {
                     /* 2. TÀI KHOẢN CUSTOMER (KHÁCH HÀNG) */
                     <>
                       <div className={styles.userDropdownHeader}>
-                        <p className={styles.userDropdownName}>{user?.name || user?.fullName || "Khách hàng Routine"}</p>
+                        <p className={styles.userDropdownName}>{user?.name || user?.fullName || "Khách hàng Routine Thu Đông"}</p>
                         <p className={styles.userDropdownSub}>
-                          {user?.phoneNumber || user?.email || "Thành viên Routine"}
+                          {user?.phoneNumber || user?.email || "Thành viên Routine Thu Đông"}
                         </p>
                       </div>
                       <Link

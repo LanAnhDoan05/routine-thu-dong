@@ -66,27 +66,34 @@ export default function OutfitFormModal({ open, outfit, products, onSave, onClos
   }, []);
 
   useEffect(() => {
-    if (open) {
-      const defaultStyle = stylesList[0]?.id || "minimal";
-      setForm(
-        outfit
-          ? {
-              name: outfit.name || outfit.title || "",
-              slug: outfit.slug || "",
-              description: outfit.description || "",
-              coverImage: outfit.coverImage || outfit.image || "",
-              images: normalizeOutfitImages(outfit),
-              styleId: outfit.styleId || outfit.style || defaultStyle,
-              gender: (outfit.gender || "UNISEX").toUpperCase(),
-              occasion: outfit.occasion || "",
-              productIds: outfit.productIds || (outfit.products ? outfit.products.map((p) => p.id) : []),
-              status: (outfit.status || "ACTIVE").toUpperCase(),
-            }
-          : emptyForm(defaultStyle)
-      );
-      setSlugTouched(!!outfit);
-      setError("");
-    }
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) return;
+      if (open) {
+        const defaultStyle = stylesList[0]?.id || "minimal";
+        setForm(
+          outfit
+            ? {
+                name: outfit.name || outfit.title || "",
+                slug: outfit.slug || "",
+                description: outfit.description || "",
+                coverImage: outfit.coverImage || outfit.image || "",
+                images: normalizeOutfitImages(outfit),
+                styleId: outfit.styleId || outfit.style || defaultStyle,
+                gender: (outfit.gender || "UNISEX").toUpperCase(),
+                occasion: outfit.occasion || "",
+                productIds: outfit.productIds || (outfit.products ? outfit.products.map((p) => p.id) : []),
+                status: (outfit.status || "ACTIVE").toUpperCase(),
+              }
+            : emptyForm(defaultStyle)
+        );
+        setSlugTouched(!!outfit);
+        setError("");
+      }
+    });
+    return () => {
+      ignore = true;
+    };
   }, [open, outfit, stylesList]);
 
   if (!open) return null;

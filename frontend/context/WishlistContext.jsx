@@ -27,43 +27,47 @@ export function WishlistProvider({ children }) {
     const userId = user?.id || null;
     currentUserIdRef.current = userId;
 
-    if (!isLoggedIn || !userId) {
-      // Khi chưa đăng nhập hoặc vừa đăng xuất: Đặt danh sách yêu thích về rỗng ngay lập tức
-      setProductIds([]);
-      setItems([]);
-      setLoading(false);
-      return;
-    }
+    Promise.resolve().then(() => {
+      if (!isCurrent) return;
 
-    // Đã đăng nhập: Nạp trước dữ liệu đệm của chính tài khoản này (nếu có)
-    const cached = loadWishlist(userId);
-    setProductIds(cached);
-    setLoading(true);
+      if (!isLoggedIn || !userId) {
+        // Khi chưa đăng nhập hoặc vừa đăng xuất: Đặt danh sách yêu thích về rỗng ngay lập tức
+        setProductIds([]);
+        setItems([]);
+        setLoading(false);
+        return;
+      }
 
-    // Đồng bộ chính xác danh sách yêu thích thực tế từ MySQL Database theo tài khoản
-    fetchWishlistApi()
-      .then((remoteWishlist) => {
-        if (!isCurrent) return;
-        if (remoteWishlist && Array.isArray(remoteWishlist.productIds)) {
-          // Lấy đúng danh sách thực tế của tài khoản từ Database
-          setProductIds(remoteWishlist.productIds);
-          if (Array.isArray(remoteWishlist.items)) {
-            setItems(remoteWishlist.items);
+      // Đã đăng nhập: Nạp trước dữ liệu đệm của chính tài khoản này (nếu có)
+      const cached = loadWishlist(userId);
+      setProductIds(cached);
+      setLoading(true);
+
+      // Đồng bộ chính xác danh sách yêu thích thực tế từ MySQL Database theo tài khoản
+      fetchWishlistApi()
+        .then((remoteWishlist) => {
+          if (!isCurrent) return;
+          if (remoteWishlist && Array.isArray(remoteWishlist.productIds)) {
+            // Lấy đúng danh sách thực tế của tài khoản từ Database
+            setProductIds(remoteWishlist.productIds);
+            if (Array.isArray(remoteWishlist.items)) {
+              setItems(remoteWishlist.items);
+            }
+            saveWishlist(remoteWishlist.productIds, userId);
           }
-          saveWishlist(remoteWishlist.productIds, userId);
-        }
-      })
-      .catch((err) => {
-        console.warn("Lỗi đồng bộ danh sách yêu thích với Database:", err.message);
-      })
-      .finally(() => {
-        if (isCurrent) setLoading(false);
-      });
+        })
+        .catch((err) => {
+          console.warn("Lỗi đồng bộ danh sách yêu thích với Database:", err.message);
+        })
+        .finally(() => {
+          if (isCurrent) setLoading(false);
+        });
+    });
 
     return () => {
       isCurrent = false;
     };
-  }, [isLoggedIn, user?.id]);
+  }, [isLoggedIn, user]);
 
   // Luôn cập nhật cache lưu trữ riêng biệt ứng với tài khoản đang đăng nhập
   useEffect(() => {
@@ -122,7 +126,7 @@ export function WishlistProvider({ children }) {
         })
         .catch((e) => console.warn("Lỗi toggle wishlist DB:", e.message));
     },
-    [isLoggedIn, user?.id]
+    [isLoggedIn, user]
   );
 
   const clearWishlist = useCallback(() => {
@@ -131,7 +135,7 @@ export function WishlistProvider({ children }) {
     setItems([]);
     saveWishlist([], user.id);
     clearWishlistApi().catch((e) => console.warn("Lỗi dọn wishlist DB:", e.message));
-  }, [isLoggedIn, user?.id]);
+  }, [isLoggedIn, user]);
 
   const value = useMemo(
     () => ({

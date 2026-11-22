@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import { slugify } from "@/data/products";
 import { IconX, IconUpload } from "./icons";
 import { uploadImageFile } from "@/lib/uploadService";
@@ -40,22 +41,29 @@ export default function StyleFormModal({ open, style, onSave, onClose }) {
   }
 
   useEffect(() => {
-    if (open) {
-      setForm(
-        style
-          ? {
-              name: style.name,
-              slug: style.slug,
-              description: style.description || "",
-              imageUrl: style.imageUrl || style.image || "/images/styles/basic.svg",
-              status: style.status,
-            }
-          : emptyForm()
-      );
-      setSlugTouched(!!style);
-      setError("");
-      setUploadError("");
-    }
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) return;
+      if (open) {
+        setForm(
+          style
+            ? {
+                name: style.name,
+                slug: style.slug,
+                description: style.description || "",
+                imageUrl: style.imageUrl || style.image || "/images/styles/basic.svg",
+                status: style.status,
+              }
+            : emptyForm()
+        );
+        setSlugTouched(!!style);
+        setError("");
+        setUploadError("");
+      }
+    });
+    return () => {
+      ignore = true;
+    };
   }, [open, style]);
 
   if (!open) return null;
@@ -133,9 +141,11 @@ export default function StyleFormModal({ open, style, onSave, onClose }) {
             {form.imageUrl ? (
               <div style={{ display: "flex", alignItems: "center", gap: 16, padding: "12px", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", background: "var(--color-bg-secondary)" }}>
                 <div style={{ width: 80, height: 80, borderRadius: "50%", overflow: "hidden", border: "2px solid var(--color-primary)", flexShrink: 0, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img
+                  <Image
                     src={form.imageUrl}
                     alt="Style preview"
+                    width={80}
+                    height={80}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     onError={(e) => { e.currentTarget.src = "/images/styles/basic.jpg"; }}
                   />

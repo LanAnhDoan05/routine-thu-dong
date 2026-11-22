@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import PlaceholderImage from "@/components/common/PlaceholderImage";
 import ProductGrid from "@/components/product/ProductGrid";
 import OutfitGrid from "@/components/outfit/OutfitGrid";
@@ -199,9 +200,12 @@ export default function HomePage() {
                 className={`${homeStyles.heroSlide} ${isActive ? homeStyles.heroSlideActive : ''}`}
                 aria-hidden={!isActive}
               >
-                <img
+                <Image
                   src={src}
-                  alt={img.title || "Routine Hero Banner"}
+                  alt={img.title || "Routine Thu Đông Hero Banner"}
+                  width={1920}
+                  height={1080}
+                  priority={i === 0}
                   className={homeStyles.heroSlideImg}
                   onError={(e) => {
                     e.currentTarget.src = "/images/hero/hero-banner-1.svg";
@@ -217,7 +221,7 @@ export default function HomePage() {
 
         {/* Hero Content (ROUTINE) */}
         <div className={homeStyles.heroContent}>
-          <span className={homeStyles.heroEyebrow}>ROUTINE — SMART FASHION</span>
+          <span className={homeStyles.heroEyebrow}>ROUTINE THU ĐÔNG — SMART FASHION</span>
           <h1 className={homeStyles.heroTitle}>
             {heroTitle}
           </h1>
@@ -267,9 +271,11 @@ export default function HomePage() {
                   return (
                     <Link key={cat.slug || cat.id} href={`/category/${cat.slug}`} className={homeStyles.categoryCard}>
                       <div className={homeStyles.categoryThumbWrap}>
-                        <img
+                        <Image
                           src={imgSrc}
                           alt={cat.name}
+                          width={120}
+                          height={120}
                           className={homeStyles.categoryThumb}
                           onError={(e) => {
                             if (e.currentTarget.dataset.fallbackAttempted) {
@@ -430,9 +436,11 @@ export default function HomePage() {
               return (
                 <Link key={style.slug} href={`/category/style/${style.slug}`} className={homeStyles.styleCard}>
                   <div className={homeStyles.styleImgWrap}>
-                    <img
+                    <Image
                       src={imgSrc}
                       alt={style.name}
+                      width={400}
+                      height={500}
                       className={homeStyles.styleImg}
                       onError={(e) => {
                         if (!e.currentTarget.src.endsWith('.png')) {

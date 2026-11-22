@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Badge from "@/components/common/Badge";
 import PlaceholderImage from "@/components/common/PlaceholderImage";
 import WishlistButton from "@/components/wishlist/WishlistButton";
@@ -84,9 +85,11 @@ export default function ProductCard({ product }) {
     <Link href={`/product/${product.id}`} className={`${styles.card} ${cardStyleClass}`}>
       <div className={`${styles.imageWrap} ${isOutOfStock ? styles.outOfStockWrap : ""}`}>
         {firstImg ? (
-          <img
+          <Image
             src={firstImg}
             alt={product.name}
+            width={400}
+            height={533}
             style={{ width: "100%", aspectRatio: settings.imageAspectRatio, objectFit: "cover", display: "block" }}
             onError={(e) => {
               e.currentTarget.style.display = "none";
@@ -102,9 +105,11 @@ export default function ProductCard({ product }) {
 
         {secondImg && (
           <div className={styles.imageBack}>
-            <img
+            <Image
               src={secondImg}
               alt={product.name}
+              width={400}
+              height={533}
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>

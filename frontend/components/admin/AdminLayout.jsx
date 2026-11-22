@@ -36,42 +36,45 @@ export default function AdminLayout({ children }) {
 
   useEffect(() => {
     if (!hydrated) return;
-
-    const token =
-      (typeof window !== "undefined" && window.localStorage.getItem("routine_admin_token")) ||
-      (typeof window !== "undefined" && window.localStorage.getItem("routine_token")) ||
-      (typeof window !== "undefined" && window.localStorage.getItem("token"));
-
-    let tokenValid = false;
-    try {
-      const payload = token ? JSON.parse(window.atob(token.split(".")[1])) : null;
-      tokenValid = Boolean(payload && (!payload.exp || payload.exp * 1000 > Date.now()));
-    } catch {
-      tokenValid = false;
-    }
-
-    if (!effectiveUser || effectiveUser.role !== "ADMIN" || !tokenValid) {
-      console.log('[DEBUG AdminLayout] Admin Check failed:', { hasUser: !!effectiveUser, role: effectiveUser?.role, tokenValid });
-      setCheckingAccess(false);
-      router.replace(`/login?redirect=${encodeURIComponent(pathname || "/admin")}`);
-      return;
-    }
-
     let cancelled = false;
-    fetchApi("/auth/me")
-      .then((data) => {
-        if (!cancelled && data?.user?.role === "ADMIN") {
-          setCheckingAccess(false);
-        } else if (!cancelled) {
-          throw new Error("Admin access denied");
-        }
-      })
-      .catch((err) => {
-        if (cancelled) return;
-        console.log('[DEBUG AdminLayout] fetchApi /auth/me caught error:', err.message);
+
+    Promise.resolve().then(() => {
+      if (cancelled) return;
+      const token =
+        (typeof window !== "undefined" && window.localStorage.getItem("routine_admin_token")) ||
+        (typeof window !== "undefined" && window.localStorage.getItem("routine_token")) ||
+        (typeof window !== "undefined" && window.localStorage.getItem("token"));
+
+      let tokenValid = false;
+      try {
+        const payload = token ? JSON.parse(window.atob(token.split(".")[1])) : null;
+        tokenValid = Boolean(payload && (!payload.exp || payload.exp * 1000 > Date.now()));
+      } catch {
+        tokenValid = false;
+      }
+
+      if (!effectiveUser || effectiveUser.role !== "ADMIN" || !tokenValid) {
+        console.log('[DEBUG AdminLayout] Admin Check failed:', { hasUser: !!effectiveUser, role: effectiveUser?.role, tokenValid });
         setCheckingAccess(false);
         router.replace(`/login?redirect=${encodeURIComponent(pathname || "/admin")}`);
-      });
+        return;
+      }
+
+      fetchApi("/auth/me")
+        .then((data) => {
+          if (!cancelled && data?.user?.role === "ADMIN") {
+            setCheckingAccess(false);
+          } else if (!cancelled) {
+            throw new Error("Admin access denied");
+          }
+        })
+        .catch((err) => {
+          if (cancelled) return;
+          console.log('[DEBUG AdminLayout] fetchApi /auth/me caught error:', err.message);
+          setCheckingAccess(false);
+          router.replace(`/login?redirect=${encodeURIComponent(pathname || "/admin")}`);
+        });
+    });
 
     return () => {
       cancelled = true;
@@ -79,9 +82,11 @@ export default function AdminLayout({ children }) {
   }, [hydrated, user, effectiveUser, pathname, router]);
 
   // Đóng drawer mỗi khi chuyển route.
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   if (!hydrated || checkingAccess || !effectiveUser || effectiveUser.role !== "ADMIN") return null;
 

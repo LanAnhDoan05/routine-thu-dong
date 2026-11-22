@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import PlaceholderImage from "@/components/common/PlaceholderImage";
 import { formatPrice } from "@/lib/format";
 
@@ -11,9 +12,11 @@ export default function OrderItems({ items }) {
           <div className="order-item" key={`${item.productId}-${idx}`}>
             <Link href={`/product/${item.productId}`} className="order-item-image">
               {itemImg && !itemImg.includes("undefined") ? (
-                <img
+                <Image
                   src={itemImg}
                   alt={item.name}
+                  width={72}
+                  height={96}
                   style={{
                     width: "100%",
                     height: "100%",

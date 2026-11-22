@@ -26,7 +26,6 @@ export default function ProductDetailClient({ initialProduct, initialRelated = [
 
     // Nếu chưa có dữ liệu ban đầu từ SSR, fetch từ client
     if (!initialProduct) {
-      setLoading(true);
       fetchProductById(targetId)
         .then((p) => {
           if (active) {
@@ -71,7 +70,7 @@ export default function ProductDetailClient({ initialProduct, initialRelated = [
       window.removeEventListener("routine:product_status_changed", handleRealtimeUpdate);
       window.removeEventListener("routine:stock_updated", handleRealtimeUpdate);
     };
-  }, [productId, initialProduct]);
+  }, [productId, initialProduct, initialRelated.length]);
 
   if (loading) {
     return (

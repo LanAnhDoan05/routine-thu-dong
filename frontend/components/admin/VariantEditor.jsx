@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { colors as allColors } from "@/data/colors";
 import { sizes as allSizes } from "@/data/sizes";
 import { getColorById } from "@/data/colors";
@@ -36,7 +36,7 @@ export default function VariantEditor({
   const [bulkPrice, setBulkPrice] = useState("");
   const [bulkStock, setBulkStock] = useState("");
 
-  function buildVariants(colorIds, sizeIds, currentVariants) {
+  const buildVariants = useCallback((colorIds, sizeIds, currentVariants) => {
     const activeColorIds = Array.isArray(colorIds) ? colorIds : [];
     const activeSizeIds = Array.isArray(sizeIds) ? sizeIds : [];
     if (!activeColorIds.length || !activeSizeIds.length) return [];
@@ -107,7 +107,7 @@ export default function VariantEditor({
       }
     }
     return next;
-  }
+  }, [skuPrefix, basePrice]);
 
   // Tự động đồng bộ và nhảy bộ đếm biến thể khi người dùng chọn Màu & Kích cỡ
   useEffect(() => {
@@ -117,7 +117,7 @@ export default function VariantEditor({
         onChangeVariants(initial);
       }
     }
-  }, [selectedColorIds, selectedSizeIds, variants, skuPrefix, basePrice]);
+  }, [selectedColorIds, selectedSizeIds, variants, buildVariants, onChangeVariants]);
 
   function handleColorsChange(newColorIds) {
     onChangeSelectedColorIds(newColorIds);

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import Image from "next/image";
 import PageHeader from "@/components/admin/PageHeader";
 import EmptyState from "@/components/admin/EmptyState";
 import {
@@ -39,7 +40,7 @@ export default function CustomersPage() {
   const [guestSearch, setGuestSearch] = useState("");
 
   // Tải danh sách khách hàng thành viên
-  const loadCustomers = () => {
+  const loadCustomers = useCallback(() => {
     setCustLoading(true);
     fetchAdminCustomers({
       source: custPlatformFilter,
@@ -50,10 +51,10 @@ export default function CustomersPage() {
       setCustomers(res?.items || []);
       setCustLoading(false);
     });
-  };
+  }, [custPlatformFilter, custStatusFilter, custSearch]);
 
   // Tải danh sách khách vãng lai
-  const loadGuests = () => {
+  const loadGuests = useCallback(() => {
     setGuestLoading(true);
     fetchGuestVisitors({
       platform: guestPlatformFilter,
@@ -63,11 +64,17 @@ export default function CustomersPage() {
       setGuests(res?.items || []);
       setGuestLoading(false);
     });
-  };
+  }, [guestPlatformFilter, guestSearch]);
 
   useEffect(() => {
-    loadCustomers();
-  }, [custPlatformFilter, custStatusFilter]);
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) loadCustomers();
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [loadCustomers]);
 
   // Lắng nghe sự kiện khách hàng đăng ký mới theo thời gian thực
   useEffect(() => {
@@ -80,11 +87,17 @@ export default function CustomersPage() {
     return () => {
       window.removeEventListener("routine:customer_registered", handleNewCustomer);
     };
-  }, []);
+  }, [loadCustomers, loadGuests]);
 
   useEffect(() => {
-    loadGuests();
-  }, [guestPlatformFilter]);
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) loadGuests();
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [loadGuests]);
 
   const handleToggleCustomerStatus = async (id, currentStatus) => {
     const nextStatus = currentStatus === "ACTIVE" ? "BLOCKED" : "ACTIVE";
@@ -354,7 +367,7 @@ export default function CustomersPage() {
                             {g.productsViewed.map((pv) => (
                               <div key={pv.id} className={styles.productThumb}>
                                 {pv.image ? (
-                                  <img src={pv.image} alt={pv.name} className={styles.productImg} />
+                                  <Image src={pv.image} alt={pv.name} width={40} height={40} className={styles.productImg} />
                                 ) : (
                                   <div className={styles.productImg} />
                                 )}

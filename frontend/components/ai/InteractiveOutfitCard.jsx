@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useUser } from "@/context/UserContext";
@@ -151,7 +152,7 @@ export default function InteractiveOutfitCard({ outfit }) {
       <div className={styles.outfitCardHeader}>
         <div>
           <span className={styles.outfitBadge}>{outfit.style ? outfit.style.toUpperCase() : "OUTFIT"}</span>
-          <h3 className={styles.outfitTitle}>{outfit.title || outfit.name || "Bộ phối thời trang Routine"}</h3>
+          <h3 className={styles.outfitTitle}>{outfit.title || outfit.name || "Bộ phối thời trang Routine Thu Đông"}</h3>
         </div>
         <span className={styles.outfitItemCount}>{products.length} món đồ</span>
       </div>
@@ -179,10 +180,15 @@ export default function InteractiveOutfitCard({ outfit }) {
           return (
             <div key={pid} className={styles.outfitItemRow}>
               <Link href={`/product/${pid}`} className={styles.outfitItemThumb} style={{ position: "relative" }}>
-                <img
+                <Image
                   src={item.image || (Array.isArray(item.images) ? item.images[0] : null) || "/images/hero/auth-hero.jpg"}
                   alt={item.name}
+                  width={80}
+                  height={100}
                   style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
                     filter: isItemOutOfStock ? "grayscale(40%) blur(1px) opacity(0.65)" : "none"
                   }}
                 />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import PageHeader from "@/components/admin/PageHeader";
 import StatusBadge from "@/components/admin/StatusBadge";
 import EmptyState from "@/components/admin/EmptyState";
@@ -35,7 +36,13 @@ export default function OutfitsPage() {
   }
 
   useEffect(() => {
-    load();
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) load();
+    });
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   function openAdd() {
@@ -94,7 +101,7 @@ export default function OutfitsPage() {
             return (
               <div key={o.id} className={styles.card}>
                 <div className={styles.coverWrap}>
-                  <img src={o.coverImage} alt="" className={styles.cover} />
+                  <Image src={o.coverImage} alt={o.name} width={400} height={400} className={styles.cover} />
                   <span className={styles.statusOverlay}>
                     <StatusBadge value={o.status} />
                   </span>

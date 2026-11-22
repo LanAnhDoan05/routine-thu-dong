@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState, useRef } from "react";
+import { Suspense, useEffect, useState, useRef, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Loading from "@/components/common/Loading";
@@ -21,7 +21,7 @@ export default function VNPayGatewayPage() {
         <div style={{ textAlign: "center", padding: "120px 0" }}>
           <Loading />
           <p style={{ marginTop: 16, color: "#64748b", fontSize: "14.5px" }}>
-            Đang khởi tạo cổng thanh toán Routine VNPAY-QR...
+            Đang khởi tạo cổng thanh toán Routine Thu Đông VNPAY-QR...
           </p>
         </div>
       }
@@ -48,13 +48,17 @@ function VNPayGatewayInner() {
 
   // 1. Khởi tạo mã QR VNPAY nhúng và tra cứu chi tiết đơn hàng
   useEffect(() => {
-    if (!orderId) {
-      setErrorMessage("Không tìm thấy mã đơn hàng. Vui lòng quay lại giỏ hàng.");
-      setLoading(false);
-      return;
-    }
-
     let isMounted = true;
+
+    Promise.resolve().then(() => {
+      if (!isMounted) return;
+      if (!orderId) {
+        setErrorMessage("Không tìm thấy mã đơn hàng. Vui lòng quay lại giỏ hàng.");
+        setLoading(false);
+        return;
+      }
+      initPayment();
+    });
 
     async function initPayment() {
       try {
@@ -127,6 +131,14 @@ function VNPayGatewayInner() {
     return () => clearInterval(timer);
   }, [status, timeLeft]);
 
+  const handlePaymentSuccess = useCallback(() => {
+    setStatus("SUCCESS");
+    setIsProcessing(true);
+    setTimeout(() => {
+      router.push(`/checkout/success?orderId=${encodeURIComponent(orderId)}`);
+    }, 2000);
+  }, [orderId, router]);
+
   // 3. Lắng nghe sự kiện Realtime SSE (Server-Sent Events)
   useEffect(() => {
     if (!orderId || status === "SUCCESS") return;
@@ -165,7 +177,7 @@ function VNPayGatewayInner() {
     return () => {
       if (eventSource) eventSource.close();
     };
-  }, [orderId, status]);
+  }, [orderId, status, handlePaymentSuccess]);
 
   // 4. Cơ chế Polling Fallback: Truy vấn trạng thái Backend mỗi 4 giây
   useEffect(() => {
@@ -190,15 +202,7 @@ function VNPayGatewayInner() {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [orderId, status]);
-
-  function handlePaymentSuccess() {
-    setStatus("SUCCESS");
-    setIsProcessing(true);
-    setTimeout(() => {
-      router.push(`/checkout/success?orderId=${encodeURIComponent(orderId)}`);
-    }, 2000);
-  }
+  }, [orderId, status, handlePaymentSuccess]);
 
   // 5. Thao tác kiểm tra thủ công trạng thái thanh toán
   async function handleCheckStatus() {
@@ -274,8 +278,8 @@ function VNPayGatewayInner() {
       {/* Top Header */}
       <header className="payment-top-bar">
         <div className="container payment-top-inner">
-          <Link href="/" className="brand-logo" aria-label="Routine - về trang chủ">
-            ROUTINE
+          <Link href="/" className="brand-logo" aria-label="Routine Thu Đông - về trang chủ">
+            ROUTINE THU ĐÔNG
           </Link>
           <div className="security-tag">
             <span className="lock-icon" aria-hidden="true">🔒</span>
@@ -423,7 +427,7 @@ function VNPayGatewayInner() {
                   </div>
                   <div className="meta-row">
                     <span className="meta-label">Người nhận</span>
-                    <span className="meta-value">{order?.receiverName || "Khách hàng Routine"}</span>
+                    <span className="meta-value">{order?.receiverName || "Khách hàng Routine Thu Đông"}</span>
                   </div>
                   <div className="meta-row">
                     <span className="meta-label">Số điện thoại</span>

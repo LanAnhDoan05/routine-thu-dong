@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import PlaceholderImage from "@/components/common/PlaceholderImage";
 import ProductCard from "@/components/product/ProductCard";
 import { useCart } from "@/context/CartContext";
@@ -90,7 +91,7 @@ export default function OutfitDetail({ outfit, products, relatedProducts = [] })
                     background: "none",
                   }}
                 >
-                  <img src={imgUrl} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <Image src={imgUrl} alt={outfit.name || "Outfit photo"} width={68} height={85} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </button>
               ))}
             </div>

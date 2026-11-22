@@ -20,7 +20,6 @@ export default function StyleCategoryPage() {
   useEffect(() => {
     let active = true;
     if (!slug) return;
-    setLoading(true);
 
     Promise.all([
       getStyleById(slug).catch(() => null),

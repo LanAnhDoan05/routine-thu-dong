@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 import { findActiveNavItem, getBreadcrumbTrailingLabel } from "@/lib/adminNav";
 import { useUser } from "@/context/UserContext";
 import { useToast } from "@/components/admin/ToastProvider";
@@ -45,7 +46,7 @@ export default function AdminHeader({ onMenuClick }) {
         <button type="button" className={styles.menuBtn} aria-label="Mở menu" onClick={onMenuClick}>
           <IconMenu size={20} />
         </button>
-        <span className={styles.mobileBrand}>ROUTINE</span>
+        <span className={styles.mobileBrand}>ROUTINE THU ĐÔNG</span>
         <nav className={styles.breadcrumb} aria-label="Breadcrumb">
           <span className={styles.crumbCurrent}>{primaryLabel}</span>
           {trailing ? (
@@ -66,8 +67,8 @@ export default function AdminHeader({ onMenuClick }) {
         <AdminNotificationCenter />
 
         <div className={styles.profile}>
-          <img src="/images/avatars/admin.svg" alt="" className={styles.avatar} />
-          <span className={styles.profileName}>{adminUser?.fullName || adminUser?.name || "Quản Trị Viên Routine"}</span>
+          <Image src="/images/avatars/admin.svg" alt="Admin Avatar" width={32} height={32} className={styles.avatar} />
+          <span className={styles.profileName}>{adminUser?.fullName || adminUser?.name || "Quản Trị Viên Routine Thu Đông"}</span>
         </div>
 
         <button

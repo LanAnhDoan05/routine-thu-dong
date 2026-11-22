@@ -36,7 +36,13 @@ export default function CategoriesPage() {
   }
 
   useEffect(() => {
-    load();
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) load();
+    });
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   function openAdd() {

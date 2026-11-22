@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import PageHeader from "@/components/admin/PageHeader";
 import StatCard from "@/components/admin/StatCard";
 import StatusBadge from "@/components/admin/StatusBadge";
@@ -36,7 +37,13 @@ export default function DashboardPage() {
   }, []);
 
   useEffect(() => {
-    loadDashboardData();
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (!ignore) loadDashboardData();
+    });
+    return () => {
+      ignore = true;
+    };
   }, [loadDashboardData]);
 
   // Tự động cập nhật số liệu Dashboard theo thời gian thực
@@ -269,7 +276,7 @@ export default function DashboardPage() {
           <div>
             <h2 className={styles.sectionTitle}>Đơn Hàng Gần Đây ({recentOrders.length})</h2>
             <p style={{ fontSize: 12.5, color: "var(--color-text-secondary)", marginTop: 2 }}>
-              Các đơn hàng mới nhất đặt qua hệ thống Routine Storefront
+              Các đơn hàng mới nhất đặt qua hệ thống Routine Thu Đông Storefront
             </p>
           </div>
           <Link href="/orders" target="_blank" className={styles.viewAllBtn}>
@@ -407,7 +414,7 @@ function ProductMiniList({ title, items, emptyText, showStock, showSales, badgeT
         <ul className={styles.miniList}>
           {items.map((p) => (
             <li key={p.id} className={styles.miniItem}>
-              <img src={p.image || "/images/products/men-tshirt-1.avif"} alt="" className={styles.miniThumb} />
+              <Image src={p.image || "/images/products/men-tshirt-1.avif"} alt={p.name} width={40} height={40} className={styles.miniThumb} />
               <div className={styles.miniInfo}>
                 <Link href={`/product/${p.id}`} target="_blank" className={styles.miniName}>
                   {p.name}
