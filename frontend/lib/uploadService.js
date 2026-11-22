@@ -110,7 +110,10 @@ export async function uploadImageFile(file) {
 
   let token = null;
   if (typeof window !== 'undefined') {
-    const stored = localStorage.getItem('routine_token') || localStorage.getItem('token');
+    const isAdmin = window.location.pathname.startsWith('/admin');
+    const adminToken = localStorage.getItem('routine_admin_token');
+    const customerToken = localStorage.getItem('routine_token') || localStorage.getItem('token');
+    const stored = isAdmin ? (adminToken || customerToken) : (customerToken || adminToken);
     if (stored) {
       try {
         const parts = stored.split('.');

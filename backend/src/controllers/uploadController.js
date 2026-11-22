@@ -66,11 +66,7 @@ async function processSingleUpload(file) {
         mimetype: file.mimetype,
       };
     } catch (cErr) {
-      console.error(`[uploadController] Cloudinary upload failed: ${cErr.message}`);
-      const err = new Error(`Upload Cloudinary thất bại: ${cErr.message || 'Lỗi xác thực hoặc mạng'}`);
-      err.statusCode = 502;
-      err.details = cErr;
-      throw err;
+      console.warn(`[uploadController] Cloudinary upload unavailable or timed out: ${cErr.message}. Gracefully falling back to MySQL database storage.`);
     }
   }
 

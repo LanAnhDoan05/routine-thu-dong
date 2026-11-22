@@ -60,6 +60,7 @@ function uploadBuffer(buffer, options = {}) {
       resource_type: 'image',
       format: options.format,
       public_id: options.publicId,
+      timeout: options.timeout || 6000,
       transformation: options.transformation || [
         { quality: 'auto', fetch_format: 'auto' }
       ],
