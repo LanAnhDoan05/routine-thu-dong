@@ -1,0 +1,35 @@
+{
+  "suite": "VNPay Sandbox Payment & Order Flow",
+  "tests": [
+    {
+      "name": "Order Creation & MySQL Persistence",
+      "status": "PASS",
+      "details": "Order ID: ORD-2026-0209, Total: 799000đ, Payment: VNPAY"
+    },
+    {
+      "name": "VNPay Payment URL Generation",
+      "status": "PASS",
+      "details": "Endpoint verified"
+    },
+    {
+      "name": "Embedded VNPay QR Generation",
+      "status": "PASS",
+      "details": "QR API verified"
+    },
+    {
+      "name": "VNPay Payment Callback & Status Update",
+      "status": "PASS",
+      "details": "Payment simulated"
+    },
+    {
+      "name": "Admin Orders List API",
+      "status": "PASS",
+      "details": "Admin can view and filter all customer orders"
+    },
+    {
+      "name": "Safe Test Order Cleanup",
+      "status": "PASS",
+      "details": "Test order removed cleanly"
+    }
+  ]
+}

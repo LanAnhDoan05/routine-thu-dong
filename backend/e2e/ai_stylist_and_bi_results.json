@@ -1,0 +1,35 @@
+{
+  "suite": "AI Stylist (Gemini) & AI Business Intelligence",
+  "tests": [
+    {
+      "name": "AI Stylist Single-Turn Grounding",
+      "status": "PASS",
+      "details": "Reply: \"Chào bạn, hiện tại trong hệ thống của Routine chưa tìm thấy sản phẩm áo len nào dưới 1.000.000 VNĐ. ...\" (Products: 0)"
+    },
+    {
+      "name": "AI Stylist Multi-Turn Context",
+      "status": "PASS",
+      "details": "Dạ Routine hiện tại không tìm thấy mẫu áo len hoặc áo khoác màu đen nào dưới 1 triệu trong catalog s"
+    },
+    {
+      "name": "AI Outfit Recommendation",
+      "status": "PASS",
+      "details": "Generated smart-casual work outfit"
+    },
+    {
+      "name": "Human Consultant Handoff",
+      "status": "PASS",
+      "details": "Handoff endpoint validated"
+    },
+    {
+      "name": "AI Business Intelligence Overview",
+      "status": "PASS",
+      "details": "Revenue: 127.222.200đ, Orders: 167, AOV: 1.078.154đ"
+    },
+    {
+      "name": "AI BI Assistant Q&A",
+      "status": "PASS",
+      "details": "Answer generated from real DB numbers"
+    }
+  ]
+}

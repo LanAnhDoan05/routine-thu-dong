@@ -1,0 +1,55 @@
+{
+  "suite": "Customer Storefront, Search, Filter & Cart",
+  "tests": [
+    {
+      "name": "Homepage Title & Render",
+      "status": "PASS",
+      "details": "Routine Thu Đông — Smart Fashion"
+    },
+    {
+      "name": "Search API \"denim\"",
+      "status": "PASS",
+      "details": "Found 5 items. First: Túi tote demin kẻ sọc Freesize"
+    },
+    {
+      "name": "Filter by Category \"ao-khoac\"",
+      "status": "PASS",
+      "details": "Returned 5 jackets"
+    },
+    {
+      "name": "Product Detail Page Render",
+      "status": "PASS",
+      "details": "Áo Khoác Denim Nam Nhãn Vải ROUTINE Form Loose"
+    },
+    {
+      "name": "Customer Registration API",
+      "status": "PASS",
+      "details": "User ID: 068b3e05-1ff7-44f6-934d-19e7be0b2e95"
+    },
+    {
+      "name": "Customer Verified in MySQL",
+      "status": "PASS",
+      "details": "e2e_cust_1795385822183@demo.vn"
+    },
+    {
+      "name": "Customer Login API",
+      "status": "PASS",
+      "details": "Token received"
+    },
+    {
+      "name": "Add to Cart API",
+      "status": "PASS",
+      "details": "Added 2x TEST-DEMO-WHT-L"
+    },
+    {
+      "name": "Get Cart API",
+      "status": "PASS",
+      "details": "Cart items retrieved"
+    },
+    {
+      "name": "Clean up Customer Test Data",
+      "status": "PASS",
+      "details": "Test user cleaned up"
+    }
+  ]
+}

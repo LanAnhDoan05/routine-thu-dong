@@ -1,0 +1,50 @@
+{
+  "suite": "Admin Catalog & Image Upload",
+  "tests": [
+    {
+      "name": "Image Upload API",
+      "status": "PASS",
+      "details": "Uploaded URL: https://res.cloudinary.com/ubkdyrwp/image/upload/v1795385592/routine_products/e2e_test_pixel_mwse8509.png"
+    },
+    {
+      "name": "Image Verification from URL",
+      "status": "PASS",
+      "details": "HTTP 200, Content-Type: image/png"
+    },
+    {
+      "name": "Admin Products Table Load",
+      "status": "PASS",
+      "details": "Displays 57 products correctly"
+    },
+    {
+      "name": "Create Product & MySQL Persistence",
+      "status": "PASS",
+      "details": "ID: p-61063c52-4c5f-4373-819c-e74272aac7c5, Variants: 2"
+    },
+    {
+      "name": "Product Visibility in Storefront",
+      "status": "PASS",
+      "details": "Áo Khoác Gió Thu Đông Routine E2E Test 1795385619052"
+    },
+    {
+      "name": "Update Product & Price in DB",
+      "status": "PASS",
+      "details": "Price updated to 549000"
+    },
+    {
+      "name": "Search Product in Admin UI",
+      "status": "PASS",
+      "details": "Found by SKU"
+    },
+    {
+      "name": "Safe Test Data Cleanup",
+      "status": "PASS",
+      "details": "Test product removed cleanly"
+    },
+    {
+      "name": "Categories & Styles in DB",
+      "status": "PASS",
+      "details": "26 Categories, 6 Styles"
+    }
+  ]
+}

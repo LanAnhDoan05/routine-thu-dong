@@ -302,14 +302,29 @@ async function getCart(identityId) {
 /**
  * Thêm sản phẩm vào giỏ hàng MySQL
  */
-async function addItem(identityId, { productId, size, color, quantity = 1 }) {
-  const product = productId
+async function addItem(identityId, { productId, size, color, quantity = 1, variantId }) {
+  let resolvedProductId = productId;
+  let resolvedSize = size;
+  let resolvedColor = color;
+
+  if (variantId && (!resolvedProductId || !resolvedSize || !resolvedColor)) {
+    const variant = await prisma.productVariant.findUnique({
+      where: { id: variantId },
+    });
+    if (variant) {
+      resolvedProductId = resolvedProductId || variant.productId;
+      resolvedSize = resolvedSize || variant.size;
+      resolvedColor = resolvedColor || variant.color;
+    }
+  }
+
+  const product = resolvedProductId
     ? await prisma.product.findFirst({
-      where: { id: productId, status: 'ACTIVE' },
+      where: { id: resolvedProductId, status: 'ACTIVE' },
       include: { variants: true },
     })
     : null;
-  const selection = resolveCartSelection(product, { size, color, quantity });
+  const selection = resolveCartSelection(product, { size: resolvedSize, color: resolvedColor, quantity });
 
   // Phân giải ảnh đại diện
   const productImages = productArray(product.images)
