@@ -7,7 +7,7 @@ const nextConfig = {
   reactStrictMode: true,
   allowedDevOrigins: ['127.0.0.1'],
   turbopack: {
-    root: require('path').resolve(__dirname, '..'),
+    root: __dirname,
   },
   images: {
     unoptimized: true,
