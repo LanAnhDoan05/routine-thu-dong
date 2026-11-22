@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const RAW_BACKEND = (process.env.NEXT_PUBLIC_API_URL || 'https://routine-thu-dong.vercel.app')
+const RAW_BACKEND = (process.env.NEXT_PUBLIC_API_URL || 'https://routine-thu-dong-henna.vercel.app')
   .replace(/\/api\/v1\/?$/, '')
   .replace(/\/+$/, '');
 
