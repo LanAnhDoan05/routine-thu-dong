@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import AuthLayout from "@/components/auth/AuthLayout";
 import AuthHeader from "@/components/auth/AuthHeader";
@@ -14,7 +14,18 @@ import { useUser } from "@/context/UserContext";
 import styles from "./page.module.css";
 
 export default function LoginPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: 40, textAlign: "center" }}>Đang tải...</div>}>
+      <LoginPageContent />
+    </Suspense>
+  );
+}
+
+function LoginPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTarget = searchParams.get("redirect") || "/";
+
   const { login } = useUser();
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -49,8 +60,20 @@ export default function LoginPage() {
       return;
     }
 
-    login(result.user, result.user?.stylePreference, result.token);
-    router.push(result.user?.role === "ADMIN" ? "/admin/products" : "/");
+    if (result.user?.role === "ADMIN") {
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("routine_admin_token", result.token);
+        window.localStorage.setItem("routine_admin_user", JSON.stringify(result.user));
+        window.dispatchEvent(new Event("routine:auth_change"));
+      }
+      const adminDest = redirectTarget.startsWith("/admin") ? redirectTarget : "/admin/products";
+      router.push(adminDest);
+    } else {
+      login(result.user, result.user?.stylePreference, result.token);
+      // Khách hàng không được chuyển hướng vào /admin
+      const custDest = redirectTarget.startsWith("/admin") ? "/" : redirectTarget;
+      router.push(custDest);
+    }
   }
 
   return (

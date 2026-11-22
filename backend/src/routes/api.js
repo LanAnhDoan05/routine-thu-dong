@@ -23,6 +23,9 @@ const paymentRoutes = require('./paymentRoutes');
 const analyticsRoutes = require('./analyticsRoutes');
 const storeRoutes = require('./storeRoutes');
 const shippingRoutes = require('./shippingRoutes');
+const businessIntelligenceRoutes = require('./businessIntelligenceRoutes');
+const realtimeRoutes = require('./realtimeRoutes');
+const notificationRoutes = require('./notificationRoutes');
 const { sendSuccess, sendError } = require('../utils/response');
 
 // Health-check endpoint
@@ -105,5 +108,10 @@ router.use('/payment', paymentRoutes);
 router.use('/analytics', analyticsRoutes);
 router.use('/stores', storeRoutes);
 router.use('/shipping', shippingRoutes);
+router.use('/bi', businessIntelligenceRoutes);
+router.use('/business-intelligence', businessIntelligenceRoutes);
+router.use('/realtime', realtimeRoutes);
+router.use('/notifications', notificationRoutes);
+router.use('/admin/notifications', notificationRoutes);
 
 module.exports = router;

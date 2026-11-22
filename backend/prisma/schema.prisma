@@ -170,6 +170,8 @@ model Order {
   discount                Int               @default(0)
   total                   Int
   appliedCoupon           String?           @map("applied_coupon")
+  shippingZone            String?           @map("shipping_zone")
+  shippingFeeRuleVersion  String?           @default("v1.0") @map("shipping_fee_rule_version")
   note                    String?           @db.Text
   createdAt               DateTime          @default(now()) @map("created_at")
   updatedAt               DateTime          @updatedAt @map("updated_at")
@@ -177,9 +179,33 @@ model Order {
   items                   OrderItem[]
   user                    User?             @relation(fields: [userId], references: [id])
   reservation             StockReservation?
+  transactions            PaymentTransaction[]
 
   @@index([userId], map: "orders_user_id_fkey")
   @@map("orders")
+}
+
+model PaymentTransaction {
+  id            String    @id @default(uuid())
+  orderId       String    @map("order_id")
+  txnRef        String    @map("txn_ref")
+  transactionNo String?   @map("transaction_no")
+  bankCode      String?   @map("bank_code") @db.VarChar(50)
+  cardType      String?   @map("card_type") @db.VarChar(50)
+  amount        Int
+  status        String    @default("PENDING") @db.VarChar(50)
+  responseCode  String?   @map("response_code") @db.VarChar(50)
+  payDate       String?   @map("pay_date") @db.VarChar(50)
+  qrContent     String?   @map("qr_content") @db.Text
+  expiresAt     DateTime? @map("expires_at")
+  rawResponse   Json?     @map("raw_response")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  order         Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([txnRef])
+  @@map("payment_transactions")
 }
 
 model StockReservation {
@@ -448,6 +474,29 @@ model shipping_rules {
 
   @@index([city])
   @@index([region])
+}
+
+model Notification {
+  id            String    @id @default(uuid())
+  type          String    @db.VarChar(50)
+  title         String    @db.VarChar(255)
+  message       String    @db.Text
+  referenceType String?   @map("reference_type") @db.VarChar(50)
+  referenceId   String?   @map("reference_id") @db.VarChar(191)
+  data          String?   @db.Text
+  link          String?   @db.VarChar(255)
+  isRead        Boolean   @default(false) @map("is_read")
+  readAt        DateTime? @map("read_at")
+  recipientRole String    @default("ADMIN") @map("recipient_role") @db.VarChar(20)
+  userId        String?   @map("user_id")
+  recipientId   String?   @map("recipient_id")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  @@index([recipientRole, isRead])
+  @@index([referenceType, referenceId])
+  @@index([createdAt])
+  @@map("notifications")
 }
 
 enum Role {

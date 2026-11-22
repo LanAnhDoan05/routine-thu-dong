@@ -1,4 +1,5 @@
 const categoryService = require('../services/categoryService');
+const realtimeService = require('../services/realtimeService');
 const { sendSuccess, sendError } = require('../utils/response');
 
 /**
@@ -68,6 +69,7 @@ async function getStyleBySlug(req, res, next) {
 async function createCategory(req, res, next) {
   try {
     const newCategory = await categoryService.createCategory(req.body);
+    realtimeService.emit('CATEGORY_UPDATED', { action: 'CREATE', category: newCategory }, 'ALL');
     return sendSuccess(res, newCategory, 'Thêm danh mục thành công', 201);
   } catch (error) {
     next(error);
@@ -81,6 +83,7 @@ async function updateCategory(req, res, next) {
   try {
     const { slug } = req.params;
     const updated = await categoryService.updateCategory(slug, req.body);
+    realtimeService.emit('CATEGORY_UPDATED', { action: 'UPDATE', category: updated }, 'ALL');
     return sendSuccess(res, updated, 'Cập nhật danh mục thành công');
   } catch (error) {
     next(error);
@@ -94,6 +97,7 @@ async function deleteCategory(req, res, next) {
   try {
     const { slug } = req.params;
     const deleted = await categoryService.deleteCategory(slug);
+    realtimeService.emit('CATEGORY_UPDATED', { action: 'DELETE', slug }, 'ALL');
     return sendSuccess(res, deleted, 'Xóa danh mục thành công');
   } catch (error) {
     next(error);

@@ -125,7 +125,7 @@ function SearchPageInner() {
         <div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
             <p style={{ color: "var(--color-text-secondary)" }}>
-              Search results for &ldquo;{initialQuery}&rdquo; — {finalResults.length} products
+              Kết quả cho &ldquo;{initialQuery}&rdquo; — Tìm thấy <strong>{results.length}</strong> sản phẩm phù hợp (Đang hiển thị <strong>{finalResults.length}</strong> sản phẩm theo bộ lọc)
             </p>
             <div style={{ display: "flex", gap: 12 }}>
               <button className="btn btn-secondary btn-sm search-mobile-filter-btn" onClick={() => setMobileFilterOpen(true)}>

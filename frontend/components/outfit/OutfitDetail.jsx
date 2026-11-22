@@ -47,23 +47,28 @@ export default function OutfitDetail({ outfit, products, relatedProducts = [] })
         <div>
           {currentDisplayImg ? (
             <div style={{ width: "100%", aspectRatio: "4 / 5", borderRadius: "var(--radius-lg)", overflow: "hidden", position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={currentDisplayImg}
-                alt={outfit.name}
+                alt={outfit.name || outfit.title || "Routine Outfit"}
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                  if (e.currentTarget.nextSibling) {
-                    e.currentTarget.nextSibling.style.display = "flex";
+                  const fallback = products[0]?.images?.[0] || products[0]?.image || "/images/hero/auth-hero.jpg";
+                  if (e.currentTarget.src !== fallback) {
+                    e.currentTarget.src = fallback;
                   }
                 }}
               />
-              <div style={{ display: "none", width: "100%", height: "100%" }}>
-                <PlaceholderImage label={outfit.name} ratio="4 / 5" rounded />
-              </div>
             </div>
           ) : (
-            <PlaceholderImage label={outfit.name} ratio="4 / 5" rounded />
+            <div style={{ width: "100%", aspectRatio: "4 / 5", borderRadius: "var(--radius-lg)", overflow: "hidden", position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={products[0]?.images?.[0] || products[0]?.image || "/images/hero/auth-hero.jpg"}
+                alt={outfit.name || outfit.title || "Routine Outfit"}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
           )}
 
           {outfitImages.length > 1 && (

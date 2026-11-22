@@ -117,6 +117,7 @@ async function completeAssistantTurn(req, conversation, result) {
     select: { role: true, text: true },
   });
   const intent = scorePurchaseIntent(customerMessages);
+  const customerTurnCount = customerMessages.length;
   const productIds = (result.products || [])
     .map((product) => product?.id || product?.productId)
     .filter((id) => typeof id === 'string');
@@ -133,12 +134,40 @@ async function completeAssistantTurn(req, conversation, result) {
   const budget = hasBudget
     ? Number(result.intent.budget)
     : conversation.budget;
-  const handoffOffer = intent.userMessageCount >= 5 &&
-    intent.score >= 60 &&
-    conversation.handoffDecision !== 'DECLINED' &&
-    !conversation.handoffConsentedAt;
-  const assistantText = handoffOffer
-    ? `${result.message}\n\nBạn có muốn được chuyên viên Routine tư vấn trực tiếp để lựa chọn sản phẩm phù hợp hơn không?`
+
+  // Quy chuẩn chuyển tiếp chuyên viên:
+  // 1. Sau 5 lượt trao đổi tư vấn (customerTurnCount === 5 hoặc chu kỳ 5 lượt nếu chưa đồng ý/từ chối).
+  // 2. Hoặc nếu khách chủ động yêu cầu gặp chuyên viên / nhân viên (intent.hasExplicitStaffRequest) tại các lượt 1-4.
+  // 3. Nếu khách đã từ chối (DECLINED), không hỏi lại ở lượt 6-9, chỉ hỏi lại ở chu kỳ kế tiếp (lượt 10) hoặc khi khách chủ động yêu cầu.
+  let shouldOfferHandoff = false;
+  if (!conversation.handoffConsentedAt && conversation.handoffDecision !== 'ACCEPTED') {
+    if (intent.hasExplicitStaffRequest) {
+      shouldOfferHandoff = true;
+    } else if (customerTurnCount === 5 && conversation.handoffDecision !== 'DECLINED') {
+      shouldOfferHandoff = true;
+    } else if (customerTurnCount > 5 && customerTurnCount % 5 === 0) {
+      shouldOfferHandoff = true;
+    } else if (customerTurnCount >= 5 && !conversation.handoffDecision) {
+      shouldOfferHandoff = true;
+    }
+  }
+
+  const handoffPrompt = 'Bạn đã được hỗ trợ tìm hiểu sản phẩm và lựa chọn trang phục. Bạn có muốn mình kết nối với chuyên viên tư vấn Routine để được hỗ trợ trực tiếp và chi tiết hơn không?';
+
+  const handoffOffer = shouldOfferHandoff ? {
+    available: true,
+    turnCount: customerTurnCount,
+    prompt: handoffPrompt,
+    options: [
+      'Có, kết nối chuyên viên tư vấn',
+      'Không, tôi muốn tiếp tục trao đổi với AI',
+    ],
+    intentScore: intent.score,
+    intentLevel: intent.level,
+  } : null;
+
+  const assistantText = shouldOfferHandoff
+    ? `${result.message}\n\n${handoffPrompt}`
     : result.message;
 
   await prisma.$transaction([
@@ -150,10 +179,14 @@ async function completeAssistantTurn(req, conversation, result) {
         metadata: {
           productIds,
           productNames,
+          turnCount: customerTurnCount,
+          handoffOffered: shouldOfferHandoff,
           toolCalls: Array.isArray(result.toolCalls)
             ? result.toolCalls.filter((name) => typeof name === 'string').slice(0, 5)
             : [],
           outfitId: typeof result.outfit?.id === 'string' ? result.outfit.id : null,
+          outfit: result.outfit || null,
+          products: (result.products || []).slice(0, 6),
         },
       },
     }),
@@ -169,40 +202,46 @@ async function completeAssistantTurn(req, conversation, result) {
           ...productIds,
         ])],
         ...(Number.isSafeInteger(budget) ? { budget } : {}),
-        contextSummary,
+        contextSummary: {
+          ...(contextSummary || {}),
+          turnCount: customerTurnCount,
+        },
       },
     }),
   ]);
 
   return {
     conversationId: conversation.id,
-    handoffOffer,
+    handoffOffer: shouldOfferHandoff,
+    handoffOfferData: handoffOffer,
+    turnCount: customerTurnCount,
     message: assistantText,
   };
 }
 
 async function decideHandoff(req, conversationId, consent) {
-  if (typeof consent !== 'boolean') {
-    throw serviceError('Cần xác nhận lựa chọn tư vấn viên', 400);
-  }
+  const isConsent = typeof consent === 'boolean'
+    ? consent
+    : (consent === 'accept' || consent === true || consent === 'true' || consent === 'Có, kết nối chuyên viên tư vấn');
   const conversation = await findOwnedConversation(req, conversationId);
 
-  if (!consent) {
+  if (!isConsent) {
     const updated = await prisma.aiConversation.update({
       where: { id: conversation.id },
       data: { handoffDecision: 'DECLINED' },
     });
-    return { status: updated.status, handoffDecision: updated.handoffDecision };
+    return {
+      status: updated.status,
+      handoffDecision: updated.handoffDecision,
+      message: 'Đã rõ. Bạn có thể tiếp tục trò chuyện với AI Stylist nhé!',
+    };
   }
 
   const customerMessages = await prisma.aiConversationMessage.findMany({
     where: { conversationId: conversation.id, role: 'CUSTOMER' },
-    select: { role: true, text: true },
+    select: { text: true },
   });
-  const intent = scorePurchaseIntent(customerMessages);
-  if (intent.userMessageCount < 5 || intent.score < 60) {
-    throw serviceError('Hội thoại chưa đủ điều kiện để tạo yêu cầu tư vấn trực tiếp', 400);
-  }
+  const turnCount = customerMessages.length;
 
   const updated = await prisma.aiConversation.update({
     where: { id: conversation.id },
@@ -211,8 +250,82 @@ async function decideHandoff(req, conversationId, consent) {
       handoffConsentedAt: new Date(),
       status: 'LEAD_PENDING',
     },
+    include: {
+      user: { select: { fullName: true, email: true, phoneNumber: true } },
+    },
   });
-  return { status: updated.status, handoffDecision: updated.handoffDecision };
+
+  const confirmationMessage = 'Mình đã ghi nhận yêu cầu kết nối chuyên viên tư vấn. Bạn vui lòng chờ chuyên viên Routine tiếp nhận nhé!';
+  await prisma.aiConversationMessage.create({
+    data: {
+      conversationId: conversation.id,
+      role: 'AI',
+      text: confirmationMessage,
+      metadata: { systemNotice: 'HANDOFF_ACCEPTED', turnCount },
+    },
+  });
+
+  let interestedProductNames = [];
+  if (Array.isArray(conversation.interestedProductIds) && conversation.interestedProductIds.length > 0) {
+    const prods = await prisma.product.findMany({
+      where: { id: { in: conversation.interestedProductIds } },
+      select: { name: true },
+    });
+    interestedProductNames = prods.map((p) => p.name);
+  }
+
+  // Phát thông báo thời gian thực cho Quản trị viên
+  try {
+    const realtimeService = require('./realtimeService');
+    const customerDisplayName = updated.user?.fullName || 'Khách vãng lai';
+    const reasonText = `Khách hàng ${customerDisplayName} yêu cầu kết nối chuyên viên sau ${turnCount} lượt trao đổi với AI Stylist.`;
+    realtimeService.emit('CONSULTATION_REQUESTED', {
+      conversationId: conversation.id,
+      turnCount,
+      userId: conversation.userId,
+      guestSessionId: conversation.guestSessionId,
+      customerName: customerDisplayName,
+      customerEmail: updated.user?.email || null,
+      customerPhone: updated.user?.phoneNumber || null,
+      interestedProducts: interestedProductNames,
+      status: 'LEAD_PENDING',
+      reason: reasonText,
+      timestamp: new Date().toISOString(),
+    }, 'ADMIN');
+
+    // Lưu thông báo bền vững vào Database cho Admin
+    try {
+      const notificationService = require('./notificationService');
+      await notificationService.createNotification({
+        type: 'CONSULTATION_REQUESTED',
+        title: 'Yêu cầu tư vấn AI mới',
+        message: `Khách hàng ${customerDisplayName} muốn kết nối chuyên viên tư vấn trực tiếp (sau ${turnCount} lượt chat AI).`,
+        referenceType: 'CONVERSATION',
+        referenceId: conversation.id,
+        data: {
+          conversationId: conversation.id,
+          customerName: customerDisplayName,
+          customerPhone: updated.user?.phoneNumber || null,
+          interestedProducts: interestedProductNames,
+        },
+        link: `/admin/leads?chatId=${conversation.id}`,
+        recipientRole: 'ADMIN',
+      });
+    } catch (notifErr) {
+      console.warn('[conversationService] Lỗi tạo thông báo yêu cầu tư vấn:', notifErr.message);
+    }
+  } catch (e) {
+    console.warn('[conversationService] Realtime emit error:', e.message);
+  }
+
+  return {
+    status: updated.status,
+    leadStatus: updated.status,
+    handoffDecision: updated.handoffDecision,
+    handedOffToStaff: true,
+    turnCount,
+    message: confirmationMessage,
+  };
 }
 
 async function getCustomerMessages(req, conversationId) {
@@ -224,8 +337,13 @@ async function getCustomerMessages(req, conversationId) {
   });
   return {
     status: conversation.status,
+    leadStatus: conversation.status,
     handoffDecision: conversation.handoffDecision,
-    messages,
+    messages: messages.map((m) => ({
+      ...m,
+      senderRole: m.role,
+      content: m.text,
+    })),
   };
 }
 
@@ -238,8 +356,7 @@ async function listConsentedLeads() {
       messages: {
         where: { role: 'CUSTOMER' },
         orderBy: { createdAt: 'desc' },
-        take: 1,
-        select: { text: true, createdAt: true },
+        select: { id: true, text: true, createdAt: true },
       },
     },
   });
@@ -262,6 +379,7 @@ async function listConsentedLeads() {
     intentLevel: conversation.intentLevel,
     intentReason: conversation.intentReason,
     intentSignals: conversation.intentSignals,
+    turnCount: conversation.messages?.length || conversation.contextSummary?.turnCount || 5,
     budget: conversation.budget,
     handoffConsentedAt: conversation.handoffConsentedAt,
     updatedAt: conversation.updatedAt,
@@ -317,11 +435,21 @@ async function sendStaffMessage(conversationId, authorUserId, text) {
       },
     }),
   ]);
+
+  try {
+    const realtimeService = require('./realtimeService');
+    realtimeService.emit('STAFF_MESSAGE_SENT', {
+      conversationId: conversation.id,
+      message,
+    }, 'ALL');
+  } catch (e) {}
+
   return message;
 }
 
 async function updateLeadStatus(conversationId, status) {
-  if (!['LEAD_PENDING', 'IN_PROGRESS', 'CLOSED'].includes(status)) {
+  const allowedStatuses = ['LEAD_PENDING', 'ASSIGNED', 'IN_PROGRESS', 'RESOLVED', 'CLOSED'];
+  if (!allowedStatuses.includes(status)) {
     throw serviceError('Trạng thái yêu cầu tư vấn không hợp lệ', 400);
   }
   const result = await prisma.aiConversation.updateMany({
@@ -329,6 +457,15 @@ async function updateLeadStatus(conversationId, status) {
     data: { status },
   });
   if (result.count === 0) throw serviceError('Không tìm thấy yêu cầu tư vấn đã được khách đồng ý', 404);
+
+  try {
+    const realtimeService = require('./realtimeService');
+    realtimeService.emit('LEAD_STATUS_UPDATED', {
+      conversationId,
+      status,
+    }, 'ALL');
+  } catch (e) {}
+
   return { id: conversationId, status };
 }
 

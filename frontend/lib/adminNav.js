@@ -3,7 +3,10 @@
 export const NAV_SECTIONS = [
   {
     section: null,
-    items: [{ label: "Dashboard", href: "/admin", icon: "dashboard" }],
+    items: [
+      { label: "Dashboard", href: "/admin", icon: "dashboard" },
+      { label: "AI Business Intelligence", href: "/admin/ai-bi", icon: "bi" },
+    ],
   },
   {
     section: "CATALOG",

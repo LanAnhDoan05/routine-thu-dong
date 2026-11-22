@@ -98,3 +98,8 @@ export async function duplicateProduct(id) {
   }
   return data;
 }
+
+export async function getProductStatistics() {
+  const data = await fetchApi('/products/statistics');
+  return data;
+}

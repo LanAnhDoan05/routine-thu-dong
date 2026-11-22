@@ -33,11 +33,27 @@ export function CartProvider({ children }) {
     const userId = user?.id || null;
 
     if (!isLoggedIn || !userId) {
-      // Khi chưa đăng nhập hoặc vừa đăng xuất: làm sạch giỏ hàng người dùng
-      setItems([]);
-      clearLocalCart(prevUserIdRef.current);
+      // Khách vãng lai: nạp giỏ hàng guest từ localStorage và đồng bộ backend
+      const guestCached = loadCart(null);
+      if (guestCached && guestCached.length > 0) {
+        setItems(guestCached);
+      } else {
+        setItems([]);
+      }
       prevUserIdRef.current = null;
       setHydrated(true);
+
+      async function syncGuestCart() {
+        try {
+          const remoteCart = await fetchCartApi();
+          if (!isCurrent) return;
+          if (remoteCart && Array.isArray(remoteCart.items) && remoteCart.items.length > 0) {
+            setItems(remoteCart.items);
+            saveCart(remoteCart.items, null);
+          }
+        } catch (err) {}
+      }
+      syncGuestCart();
       return;
     }
 
@@ -92,16 +108,7 @@ export function CartProvider({ children }) {
 
   const addToCart = useCallback(
     (product, { size, color, quantity = 1 } = {}) => {
-      // Yêu cầu đăng nhập trước khi thêm vào giỏ hàng
-      if (!isLoggedIn) {
-        openAuthPrompt({
-          title: "Đăng nhập để thêm vào giỏ hàng",
-          message: "Vui lòng đăng nhập hoặc tạo tài khoản Routine để thêm sản phẩm vào giỏ hàng và lưu lịch sử mua sắm của bạn.",
-        });
-        return false;
-      }
-
-      // Không cho phép thêm vào giỏ nếu sản phẩm hết hàng
+      // Cho phép cả khách vãng lai và khách thành viên thêm vào giỏ hàng
       if (isProductOutOfStock(product)) {
         return false;
       }
@@ -155,7 +162,7 @@ export function CartProvider({ children }) {
         ];
       });
 
-      // Lưu vĩnh viễn vào MySQL Database qua Backend API
+      // Lưu vĩnh viễn vào MySQL Database qua Backend API (kèm cookie/x-session-id cho guest)
       addItemApi({
         productId: product.id,
         size: selectedSize,
@@ -166,25 +173,30 @@ export function CartProvider({ children }) {
         price: product.price,
       }).catch((e) => console.warn("Lỗi lưu vào DB:", e.message));
 
+      // Ghi nhận sự kiện tracking ADD_TO_CART
+      try {
+        fetchApi("/analytics/track", {
+          method: "POST",
+          body: JSON.stringify({
+            action: "ADD_TO_CART",
+            productId: product.id,
+            metadata: { quantity, size: selectedSize, color: selectedColor, name: product.name },
+          }),
+        }).catch(() => {});
+      } catch (err) {}
+
       return true;
     },
-    [isLoggedIn, openAuthPrompt]
+    []
   );
 
   const addOutfitToCart = useCallback(
     (productsList) => {
-      if (!isLoggedIn) {
-        openAuthPrompt({
-          title: "Đăng nhập để mua outfit",
-          message: "Vui lòng đăng nhập hoặc tạo tài khoản Routine để thêm toàn bộ outfit vào giỏ hàng của bạn.",
-        });
-        return false;
-      }
-
+      if (!Array.isArray(productsList) || productsList.length === 0) return false;
       productsList.forEach((product) => addToCart(product, {}));
       return true;
     },
-    [isLoggedIn, openAuthPrompt, addToCart]
+    [addToCart]
   );
 
   const removeFromCart = useCallback((lineId) => {

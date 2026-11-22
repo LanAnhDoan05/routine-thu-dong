@@ -74,7 +74,8 @@ async function serveMedia(req, res, next) {
       }
     }
 
-    return sendError(res, 'Không tìm thấy hình ảnh', 404);
+    // 3. Không tìm thấy file trên đĩa cứng hoặc database -> trả về 404 để client xử lý fallback chính xác
+    return res.status(404).send('Không tìm thấy hình ảnh');
   } catch (err) {
     next(err);
   }

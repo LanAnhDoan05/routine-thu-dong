@@ -1,12 +1,17 @@
 const rateLimit = require('express-rate-limit');
 const { sendError } = require('../utils/response');
 
-// Giới hạn chung cho toàn bộ API (300 requests / 15 phút)
+// Giới hạn chung cho toàn bộ API (1000 requests / 15 phút trên production, nới lỏng cho môi trường local/test)
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 300,
+  max: process.env.NODE_ENV === 'production' ? 1000 : 10000,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => {
+    // Bỏ qua giới hạn nếu là request nội bộ localhost hoặc môi trường test
+    const ip = req.ip || req.connection?.remoteAddress || '';
+    return ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1' || process.env.NODE_ENV === 'test';
+  },
   handler: (req, res) => {
     return sendError(
       res,

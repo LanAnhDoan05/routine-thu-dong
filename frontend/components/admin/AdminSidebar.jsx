@@ -16,12 +16,14 @@ import {
   IconSettings,
   IconStores,
   IconHero,
+  IconBi,
   IconX,
 } from "./icons";
 import styles from "./AdminSidebar.module.css";
 
 const ICONS = {
   dashboard: IconDashboard,
+  bi: IconBi,
   products: IconProducts,
   categories: IconCategories,
   styles: IconStyles,
@@ -43,7 +45,7 @@ export default function AdminSidebar({ mobileOpen, onClose }) {
     <>
       <div className={styles.brand}>
         <Link href="/admin" className={styles.brandLink} onClick={onClose}>
-          <span className={styles.brandName}>ROUTINE THU ĐÔNG</span>
+          <span className={styles.brandName}>ROUTINE</span>
           <span className={styles.brandSub}>ADMIN PANEL</span>
         </Link>
         <button type="button" className={styles.mobileClose} aria-label="Đóng menu" onClick={onClose}>

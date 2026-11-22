@@ -21,11 +21,15 @@ export default function StyleCard({ style, selected, disabled, onToggle }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={styles.image}
-          src={style.image || style.imageUrl || "/images/styles/basic.jpg"}
+          src={style.image || style.imageUrl || `/images/styles/${style.slug || style.id || 'basic'}.jpg`}
           alt={style.name || "Phong cách"}
           onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = "/images/styles/basic.jpg";
+            const fallbackSlug = style.slug || style.id || 'basic';
+            if (!e.currentTarget.src.endsWith('.png')) {
+              e.currentTarget.src = `/images/styles/${fallbackSlug}.png`;
+            } else if (!e.currentTarget.src.includes('basic')) {
+              e.currentTarget.src = '/images/styles/basic.jpg';
+            }
           }}
         />
         {selected && <span className={styles.overlay} aria-hidden="true" />}

@@ -100,13 +100,47 @@ async function chat(req, res, next) {
       text: chatMessage || '[Khách gửi ảnh]',
       image,
     });
+
+    // Nếu hội thoại đã được bàn giao cho chuyên viên thời trang (LEAD_PENDING, IN_PROGRESS, ASSIGNED):
+    // Tin nhắn của khách đã được lưu vào Database. AI tuyệt đối không tự chen vào trả lời;
+    // Bắn sự kiện thời gian thực cho Admin và thông báo khách chờ phản hồi.
+    if (conversation.handoffConsentedAt && ['LEAD_PENDING', 'IN_PROGRESS', 'ASSIGNED'].includes(conversation.status)) {
+      try {
+        const realtimeService = require('../services/realtimeService');
+        realtimeService.emit('CUSTOMER_MESSAGE_SENT', {
+          conversationId: conversation.id,
+          messageId: conversation.currentMessageId,
+          text: chatMessage,
+          createdAt: new Date().toISOString(),
+        }, 'ADMIN');
+      } catch (e) {}
+
+      return sendSuccess(
+        res,
+        {
+          isStaffTakeover: true,
+          status: conversation.status,
+          message: 'Tin nhắn của bạn đã được chuyển tới chuyên viên tư vấn Routine. Chuyên viên sẽ phản hồi bạn trong giây lát!',
+          conversationId: conversation.id,
+          turnCount: conversation.turnCount || 0,
+        },
+        'Tin nhắn đã được chuyển tới chuyên viên tư vấn',
+        200
+      );
+    }
     const conversationHistory = await conversationService.getRecentHistory(req, conversation);
+    const effectiveHistory = (conversationHistory && conversationHistory.length > 0)
+      ? conversationHistory
+      : (Array.isArray(history) ? history : []);
     const result = await aiService.chatWithStylist({
       message: chatMessage,
-      history: conversationHistory,
+      history: effectiveHistory,
       currentProductId: currentProductId || null,
       userPreferences: resolvedPreferences,
       image: image || null,
+      currentUser: req.user || null,
+      userId: req.user?.id || null,
+      sessionId: req.headers['x-session-id'] || req.cookies?.routine_guest_session_id || null,
     });
 
     const persistedTurn = await conversationService.completeAssistantTurn(
@@ -121,7 +155,9 @@ async function chat(req, res, next) {
         ...result,
         message: persistedTurn.message,
         conversationId: persistedTurn.conversationId,
-        handoffOffer: persistedTurn.handoffOffer,
+        handoffOffer: Boolean(persistedTurn.handoffOffer),
+        handoffOfferData: persistedTurn.handoffOfferData,
+        turnCount: persistedTurn.turnCount,
       },
       'Phản hồi từ AI Stylist thành công',
       200

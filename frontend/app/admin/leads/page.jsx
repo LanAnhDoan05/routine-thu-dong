@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import PageHeader from "@/components/admin/PageHeader";
 import { useToast } from "@/components/admin/ToastProvider";
 import { fetchApi } from "@/lib/api";
@@ -27,9 +28,11 @@ function formatDate(value) {
 
 export default function AdminLeadsPage() {
   const { showToast } = useToast();
+  const searchParams = useSearchParams();
+  const queryChatId = searchParams ? (searchParams.get("chatId") || searchParams.get("id")) : null;
   const [leads, setLeads] = useState([]);
   const [statusFilter, setStatusFilter] = useState("ALL");
-  const [selectedLeadId, setSelectedLeadId] = useState(null);
+  const [selectedLeadId, setSelectedLeadId] = useState(queryChatId);
   const [messages, setMessages] = useState([]);
   const [draft, setDraft] = useState("");
   const [loadingLeads, setLoadingLeads] = useState(true);
@@ -65,7 +68,10 @@ export default function AdminLeadsPage() {
       const result = await fetchApi("/ai/admin/leads");
       const nextLeads = Array.isArray(result?.leads) ? result.leads : [];
       setLeads(nextLeads);
-      const selected = nextLeads.some((lead) => lead.id === selectedLeadId)
+      const queryTarget = queryChatId ? nextLeads.find((lead) => lead.id === queryChatId) : null;
+      const selected = queryTarget
+        ? queryTarget.id
+        : nextLeads.some((lead) => lead.id === selectedLeadId)
         ? selectedLeadId
         : nextLeads[0]?.id || null;
       setSelectedLeadId(selected);
@@ -75,7 +81,7 @@ export default function AdminLeadsPage() {
     } finally {
       setLoadingLeads(false);
     }
-  }, [loadMessages, selectedLeadId, showToast]);
+  }, [loadMessages, queryChatId, selectedLeadId, showToast]);
 
   useEffect(() => {
     let active = true;
@@ -84,9 +90,10 @@ export default function AdminLeadsPage() {
         if (!active) return;
         const nextLeads = Array.isArray(result?.leads) ? result.leads : [];
         setLeads(nextLeads);
-        const firstLeadId = nextLeads[0]?.id || null;
-        setSelectedLeadId(firstLeadId);
-        if (firstLeadId) loadMessages(firstLeadId);
+        const queryTarget = queryChatId ? nextLeads.find((lead) => lead.id === queryChatId) : null;
+        const initialSelected = queryTarget ? queryTarget.id : nextLeads[0]?.id || null;
+        setSelectedLeadId(initialSelected);
+        if (initialSelected) loadMessages(initialSelected);
       })
       .catch((error) => {
         if (active) showToast(error.message || "Không thể tải danh sách yêu cầu tư vấn", "error");
@@ -97,7 +104,33 @@ export default function AdminLeadsPage() {
     return () => {
       active = false;
     };
-  }, [loadMessages, showToast]);
+  }, [loadMessages, queryChatId, showToast]);
+
+  useEffect(() => {
+    function handleConsultationRequested(event) {
+      const data = event.detail;
+      const customerName = data?.customerName || "Khách hàng";
+      const turns = data?.turnCount || 5;
+      showToast(`🛎️ Yêu cầu tư vấn mới từ ${customerName} (${turns} lượt trao đổi với AI)`, "info");
+      loadLeads();
+    }
+
+    function handleCustomerMessageSent(event) {
+      const data = event.detail;
+      if (data?.conversationId === selectedLeadId) {
+        loadMessages(selectedLeadId);
+      } else {
+        loadLeads();
+      }
+    }
+
+    window.addEventListener("routine:consultation_requested", handleConsultationRequested);
+    window.addEventListener("routine:customer_message_sent", handleCustomerMessageSent);
+    return () => {
+      window.removeEventListener("routine:consultation_requested", handleConsultationRequested);
+      window.removeEventListener("routine:customer_message_sent", handleCustomerMessageSent);
+    };
+  }, [loadLeads, loadMessages, selectedLeadId, showToast]);
 
   const filteredLeads = statusFilter === "ALL"
     ? leads
@@ -187,7 +220,9 @@ export default function AdminLeadsPage() {
                       <strong>{lead.customer?.name || "Khách vãng lai"}</strong>
                       <span className={styles.score}>{lead.intentScore}/100</span>
                     </span>
-                    <span className={styles.leadStatus}>{STATUS_LABELS[lead.status] || lead.status}</span>
+                    <span className={styles.leadStatus}>
+                      {STATUS_LABELS[lead.status] || lead.status} • {lead.turnCount || 5} lượt tư vấn với AI
+                    </span>
                     <span className={styles.lastMessage}>{lead.lastMessage || "Chưa có tin nhắn"}</span>
                     <span className={styles.leadDate}>{formatDate(lead.updatedAt)}</span>
                   </button>

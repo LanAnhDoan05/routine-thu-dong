@@ -4,20 +4,37 @@ import { usePathname, useRouter } from "next/navigation";
 import { findActiveNavItem, getBreadcrumbTrailingLabel } from "@/lib/adminNav";
 import { useUser } from "@/context/UserContext";
 import { useToast } from "@/components/admin/ToastProvider";
-import { IconMenu, IconSearch, IconBell, IconLogout } from "./icons";
+import { IconMenu, IconSearch, IconLogout } from "./icons";
+import AdminNotificationCenter from "./AdminNotificationCenter";
 import styles from "./AdminHeader.module.css";
 
 export default function AdminHeader({ onMenuClick }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, logout } = useUser();
+  const { user } = useUser();
   const { showToast } = useToast();
   const active = findActiveNavItem(pathname);
   const trailing = getBreadcrumbTrailingLabel(pathname);
   const primaryLabel = active?.label || "Dashboard";
 
+  const adminUser = (() => {
+    if (typeof window === "undefined") return user;
+    try {
+      const rawAdmin = window.localStorage.getItem("routine_admin_user");
+      if (rawAdmin) return JSON.parse(rawAdmin);
+      if (user?.role === "ADMIN") return user;
+      const raw = window.localStorage.getItem("routine_user_v1");
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  })();
+
   function handleLogout() {
-    logout();
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem("routine_admin_token");
+      window.localStorage.removeItem("routine_admin_user");
+    }
     showToast("Đã đăng xuất khỏi trang quản trị.");
     router.push("/login");
   }
@@ -28,7 +45,7 @@ export default function AdminHeader({ onMenuClick }) {
         <button type="button" className={styles.menuBtn} aria-label="Mở menu" onClick={onMenuClick}>
           <IconMenu size={20} />
         </button>
-        <span className={styles.mobileBrand}>ROUTINE THU ĐÔNG</span>
+        <span className={styles.mobileBrand}>ROUTINE</span>
         <nav className={styles.breadcrumb} aria-label="Breadcrumb">
           <span className={styles.crumbCurrent}>{primaryLabel}</span>
           {trailing ? (
@@ -46,14 +63,11 @@ export default function AdminHeader({ onMenuClick }) {
           <input type="search" placeholder="Search..." aria-label="Tìm kiếm" />
         </label>
 
-        <button type="button" className={styles.iconBtn} aria-label="Thông báo">
-          <IconBell size={18} />
-          <span className={styles.dot} aria-hidden="true" />
-        </button>
+        <AdminNotificationCenter />
 
         <div className={styles.profile}>
           <img src="/images/avatars/admin.svg" alt="" className={styles.avatar} />
-          <span className={styles.profileName}>{user?.name || "Admin"}</span>
+          <span className={styles.profileName}>{adminUser?.fullName || adminUser?.name || "Quản Trị Viên Routine"}</span>
         </div>
 
         <button

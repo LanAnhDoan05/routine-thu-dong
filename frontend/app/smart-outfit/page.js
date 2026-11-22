@@ -197,7 +197,15 @@ export default function SmartOutfitPage() {
       {/* CREATE YOUR OUTFIT */}
       <section className="section" style={{ background: "var(--color-bg-secondary)" }}>
         <div className="container create-outfit-grid">
-          <PlaceholderImage label="Create Your Outfit" ratio="4 / 3" rounded />
+          <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 3", borderRadius: "var(--radius-lg, 12px)", overflow: "hidden", boxShadow: "0 8px 24px rgba(0,0,0,0.08)" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/hero/auth-hero.jpg"
+              alt="Create Your Outfit - Routine Fashion"
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 60%)" }} />
+          </div>
           <div>
             <span className="eyebrow">Your style, your rules</span>
             <h2 className="section-title" style={{ marginBottom: 12 }}>

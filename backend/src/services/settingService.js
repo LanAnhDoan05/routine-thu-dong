@@ -2,13 +2,13 @@ const prisma = require('../config/prisma');
 
 const DEFAULT_HERO_CONFIG = {
   banners: [
-    { id: 'hb-1', url: '/images/hero/hero-banner-1.svg', title: 'Style That Fits You - Look 1', isPrimary: true },
-    { id: 'hb-2', url: '/images/hero/hero-banner-2.svg', title: 'Urban Chic - Look 2', isPrimary: false },
-    { id: 'hb-3', url: '/images/hero/hero-banner-3.svg', title: 'Daily Essentials - Look 3', isPrimary: false },
+    { id: 'hb-1', url: '/images/hero/hero-banner-1.svg', title: 'Routine - Look 1', isPrimary: true },
+    { id: 'hb-2', url: '/images/hero/hero-banner-2.svg', title: 'Routine - Look 2', isPrimary: false },
+    { id: 'hb-3', url: '/images/hero/hero-banner-3.svg', title: 'Routine - Look 3', isPrimary: false },
   ],
-  slideInterval: 2500,
-  title: 'STYLE THAT FITS YOU',
-  subtitle: 'Khám phá phong cách phù hợp với bạn.\nThời trang không chỉ là mặc gì. Đó là cách bạn thể hiện chính mình.',
+  slideInterval: 3000,
+  title: 'THU ĐÔNG, ĐỊNH HÌNH PHONG CÁCH',
+  subtitle: 'Khám phá những thiết kế thời trang hiện đại, tinh tế và linh hoạt cho phong cách mỗi ngày.',
   exploreLink: '/category/new-arrivals',
   outfitLink: '/smart-outfit',
 };
@@ -59,11 +59,22 @@ async function getHeroBanners() {
           ? parsed.rightImages
           : DEFAULT_HERO_CONFIG.banners);
 
+      let cleanTitle = parsed.title;
+      if (!cleanTitle || cleanTitle.includes('HERO FROM') || cleanTitle.includes('DATABASE') || cleanTitle.includes('CLOUD')) {
+        cleanTitle = DEFAULT_HERO_CONFIG.title;
+      }
+      let cleanSubtitle = parsed.subtitle;
+      if (!cleanSubtitle || cleanSubtitle.includes('DATABASE') || cleanSubtitle.includes('placeholder')) {
+        cleanSubtitle = DEFAULT_HERO_CONFIG.subtitle;
+      }
+
       return {
         ...DEFAULT_HERO_CONFIG,
         ...parsed,
+        title: cleanTitle,
+        subtitle: cleanSubtitle,
         banners: bannerList,
-        slideInterval: Number(parsed.slideInterval) || 2500,
+        slideInterval: Number(parsed.slideInterval) || 3000,
       };
     }
   } catch (err) {

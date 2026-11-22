@@ -25,6 +25,9 @@ export default function RegisterStylePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [serverError, setServerError] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [welcomeCoupon, setWelcomeCoupon] = useState(null);
+  const [copied, setCopied] = useState(false);
+  const [countdown, setCountdown] = useState(8);
 
   useEffect(() => {
     let isMounted = true;
@@ -96,30 +99,79 @@ export default function RegisterStylePage() {
 
       // Đăng nhập người dùng ngay sau khi tạo tài khoản thành công
       const preferredStyle = stylesToSave[0] || "minimal";
+      const customerData = res.data?.user ? {
+        ...res.data.user,
+        role: "CUSTOMER",
+        name: res.data.user.fullName || data.name,
+      } : {
+        name: data.name,
+        fullName: data.name,
+        email: data.email,
+        phoneNumber: data.phone,
+        gender: data.gender || "unisex",
+        role: "CUSTOMER",
+        dateOfBirth: data.dateOfBirth || data.date || null,
+        date: data.dateOfBirth || data.date || null,
+        stylePreference: preferredStyle,
+      };
       login(
-        res.data?.user || {
-          name: data.name,
-          email: data.email,
-          phoneNumber: data.phone,
-          gender: data.gender || "unisex",
-          dateOfBirth: data.dateOfBirth || data.date || null,
-          date: data.dateOfBirth || data.date || null,
-          stylePreference: preferredStyle,
-        },
+        customerData,
         preferredStyle,
         res.data?.token
       );
 
+      // Nhận voucher chào mừng từ backend
+      const coupon = res.data?.welcomeCoupon || {
+        code: "WELCOME2026",
+        type: "percent",
+        value: 15,
+        maxDiscount: 150000,
+        minOrderValue: 400000,
+        description: "Ưu đãi thành viên mới giảm 15% (tối đa 150.000₫) cho đơn từ 400.000₫",
+      };
+      setWelcomeCoupon(coupon);
+
+      if (typeof window !== "undefined") {
+        window.sessionStorage.setItem("routine_welcome_voucher", JSON.stringify(coupon));
+        window.sessionStorage.setItem("routine_welcome_voucher_code", coupon.code);
+      }
+
       clearRegistrationData();
       setIsSuccess(true);
-
-      // Chuyển hướng sang trang Smart Outfit để khách khám phá các set đồ phù hợp theo giới tính & phong cách
-      setTimeout(() => {
-        router.push("/smart-outfit");
-      }, 1200);
     } catch (err) {
       setServerError(err.message || "Có lỗi xảy ra khi tạo tài khoản. Vui lòng thử lại.");
       setIsSubmitting(false);
+    }
+  }
+
+  // Đếm ngược tự động chuyển hướng nhưng cho phép người dùng dừng lại xem voucher
+  useEffect(() => {
+    if (!isSuccess) return;
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          router.push("/smart-outfit");
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isSuccess, router]);
+
+  function handleCopy(code) {
+    if (!code) return;
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(code).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      }).catch(() => {
+        setCopied(true);
+      });
+    } else {
+      setCopied(true);
     }
   }
 
@@ -134,18 +186,76 @@ export default function RegisterStylePage() {
   }
 
   if (isSuccess) {
+    const couponCode = welcomeCoupon?.code || "WELCOME2026";
+    const discountText =
+      welcomeCoupon?.type === "percent"
+        ? `Giảm ${welcomeCoupon.value}% (Tối đa ${(welcomeCoupon.maxDiscount || 150000).toLocaleString("vi-VN")}₫)`
+        : `Giảm ${(welcomeCoupon?.value || 50000).toLocaleString("vi-VN")}₫`;
+    const minOrderText = `Đơn từ ${(welcomeCoupon?.minOrderValue || 400000).toLocaleString("vi-VN")}₫`;
+
     return (
-      <AuthLayout contentMaxWidth="560px">
+      <AuthLayout contentMaxWidth="580px">
         <div className={styles.successState}>
           <span className={styles.successIcon} aria-hidden="true">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </span>
           <h1 className={styles.successTitle}>Đăng ký thành công!</h1>
           <p className={styles.successSubtitle}>
-            Chào mừng bạn đến với Routine. Đang chuyển hướng bạn đến bộ sưu tập trang phục và phong cách phù hợp...
+            Chào mừng bạn đến với Routine. Chúng tôi đã chuẩn bị sẵn món quà đặc biệt dành riêng cho bạn:
           </p>
+
+          {/* Thẻ Voucher chào mừng */}
+          <div className={styles.voucherCard}>
+            <div className={styles.voucherHeader}>
+              <span className={styles.voucherBadge}>🎁 QUÀ TẶNG THÀNH VIÊN MỚI</span>
+              <span className={styles.voucherExpiry}>Hạn dùng 30 ngày</span>
+            </div>
+
+            <div className={styles.voucherMain}>
+              <div className={styles.voucherDiscount}>{discountText}</div>
+              <div className={styles.voucherCondition}>{minOrderText} · Áp dụng cho đơn hàng đầu tiên</div>
+            </div>
+
+            <div className={styles.voucherCodeBox}>
+              <span className={styles.voucherCode}>{couponCode}</span>
+              <button
+                type="button"
+                className={`${styles.copyButton} ${copied ? styles.copyButtonSuccess : ""}`}
+                onClick={() => handleCopy(couponCode)}
+              >
+                {copied ? "✓ Đã chép mã" : "Sao chép mã"}
+              </button>
+            </div>
+
+            <div className={styles.voucherFooterNotice}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Mã đã tự động lưu vào ví ưu đãi & gửi tới email của bạn.</span>
+            </div>
+          </div>
+
+          <div className={styles.autoRedirectNotice}>
+            Tự động chuyển đến bộ sưu tập Smart Outfit sau <strong>{countdown}s</strong>...
+          </div>
+
+          <div className={styles.successActions}>
+            <PrimaryButton type="button" onClick={() => router.push("/smart-outfit")}>
+              Khám phá Smart Outfit ngay →
+            </PrimaryButton>
+            <button
+              type="button"
+              className={styles.skipButton}
+              onClick={() => router.push("/")}
+              style={{ marginTop: 4 }}
+            >
+              Về trang chủ Routine
+            </button>
+          </div>
         </div>
       </AuthLayout>
     );

@@ -968,7 +968,16 @@ Hãy quan sát kỹ bức ảnh trang phục và trích xuất các đặc đi�
 /**
  * Trò chuyện với Trợ lý Thời trang AI Stylist (Multi-turn Chat & Visual Stylist)
  */
-async function chatWithStylist({ message, history = [], currentProductId = null, userPreferences = null, image = null }) {
+async function chatWithStylist({
+  message,
+  history = [],
+  currentProductId = null,
+  userPreferences = null,
+  image = null,
+  currentUser = null,
+  userId = null,
+  sessionId = null,
+}) {
   // 1. Nếu có hình ảnh gửi kèm, dùng Gemini Vision để phân tích
   let imageAnalysis = null;
   if (image) {
@@ -986,6 +995,9 @@ async function chatWithStylist({ message, history = [], currentProductId = null,
       message: effectiveMessage,
       history,
       userPreferences,
+      currentUser,
+      userId,
+      sessionId,
     });
     const explicitlyRequestsOutfit = /\b(set|outfit|phối|kết hợp|cả bộ|bộ đồ|bộ trang phục)\b/i.test(effectiveMessage);
     const agent = await fashionAgentService.runFashionAgent({
@@ -1003,7 +1015,7 @@ async function chatWithStylist({ message, history = [], currentProductId = null,
       },
     });
     const isGreeting = isGreetingOrGeneralChat(effectiveMessage);
-    if (agent && (agent.toolCalls.length > 0 || isGreeting)) {
+    if (agent && (agent.message || agent.toolCalls.length > 0 || isGreeting)) {
       const intent = normalizeFashionQuery(effectiveMessage);
       intent.isAskingForOutfit = !isGreeting;
       intent.requestType = isGreeting ? 'greeting' : (agent.outfit ? 'new_outfit' : 'new_product');
@@ -1012,15 +1024,39 @@ async function chatWithStylist({ message, history = [], currentProductId = null,
       if (imageAnalysis) intent.imageDescription = imageAnalysis.description;
 
       const products = agent.products.filter(Boolean);
+      let outfit = agent.outfit;
+      if (!outfit && products.length > 0) {
+        outfit = {
+          id: `dyn-outfit-${Date.now().toString(36)}`,
+          title: products.length > 1 ? `Gợi ý phối đồ Routine (${products.length} món)` : products[0].name,
+          name: products.length > 1 ? `Gợi ý phối đồ Routine (${products.length} món)` : products[0].name,
+          description: 'Set trang phục đồng điệu phong cách Routine dành cho bạn',
+          products: products,
+          items: products,
+          total: products.reduce((sum, p) => sum + (Number(p.price) || 0), 0),
+          image: products[0].image || products[0].images?.[0] || '/images/hero/auth-hero.jpg',
+        };
+      } else if (outfit && !outfit.items) {
+        outfit.items = outfit.products || [];
+      }
+
+      let finalMessage = agent.message;
+      if (!finalMessage) {
+        if (products.length > 0) {
+          const productList = products.slice(0, 3).map((p, idx) => `* **Món ${idx + 1}:** ${p.name} (Giá: ${new Intl.NumberFormat('vi-VN').format(p.price)}đ)`).join('\n');
+          finalMessage = `Chào bạn, mình đã tuyển chọn set đồ phối ăn ý từ catalog Routine dành cho bạn:\n\n${productList}\n\nBạn có thể chọn size, màu sắc và thêm trực tiếp vào giỏ hàng ngay bên dưới nhé!`;
+        } else {
+          finalMessage = 'Hiện tại mình chưa tìm thấy sản phẩm đang bán phù hợp với yêu cầu này trong catalog Routine.';
+        }
+      }
+
       return {
-        message: agent.message || (products.length > 0
-          ? `Mình đã tìm thấy ${products.length} sản phẩm phù hợp trong catalog Routine.`
-          : 'Mình chưa tìm thấy sản phẩm đang bán phù hợp với yêu cầu này.'),
+        message: finalMessage,
         aiStatus: 'gemini_agent',
         intent,
-        outfit: agent.outfit,
+        outfit,
         products,
-        total: agent.outfit?.total || 0,
+        total: outfit?.total || agent.outfit?.total || 0,
         sizeRecommendation: null,
         followUps: [
           'Xem size còn hàng của sản phẩm này',

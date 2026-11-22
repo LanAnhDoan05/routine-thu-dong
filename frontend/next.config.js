@@ -20,6 +20,10 @@ const nextConfig = {
           source: '/api/v1/media/:path*',
           destination: `${RAW_BACKEND}/api/v1/media/:path*`,
         },
+        {
+          source: '/uploads/:path*',
+          destination: `${RAW_BACKEND}/uploads/:path*`,
+        },
       ];
     }
     return [];

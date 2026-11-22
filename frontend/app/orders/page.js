@@ -13,11 +13,25 @@ import { ORDER_FILTERS } from "@/lib/checkoutConstants";
 export default function OrdersPage() {
   const router = useRouter();
   const { orders, hydrated, loading, refreshOrders } = useOrders();
-  const { isLoggedIn, logout } = useUser();
+  const { user, isLoggedIn, logout } = useUser();
   const [filter, setFilter] = useState(null);
 
   useEffect(() => {
     refreshOrders();
+
+    function handleRealtimeOrderUpdate() {
+      refreshOrders();
+    }
+
+    window.addEventListener("routine:order_status_updated", handleRealtimeOrderUpdate);
+    window.addEventListener("routine:payment_confirmed", handleRealtimeOrderUpdate);
+    window.addEventListener("routine:order_created", handleRealtimeOrderUpdate);
+
+    return () => {
+      window.removeEventListener("routine:order_status_updated", handleRealtimeOrderUpdate);
+      window.removeEventListener("routine:payment_confirmed", handleRealtimeOrderUpdate);
+      window.removeEventListener("routine:order_created", handleRealtimeOrderUpdate);
+    };
   }, [refreshOrders]);
 
   function handleLogout() {
@@ -81,6 +95,56 @@ export default function OrdersPage() {
           )}
         </div>
       </div>
+
+      {isLoggedIn && user && (
+        <div
+          id="profile"
+          style={{
+            background: "var(--color-bg)",
+            border: "1px solid var(--color-border)",
+            borderRadius: "var(--radius-md, 8px)",
+            padding: "20px 24px",
+            marginBottom: "28px",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "16px",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <span style={{ fontSize: "12px", color: "var(--color-text-secondary)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+              Hồ sơ khách hàng
+            </span>
+            <p style={{ margin: "4px 0 0", fontSize: "16px", fontWeight: 700, color: "var(--color-text)" }}>
+              {user.name || user.fullName || "Khách hàng Routine"}
+            </p>
+          </div>
+          <div>
+            <span style={{ fontSize: "12px", color: "var(--color-text-secondary)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+              Thông tin liên hệ
+            </span>
+            <p style={{ margin: "4px 0 0", fontSize: "14px", color: "var(--color-text)" }}>
+              {user.phoneNumber || user.email || "Chưa cập nhật"}
+            </p>
+          </div>
+          <div>
+            <span style={{ fontSize: "12px", color: "var(--color-text-secondary)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+              Phong cách ưa thích
+            </span>
+            <p style={{ margin: "4px 0 0", fontSize: "14px", fontWeight: 600, textTransform: "capitalize", color: "var(--color-text)" }}>
+              {user.stylePreference || "Minimal"}
+            </p>
+          </div>
+          <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
+            <Link href="/wishlist" className="btn btn-secondary btn-sm">
+              ❤️ Yêu thích
+            </Link>
+            <button type="button" className="btn btn-secondary btn-sm" onClick={handleLogout} style={{ color: "var(--color-error)" }}>
+              🚪 Đăng xuất
+            </button>
+          </div>
+        </div>
+      )}
 
       {orders.length === 0 ? (
         <EmptyState

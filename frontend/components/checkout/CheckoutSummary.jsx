@@ -21,11 +21,35 @@ export default function CheckoutSummary({
 
   const [inputCode, setInputCode] = useState(voucherCode || "");
   const [isLoading, setIsLoading] = useState(false);
+  const [welcomeSuggestion, setWelcomeSuggestion] = useState(null);
   const { showToast } = useToast();
 
   useEffect(() => {
     if (voucherCode) {
       setInputCode(voucherCode);
+    }
+  }, [voucherCode]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const storedVoucher = window.sessionStorage.getItem("routine_welcome_voucher");
+        const storedCode = window.sessionStorage.getItem("routine_welcome_voucher_code");
+        if (storedVoucher) {
+          const parsed = JSON.parse(storedVoucher);
+          setWelcomeSuggestion(parsed);
+          if (!inputCode && !voucherCode) {
+            setInputCode(parsed.code || "");
+          }
+        } else if (storedCode) {
+          setWelcomeSuggestion({ code: storedCode, description: "Ưu đãi thành viên mới giảm 15%" });
+          if (!inputCode && !voucherCode) {
+            setInputCode(storedCode);
+          }
+        }
+      } catch {
+        // ignore
+      }
     }
   }, [voucherCode]);
 
@@ -35,14 +59,10 @@ export default function CheckoutSummary({
   const hasShippingDiscount = isStandard && stdInfo.discount > 0;
   const total = Math.max(subtotal + shipping - currentDiscount, 0);
 
-  async function handleApplyVoucher(e) {
-    e.preventDefault();
-    const cleanCode = inputCode.trim().toUpperCase();
-    if (!cleanCode) {
-      showToast("Vui lòng nhập mã giảm giá.");
-      return;
-    }
-
+  async function handleApplyCodeDirectly(codeToApply) {
+    const cleanCode = (codeToApply || "").trim().toUpperCase();
+    if (!cleanCode) return;
+    setInputCode(cleanCode);
     setIsLoading(true);
     try {
       const res = await validateCouponApi(cleanCode, subtotal);
@@ -55,13 +75,24 @@ export default function CheckoutSummary({
         }
         showToast(res.description ? `Áp dụng "${res.code}": ${res.description}` : `Áp dụng mã "${res.code}" thành công.`);
       } else {
-        showToast(res?.message || "Mã giảm giá không hợp lệ hoặc đã hết hạn.");
+        showToast(res?.message || "Mã giảm giá không hợp lệ hoặc chưa đủ điều kiện.");
       }
     } catch (err) {
-      showToast(err.message || "Mã giảm giá không hợp lệ hoặc đã hết hạn.");
+      showToast(err.message || "Mã giảm giá không hợp lệ hoặc chưa đủ điều kiện.");
     } finally {
       setIsLoading(false);
     }
+  }
+
+  async function handleApplyVoucher(e) {
+    e.preventDefault();
+    const cleanCode = inputCode.trim().toUpperCase();
+    if (!cleanCode) {
+      showToast("Vui lòng nhập mã giảm giá.");
+      return;
+    }
+
+    handleApplyCodeDirectly(cleanCode);
   }
 
   async function handleRemoveVoucher() {
@@ -90,20 +121,46 @@ export default function CheckoutSummary({
           </button>
         </div>
       ) : (
-        <form onSubmit={handleApplyVoucher} style={{ display: "flex", gap: 8, marginBottom: 20 }}>
-          <input
-            className="input"
-            style={{ flex: 1, textTransform: "uppercase" }}
-            placeholder="Mã giảm giá (Voucher)"
-            value={inputCode}
-            onChange={(e) => setInputCode(e.target.value.toUpperCase())}
-            disabled={isLoading}
-            aria-label="Mã giảm giá"
-          />
-          <button type="submit" className="btn btn-secondary btn-sm" disabled={isLoading || !inputCode.trim()}>
-            {isLoading ? "..." : "Áp dụng"}
-          </button>
-        </form>
+        <div style={{ marginBottom: 20 }}>
+          {welcomeSuggestion && (
+            <div className="welcome-coupon-suggest-card">
+              <div className="welcome-coupon-suggest-header">
+                <span className="welcome-coupon-suggest-badge">🎁 ƯU ĐÃI THÀNH VIÊN MỚI</span>
+              </div>
+              <div className="welcome-coupon-suggest-body">
+                <div>
+                  <div className="welcome-coupon-suggest-code">{welcomeSuggestion.code}</div>
+                  <div className="welcome-coupon-suggest-desc">
+                    {welcomeSuggestion.description || "Giảm 15% tối đa 150.000₫ cho đơn từ 400.000₫"}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-sm welcome-coupon-apply-btn"
+                  onClick={() => handleApplyCodeDirectly(welcomeSuggestion.code)}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "..." : "Áp dụng"}
+                </button>
+              </div>
+            </div>
+          )}
+
+          <form onSubmit={handleApplyVoucher} style={{ display: "flex", gap: 8 }}>
+            <input
+              className="input"
+              style={{ flex: 1, textTransform: "uppercase" }}
+              placeholder="Mã giảm giá (Voucher)"
+              value={inputCode}
+              onChange={(e) => setInputCode(e.target.value.toUpperCase())}
+              disabled={isLoading}
+              aria-label="Mã giảm giá"
+            />
+            <button type="submit" className="btn btn-secondary btn-sm" disabled={isLoading || !inputCode.trim()}>
+              {isLoading ? "..." : "Áp dụng"}
+            </button>
+          </form>
+        </div>
       )}
 
       <div className="checkout-summary-row">
@@ -191,6 +248,57 @@ export default function CheckoutSummary({
         .applied-coupon-remove:hover {
           color: var(--color-error, #d93025);
           background: rgba(217, 48, 37, 0.08);
+        }
+        .welcome-coupon-suggest-card {
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          border-radius: 8px;
+          padding: 12px 14px;
+          color: #ffffff;
+          margin-bottom: 12px;
+          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .welcome-coupon-suggest-header {
+          margin-bottom: 4px;
+        }
+        .welcome-coupon-suggest-badge {
+          display: inline-block;
+          font-size: 10.5px;
+          font-weight: 700;
+          color: #facc15;
+          letter-spacing: 0.05em;
+        }
+        .welcome-coupon-suggest-body {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+        }
+        .welcome-coupon-suggest-code {
+          font-family: monospace;
+          font-size: 15px;
+          font-weight: 800;
+          letter-spacing: 0.12em;
+          color: #ffffff;
+        }
+        .welcome-coupon-suggest-desc {
+          font-size: 11.5px;
+          color: #cbd5e1;
+          margin-top: 2px;
+        }
+        .welcome-coupon-apply-btn {
+          white-space: nowrap;
+          background: #ffffff !important;
+          color: #0f172a !important;
+          border: none !important;
+          font-weight: 700 !important;
+          font-size: 12px !important;
+          padding: 6px 12px !important;
+          border-radius: 6px !important;
+          cursor: pointer;
+        }
+        .welcome-coupon-apply-btn:hover {
+          background: #f1f5f9 !important;
         }
         .checkout-summary-row {
           display: flex;

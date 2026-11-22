@@ -441,9 +441,115 @@ async function sendOrderInvoiceEmail({ order, customerEmail, customerName }) {
   });
 }
 
+/**
+ * Gửi email chào mừng thành viên mới kèm mã voucher giảm giá độc quyền
+ */
+async function sendWelcomeEmail({
+  toEmail,
+  customerName = 'Quý khách',
+  couponCode = 'WELCOME2026',
+  discountText = 'Giảm 15% (Tối đa 150.000₫)',
+  minOrderText = '400.000₫',
+}) {
+  if (!toEmail) return { success: false, error: 'Không có địa chỉ email' };
+
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const shopUrl = `${frontendUrl}/smart-outfit`;
+  const subject = `[Routine] Chào mừng bạn! Tặng bạn Voucher ${couponCode} giảm 15% cho đơn hàng đầu tiên`;
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Chào mừng thành viên mới - Routine Fashion</title>
+      <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f8fafc; color: #1e293b; }
+        .wrapper { width: 100%; background-color: #f8fafc; padding: 32px 0; }
+        .container { max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 14px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+        .header { background: #0f172a; padding: 30px 24px; text-align: center; }
+        .header h1 { color: #ffffff; margin: 0; font-size: 24px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; }
+        .content { padding: 36px 32px; }
+        .greeting { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 12px; }
+        .desc { font-size: 14px; line-height: 1.6; color: #475569; margin-bottom: 24px; }
+        .voucher-card { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 24px; text-align: center; color: #ffffff; margin: 24px 0; box-shadow: 0 8px 24px rgba(15,23,42,0.15); position: relative; overflow: hidden; }
+        .voucher-card::before { content: "SPECIAL GIFT"; position: absolute; top: 12px; right: -28px; background: #eab308; color: #0f172a; font-size: 10px; font-weight: 800; padding: 4px 30px; transform: rotate(45deg); letter-spacing: 0.1em; }
+        .voucher-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 4px 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; color: #f8fafc; }
+        .voucher-code-box { background: #ffffff; border-radius: 8px; padding: 12px 20px; display: inline-block; margin: 10px 0 14px; border: 2px dashed #0f172a; }
+        .voucher-code { font-family: monospace; font-size: 26px; font-weight: 800; letter-spacing: 0.25em; color: #0f172a; }
+        .voucher-value { font-size: 16px; font-weight: 700; color: #facc15; margin-bottom: 6px; }
+        .voucher-condition { font-size: 12px; color: #cbd5e1; }
+        .steps-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px 20px; margin: 24px 0; font-size: 13px; line-height: 1.6; color: #475569; }
+        .steps-box strong { color: #0f172a; }
+        .btn-shop { display: inline-block; background: #0f172a; color: #ffffff !important; font-size: 14px; font-weight: 700; padding: 14px 32px; border-radius: 8px; text-decoration: none; letter-spacing: 0.05em; transition: background 0.2s; }
+        .footer { background: #f8fafc; padding: 22px 24px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; line-height: 1.6; }
+      </style>
+    </head>
+    <body>
+      <div class="wrapper">
+        <div class="container">
+          <div class="header">
+            <h1>ROUTINE</h1>
+          </div>
+          <div class="content">
+            <div class="greeting">Xin chào ${customerName},</div>
+            <div class="desc">
+              Chào mừng bạn đã gia nhập cộng đồng phong cách <strong>Routine Vietnam</strong>! Để cảm ơn bạn đã đăng ký tài khoản thành viên, chúng tôi trân trọng gửi tặng bạn mã giảm giá độc quyền dành riêng cho khách hàng mới:
+            </div>
+
+            <!-- Thẻ Voucher Quà Tặng -->
+            <div class="voucher-card">
+              <div class="voucher-badge">🎁 QUÀ TẶNG CHÀO MỪNG</div>
+              <div class="voucher-value">${discountText}</div>
+              <div class="voucher-code-box">
+                <span class="voucher-code">${couponCode}</span>
+              </div>
+              <div class="voucher-condition">Áp dụng cho đơn hàng từ ${minOrderText} · Hạn dùng 30 ngày</div>
+            </div>
+
+            <div class="steps-box">
+              <strong style="display:block; margin-bottom: 6px; font-size: 14px;">Cách sử dụng voucher:</strong>
+              1. Khám phá các thiết kế thời trang hiện đại hoặc bộ phối <strong>Smart Outfit</strong>.<br>
+              2. Chọn các sản phẩm yêu thích và tiến hành thanh toán.<br>
+              3. Nhập mã <strong>${couponCode}</strong> tại khung mã giảm giá ở trang Checkout để được khấu trừ trực tiếp.
+            </div>
+
+            <div style="text-align: center; margin: 30px 0 10px;">
+              <a href="${shopUrl}" class="btn-shop" target="_blank">
+                Khám Phá Bộ Sưu Tập Ngay →
+              </a>
+            </div>
+          </div>
+          <div class="footer">
+            <strong>Routine Vietnam</strong> · Thời trang nam nữ phong cách hiện đại tối giản<br>
+            Hotline hỗ trợ: <strong>1900 63 68 89</strong> · Email: cskh@routine.vn<br>
+            &copy; ${new Date().getFullYear()} Routine. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  // Dev Logger: In thông báo chào mừng ra console
+  console.log('\n======================================================');
+  console.log(`[ROUTINE WELCOME EMAIL] Gửi tới: ${toEmail} (${customerName})`);
+  console.log(`>>> CHÀO MỪNG THÀNH VIÊN MỚI - TẶNG MÃ VOUCHER: ${couponCode} <<<`);
+  console.log(`>>> Giá trị: ${discountText} cho đơn từ ${minOrderText}`);
+  console.log('======================================================\n');
+
+  return sendEmailInternal({
+    to: toEmail,
+    subject,
+    html: htmlContent,
+  });
+}
+
 module.exports = {
   sendOtpEmail,
   sendPasswordResetSuccessEmail,
   sendOrderInvoiceEmail,
+  sendWelcomeEmail,
   formatVND,
 };

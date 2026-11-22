@@ -20,7 +20,22 @@ export default function OutfitRecommendation({ recommendation }) {
 
   return (
     <div className="ai-recommendation">
-      <PlaceholderImage label={outfit.name} ratio="1 / 1" rounded />
+      {outfit.image || outfit.coverImage || products?.[0]?.images?.[0] || products?.[0]?.image ? (
+        <div style={{ width: "100%", aspectRatio: "1 / 1", borderRadius: "var(--radius-md)", overflow: "hidden" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={outfit.image || outfit.coverImage || products?.[0]?.images?.[0] || products?.[0]?.image}
+            alt={outfit.name}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "/images/hero/auth-hero.jpg";
+            }}
+          />
+        </div>
+      ) : (
+        <PlaceholderImage label={outfit.name} ratio="1 / 1" rounded />
+      )}
       <div style={{ paddingTop: 16 }}>
         <span className="badge badge-outline">{styleInfo?.name || outfit.style}</span>
         <h3 style={{ fontSize: 18, margin: "8px 0 12px" }}>{outfit.name}</h3>

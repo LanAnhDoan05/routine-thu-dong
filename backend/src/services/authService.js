@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../config/prisma');
+const emailService = require('./emailService');
 
 // Bộ nhớ đệm OTP: Map<phoneNumber, { otp, expiresAt }>
 const otpStore = new Map();
@@ -96,6 +97,11 @@ async function registerUser({
 
   const normSource = String(source || 'ORGANIC').toUpperCase();
   const normGender = String(gender || 'unisex').toLowerCase().trim();
+  const normStylePref = Array.isArray(stylePreference)
+    ? stylePreference.join(', ')
+    : stylePreference && typeof stylePreference === 'object'
+    ? JSON.stringify(stylePreference)
+    : stylePreference ? String(stylePreference) : 'minimal';
 
   // Chuẩn hóa ngày sinh thành Date object hợp lệ cho Prisma (hoặc null)
   const dobVal = dateOfBirth || date;
@@ -118,7 +124,7 @@ async function registerUser({
         gender: normGender,
         dateOfBirth: parsedDob,
         date: parsedDob,
-        stylePreference,
+        stylePreference: normStylePref,
         source: normSource,
       },
     });
@@ -145,9 +151,59 @@ async function registerUser({
 
   const token = generateToken(newUser);
 
+  // Tặng voucher chào mừng thành viên mới (WELCOME2026)
+  let welcomeCoupon = null;
+  try {
+    const dbCoupon = await prisma.coupon.findUnique({
+      where: { code: 'WELCOME2026' },
+    });
+    if (dbCoupon && dbCoupon.isActive) {
+      welcomeCoupon = {
+        code: dbCoupon.code,
+        type: dbCoupon.type,
+        value: dbCoupon.value,
+        maxDiscount: dbCoupon.maxDiscount,
+        minOrderValue: dbCoupon.minOrderValue,
+        description: dbCoupon.description || 'Ưu đãi thành viên mới giảm 15%',
+      };
+    }
+  } catch (cErr) {
+    console.warn('[authService] Không thể tải thông tin voucher WELCOME2026 từ DB:', cErr.message);
+  }
+
+  if (!welcomeCoupon) {
+    welcomeCoupon = {
+      code: 'WELCOME2026',
+      type: 'percent',
+      value: 15,
+      maxDiscount: 150000,
+      minOrderValue: 400000,
+      description: 'Ưu đãi thành viên mới giảm 15% (tối đa 150.000₫) cho đơn từ 400.000₫',
+    };
+  }
+
+  // Gửi email chào mừng thành viên mới kèm mã voucher
+  if (email) {
+    emailService
+      .sendWelcomeEmail({
+        toEmail: email,
+        customerName: fullName || 'Bạn mới của Routine',
+        couponCode: welcomeCoupon.code,
+        discountText:
+          welcomeCoupon.type === 'percent'
+            ? `Giảm ${welcomeCoupon.value}% (Tối đa ${(welcomeCoupon.maxDiscount || 150000).toLocaleString('vi-VN')}₫)`
+            : `Giảm ${(welcomeCoupon.value || 50000).toLocaleString('vi-VN')}₫`,
+        minOrderText: `${(welcomeCoupon.minOrderValue || 400000).toLocaleString('vi-VN')}₫`,
+      })
+      .catch((err) => {
+        console.warn('[authService] Gửi email chào mừng thất bại:', err.message);
+      });
+  }
+
   return {
     user: sanitizeUser(newUser),
     token,
+    welcomeCoupon,
   };
 }
 
@@ -193,8 +249,6 @@ async function loginUser({ phoneNumber, password }) {
     token,
   };
 }
-
-const emailService = require('./emailService');
 
 /**
  * Che giấu một phần email hoặc số điện thoại (Masking)

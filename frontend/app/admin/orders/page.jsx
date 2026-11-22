@@ -60,6 +60,31 @@ export default function AdminOrdersPage() {
     loadOrders();
   }, [statusFilter]);
 
+  // Lắng nghe sự kiện đơn hàng thời gian thực từ Backend
+  useEffect(() => {
+    function handleRealtimeOrder(e) {
+      const order = e.detail;
+      loadOrders();
+      if (order && order.id) {
+        showToast(`🔔 Có đơn hàng mới #${order.id} (${(order.receiverName || "Khách hàng")})`, "info");
+      }
+    }
+
+    function handleRealtimeStatus() {
+      loadOrders();
+    }
+
+    window.addEventListener("routine:order_created", handleRealtimeOrder);
+    window.addEventListener("routine:order_status_updated", handleRealtimeStatus);
+    window.addEventListener("routine:payment_confirmed", handleRealtimeStatus);
+
+    return () => {
+      window.removeEventListener("routine:order_created", handleRealtimeOrder);
+      window.removeEventListener("routine:order_status_updated", handleRealtimeStatus);
+      window.removeEventListener("routine:payment_confirmed", handleRealtimeStatus);
+    };
+  }, []);
+
   function handleSearchSubmit(e) {
     e.preventDefault();
     loadOrders();
@@ -642,6 +667,14 @@ export default function AdminOrdersPage() {
                         : selectedOrder.shippingAddress}
                     </span>
                   </div>
+                  {(selectedOrder.shippingZone || selectedOrder.shipping_zone) && (
+                    <div className={styles.detailRow}>
+                      <span>Khu vực ship:</span>
+                      <span className={styles.detailRowValue} style={{ fontWeight: 600, color: "var(--color-primary)" }}>
+                        📍 {selectedOrder.shippingZone || selectedOrder.shipping_zone}
+                      </span>
+                    </div>
+                  )}
                   {selectedOrder.note && (
                     <div className={styles.detailRow}>
                       <span>Ghi chú:</span>

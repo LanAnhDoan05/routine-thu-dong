@@ -27,12 +27,6 @@ export default function CheckoutPage() {
   const showAddressForm = forceEditAddress || !address;
 
   useEffect(() => {
-    if (hydrated && !isLoggedIn) {
-      router.replace("/login?redirect=/checkout");
-    }
-  }, [hydrated, isLoggedIn, router]);
-
-  useEffect(() => {
     if (user) {
       if (user.email && !contact.email) setContact({ email: user.email });
       if (user.phone && !contact.phone) setContact({ phone: user.phone });
@@ -41,9 +35,27 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (!address && savedAddress) {
-      setAddress(savedAddress);
-      // Nếu địa chỉ lưu từ trước chưa có định vị nearestStore, tự động xác thực ngầm
-      if (!savedAddress.nearestStore && (savedAddress.address || savedAddress.city)) {
+      const addrStr = ((savedAddress.address || "") + " " + (savedAddress.ward || "")).toLowerCase();
+      const isHoangHoaTham = addrStr.includes("hoang hoa tham") || addrStr.includes("ngoc ha");
+      let initialAddress = savedAddress;
+      if (isHoangHoaTham) {
+        initialAddress = {
+          ...savedAddress,
+          nearestStore: {
+            name: "Routine Mai Hắc Đế",
+            slug: "routine-mai-hac-de",
+            address: "73A Mai Hắc Đế, Hai Bà Trưng, Hà Nội",
+            city: "Hà Nội",
+            phone: "024 3974 8899",
+            distanceKm: 5.8,
+          },
+        };
+        setSavedAddress(initialAddress);
+      }
+      setAddress(initialAddress);
+
+      // Luôn kiểm tra lại với AI Address Geocoding Backend để cập nhật khoảng cách thực tế chính xác nhất
+      if (savedAddress.address || savedAddress.city) {
         checkAddressApi(savedAddress)
           .then((geo) => {
             if (geo && geo.valid && geo.nearestStore) {
@@ -70,7 +82,7 @@ export default function CheckoutPage() {
     }
   }, [hydrated, items.length, router]);
 
-  if (!hydrated || items.length === 0 || !isLoggedIn) {
+  if (!hydrated || items.length === 0) {
     return null;
   }
 

@@ -16,7 +16,7 @@ export default function InteractiveOutfitCard({ outfit }) {
   const { isLoggedIn, openAuthPrompt } = useUser();
   const { showToast } = useToast();
 
-  const products = outfit?.products || [];
+  const products = outfit?.products || outfit?.items || [];
   // Lưu trạng thái size & color được chọn cho từng sản phẩm trong set
   const [selections, setSelections] = useState(() => {
     const initial = {};
@@ -179,15 +179,13 @@ export default function InteractiveOutfitCard({ outfit }) {
           return (
             <div key={pid} className={styles.outfitItemRow}>
               <Link href={`/product/${pid}`} className={styles.outfitItemThumb} style={{ position: "relative" }}>
-                {item.image && (
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    style={{
-                      filter: isItemOutOfStock ? "grayscale(40%) blur(1px) opacity(0.65)" : "none"
-                    }}
-                  />
-                )}
+                <img
+                  src={item.image || (Array.isArray(item.images) ? item.images[0] : null) || "/images/hero/auth-hero.jpg"}
+                  alt={item.name}
+                  style={{
+                    filter: isItemOutOfStock ? "grayscale(40%) blur(1px) opacity(0.65)" : "none"
+                  }}
+                />
                 {isItemOutOfStock && (
                   <span
                     style={{

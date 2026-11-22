@@ -1,4 +1,5 @@
 const authService = require('../services/authService');
+const realtimeService = require('../services/realtimeService');
 const { sendSuccess, sendError } = require('../utils/response');
 
 /**
@@ -31,6 +32,17 @@ async function register(req, res, next) {
       stylePreference,
       source: source || attributionSource || 'ORGANIC',
     });
+
+    // Phát sự kiện khách hàng đăng ký mới tới Dashboard Admin
+    if (result && result.user) {
+      realtimeService.emit('CUSTOMER_REGISTERED', {
+        id: result.user.id,
+        fullName: result.user.fullName || result.user.name,
+        email: result.user.email,
+        phoneNumber: result.user.phoneNumber,
+        createdAt: result.user.createdAt,
+      }, 'ADMIN');
+    }
 
     return sendSuccess(res, result, 'Đăng ký tài khoản thành công', 201);
   } catch (error) {

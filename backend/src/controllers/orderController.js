@@ -1,4 +1,5 @@
 const orderService = require('../services/orderService');
+const realtimeService = require('../services/realtimeService');
 const { sendSuccess, sendError } = require('../utils/response');
 
 /**
@@ -8,6 +9,32 @@ async function createOrder(req, res, next) {
   try {
     const orderInput = req.body;
     const newOrder = await orderService.createOrder(req.identityId, orderInput);
+
+    // Phát sự kiện real-time cho Admin và cập nhật tồn kho
+    realtimeService.emit('ORDER_CREATED', newOrder, 'ADMIN');
+    realtimeService.emit('STOCK_UPDATED', { orderId: newOrder.id, items: newOrder.items }, 'ALL');
+
+    // Lưu thông báo bền vững vào Database và bắn thông báo thời gian thực tới Admin
+    try {
+      const notificationService = require('../services/notificationService');
+      const orderCode = newOrder.id ? newOrder.id.slice(-6).toUpperCase() : 'MỚI';
+      const orderTotal = newOrder.total || newOrder.totalAmount || 0;
+      const amountStr = orderTotal.toLocaleString('vi-VN');
+      const custName = newOrder.receiverName || newOrder.customerName || (req.user?.fullName) || 'Khách vãng lai';
+      await notificationService.createNotification({
+        type: 'ORDER_CREATED',
+        title: `Đơn hàng mới #${orderCode}`,
+        message: `Khách hàng ${custName} vừa đặt đơn hàng trị giá ${amountStr}đ.`,
+        referenceType: 'ORDER',
+        referenceId: newOrder.id,
+        data: { orderId: newOrder.id, amount: orderTotal, customerName: custName },
+        link: `/admin/orders?orderId=${newOrder.id}`,
+        recipientRole: 'ADMIN',
+      });
+    } catch (notifErr) {
+      console.warn('[orderController] Lỗi tạo thông báo đơn hàng mới:', notifErr.message);
+    }
+
     return sendSuccess(res, newOrder, 'Đặt hàng thành công', 201);
   } catch (error) {
     next(error);
@@ -110,6 +137,50 @@ async function updateOrderStatus(req, res, next) {
     }
 
     const updated = await orderService.updateOrderStatus(id, status, paymentStatus);
+
+    // Phát sự kiện cập nhật trạng thái đơn hàng tới Admin và Khách hàng sở hữu đơn
+    realtimeService.emit('ORDER_STATUS_UPDATED', updated, 'ADMIN');
+    if (updated.userId) {
+      realtimeService.emit('ORDER_STATUS_UPDATED', updated, `USER:${updated.userId}`);
+    } else if (updated.guestSessionId) {
+      realtimeService.emit('ORDER_STATUS_UPDATED', updated, `GUEST:${updated.guestSessionId}`);
+    }
+
+    if (updated.paymentStatus === 'PAID') {
+      realtimeService.emit('PAYMENT_CONFIRMED', updated, 'ADMIN');
+      if (updated.userId) {
+        realtimeService.emit('PAYMENT_CONFIRMED', updated, `USER:${updated.userId}`);
+      }
+    }
+
+    // Ghi nhận thông báo quản trị khi có thay đổi trạng thái
+    try {
+      const notificationService = require('../services/notificationService');
+      const orderCode = updated.id ? updated.id.slice(-6).toUpperCase() : id;
+      if (paymentStatus === 'PAID') {
+        const orderTotal = updated.total || updated.totalAmount || 0;
+        await notificationService.createNotification({
+          type: 'PAYMENT_SUCCESS',
+          title: `Thanh toán thành công #${orderCode}`,
+          message: `Đơn hàng #${orderCode} đã được thanh toán thành công: ${orderTotal.toLocaleString('vi-VN')}đ.`,
+          data: { orderId: updated.id, paymentStatus: 'PAID', total: orderTotal },
+          link: `/admin/orders?orderId=${updated.id}`,
+          recipientRole: 'ADMIN',
+        });
+      } else if (status) {
+        await notificationService.createNotification({
+          type: 'ORDER_STATUS_UPDATED',
+          title: `Cập nhật đơn hàng #${orderCode}`,
+          message: `Đơn hàng #${orderCode} đã chuyển sang trạng thái "${updated.status}".`,
+          data: { orderId: updated.id, status: updated.status },
+          link: `/admin/orders?orderId=${updated.id}`,
+          recipientRole: 'ADMIN',
+        });
+      }
+    } catch (notifErr) {
+      console.warn('[orderController] Lỗi tạo thông báo cập nhật đơn hàng:', notifErr.message);
+    }
+
     return sendSuccess(res, updated, 'Cập nhật trạng thái đơn hàng thành công');
   } catch (error) {
     next(error);

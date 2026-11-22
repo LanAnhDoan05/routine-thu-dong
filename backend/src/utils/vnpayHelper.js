@@ -34,7 +34,13 @@ function sortObject(obj) {
   for (key = 0; key < str.length; key++) {
     const rawVal = obj[str[key]];
     if (rawVal !== undefined && rawVal !== null && rawVal !== '') {
-      sorted[str[key]] = encodeURIComponent(String(rawVal)).replace(/%20/g, '+');
+      let unencoded = String(rawVal);
+      try {
+        unencoded = decodeURIComponent(unencoded.replace(/\+/g, ' '));
+      } catch (e) {
+        unencoded = String(rawVal);
+      }
+      sorted[str[key]] = encodeURIComponent(unencoded).replace(/%20/g, '+');
     }
   }
 

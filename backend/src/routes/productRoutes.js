@@ -17,6 +17,9 @@ router.get('/trending', productController.getTrendingProducts);
 // GET /api/v1/products/check-sku (Kiểm tra mã SKU khả dụng)
 router.get('/check-sku', authenticate, authorizeAdmin, productController.checkSkuAvailability);
 
+// GET /api/v1/products/statistics (Thống kê số lượng sản phẩm cho Admin)
+router.get('/statistics', authenticate, authorizeAdmin, productController.getProductStatistics);
+
 // Admin-only catalog endpoints include draft and inactive products.
 router.get('/admin/all', authenticate, authorizeAdmin, productController.getAdminProducts);
 router.get('/admin/:id', authenticate, authorizeAdmin, productController.getAdminProductById);

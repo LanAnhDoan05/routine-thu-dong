@@ -30,7 +30,16 @@ export async function fetchApi(endpoint, options = {}) {
   let guestSessionId = null;
 
   if (typeof window !== 'undefined') {
-    const stored = localStorage.getItem('routine_token') || localStorage.getItem('token');
+    const isAdminRoute = window.location.pathname.startsWith('/admin');
+    const adminToken = localStorage.getItem('routine_admin_token');
+    const customerToken = localStorage.getItem('routine_token') || localStorage.getItem('token');
+    
+    // Phân lập tuyệt đối phiên đăng nhập Admin và Khách hàng trên cùng origin:
+    // 1. Tuyến /admin BẮT BUỘC dùng adminToken.
+    // 2. Tuyến Storefront BẮT BUỘC dùng customerToken. TUYỆT ĐỐI KHÔNG fallback sang adminToken
+    //    để tránh tài khoản khách mới tạo hoặc khách vãng lai bị nhận nhầm quyền Admin!
+    const stored = isAdminRoute ? adminToken : customerToken;
+
     if (stored) {
       try {
         const parts = stored.split('.');

@@ -9,6 +9,11 @@ const COMPARISON_PATTERNS = [
   /\b(giữa .+ và .+|vs\.?|versus)\b/i,
 ];
 
+const HUMAN_STAFF_PATTERNS = [
+  /\b(gặp nhân viên|gặp tư vấn viên|gặp chuyên viên|chuyên viên tư vấn|nhân viên tư vấn|nói chuyện với người thật|gặp người thật|tư vấn trực tiếp|kết nối nhân viên|chuyển nhân viên|chuyển chuyên viên)\b/i,
+  /\b(cần nhân viên|cần tư vấn viên|chuyển máy|chuyển sang người|hỗ trợ từ người|nhân viên hỗ trợ)\b/i,
+];
+
 const TRANSACTION_SIGNALS = [
   { pattern: /\b(mua|đặt hàng|đặt mua|chốt đơn|thanh toán|checkout)\b/i, points: 15, label: 'Khách nhắc đến mua hoặc thanh toán' },
   { pattern: /\b(thêm vào giỏ|giỏ hàng|đặt ngay|đặt luôn|lấy .{0,30}(?:cái|chiếc|bộ))\b/i, points: 10, label: 'Khách thể hiện mong muốn thêm sản phẩm hoặc đặt ngay' },
@@ -48,6 +53,8 @@ function scorePurchaseIntent(messages = []) {
     .filter(Boolean);
   const transcript = customerMessages.join('\n').toLowerCase();
 
+  const hasExplicitStaffRequest = HUMAN_STAFF_PATTERNS.some((pattern) => matches(pattern, transcript));
+
   const interestMatches = PRODUCT_INTEREST_PATTERNS.filter((pattern) => matches(pattern, transcript)).length;
   const comparisonMatches = COMPARISON_PATTERNS.filter((pattern) => matches(pattern, transcript)).length;
   const transactionMatches = TRANSACTION_SIGNALS.filter((signal) => matches(signal.pattern, transcript));
@@ -59,8 +66,12 @@ function scorePurchaseIntent(messages = []) {
     transaction: Math.min(35, transactionMatches.reduce((sum, signal) => sum + signal.points, 0)),
     specificNeed: Math.min(20, specificMatches.length * 4),
   };
-  const score = Math.min(100, Object.values(breakdown).reduce((sum, value) => sum + value, 0));
+  let score = Math.min(100, Object.values(breakdown).reduce((sum, value) => sum + value, 0));
+  if (hasExplicitStaffRequest) {
+    score = 100;
+  }
   const signals = [
+    ...(hasExplicitStaffRequest ? ['Khách hàng chủ động yêu cầu kết nối chuyên viên tư vấn'] : []),
     ...transactionMatches.map((signal) => signal.label),
     ...specificMatches.map((signal) => signal.label),
   ];
@@ -71,6 +82,7 @@ function scorePurchaseIntent(messages = []) {
     level: classifyPurchaseIntent(score),
     breakdown,
     signals,
+    hasExplicitStaffRequest,
     reason: signals.length
       ? signals.join('; ')
       : 'Chưa có tín hiệu mua hàng cụ thể trong tin nhắn khách hàng.',

@@ -38,8 +38,10 @@ function mapVariant(variant) {
   return {
     id: variant.id,
     sku: variant.sku,
+    color: variant.color,
     colorId: variant.color,
     colorName: variant.color,
+    size: variant.size,
     sizeId: variant.size,
     sizeName: variant.size,
     price: Number(variant.price),
@@ -126,6 +128,8 @@ async function getProducts({
   if (q && typeof q === 'string' && q.trim()) {
     const keyword = q.trim().toLowerCase();
     list = list.filter((product) => (
+      product.id?.toLowerCase().includes(keyword) ||
+      product.slug?.toLowerCase().includes(keyword) ||
       product.name?.toLowerCase().includes(keyword) ||
       product.description?.toLowerCase().includes(keyword) ||
       product.variants.some((variant) => variant.sku?.toLowerCase().includes(keyword))
@@ -313,7 +317,7 @@ async function createProduct(productData = {}) {
 
   const productId = `p-${randomUUID()}`;
   const imageUrls = await normalizeImages(images, productId);
-  const categoryRecord = await resolveCategory(category);
+  const categoryRecord = await resolveCategory(category || productData.categoryId);
   const variantList = Array.isArray(variants) ? variants : [];
   const resolvedColors = colors.length ? colors : [...new Set(variantList.map((variant) => variant.colorName || variant.color || variant.colorId))];
   const resolvedSizes = sizes.length ? sizes : [...new Set(variantList.map((variant) => variant.sizeName || variant.size || variant.sizeId))];
@@ -428,14 +432,80 @@ async function updateProduct(id, updateData = {}) {
 }
 
 async function deleteProduct(id) {
-  if (!id) throw badRequest('Thiếu ID sản phẩm cần ẩn');
-  const updated = await prisma.product.update({
+  if (!id) throw badRequest('Thiếu ID sản phẩm cần xóa');
+
+  const existing = await prisma.product.findUnique({
     where: { id },
-    data: { status: 'INACTIVE' },
-    include: { category: true, variants: true },
+    include: {
+      orderItems: { select: { id: true }, take: 1 },
+      variants: { select: { id: true } },
+    },
   });
-  const heldQuantities = await stockReservationService.getHeldQuantities([updated.id]);
-  return mapPrismaProduct(updated, heldQuantities.get(updated.id) || 0);
+
+  if (!existing) {
+    const error = new Error(`Không tìm thấy sản phẩm với mã "${id}"`);
+    error.statusCode = 404;
+    throw error;
+  }
+
+  // 1. Nếu sản phẩm đã có đơn hàng trong lịch sử: bảo toàn tính toàn vẹn tài chính, chuyển sang INACTIVE
+  if (existing.orderItems && existing.orderItems.length > 0) {
+    const updated = await prisma.product.update({
+      where: { id },
+      data: { status: 'INACTIVE' },
+      include: { category: true, variants: true },
+    });
+    const heldQuantities = await stockReservationService.getHeldQuantities([updated.id]);
+    return {
+      ...mapPrismaProduct(updated, heldQuantities.get(updated.id) || 0),
+      action: 'archived',
+      message: 'Sản phẩm đã có lịch sử đơn hàng nên được chuyển sang trạng thái Ẩn (Inactive).',
+    };
+  }
+
+  // 2. Nếu sản phẩm chưa có đơn hàng nào (ví dụ sản phẩm test, sản phẩm mới tạo chưa phát sinh đơn):
+  // Xóa sạch toàn bộ các bản ghi phụ thuộc và xóa vĩnh viễn khỏi Database
+  await prisma.cartItem.deleteMany({ where: { productId: id } });
+  await prisma.wishlistItem.deleteMany({ where: { productId: id } });
+  await prisma.outfitProduct.deleteMany({ where: { productId: id } });
+  await prisma.review.deleteMany({ where: { productId: id } });
+  await prisma.productVariant.deleteMany({ where: { productId: id } });
+
+  await prisma.product.delete({
+    where: { id },
+  });
+
+  return {
+    id,
+    name: existing.name,
+    deleted: true,
+    action: 'deleted',
+    message: `Đã xóa vĩnh viễn sản phẩm “${existing.name}” khỏi hệ thống.`,
+  };
+}
+
+async function bulkDeleteProducts(ids) {
+  if (!Array.isArray(ids) || !ids.length || ids.some((id) => typeof id !== 'string')) {
+    throw badRequest('Vui lòng cung cấp danh sách ID sản phẩm cần xóa');
+  }
+
+  const results = [];
+  for (const id of ids) {
+    try {
+      const res = await deleteProduct(id);
+      results.push(res);
+    } catch (err) {
+      console.warn(`[productService] Lỗi xóa sản phẩm ${id}:`, err.message);
+    }
+  }
+
+  return {
+    success: true,
+    deletedCount: results.filter((r) => r.action === 'deleted').length,
+    archivedCount: results.filter((r) => r.action === 'archived').length,
+    total: results.length,
+    results,
+  };
 }
 
 async function duplicateProduct(id) {
@@ -468,15 +538,40 @@ async function checkSkuAvailability(sku, excludeProductId = null) {
   return { sku: sku.trim(), isAvailable: !existing, takenByProductId: existing?.productId || null };
 }
 
-async function bulkDeleteProducts(ids) {
-  if (!Array.isArray(ids) || !ids.length || ids.some((id) => typeof id !== 'string')) {
-    throw badRequest('Vui lòng cung cấp danh sách ID sản phẩm cần ẩn');
-  }
-  const result = await prisma.product.updateMany({
-    where: { id: { in: ids } },
-    data: { status: 'INACTIVE' },
-  });
-  return { success: true, deletedCount: result.count, deactivatedIds: ids };
+/**
+ * Thống kê số lượng sản phẩm tổng quan cho Admin & Dashboard
+ */
+async function getProductStatistics() {
+  const [
+    totalProducts,
+    activeProducts,
+    inactiveProducts,
+    outOfStockProducts,
+    homepageProducts,
+  ] = await Promise.all([
+    prisma.product.count(),
+    prisma.product.count({ where: { status: 'ACTIVE' } }),
+    prisma.product.count({ where: { status: { in: ['INACTIVE', 'DRAFT'] } } }),
+    prisma.product.count({ where: { stockQuantity: { lte: 0 } } }),
+    prisma.product.count({
+      where: {
+        status: 'ACTIVE',
+        OR: [
+          { isFeatured: true },
+          { isTrending: true },
+          { badge: { in: ['BEST SELLER', 'NEW', 'HOT', 'SALE'] } }
+        ]
+      }
+    }),
+  ]);
+
+  return {
+    totalProducts,
+    activeProducts,
+    inactiveProducts,
+    outOfStockProducts,
+    homepageProducts,
+  };
 }
 
 module.exports = {
@@ -492,4 +587,5 @@ module.exports = {
   duplicateProduct,
   checkSkuAvailability,
   bulkDeleteProducts,
+  getProductStatistics,
 };

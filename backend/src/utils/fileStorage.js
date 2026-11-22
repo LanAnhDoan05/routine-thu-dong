@@ -55,6 +55,19 @@ async function saveBase64ToFile(base64Str, prefix = 'img') {
     throw error;
   }
 
+  const cloudinaryService = require('../services/cloudinaryService');
+  if (cloudinaryService.isConfigured()) {
+    try {
+      const cRes = await cloudinaryService.uploadBuffer(buffer, {
+        folder: 'routine_products',
+        format: ext,
+      });
+      return cRes.secure_url;
+    } catch (cErr) {
+      console.warn('[fileStorage] Cloudinary upload failed for base64, falling back to database media.');
+    }
+  }
+
   const mediaService = require('../services/mediaService');
   const saved = await mediaService.saveMediaFile({
     filename,

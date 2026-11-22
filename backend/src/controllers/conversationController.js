@@ -12,10 +12,12 @@ async function getCustomerMessages(req, res, next) {
 
 async function decideHandoff(req, res, next) {
   try {
+    const rawConsent = req.body?.consent !== undefined ? req.body.consent : req.body?.decision;
+    const consent = rawConsent === 'accept' || rawConsent === true;
     const result = await conversationService.decideHandoff(
       req,
       req.params.id,
-      req.body?.consent
+      consent
     );
     return sendSuccess(res, result, 'Đã ghi nhận lựa chọn tư vấn viên');
   } catch (error) {
@@ -43,12 +45,18 @@ async function getLeadMessages(req, res, next) {
 
 async function sendStaffMessage(req, res, next) {
   try {
+    const text = req.body?.text || req.body?.content || req.body?.message;
     const message = await conversationService.sendStaffMessage(
       req.params.id,
-      req.userId,
-      req.body?.text
+      req.userId || req.user?.id,
+      text
     );
-    return sendSuccess(res, message, 'Đã gửi tin nhắn tư vấn', 201);
+    return sendSuccess(
+      res,
+      { ...message, senderRole: message.role, content: message.text },
+      'Đã gửi tin nhắn tư vấn',
+      201
+    );
   } catch (error) {
     next(error);
   }

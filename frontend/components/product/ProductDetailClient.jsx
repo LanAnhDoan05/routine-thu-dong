@@ -48,8 +48,28 @@ export default function ProductDetailClient({ initialProduct, initialRelated = [
       });
     }
 
+    // Lắng nghe sự kiện đồng bộ giá, tồn kho hoặc ẩn sản phẩm thời gian thực từ Admin
+    function handleRealtimeUpdate(e) {
+      const data = e.detail;
+      if (!data) return;
+      if (data.id === targetId || data.productId === targetId || (data.items && data.items.some((it) => it.productId === targetId))) {
+        fetchProductById(targetId).then((updated) => {
+          if (active && updated) {
+            setProduct(updated);
+          }
+        }).catch(() => {});
+      }
+    }
+
+    window.addEventListener("routine:product_updated", handleRealtimeUpdate);
+    window.addEventListener("routine:product_status_changed", handleRealtimeUpdate);
+    window.addEventListener("routine:stock_updated", handleRealtimeUpdate);
+
     return () => {
       active = false;
+      window.removeEventListener("routine:product_updated", handleRealtimeUpdate);
+      window.removeEventListener("routine:product_status_changed", handleRealtimeUpdate);
+      window.removeEventListener("routine:stock_updated", handleRealtimeUpdate);
     };
   }, [productId, initialProduct]);
 

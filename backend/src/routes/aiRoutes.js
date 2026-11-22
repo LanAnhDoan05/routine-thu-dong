@@ -15,6 +15,7 @@ router.post('/stylist', identifyUser, aiController.getOutfitRecommendation);
 // POST /api/v1/ai/suggest (Yêu cầu đăng nhập, tương thích ngược với API cũ)
 router.post('/suggest', authenticate, aiController.getRoutineSuggestions);
 
+router.get('/conversations/:id', identifyUser, conversationController.getCustomerMessages);
 router.get('/conversations/:id/messages', identifyUser, conversationController.getCustomerMessages);
 router.post('/conversations/:id/handoff', identifyUser, conversationController.decideHandoff);
 

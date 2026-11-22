@@ -69,6 +69,19 @@ export default function CustomersPage() {
     loadCustomers();
   }, [custPlatformFilter, custStatusFilter]);
 
+  // Lắng nghe sự kiện khách hàng đăng ký mới theo thời gian thực
+  useEffect(() => {
+    function handleNewCustomer() {
+      loadCustomers();
+      loadGuests();
+    }
+
+    window.addEventListener("routine:customer_registered", handleNewCustomer);
+    return () => {
+      window.removeEventListener("routine:customer_registered", handleNewCustomer);
+    };
+  }, []);
+
   useEffect(() => {
     loadGuests();
   }, [guestPlatformFilter]);

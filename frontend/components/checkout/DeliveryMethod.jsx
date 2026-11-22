@@ -28,7 +28,7 @@ export default function DeliveryMethod({ value, onChange, address: propAddress }
       {methods.map((method) => {
         const isSelected = value === method.id;
         const isDisabled = !method.available;
-        const hasDiscount = method.discount && method.discount > 0;
+        const hasDiscount = Boolean(method.discount && method.discount > 0);
 
         return (
           <label

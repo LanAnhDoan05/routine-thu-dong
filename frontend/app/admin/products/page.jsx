@@ -6,9 +6,23 @@ import PageHeader from "@/components/admin/PageHeader";
 import ProductFilters from "@/components/admin/ProductFilters";
 import ProductTable from "@/components/admin/ProductTable";
 import ConfirmModal from "@/components/admin/ConfirmModal";
+import StatCard from "@/components/admin/StatCard";
 import { useToast } from "@/components/admin/ToastProvider";
-import { IconPlus, IconTrash } from "@/components/admin/icons";
-import { getProducts, deleteProduct, duplicateProduct } from "@/lib/adminProductService";
+import {
+  IconPlus,
+  IconTrash,
+  IconProducts,
+  IconEye,
+  IconArchive,
+  IconAlertCircle,
+  IconStar,
+} from "@/components/admin/icons";
+import {
+  getProducts,
+  deleteProduct,
+  duplicateProduct,
+  getProductStatistics,
+} from "@/lib/adminProductService";
 import { getCategories } from "@/lib/categoryService";
 import { getStyles } from "@/lib/styleService";
 import styles from "./page.module.css";
@@ -29,10 +43,24 @@ export default function ProductsPage() {
 
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [products, setProducts] = useState(null);
+  const [stats, setStats] = useState(null);
   const [loadError, setLoadError] = useState("");
   const [selectedIds, setSelectedIds] = useState([]);
   const [pendingDelete, setPendingDelete] = useState(null); // "bulk" | product | null
   const [deleting, setDeleting] = useState(false);
+
+  async function loadStats() {
+    try {
+      const res = await getProductStatistics();
+      if (res && typeof res.totalProducts === "number") {
+        setStats(res);
+      } else if (res?.data && typeof res.data.totalProducts === "number") {
+        setStats(res.data);
+      }
+    } catch (err) {
+      console.error("Không thể tải thống kê sản phẩm:", err);
+    }
+  }
 
   useEffect(() => {
     let active = true;
@@ -42,6 +70,7 @@ export default function ProductsPage() {
     getStyles().then((sts) => {
       if (active && Array.isArray(sts)) setAllStyles(sts);
     });
+    loadStats();
     return () => {
       active = false;
     };
@@ -64,6 +93,26 @@ export default function ProductsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
+  // Lắng nghe sự kiện đồng bộ thời gian thực từ Backend
+  useEffect(() => {
+    function handleRealtimeSync() {
+      loadProducts();
+      loadStats();
+    }
+
+    window.addEventListener("routine:product_created", handleRealtimeSync);
+    window.addEventListener("routine:product_updated", handleRealtimeSync);
+    window.addEventListener("routine:product_status_changed", handleRealtimeSync);
+    window.addEventListener("routine:stock_updated", handleRealtimeSync);
+
+    return () => {
+      window.removeEventListener("routine:product_created", handleRealtimeSync);
+      window.removeEventListener("routine:product_updated", handleRealtimeSync);
+      window.removeEventListener("routine:product_status_changed", handleRealtimeSync);
+      window.removeEventListener("routine:stock_updated", handleRealtimeSync);
+    };
+  }, []);
+
   function handleFilterChange(field, value) {
     setFilters((prev) => ({ ...prev, [field]: value }));
   }
@@ -80,6 +129,7 @@ export default function ProductsPage() {
     await duplicateProduct(product.id);
     showToast(`Đã nhân bản “${product.name}”.`, "success");
     loadProducts();
+    loadStats();
   }
 
   async function confirmDelete() {
@@ -87,14 +137,16 @@ export default function ProductsPage() {
     try {
       if (pendingDelete === "bulk") {
         await Promise.all(selectedIds.map((id) => deleteProduct(id)));
-        showToast(`Đã ẩn ${selectedIds.length} sản phẩm khỏi cửa hàng.`, "success");
+        showToast(`Đã xoá ${selectedIds.length} sản phẩm khỏi hệ thống.`, "success");
         setSelectedIds([]);
       } else if (pendingDelete) {
-        await deleteProduct(pendingDelete.id);
-        showToast(`Đã ẩn “${pendingDelete.name}” khỏi cửa hàng.`, "success");
+        const res = await deleteProduct(pendingDelete.id);
+        const msg = res?.message || `Đã xoá “${pendingDelete.name}” thành công.`;
+        showToast(msg, "success");
         setSelectedIds((prev) => prev.filter((id) => id !== pendingDelete.id));
       }
       await loadProducts();
+      await loadStats();
     } catch (err) {
       showToast(err?.message || "Không thể xoá sản phẩm.", "error");
     } finally {
@@ -115,7 +167,59 @@ export default function ProductsPage() {
         }
       />
 
+      <div className={styles.statsGrid}>
+        <StatCard
+          label="Tổng sản phẩm"
+          value={stats?.totalProducts ?? (products ? products.length : "—")}
+          description="Tổng số sản phẩm trong Database"
+          icon={<IconProducts size={18} />}
+          tone="default"
+        />
+        <StatCard
+          label="Đang trưng bày"
+          value={stats?.activeProducts ?? "—"}
+          description="Sản phẩm ACTIVE mở bán trên website"
+          icon={<IconEye size={18} />}
+          tone="success"
+        />
+        <StatCard
+          label="Đang ẩn"
+          value={stats?.inactiveProducts ?? "—"}
+          description="Sản phẩm INACTIVE / bản nháp"
+          icon={<IconArchive size={18} />}
+          tone="warning"
+        />
+        <StatCard
+          label="Hết hàng"
+          value={stats?.outOfStockProducts ?? "—"}
+          description="Sản phẩm có tồn kho khả dụng = 0"
+          icon={<IconAlertCircle size={18} />}
+          tone="danger"
+        />
+        <StatCard
+          label="Hiển thị trang chủ"
+          value={stats?.homepageProducts ?? "—"}
+          description="Đủ điều kiện xuất hiện trên trang chủ"
+          icon={<IconStar size={18} />}
+          tone="info"
+        />
+      </div>
+
       <ProductFilters filters={filters} onChange={handleFilterChange} categories={categories} styleOptions={allStyles} />
+
+      {products !== null && !loadError ? (
+        <div className={styles.countBar}>
+          <span>
+            Đang hiển thị <strong>{products.length}</strong> / <strong>{products.length}</strong> sản phẩm
+            {filters.search || filters.categoryId !== "ALL" || filters.gender !== "ALL" || filters.styleId !== "ALL" || filters.status !== "ALL" || filters.stock !== "ALL" ? (
+              <span className={styles.filterNote}> (theo bộ lọc hiện tại)</span>
+            ) : null}
+          </span>
+          <span className={styles.totalBadge}>
+            Toàn hệ thống: {stats?.totalProducts ?? products.length} sản phẩm
+          </span>
+        </div>
+      ) : null}
 
       {selectedIds.length > 0 ? (
         <div className={styles.bulkBar}>
@@ -147,8 +251,12 @@ export default function ProductsPage() {
       <ConfirmModal
         open={!!pendingDelete}
         title={pendingDelete === "bulk" ? "Xoá các sản phẩm đã chọn?" : `Xoá “${pendingDelete?.name}”?`}
-        description="Sản phẩm sẽ ẩn khỏi cửa hàng nhưng vẫn giữ lịch sử đơn hàng và có thể bật lại sau."
-        confirmLabel="Ẩn sản phẩm"
+        description={
+          pendingDelete === "bulk"
+            ? "Sản phẩm chưa có đơn hàng sẽ bị xoá vĩnh viễn khỏi Database. Sản phẩm đã có đơn hàng sẽ được chuyển sang trạng thái Ẩn."
+            : `Sản phẩm “${pendingDelete?.name}” nếu chưa có đơn hàng sẽ bị xoá vĩnh viễn khỏi Database. Bạn có chắc chắn muốn xoá?`
+        }
+        confirmLabel="Xác nhận xoá"
         loading={deleting}
         onConfirm={confirmDelete}
         onCancel={() => setPendingDelete(null)}

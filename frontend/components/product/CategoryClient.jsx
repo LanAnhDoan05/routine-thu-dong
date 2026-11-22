@@ -101,7 +101,7 @@ export default function CategoryClient({ initialCategory, initialProducts = [], 
         </button>
 
         <span className="category-count">
-          Hiển thị <strong>{finalProducts.length}</strong> sản phẩm
+          Hiển thị <strong>{finalProducts.length}</strong> / <strong>{baseProducts.length}</strong> sản phẩm
         </span>
 
         <ProductSort currentSort={sortKey} onSortChange={setSortKey} />

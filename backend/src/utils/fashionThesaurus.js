@@ -14,7 +14,7 @@ const FIT_SYNONYMS = {
   'slim-fit': [
     'ôm', 'om', 'bó', 'bo', 'vừa sát', 'vua sat', 'ôm body', 'om body',
     'gọn', 'gon', 'bó sát', 'bo sat', 'ôm sát', 'om sat', 'slim', 'slimfit',
-    'slim-fit', 'dáng ôm', 'dang om'
+    'slim-fit', 'dáng ôm', 'dang om', 'fitted', 'form fitted'
   ],
   regular: [
     'vừa', 'vua', 'vừa vặn', 'vua van', 'bình thường', 'binh thuong',
@@ -138,7 +138,13 @@ function normalizeFashionQuery(text) {
 
   // 1. Phân tích Form dáng
   for (const [canonical, list] of Object.entries(FIT_SYNONYMS)) {
-    if (list.some((kw) => lower.includes(kw))) {
+    if (list.some((kw) => {
+      if (kw.length <= 3) {
+        const regex = new RegExp(`(^|[^a-z0-9àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ])${kw}([^a-z0-9àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]|$)`, 'i');
+        return regex.test(lower);
+      }
+      return lower.includes(kw);
+    })) {
       result.fit = canonical;
       break;
     }

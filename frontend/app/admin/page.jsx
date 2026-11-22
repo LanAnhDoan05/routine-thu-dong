@@ -39,6 +39,27 @@ export default function DashboardPage() {
     loadDashboardData();
   }, [loadDashboardData]);
 
+  // Tự động cập nhật số liệu Dashboard theo thời gian thực
+  useEffect(() => {
+    function handleRealtimeSync() {
+      loadDashboardData();
+    }
+
+    window.addEventListener("routine:order_created", handleRealtimeSync);
+    window.addEventListener("routine:order_status_updated", handleRealtimeSync);
+    window.addEventListener("routine:payment_confirmed", handleRealtimeSync);
+    window.addEventListener("routine:customer_registered", handleRealtimeSync);
+    window.addEventListener("routine:product_created", handleRealtimeSync);
+
+    return () => {
+      window.removeEventListener("routine:order_created", handleRealtimeSync);
+      window.removeEventListener("routine:order_status_updated", handleRealtimeSync);
+      window.removeEventListener("routine:payment_confirmed", handleRealtimeSync);
+      window.removeEventListener("routine:customer_registered", handleRealtimeSync);
+      window.removeEventListener("routine:product_created", handleRealtimeSync);
+    };
+  }, [loadDashboardData]);
+
   const kpi = dashboard?.kpi;
   const ecosystem = dashboard?.socialEcosystem;
   const recentOrders = dashboard?.recentOrders || [];

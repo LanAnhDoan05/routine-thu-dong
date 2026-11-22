@@ -122,12 +122,26 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
       try {
         const result = await fetchApi(`/ai/conversations/${conversationId}/messages`);
         if (!active || !Array.isArray(result?.messages) || result.messages.length === 0) return;
-        const restoredMessages = result.messages.map((message) => ({
-          id: message.id,
-          role: message.role === "CUSTOMER" ? "user" : message.role === "STAFF" ? "staff" : "ai",
-          text: message.text,
-          image: message.metadata?.imageUrl || null,
-        }));
+        const restoredMessages = result.messages.map((message) => {
+          const metaOutfit = message.metadata?.outfit || null;
+          const metaProducts = Array.isArray(message.metadata?.products) ? message.metadata.products : [];
+          const displayOutfit = metaOutfit || (metaProducts.length > 0 ? {
+            id: `restored-outfit-${message.id}`,
+            title: metaProducts.length === 1 ? metaProducts[0].name : "Sản phẩm Routine phù hợp",
+            products: metaProducts,
+            items: metaProducts,
+            total: metaProducts.reduce((sum, p) => sum + Number(p.price || 0), 0),
+          } : null);
+
+          return {
+            id: message.id,
+            role: message.role === "CUSTOMER" ? "user" : message.role === "STAFF" ? "staff" : "ai",
+            text: message.text,
+            image: message.metadata?.imageUrl || null,
+            outfit: displayOutfit,
+            products: metaProducts,
+          };
+        });
         setMessages(restoredMessages);
         if (result.handoffDecision) setHandoffDecision(result.handoffDecision);
       } catch (error) {
@@ -178,9 +192,33 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
 
     pollStaffMessages();
     const intervalId = window.setInterval(pollStaffMessages, 5000);
+
+    function handleRealtimeStaffMessage(e) {
+      const data = e.detail;
+      if (!data || !conversationId) return;
+      if (data.conversationId === conversationId && data.message) {
+        const msg = data.message;
+        if (!seenStaffMessageIdsRef.current.has(msg.id)) {
+          seenStaffMessageIdsRef.current.add(msg.id);
+          setMessages((current) => [
+            ...current,
+            {
+              id: msg.id,
+              role: "staff",
+              text: msg.text,
+              image: msg.metadata?.imageUrl || null,
+            },
+          ]);
+        }
+      }
+    }
+
+    window.addEventListener("routine:staff_message_sent", handleRealtimeStaffMessage);
+
     return () => {
       active = false;
       window.clearInterval(intervalId);
+      window.removeEventListener("routine:staff_message_sent", handleRealtimeStaffMessage);
     };
   }, [conversationId, handoffDecision]);
 
@@ -299,7 +337,7 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
           outfit: displayOutfit,
           products: responseProducts,
           followUps: response.followUps || [],
-          handoffOffer: response.handoffOffer === true,
+          handoffOffer: Boolean(response.handoffOffer),
         },
       ]);
     } catch (err) {
@@ -321,19 +359,20 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
     if (!conversationId || handoffLoading) return;
     setHandoffLoading(true);
     try {
-      await fetchApi(`/ai/conversations/${conversationId}/handoff`, {
+      const res = await fetchApi(`/ai/conversations/${conversationId}/handoff`, {
         method: "POST",
         body: JSON.stringify({ consent }),
       });
       setHandoffDecision(consent ? "ACCEPTED" : "DECLINED");
+      const confirmText = res?.message || (consent
+        ? "Mình đã ghi nhận yêu cầu kết nối chuyên viên tư vấn. Bạn vui lòng chờ chuyên viên Routine tiếp nhận nhé!"
+        : "Đã rõ. Bạn có thể tiếp tục trò chuyện với AI Stylist nhé!");
       setMessages((current) => [
         ...current,
         {
           id: `handoff-${Date.now()}`,
           role: "ai",
-          text: consent
-            ? "Routine đã ghi nhận sự đồng ý của bạn. Chuyên viên có thể tiếp nhận yêu cầu và phản hồi ngay trong cuộc trò chuyện này."
-            : "Đã rõ. Bạn có thể tiếp tục trò chuyện với AI Stylist.",
+          text: confirmText,
         },
       ]);
     } catch (error) {
@@ -382,19 +421,23 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
               </div>
 
               {/* Thẻ phối đồ tương tác trực quan */}
-              {msg.outfit && msg.outfit.products && msg.outfit.products.length > 0 && (
+              {msg.outfit && (
+                (Array.isArray(msg.outfit.products) && msg.outfit.products.length > 0) ||
+                (Array.isArray(msg.outfit.items) && msg.outfit.items.length > 0)
+              ) && (
                 <InteractiveOutfitCard outfit={msg.outfit} />
               )}
 
               {msg.handoffOffer && !handoffDecision && (
-                <div className={styles.chipsList}>
+                <div className={styles.chipsList} style={{ marginTop: 8, display: "flex", gap: 8, flexWrap: "wrap" }}>
                   <button
                     type="button"
                     className={styles.chipBtn}
+                    style={{ background: "#000", color: "#fff", borderColor: "#000", fontWeight: 600 }}
                     onClick={() => handleHandoffDecision(true)}
                     disabled={handoffLoading}
                   >
-                    Có, tôi muốn được tư vấn
+                    Có, kết nối chuyên viên tư vấn
                   </button>
                   <button
                     type="button"
@@ -402,7 +445,7 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
                     onClick={() => handleHandoffDecision(false)}
                     disabled={handoffLoading}
                   >
-                    Không, tôi tiếp tục trò chuyện với AI
+                    Không, tôi muốn tiếp tục trao đổi với AI
                   </button>
                 </div>
               )}
@@ -496,8 +539,8 @@ export default function AIStylistChat({ initialPrompt = "", currentProductId = n
 
             {quizStep === 2 && (
               <div className={styles.quizOptionsGrid}>
-                <button type="button" className={styles.quizOptionBtn} onClick={() => handleQuizAnswer("style", "Routine Thu Đông giữ ấm layer")}>
-                  🍂 Routine Thu Đông
+                <button type="button" className={styles.quizOptionBtn} onClick={() => handleQuizAnswer("style", "Routine giữ ấm layer")}>
+                  🍂 Routine
                 </button>
                 <button type="button" className={styles.quizOptionBtn} onClick={() => handleQuizAnswer("style", "tối giản thanh lịch Minimalist")}>
                   ✨ Tối giản Minimal

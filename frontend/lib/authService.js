@@ -56,7 +56,13 @@ export async function loginWithPassword(identifier, password) {
 
     if (data && data.user) {
       if (typeof window !== "undefined" && data.token) {
-        window.localStorage.setItem("routine_token", data.token);
+        if (data.user.role === "ADMIN") {
+          window.localStorage.setItem("routine_admin_token", data.token);
+          window.localStorage.setItem("routine_admin_user", JSON.stringify(data.user));
+        } else {
+          window.localStorage.setItem("routine_token", data.token);
+          window.localStorage.setItem("token", data.token);
+        }
       }
       return {
         success: true,

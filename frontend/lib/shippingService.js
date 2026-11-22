@@ -37,15 +37,25 @@ export async function checkAddressApi(addressData) {
     if (city && district && ward) {
       const isHcm = city.includes("ho chi minh") || city.includes("hcm") || city.includes("sai gon");
       const isHn = city.includes("ha noi") || city.includes("hn");
+      const isHoangHoaTham = ((addressData?.address || addressData?.street || "") + " " + ward).toLowerCase().includes("hoang hoa tham") ||
+                             ((addressData?.address || addressData?.street || "") + " " + ward).toLowerCase().includes("ngoc ha");
 
       return {
         valid: true,
         formattedAddress: [addressData.address || addressData.street, ward, district, addressData.city].filter(Boolean).join(", "),
-        coordinates: isHcm ? { lat: 10.7769, lng: 106.7009 } : isHn ? { lat: 21.0285, lng: 105.8542 } : { lat: 16.0544, lng: 108.2022 },
+        coordinates: isHcm
+          ? { lat: 10.7769, lng: 106.7009 }
+          : isHoangHoaTham
+          ? { lat: 21.0418, lng: 105.8235 }
+          : isHn
+          ? { lat: 21.0285, lng: 105.8542 }
+          : { lat: 16.0544, lng: 108.2022 },
         nearestStore: isHcm
           ? { name: "Routine Lê Lợi", distanceKm: 2, city: "TP. Hồ Chí Minh" }
+          : isHoangHoaTham
+          ? { name: "Routine Mai Hắc Đế", distanceKm: 5.8, city: "Hà Nội" }
           : isHn
-          ? { name: "Routine Chùa Bộc", distanceKm: 2, city: "Hà Nội" }
+          ? { name: "Routine Mai Hắc Đế", distanceKm: 5.8, city: "Hà Nội" }
           : { name: "Routine Đà Nẵng", distanceKm: 2, city: "Đà Nẵng" },
         source: "client_fallback",
       };

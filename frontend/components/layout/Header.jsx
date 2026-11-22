@@ -11,11 +11,11 @@ import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useUser } from "@/context/UserContext";
 import { useToast } from "@/components/common/Toast";
-import { SearchIcon, HeartIcon, BagIcon, UserIcon, MenuIcon, CloseIcon } from "@/components/common/Icons";
+import { SearchIcon, HeartIcon, BagIcon, UserIcon, MenuIcon, CloseIcon, ChevronDownIcon } from "@/components/common/Icons";
 import styles from "./Header.module.css";
 
 const primaryNav = [
-  { label: "NEW", href: "/category/new-arrivals" },
+  { label: "NEW", href: "/category/new-arrivals", isNew: true },
   { label: "MEN", href: "/category/men" },
   { label: "WOMEN", href: "/category/women" },
 ];
@@ -26,6 +26,7 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [megaMenuCats, setMegaMenuCats] = useState([]);
+  const [adminSession, setAdminSession] = useState(null);
 
   useEffect(() => {
     fetchApi('/categories?type=mega')
@@ -41,6 +42,36 @@ export default function Header() {
   const { count: wishlistCount } = useWishlist();
   const { user, isLoggedIn, logout } = useUser();
   const { showToast } = useToast();
+
+  // Nhận diện phiên Quản trị viên (Admin) nếu có
+  useEffect(() => {
+    function readAdminSession() {
+      try {
+        const rawAdmin = typeof window !== "undefined" ? window.localStorage.getItem("routine_admin_user") : null;
+        const adminToken = typeof window !== "undefined" ? window.localStorage.getItem("routine_admin_token") : null;
+        if (rawAdmin && adminToken) {
+          const parsed = JSON.parse(rawAdmin);
+          if (parsed && parsed.role === "ADMIN") {
+            setAdminSession(parsed);
+            return;
+          }
+        }
+        setAdminSession(null);
+      } catch {
+        setAdminSession(null);
+      }
+    }
+    readAdminSession();
+    window.addEventListener("storage", readAdminSession);
+    return () => window.removeEventListener("storage", readAdminSession);
+  }, [user, userMenuOpen]);
+
+  // Phân định vai trò hiển thị trên Menu tài khoản:
+  // 1. Customer: khi đã đăng nhập tài khoản khách (role !== ADMIN)
+  // 2. Admin: khi đăng nhập tài khoản quản trị
+  // 3. Guest: khi chưa đăng nhập bất kỳ tài khoản nào
+  const isCustomer = isLoggedIn && user && user.role !== "ADMIN";
+  const isAdmin = !isCustomer && Boolean(adminSession && adminSession.role === "ADMIN");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -70,6 +101,11 @@ export default function Header() {
 
   function handleLogout() {
     logout();
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem("routine_admin_token");
+      window.localStorage.removeItem("routine_admin_user");
+    }
+    setAdminSession(null);
     setUserMenuOpen(false);
     showToast("Đã đăng xuất thành công.");
     router.push("/login");
@@ -79,24 +115,36 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}>
       <div className={`container ${styles.headerInner}`}>
         <div className={styles.bar}>
+          {/* Cột trái: Logo thương hiệu trên Desktop + Nút Menu Hamburger trên Mobile */}
           <div className={styles.left}>
             <button
               className={`${styles.iconBtn} ${styles.menuBtn}`}
-              aria-label="Mở menu"
+              aria-label="Mở menu danh mục"
               onClick={() => setMobileMenuOpen(true)}
             >
               <MenuIcon />
             </button>
-            <Logo className={styles.desktopLogo} />
+            <div className={styles.desktopLogo}>
+              <Logo />
+            </div>
+          </div>
+
+          {/* Cột giữa: Menu điều hướng chính trên Desktop + Logo căn giữa trên Mobile */}
+          <div className={styles.center}>
+            <div className={styles.mobileLogo}>
+              <Logo />
+            </div>
             <nav className={styles.nav} aria-label="Điều hướng chính">
               {primaryNav.map((item) => (
                 <Link key={item.href} href={item.href} className={styles.navLink}>
-                  {item.label}
+                  <span>{item.label}</span>
+                  {item.isNew && <span className={styles.newDot} aria-hidden="true" />}
                 </Link>
               ))}
               <div className={styles.navGroup}>
-                <button className={styles.navLink} aria-haspopup="true">
-                  CATEGORY
+                <button className={`${styles.navLink} ${styles.categoryBtn}`} aria-haspopup="true">
+                  <span>CATEGORY</span>
+                  <ChevronDownIcon className={styles.chevronIcon} />
                 </button>
                 <div className={styles.megaMenu} role="menu">
                   {megaMenuCats.map((cat) => (
@@ -106,16 +154,14 @@ export default function Header() {
                   ))}
                 </div>
               </div>
-              <Link href="/smart-outfit" className={styles.navLink}>
-                SMART OUTFIT
+              <Link href="/smart-outfit" className={`${styles.navLink} ${styles.smartOutfitLink}`}>
+                <span className={styles.smartSparkle} aria-hidden="true">✨</span>
+                <span>SMART OUTFIT</span>
               </Link>
             </nav>
           </div>
 
-          <div className={styles.mobileLogoWrap}>
-            <Logo />
-          </div>
-
+          {/* Cột phải: Các biểu tượng hành động (Tìm kiếm, Yêu thích, Giỏ hàng, Tài khoản) */}
           <div className={styles.actions}>
             <button
               className={styles.iconBtn}
@@ -135,36 +181,50 @@ export default function Header() {
               {itemCount > 0 && <span className={styles.count}>{itemCount}</span>}
             </Link>
 
-            {/* Menu User: Đăng nhập / Đơn hàng / Đăng xuất */}
+            {/* Menu Dropdown Tài khoản Người dùng */}
             <div className={styles.userMenuWrap} onClick={(e) => e.stopPropagation()}>
               <button
                 className={styles.iconBtn}
-                aria-label={isLoggedIn ? `Tài khoản: ${user?.name || ""}` : "Tài khoản người dùng"}
+                aria-label={
+                  isAdmin
+                    ? `Quản trị viên: ${adminSession?.fullName || adminSession?.name || "Admin"}`
+                    : isCustomer
+                    ? `Tài khoản: ${user?.name || ""}`
+                    : "Tài khoản người dùng"
+                }
                 onClick={() => setUserMenuOpen((v) => !v)}
               >
                 <UserIcon />
-                {isLoggedIn && <span className={styles.userBadge} />}
+                {(isCustomer || isAdmin) && (
+                  <span
+                    className={styles.userBadge}
+                    style={{ background: isAdmin ? "#d97706" : "var(--color-success)" }}
+                  />
+                )}
               </button>
 
               {userMenuOpen && (
                 <div className={styles.userDropdown} role="menu">
-                  {isLoggedIn ? (
+                  {isAdmin ? (
+                    /* 1. TÀI KHOẢN ADMIN */
                     <>
                       <div className={styles.userDropdownHeader}>
-                        <p className={styles.userDropdownName}>{user?.name || "Khách hàng"}</p>
-                        <p className={styles.userDropdownSub}>{user?.role === "ADMIN" ? "Quản trị viên (Admin)" : "Đã đăng nhập"}</p>
+                        <p className={styles.userDropdownName}>
+                          {adminSession?.fullName || adminSession?.name || "Quản Trị Viên Routine"}
+                        </p>
+                        <p className={styles.userDropdownSub} style={{ color: "#d97706", fontWeight: "600" }}>
+                          Quản trị viên (Admin)
+                        </p>
                       </div>
-                      {user?.role === "ADMIN" && (
-                        <Link
-                          href="/admin/products"
-                          className={styles.userDropdownItem}
-                          onClick={() => setUserMenuOpen(false)}
-                          role="menuitem"
-                          style={{ color: "#d9534f", fontWeight: "600" }}
-                        >
-                          ⚙️ Quản trị hệ thống (Admin)
-                        </Link>
-                      )}
+                      <Link
+                        href="/admin/products"
+                        className={styles.userDropdownItem}
+                        onClick={() => setUserMenuOpen(false)}
+                        role="menuitem"
+                        style={{ color: "#d97706", fontWeight: "600", borderBottom: "1px dashed var(--color-border)" }}
+                      >
+                        ⚙️ Quản trị hệ thống (Admin)
+                      </Link>
                       <Link
                         href="/orders"
                         className={styles.userDropdownItem}
@@ -182,7 +242,50 @@ export default function Header() {
                         🚪 Đăng xuất
                       </button>
                     </>
+                  ) : isCustomer ? (
+                    /* 2. TÀI KHOẢN CUSTOMER (KHÁCH HÀNG) */
+                    <>
+                      <div className={styles.userDropdownHeader}>
+                        <p className={styles.userDropdownName}>{user?.name || user?.fullName || "Khách hàng Routine"}</p>
+                        <p className={styles.userDropdownSub}>
+                          {user?.phoneNumber || user?.email || "Thành viên Routine"}
+                        </p>
+                      </div>
+                      <Link
+                        href="/orders#profile"
+                        className={styles.userDropdownItem}
+                        onClick={() => setUserMenuOpen(false)}
+                        role="menuitem"
+                      >
+                        👤 Hồ sơ cá nhân
+                      </Link>
+                      <Link
+                        href="/orders"
+                        className={styles.userDropdownItem}
+                        onClick={() => setUserMenuOpen(false)}
+                        role="menuitem"
+                      >
+                        📦 Đơn hàng của tôi
+                      </Link>
+                      <Link
+                        href="/wishlist"
+                        className={styles.userDropdownItem}
+                        onClick={() => setUserMenuOpen(false)}
+                        role="menuitem"
+                      >
+                        ❤️ Sản phẩm yêu thích
+                      </Link>
+                      <button
+                        type="button"
+                        className={`${styles.userDropdownItem} ${styles.userDropdownLogout}`}
+                        onClick={handleLogout}
+                        role="menuitem"
+                      >
+                        🚪 Đăng xuất
+                      </button>
+                    </>
                   ) : (
+                    /* 3. CHƯA ĐĂNG NHẬP (GUEST) */
                     <>
                       <div className={styles.userDropdownHeader}>
                         <p className={styles.userDropdownName}>Tài khoản</p>

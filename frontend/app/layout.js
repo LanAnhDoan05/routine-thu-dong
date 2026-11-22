@@ -1,5 +1,6 @@
 import "./globals.css";
 import { UserProvider } from "@/context/UserContext";
+import { RealtimeProvider } from "@/context/RealtimeContext";
 import { RegistrationProvider } from "@/context/RegistrationContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { CartProvider } from "@/context/CartContext";
@@ -10,9 +11,9 @@ import { ToastProvider } from "@/components/common/Toast";
 import AppShell from "@/components/layout/AppShell";
 
 export const metadata = {
-  title: "Routine Thu Đông — Smart Fashion",
+  title: "Routine — Smart Fashion",
   description:
-    "Routine Thu Đông — nền tảng thời trang tối giản giúp bạn khám phá sản phẩm, xây dựng outfit và nhận gợi ý phong cách cá nhân."
+    "Routine — nền tảng thời trang tối giản giúp bạn khám phá sản phẩm, xây dựng outfit và nhận gợi ý phong cách cá nhân."
 };
 
 export const viewport = {
@@ -26,21 +27,23 @@ export default function RootLayout({ children }) {
     <html lang="vi">
       <body>
         <UserProvider>
-          <RegistrationProvider>
-            <WishlistProvider>
-              <CartProvider>
-                <OrderProvider>
-                  <CheckoutProvider>
-                    <ToastProvider>
-                      <ProductCardSettingsProvider>
-                        <AppShell>{children}</AppShell>
-                      </ProductCardSettingsProvider>
-                    </ToastProvider>
-                  </CheckoutProvider>
-                </OrderProvider>
-              </CartProvider>
-            </WishlistProvider>
-          </RegistrationProvider>
+          <RealtimeProvider>
+            <RegistrationProvider>
+              <WishlistProvider>
+                <CartProvider>
+                  <OrderProvider>
+                    <CheckoutProvider>
+                      <ToastProvider>
+                        <ProductCardSettingsProvider>
+                          <AppShell>{children}</AppShell>
+                        </ProductCardSettingsProvider>
+                      </ToastProvider>
+                    </CheckoutProvider>
+                  </OrderProvider>
+                </CartProvider>
+              </WishlistProvider>
+            </RegistrationProvider>
+          </RealtimeProvider>
         </UserProvider>
       </body>
     </html>

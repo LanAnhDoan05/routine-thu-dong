@@ -97,9 +97,17 @@ async function formatOrder(o) {
     subtotal: o.subtotal,
     shippingFee: o.shippingFee,
     shipping: o.shippingFee,
+    shipping_fee: o.shippingFee,
     discount: o.discount,
+    discountAmount: o.discount,
+    discount_amount: o.discount,
     appliedCoupon: o.appliedCoupon || null,
     total: o.total,
+    total_amount: o.total,
+    shippingZone: o.shippingZone || null,
+    shipping_zone: o.shippingZone || null,
+    shippingFeeRuleVersion: o.shippingFeeRuleVersion || 'v1.0',
+    shipping_fee_rule_version: o.shippingFeeRuleVersion || 'v1.0',
     attributionSource: o.attributionSource || (o.user?.source || 'ORGANIC'),
     note: o.note || '',
     createdAt: o.createdAt,
@@ -127,15 +135,26 @@ async function formatOrder(o) {
   };
 }
 
-function calculateFallbackShipping(method, address, subtotal = 0) {
-  const dist = address?.nearestStore?.distanceKm ?? null;
-  const store = address?.nearestStore ?? null;
-  const options = shippingService.calculateShippingOptions(subtotal, dist, store);
-  const isExpress = String(method || '').toLowerCase() === 'express';
-  if (isExpress) {
-    return options.methods.express.fee;
+async function calculateSecureShipping(method, address, subtotal = 0) {
+  try {
+    const adminShipping = await shippingService.calculateAdministrativeShippingFee(address, subtotal, method);
+    return {
+      fee: adminShipping.effectiveFee,
+      zone: adminShipping.matchedZone || 'Toàn quốc',
+      version: adminShipping.matchedRuleId || 'v1.0-admin',
+    };
+  } catch (err) {
+    console.warn('[orderService] Lỗi tính phí vận chuyển hành chính, dùng fallback:', err.message);
+    const dist = address?.nearestStore?.distanceKm ?? null;
+    const store = address?.nearestStore ?? null;
+    const options = shippingService.calculateShippingOptions(subtotal, dist, store);
+    const isExpress = String(method || '').toLowerCase() === 'express';
+    return {
+      fee: isExpress ? options.methods.express.fee : options.methods.standard.fee,
+      zone: 'Toàn quốc',
+      version: 'v1.0-fallback',
+    };
   }
-  return options.methods.standard.fee;
 }
 
 /**
@@ -182,16 +201,62 @@ async function createOrder(identityId, orderInput) {
           .filter(Boolean)
           .join(', ') || 'Địa chỉ nhận hàng';
 
-  const calculatedSubtotal =
-    subtotal !== undefined
-      ? Number(subtotal)
-      : orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  // 1. Tự động kiểm tra và lấy lại giá sản phẩm thật từ MySQL Database (Single Source of Truth)
+  // Tuyệt đối không tin tưởng giá sản phẩm hoặc subtotal gửi lên từ Client / AI Stylist
+  const itemProductIds = orderItems.map((it) => it.productId).filter(Boolean);
+  const dbProducts = await prisma.product.findMany({
+    where: { id: { in: [...new Set(itemProductIds)] } },
+    include: { variants: true },
+  });
+  const dbProductMap = new Map(dbProducts.map((p) => [p.id, p]));
 
-  let calculatedShipping = shipping !== undefined ? Number(shipping) : calculateFallbackShipping(shippingMethod, shippingAddress, calculatedSubtotal);
-  let calculatedDiscount = discount !== undefined ? Number(discount) : 0;
+  const verifiedItems = orderItems.map((item) => {
+    const dbProduct = dbProductMap.get(item.productId);
+    let realPrice = Number(item.price) || 0;
+    let realName = item.name || 'Sản phẩm';
+
+    if (dbProduct) {
+      realName = dbProduct.name;
+      realPrice = Number(dbProduct.price) || 0;
+
+      // Nếu sản phẩm có biến thể cụ thể, kiểm tra xem biến thể có giá riêng không
+      if (Array.isArray(dbProduct.variants) && dbProduct.variants.length > 0) {
+        const matchedVariant = dbProduct.variants.find((v) => {
+          if (item.variantId && v.id === item.variantId) return true;
+          const matchColor = !item.color || (v.color && v.color.toLowerCase() === String(item.color).toLowerCase());
+          const matchSize = !item.size || (v.size && v.size.toLowerCase() === String(item.size).toLowerCase());
+          return matchColor && matchSize;
+        });
+        if (matchedVariant && Number(matchedVariant.price) > 0) {
+          realPrice = Number(matchedVariant.price);
+        }
+      }
+    }
+
+    const qty = Math.max(1, parseInt(item.quantity, 10) || 1);
+    const itemSubtotal = realPrice * qty;
+
+    return {
+      ...item,
+      name: realName,
+      price: realPrice,
+      quantity: qty,
+      subtotal: itemSubtotal,
+    };
+  });
+
+  // 2. Tính lại Subtotal chuẩn xác từ MySQL
+  const calculatedSubtotal = verifiedItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  // 3. Backend tự động tính toán lại phí ship theo khu vực hành chính (không dùng phí client gửi)
+  const shippingCalculation = await calculateSecureShipping(shippingMethod, shippingAddress, calculatedSubtotal);
+  let calculatedShipping = shippingCalculation.fee;
+  const shippingZone = shippingCalculation.zone;
+  const shippingFeeRuleVersion = shippingCalculation.version || 'v1.0';
+
+  // 4. Xác thực mã giảm giá nếu có
+  let calculatedDiscount = 0;
   let finalCoupon = (appliedCoupon || couponCode || '').trim().toUpperCase() || null;
-
-  // Xác thực mã giảm giá nếu có gửi kèm
   if (finalCoupon) {
     try {
       const couponValidation = await couponService.validateCoupon(finalCoupon, calculatedSubtotal);
@@ -201,6 +266,9 @@ async function createOrder(identityId, orderInput) {
         if (couponValidation.type === 'freeship') {
           calculatedShipping = 0;
         }
+      } else {
+        finalCoupon = null;
+        calculatedDiscount = 0;
       }
     } catch (couponErr) {
       console.warn(`[orderService] Mã giảm giá "${finalCoupon}" không hợp lệ:`, couponErr.message);
@@ -209,18 +277,18 @@ async function createOrder(identityId, orderInput) {
     }
   }
 
-  const calculatedTotal =
-    total !== undefined && !finalCoupon
-      ? Number(total)
-      : Math.max(0, calculatedSubtotal + calculatedShipping - calculatedDiscount);
+  // 5. CÔNG THỨC BẮT BUỘC:
+  // Tổng thanh toán = Tổng tiền sản phẩm - Tổng giảm giá + Phí vận chuyển
+  // Tuyệt đối không dùng tổng tiền do Frontend hoặc AI tự gửi lên làm căn cứ thanh toán
+  const calculatedTotal = Math.max(0, calculatedSubtotal - calculatedDiscount + calculatedShipping);
 
-  // Sinh ID dạng ORD-YYYY-XXXX tối ưu không kéo toàn bộ bảng đơn hàng
+  // Sinh ID dạng ORD-YYYY-XXXX tối ưu không trùng lặp khóa chính
   const year = new Date().getFullYear();
   let nextNum = 1;
   try {
     const latestOrder = await prisma.order.findFirst({
       where: { id: { startsWith: `ORD-${year}-` } },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { id: 'desc' },
       select: { id: true },
     });
     if (latestOrder && latestOrder.id) {
@@ -237,7 +305,12 @@ async function createOrder(identityId, orderInput) {
   } catch (err) {
     nextNum = Date.now() % 10000;
   }
-  const newOrderId = `ORD-${year}-${String(nextNum).padStart(4, '0')}`;
+  let newOrderId = `ORD-${year}-${String(nextNum).padStart(4, '0')}`;
+  // Vòng lặp an toàn chống trùng lặp tuyệt đối
+  while (await prisma.order.findUnique({ where: { id: newOrderId }, select: { id: true } })) {
+    nextNum++;
+    newOrderId = `ORD-${year}-${String(nextNum).padStart(4, '0')}`;
+  }
 
   const payMethodMap = {
     cod: 'COD',
@@ -275,7 +348,7 @@ async function createOrder(identityId, orderInput) {
   const normAttribution = String(resolvedSource).toUpperCase();
 
   // Tối ưu ảnh sản phẩm: Tìm nạp hàng loạt ảnh thiếu nếu có (tránh N+1 query)
-  const missingImgProdIds = orderItems
+  const missingImgProdIds = verifiedItems
     .filter((it) => (!it.image || it.image.trim() === '') && it.productId)
     .map((it) => it.productId);
 
@@ -297,7 +370,7 @@ async function createOrder(identityId, orderInput) {
     } catch (e) {}
   }
 
-  const itemsToCreate = orderItems.map((item) => {
+  const itemsToCreate = verifiedItems.map((item) => {
     let itemImg = item.image && item.image.trim() !== '' ? item.image : fallbackImgMap.get(item.productId);
     return {
       productId: item.productId,
@@ -328,6 +401,8 @@ async function createOrder(identityId, orderInput) {
       discount: calculatedDiscount,
       total: calculatedTotal,
       appliedCoupon: finalCoupon,
+      shippingZone: shippingZone,
+      shippingFeeRuleVersion: shippingFeeRuleVersion,
       attributionSource: normAttribution,
       note: note || '',
       items: {
@@ -340,14 +415,20 @@ async function createOrder(identityId, orderInput) {
   // Tạo order trước để thỏa mãn khóa ngoại của stock_reservations.
   // Nếu không đủ hàng, xóa order vừa tạo để không lưu đơn mồ côi.
   try {
-    await stockReservationService.reserveStock(newOrderId, orderItems, 5);
+    await stockReservationService.reserveStock(newOrderId, verifiedItems, 5);
   } catch (reservationError) {
     await prisma.order.delete({ where: { id: newOrderId } }).catch(() => {});
     throw reservationError;
   }
 
-  // Cập nhật số lượng đã bán thực tế vào cơ sở dữ liệu (đối với đơn COD đã xác nhận)
+  // Cập nhật số lượng đã bán thực tế và trừ tồn kho vào cơ sở dữ liệu (đối với đơn COD đã xác nhận)
   if (finalPayMethod !== 'VNPAY') {
+    try {
+      await stockReservationService.commitStock(newOrderId);
+    } catch (cErr) {
+      console.warn(`[orderService] commitStock COD thất bại:`, cErr.message);
+    }
+
     for (const it of itemsToCreate) {
       if (it.productId) {
         await prisma.product
@@ -517,7 +598,10 @@ async function cancelOrder(id) {
         await prisma.product
           .update({
             where: { id: it.productId },
-            data: { soldCount: { decrement: it.quantity } },
+            data: {
+              soldCount: { decrement: it.quantity },
+              stockQuantity: { increment: it.quantity },
+            },
           })
           .catch(() => {});
       }

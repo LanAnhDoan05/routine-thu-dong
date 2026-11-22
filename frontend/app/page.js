@@ -75,6 +75,26 @@ export default function HomePage() {
         setStyles(items.filter((s) => s.status !== "INACTIVE"));
       }
     }).catch(() => {});
+
+    function handleRealtimeProductChange() {
+      fetchAllProducts().then((items) => {
+        if (items && items.length > 0) {
+          setAllProducts(items);
+        }
+      });
+    }
+
+    window.addEventListener("routine:product_created", handleRealtimeProductChange);
+    window.addEventListener("routine:product_updated", handleRealtimeProductChange);
+    window.addEventListener("routine:product_status_changed", handleRealtimeProductChange);
+    window.addEventListener("routine:stock_updated", handleRealtimeProductChange);
+
+    return () => {
+      window.removeEventListener("routine:product_created", handleRealtimeProductChange);
+      window.removeEventListener("routine:product_updated", handleRealtimeProductChange);
+      window.removeEventListener("routine:product_status_changed", handleRealtimeProductChange);
+      window.removeEventListener("routine:stock_updated", handleRealtimeProductChange);
+    };
   }, []);
 
   const heroBanners = useMemo(() => {
@@ -85,11 +105,27 @@ export default function HomePage() {
       return heroConfig.rightImages;
     }
     return [
-      { id: 'hb-1', url: '/images/hero/hero-banner-1.svg', title: 'STYLE THAT FITS YOU 1' },
-      { id: 'hb-2', url: '/images/hero/hero-banner-2.svg', title: 'STYLE THAT FITS YOU 2' },
-      { id: 'hb-3', url: '/images/hero/hero-banner-3.svg', title: 'STYLE THAT FITS YOU 3' },
+      { id: 'hb-1', url: '/images/hero/hero-banner-1.svg', title: 'Routine Look 1' },
+      { id: 'hb-2', url: '/images/hero/hero-banner-2.svg', title: 'Routine Look 2' },
+      { id: 'hb-3', url: '/images/hero/hero-banner-3.svg', title: 'Routine Look 3' },
     ];
   }, [heroConfig]);
+
+  const heroTitle = useMemo(() => {
+    const raw = heroConfig?.title;
+    if (!raw || raw.includes("HERO FROM") || raw.includes("DATABASE") || raw.includes("CLOUD")) {
+      return "THU ĐÔNG, ĐỊNH HÌNH PHONG CÁCH";
+    }
+    return raw;
+  }, [heroConfig?.title]);
+
+  const heroSubtitle = useMemo(() => {
+    const raw = heroConfig?.subtitle;
+    if (!raw || raw.includes("DATABASE") || raw.includes("placeholder")) {
+      return "Khám phá những thiết kế thời trang hiện đại, tinh tế và linh hoạt cho phong cách mỗi ngày.";
+    }
+    return raw;
+  }, [heroConfig?.subtitle]);
 
   useEffect(() => {
     if (heroBanners.length <= 1) return;
@@ -179,15 +215,14 @@ export default function HomePage() {
         {/* Soft overlay gradient ensuring text readability on left side */}
         <div className={homeStyles.heroOverlay} />
 
-        {/* Hero Content (STYLE THAT FITS YOU) */}
+        {/* Hero Content (ROUTINE) */}
         <div className={homeStyles.heroContent}>
-          <span className={homeStyles.heroEyebrow}>ROUTINE THU ĐÔNG — SMART FASHION</span>
+          <span className={homeStyles.heroEyebrow}>ROUTINE — SMART FASHION</span>
           <h1 className={homeStyles.heroTitle}>
-            {heroConfig?.title || "STYLE THAT FITS YOU"}
+            {heroTitle}
           </h1>
           <p className={homeStyles.heroText} style={{ whiteSpace: "pre-line" }}>
-            {heroConfig?.subtitle ||
-              "Khám phá phong cách phù hợp với bạn.\nThời trang không chỉ là mặc gì. Đó là cách bạn thể hiện chính mình."}
+            {heroSubtitle}
           </p>
           <div className={homeStyles.heroActions}>
             <Link href={heroConfig?.exploreLink || "/category/new-arrivals"} className="btn btn-primary">
@@ -262,7 +297,7 @@ export default function HomePage() {
           <div className="section-header section-header--row">
             <div>
               <span className="eyebrow">Curated for you</span>
-              <h2 className="section-title">Featured Collection</h2>
+              <h2 className="section-title">Featured Collection ({featuredProducts.length})</h2>
               <p className="section-subtitle">Những sản phẩm được yêu thích trong tuần.</p>
             </div>
             <Link href="/category/new-arrivals" className="text-link">
@@ -279,7 +314,7 @@ export default function HomePage() {
           <div className="section-header section-header--row">
             <div>
               <span className="eyebrow">Vừa lên kệ</span>
-              <h2 className="section-title">New Arrivals</h2>
+              <h2 className="section-title">New Arrivals ({newArrivals.length})</h2>
             </div>
             <Link href="/category/new-arrivals" className="text-link">
               Xem tất cả →
@@ -361,7 +396,7 @@ export default function HomePage() {
         <div className="container">
           <div className="section-header">
             <span className="eyebrow">Hot right now</span>
-            <h2 className="section-title">Trending Now</h2>
+            <h2 className="section-title">Trending Now ({trendingProducts.length})</h2>
           </div>
           <div style={{ display: "flex", gap: 8, marginBottom: 24, flexWrap: "wrap" }}>
             {genderFilters.map((f) => (
@@ -400,7 +435,9 @@ export default function HomePage() {
                       alt={style.name}
                       className={homeStyles.styleImg}
                       onError={(e) => {
-                        if (!e.currentTarget.src.includes('/images/styles/basic.jpg')) {
+                        if (!e.currentTarget.src.endsWith('.png')) {
+                          e.currentTarget.src = `/images/styles/${style.slug}.png`;
+                        } else if (!e.currentTarget.src.includes('basic')) {
                           e.currentTarget.src = '/images/styles/basic.jpg';
                         }
                       }}
@@ -426,7 +463,7 @@ export default function HomePage() {
             <>
               <div className="section-header">
                 <span className="eyebrow">Just for you</span>
-                <h2 className="section-title">Recommended For You</h2>
+                <h2 className="section-title">Recommended For You ({recommended.length})</h2>
                 <p className="section-subtitle">Dựa trên phong cách bạn đã chọn</p>
               </div>
               <ProductGrid products={recommended} />

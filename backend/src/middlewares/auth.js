@@ -44,19 +44,26 @@ async function authenticate(req, res, next) {
           },
         });
       } catch (err) {
-        // Bỏ qua lỗi DB nếu chạy môi trường test/in-memory
+        console.warn('[authenticate] Không thể kiểm tra user trong database:', err.message);
       }
     }
 
     if (!user) {
-      // Fallback từ thông tin mã hóa trong JWT
-      user = {
-        id: targetId || 'guest',
-        fullName: decoded.fullName || 'Người dùng',
-        email: decoded.email,
-        phoneNumber: decoded.phoneNumber,
-        role: decoded.role || 'CUSTOMER',
-      };
+      if (process.env.NODE_ENV === 'test') {
+        user = {
+          id: targetId || 'test_user',
+          fullName: decoded.fullName || 'Người dùng thử nghiệm',
+          email: decoded.email,
+          phoneNumber: decoded.phoneNumber,
+          role: decoded.role || 'CUSTOMER',
+        };
+      } else {
+        return sendError(
+          res,
+          'Tài khoản không tồn tại hoặc phiên đăng nhập không còn hiệu lực. Vui lòng đăng nhập lại.',
+          401
+        );
+      }
     }
 
     req.user = user;

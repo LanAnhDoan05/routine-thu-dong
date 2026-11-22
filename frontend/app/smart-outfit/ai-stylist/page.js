@@ -1,7 +1,7 @@
 import AIStylistChat from "@/components/ai/AIStylistChat";
 
 export const metadata = {
-  title: "AI Stylist — Routine Thu Đông"
+  title: "AI Stylist — Routine"
 };
 
 export default async function AIStylistPage({ searchParams }) {

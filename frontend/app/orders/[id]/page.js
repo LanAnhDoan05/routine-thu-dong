@@ -37,10 +37,30 @@ export default function OrderDetailPage() {
         }
       });
     }
+
+    // Lắng nghe cập nhật trạng thái đơn hàng thời gian thực từ Admin
+    function handleRealtimeStatusUpdate(e) {
+      const data = e.detail;
+      if (!data) return;
+      if (data.id === params.id || data.orderId === params.id) {
+        fetchOrder(params.id).then((fresh) => {
+          if (active && fresh) {
+            setOrder(fresh);
+            showToast(`Trạng thái đơn hàng đã được cập nhật: ${fresh.orderStatus || fresh.status}`, "info");
+          }
+        });
+      }
+    }
+
+    window.addEventListener("routine:order_status_updated", handleRealtimeStatusUpdate);
+    window.addEventListener("routine:payment_confirmed", handleRealtimeStatusUpdate);
+
     return () => {
       active = false;
+      window.removeEventListener("routine:order_status_updated", handleRealtimeStatusUpdate);
+      window.removeEventListener("routine:payment_confirmed", handleRealtimeStatusUpdate);
     };
-  }, [params.id, fetchOrder]);
+  }, [params.id, fetchOrder, showToast]);
 
   if (!hydrated || loading) {
     return (

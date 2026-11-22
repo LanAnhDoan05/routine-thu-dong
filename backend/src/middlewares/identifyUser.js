@@ -28,6 +28,7 @@ function identifyUser(req, res, next) {
     // 2. Kiểm tra Guest Session
     const sessionId =
       req.headers['x-session-id'] ||
+      req.headers['x-guest-session-id'] ||
       req.headers['x-guest-id'] ||
       req.query?.sessionId ||
       req.cookies?.routine_session_id;

@@ -154,6 +154,51 @@ function productToForm(product) {
   const colorIds = Array.from(new Set(variants.length ? variants.map((v) => v.colorId).filter(Boolean) : optionColorIds));
   const sizeIds = Array.from(new Set(variants.length ? variants.map((v) => v.sizeId).filter(Boolean) : optionSizeIds));
 
+  // Tự động tạo bảng biến thể nếu sản phẩm có colors & sizes nhưng variants rỗng
+  if (variants.length === 0 && colorIds.length > 0 && sizeIds.length > 0) {
+    let seq = 1;
+    const seen = new Set();
+    const baseP = Number(product.price) || 0;
+    const totalPStock = Number(product.stockQuantity) || 0;
+    const countTotal = colorIds.length * sizeIds.length;
+    const baseVStock = countTotal > 0 ? Math.floor(totalPStock / countTotal) : 0;
+    let remStock = countTotal > 0 ? totalPStock % countTotal : 0;
+
+    for (const cId of colorIds) {
+      for (const sId of sizeIds) {
+        const cObj = getColorById(cId);
+        const sObj = getSizeById(sId);
+        let sku = buildVariantSku(prefix, seq, cId, sId);
+        if (seen.has(sku.toLowerCase())) {
+          let counter = 1;
+          let candidate = `${sku}-${counter}`;
+          while (seen.has(candidate.toLowerCase())) {
+            counter += 1;
+            candidate = `${sku}-${counter}`;
+          }
+          sku = candidate;
+        }
+        seen.add(sku.toLowerCase());
+
+        const extra = remStock > 0 ? 1 : 0;
+        if (remStock > 0) remStock -= 1;
+
+        variants.push({
+          id: `v-auto-${seq}-${Date.now().toString(36)}`,
+          colorId: cObj ? cObj.id : cId,
+          colorName: cObj ? cObj.name : (cId ? String(cId).replace(/^color-/, "") : "Default"),
+          sizeId: sObj ? sObj.id : sId,
+          sizeName: sObj ? sObj.name : (sId ? String(sId).replace(/^size-/, "").toUpperCase() : "Default"),
+          sku,
+          price: baseP,
+          stockQuantity: baseVStock + extra,
+          status: "ACTIVE",
+        });
+        seq += 1;
+      }
+    }
+  }
+
   // 3. Chuẩn hóa giới tính
   const rawGender = (product.gender || "UNISEX").toUpperCase();
   const gender = ["MEN", "WOMEN", "UNISEX"].includes(rawGender) ? rawGender : "UNISEX";
@@ -272,6 +317,30 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
     });
   }
 
+  function handlePriceChange(val) {
+    const clean = String(val).replace(/[^0-9]/g, "");
+    const numPrice = Number(clean) || 0;
+    setForm((prev) => {
+      const oldPrice = Number(prev.price) || 0;
+      const updatedVariants = (prev.variants || []).map((vr) => {
+        if (!vr.price || Number(vr.price) === 0 || Number(vr.price) === oldPrice) {
+          return { ...vr, price: numPrice };
+        }
+        return vr;
+      });
+      return {
+        ...prev,
+        price: clean,
+        variants: updatedVariants,
+      };
+    });
+    setErrors((prev) => {
+      if (!prev.price) return prev;
+      const { price: _, ...rest } = prev;
+      return rest;
+    });
+  }
+
   function handleVariantsChange(nextVariants) {
     const sumStock = (nextVariants || []).reduce((sum, v) => sum + (Number(v.stockQuantity) || 0), 0);
     setForm((prev) => ({
@@ -279,11 +348,19 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
       variants: nextVariants,
       stockQuantity: String(sumStock),
     }));
+    if (nextVariants && nextVariants.length > 0) {
+      setErrors((prev) => {
+        if (!prev.variants) return prev;
+        const { variants: _, ...rest } = prev;
+        return rest;
+      });
+    }
   }
 
   const skuPrefix = useMemo(() => suggestSkuPrefix(form.name || "Product"), [form.name]);
 
   async function validate() {
+    let variantsToValidate = form.variants.map((variant) => ({ ...variant }));
     const nextErrors = {};
     if (!form.name.trim()) nextErrors.name = "Product name is required.";
     if (!form.description.trim()) nextErrors.description = "Product description is required.";
@@ -304,13 +381,52 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
 
     if (form.images.length === 0) nextErrors.images = "At least 1 image is required.";
     const hasExistingVariants = Array.isArray(initialProduct?.variants) && initialProduct.variants.length > 0;
-    if (form.variants.length === 0 && (mode === "create" || hasExistingVariants)) {
+    
+    // Nếu variants chưa kịp đồng bộ nhưng người dùng đã chọn Màu và Kích cỡ, tự động sinh biến thể tức thời
+    if (variantsToValidate.length === 0 && form.selectedColorIds.length > 0 && form.selectedSizeIds.length > 0) {
+      let seq = 1;
+      const seen = new Set();
+      const baseP = Number(form.price) || 0;
+      const autoBuilt = [];
+      for (const cId of form.selectedColorIds) {
+        for (const sId of form.selectedSizeIds) {
+          const cObj = getColorById(cId);
+          const sObj = getSizeById(sId);
+          let sku = buildVariantSku(skuPrefix, seq, cId, sId);
+          if (seen.has(sku.toLowerCase())) {
+            let counter = 1;
+            let candidate = `${sku}-${counter}`;
+            while (seen.has(candidate.toLowerCase())) {
+              counter += 1;
+              candidate = `${sku}-${counter}`;
+            }
+            sku = candidate;
+          }
+          seen.add(sku.toLowerCase());
+          autoBuilt.push({
+            id: `v-valid-${seq}-${Date.now().toString(36)}`,
+            colorId: cObj ? cObj.id : cId,
+            colorName: cObj ? cObj.name : (cId ? String(cId).replace(/^color-/, "") : "Default"),
+            sizeId: sObj ? sObj.id : sId,
+            sizeName: sObj ? sObj.name : (sId ? String(sId).replace(/^size-/, "").toUpperCase() : "Default"),
+            sku,
+            price: baseP,
+            stockQuantity: 0,
+            status: "ACTIVE",
+          });
+          seq += 1;
+        }
+      }
+      variantsToValidate = autoBuilt;
+    }
+
+    if (variantsToValidate.length === 0 && (mode === "create" || hasExistingVariants)) {
       nextErrors.variants = "At least 1 variant is required.";
     }
 
     const nextVariantErrors = {};
     const seenSku = new Map();
-    for (const v of form.variants) {
+    for (const v of variantsToValidate) {
       const rowErr = {};
       const sku = (v.sku || "").trim();
       if (!(v.colorName || v.colorId)) {
@@ -332,15 +448,18 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
       if (!Number.isInteger(Number(v.stockQuantity)) || Number(v.stockQuantity) < 0 || v.stockQuantity === "" || v.stockQuantity === null) {
         rowErr.stock = "Stock cannot be negative.";
       }
-      if (!Number.isInteger(Number(v.price)) || Number(v.price) <= 0) {
-        rowErr.price = "Variant price must be a positive whole number.";
+      const variantPrice = Number(v.price) > 0 ? Number(v.price) : (Number(form.price) || 0);
+      if (!Number.isInteger(variantPrice) || variantPrice <= 0) {
+        rowErr.price = "Giá biến thể phải là số nguyên dương (> 0).";
+      } else if (!v.price || Number(v.price) === 0) {
+        v.price = variantPrice;
       }
       if (Object.keys(rowErr).length) nextVariantErrors[v.id] = { ...(nextVariantErrors[v.id] || {}), ...rowErr };
     }
 
     // Kiểm tra trùng SKU với các sản phẩm khác trong hệ thống.
     const excludeId = mode === "edit" && initialProduct ? initialProduct.id : null;
-    for (const v of form.variants) {
+    for (const v of variantsToValidate) {
       const sku = (v.sku || "").trim();
       if (!sku || nextVariantErrors[v.id]?.sku) continue;
       const taken = await isSkuTaken(sku, excludeId);
@@ -352,10 +471,13 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
     setErrors(nextErrors);
     setVariantErrors(nextVariantErrors);
 
-    return Object.keys(nextErrors).length === 0 && Object.keys(nextVariantErrors).length === 0;
+    return {
+      isValid: Object.keys(nextErrors).length === 0 && Object.keys(nextVariantErrors).length === 0,
+      variants: variantsToValidate,
+    };
   }
 
-  function buildPayload(finalStatus) {
+  function buildPayload(finalStatus, variants = form.variants) {
     const rawImages = form.images || [];
     const imageUrls = rawImages
       .map((img, index) => ({
@@ -378,7 +500,7 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
     const resolvedSizes = Array.from(
       new Set([
         ...(form.selectedSizeIds || []).map((sid) => getSizeById(sid)?.name || String(sid).replace(/^size-/, "").toUpperCase()),
-        ...form.variants.map((v) => v.sizeName || (getSizeById(v.sizeId)?.name) || v.sizeId),
+        ...variants.map((v) => v.sizeName || (getSizeById(v.sizeId)?.name) || v.sizeId),
       ].filter(Boolean))
     );
 
@@ -386,14 +508,14 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
     const resolvedColors = Array.from(
       new Set([
         ...(form.selectedColorIds || []).map((cid) => getColorById(cid)?.name || String(cid).replace(/^color-/, "")),
-        ...form.variants.map((v) => v.colorName || (getColorById(v.colorId)?.name) || v.colorId),
+        ...variants.map((v) => v.colorName || (getColorById(v.colorId)?.name) || v.colorId),
       ].filter(Boolean))
     );
 
     // Tính tổng tồn kho chính xác từ các biến thể
     const computedStock =
-      form.variants && form.variants.length > 0
-        ? form.variants.reduce((sum, v) => sum + (Number(v.stockQuantity) || 0), 0)
+      variants.length > 0
+        ? variants.reduce((sum, v) => sum + (Number(v.stockQuantity) || 0), 0)
         : Math.max(0, parseInt(form.stockQuantity, 10) || 0);
 
     return {
@@ -425,8 +547,15 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
       status: finalStatus,
       colors: resolvedColors,
       sizes: resolvedSizes,
-      ...(form.variants.length > 0
-        ? { variants: form.variants.map((v) => ({ ...v, sku: (v.sku || "").trim() })) }
+      ...(variants.length > 0
+        ? {
+            variants: variants.map((v) => ({
+              ...v,
+              sku: (v.sku || "").trim(),
+              price: Number(v.price) > 0 ? Number(v.price) : (Number(form.price) || 0),
+              stockQuantity: Math.max(0, parseInt(v.stockQuantity, 10) || 0),
+            })),
+          }
         : {}),
     };
   }
@@ -434,14 +563,14 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
   async function handleSubmit(kind) {
     setSubmitting(kind);
     try {
-      const valid = await validate();
-      if (!valid) {
+      const validation = await validate();
+      if (!validation.isValid) {
         showToast("Vui lòng kiểm tra lại thông tin còn thiếu.", "error");
         return;
       }
 
       const finalStatus = kind === "draft" ? "DRAFT" : kind === "publish" ? "ACTIVE" : form.status;
-      const payload = buildPayload(finalStatus);
+      const payload = buildPayload(finalStatus, validation.variants);
       await onSave(payload);
       showToast(
         kind === "draft" ? "Đã lưu bản nháp sản phẩm." : kind === "publish" ? "Đã đăng sản phẩm." : "Đã lưu thay đổi.",
@@ -530,17 +659,19 @@ export default function ProductForm({ mode, initialProduct, onSave }) {
             <TextField
               label="Price (Giá bán)"
               required
-              type="number"
+              type="text"
+              inputMode="numeric"
               value={form.price}
-              onChange={(v) => set("price", v)}
+              onChange={handlePriceChange}
               error={errors.price}
               placeholder="299000"
             />
             <TextField
               label="Original Price (Giá gốc)"
-              type="number"
+              type="text"
+              inputMode="numeric"
               value={form.originalPrice}
-              onChange={(v) => set("originalPrice", v)}
+              onChange={(v) => set("originalPrice", String(v).replace(/[^0-9]/g, ""))}
               error={errors.originalPrice}
               placeholder="399000"
             />
@@ -701,7 +832,7 @@ function formatVnd(value) {
   return new Intl.NumberFormat("vi-VN").format(n) + "đ";
 }
 
-function TextField({ label, required, value, onChange, error, type = "text", placeholder }) {
+function TextField({ label, required, value, onChange, error, type = "text", inputMode, placeholder }) {
   return (
     <div className={fieldStyles.field}>
       <label className={fieldStyles.label}>
@@ -709,6 +840,7 @@ function TextField({ label, required, value, onChange, error, type = "text", pla
       </label>
       <input
         type={type}
+        inputMode={inputMode}
         className={`${fieldStyles.select} ${error ? fieldStyles.selectError : ""}`}
         value={value}
         placeholder={placeholder}

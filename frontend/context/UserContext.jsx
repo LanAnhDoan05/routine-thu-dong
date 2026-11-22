@@ -30,10 +30,17 @@ export function UserProvider({ children }) {
       const rawUser = window.localStorage.getItem(USER_STORAGE_KEY);
       if (rawUser) {
         const parsedUser = JSON.parse(rawUser);
-        setUser(parsedUser);
-        if (parsedUser?.id) {
-          const rawAddress = window.localStorage.getItem(getAddressStorageKey(parsedUser.id));
-          if (rawAddress) setSavedAddressState(JSON.parse(rawAddress));
+        // Storefront UserContext là phiên dành riêng cho Khách hàng (CUSTOMER)
+        // Tuyệt đối không nạp tài khoản Quản trị viên (ADMIN) vào giao diện khách hàng
+        if (parsedUser?.role === "ADMIN") {
+          window.localStorage.removeItem(USER_STORAGE_KEY);
+          setUser(null);
+        } else {
+          setUser(parsedUser);
+          if (parsedUser?.id) {
+            const rawAddress = window.localStorage.getItem(getAddressStorageKey(parsedUser.id));
+            if (rawAddress) setSavedAddressState(JSON.parse(rawAddress));
+          }
         }
       }
       // Dọn sạch key toàn cục cũ nếu có
@@ -108,17 +115,28 @@ export function UserProvider({ children }) {
         stylePreference,
       };
     } else if (userData && typeof userData === "object") {
+      // Tài khoản Quản trị viên không được gán vào storefront customer state
+      if (userData.role === "ADMIN") {
+        console.warn("[UserContext] Tài khoản ADMIN quản trị không đăng nhập vào Storefront Customer");
+        return;
+      }
       finalUser = {
         ...userData,
         name: userData.fullName || userData.name || "Khách hàng",
-        role: userData.role || "CUSTOMER",
+        role: "CUSTOMER",
         gender: userData.gender || "unisex",
         stylePreference: userData.stylePreference || stylePreference || "minimal",
       };
     }
     setUser(finalUser);
-    if (token && typeof window !== "undefined") {
-      window.localStorage.setItem("routine_token", token);
+    if (typeof window !== "undefined") {
+      if (finalUser) {
+        window.localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(finalUser));
+      }
+      if (token) {
+        window.localStorage.setItem("routine_token", token);
+        window.localStorage.setItem("token", token);
+      }
     }
   }, []);
 

@@ -1,4 +1,5 @@
 const productService = require('../services/productService');
+const realtimeService = require('../services/realtimeService');
 const { sendSuccess, sendError } = require('../utils/response');
 
 /**
@@ -127,6 +128,7 @@ async function getRelatedProducts(req, res, next) {
 async function createProduct(req, res, next) {
   try {
     const newProduct = await productService.createProduct(req.body);
+    realtimeService.emit('PRODUCT_CREATED', newProduct, 'ALL');
     return sendSuccess(res, newProduct, 'Thêm sản phẩm mới thành công', 201);
   } catch (error) {
     next(error);
@@ -140,6 +142,13 @@ async function updateProduct(req, res, next) {
   try {
     const { id } = req.params;
     const updated = await productService.updateProduct(id, req.body);
+    realtimeService.emit('PRODUCT_UPDATED', updated, 'ALL');
+    if (req.body.status) {
+      realtimeService.emit('PRODUCT_STATUS_CHANGED', { id, status: req.body.status }, 'ALL');
+    }
+    if (req.body.stockQuantity !== undefined) {
+      realtimeService.emit('STOCK_UPDATED', { id, stockQuantity: req.body.stockQuantity }, 'ALL');
+    }
     return sendSuccess(res, updated, 'Cập nhật sản phẩm thành công');
   } catch (error) {
     next(error);
@@ -153,6 +162,7 @@ async function deleteProduct(req, res, next) {
   try {
     const { id } = req.params;
     const deleted = await productService.deleteProduct(id);
+    realtimeService.emit('PRODUCT_STATUS_CHANGED', { id, status: 'INACTIVE', deleted: true }, 'ALL');
     return sendSuccess(res, deleted, 'Xóa sản phẩm thành công');
   } catch (error) {
     next(error);
@@ -199,6 +209,19 @@ async function bulkDeleteProducts(req, res, next) {
   }
 }
 
+/**
+ * GET /api/v1/products/statistics
+ * Thống kê tổng hợp số lượng sản phẩm cho Admin
+ */
+async function getProductStatistics(req, res, next) {
+  try {
+    const stats = await productService.getProductStatistics();
+    return sendSuccess(res, stats, 'Lấy thống kê số lượng sản phẩm thành công');
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   getProducts,
   getAdminProducts,
@@ -213,5 +236,6 @@ module.exports = {
   duplicateProduct,
   checkSkuAvailability,
   bulkDeleteProducts,
+  getProductStatistics,
 };
 
