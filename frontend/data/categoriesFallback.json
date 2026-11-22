@@ -1,0 +1,262 @@
+[
+  {
+    "id": "accessories",
+    "slug": "accessories",
+    "name": "ACCESSORIES",
+    "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
+    "image": "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013347.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "ao",
+    "slug": "ao",
+    "name": "ÁO",
+    "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+    "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "ao-khoac",
+    "slug": "ao-khoac",
+    "name": "ÁO KHOÁC",
+    "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+    "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "bottoms",
+    "slug": "bottoms",
+    "name": "BOTTOMS",
+    "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
+    "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-accessories",
+    "slug": "cat-accessories",
+    "name": "Accessories",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "accessories",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-blazer",
+    "slug": "cat-blazer",
+    "name": "Blazer",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "outerwear",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-jacket",
+    "slug": "cat-jacket",
+    "name": "Jacket",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "outerwear",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-jeans",
+    "slug": "cat-jeans",
+    "name": "Jeans",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "bottoms",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-polo",
+    "slug": "cat-polo",
+    "name": "Polo Shirt",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "tops",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-shirt",
+    "slug": "cat-shirt",
+    "name": "Shirt",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "tops",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-shorts",
+    "slug": "cat-shorts",
+    "name": "Shorts",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "bottoms",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-sneakers",
+    "slug": "cat-sneakers",
+    "name": "Sneakers",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "accessories",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-trousers",
+    "slug": "cat-trousers",
+    "name": "Trousers",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "bottoms",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "cat-tshirt",
+    "slug": "cat-tshirt",
+    "name": "T-Shirt",
+    "description": "",
+    "image": "",
+    "type": "standard",
+    "parentId": "tops",
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "do-basic",
+    "slug": "do-basic",
+    "name": "ĐỒ BASIC",
+    "description": "Những món đồ nền tảng không thể thiếu trong tủ đồ.",
+    "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_1_anh_chup_man_hinh_2026_09_16_133048.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "do-casual",
+    "slug": "do-casual",
+    "name": "ĐỒ CASUAL",
+    "description": "Thoải mái, dễ phối cho những ngày cuối tuần.",
+    "image": "/images/categories/men.jpg",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "do-cong-so",
+    "slug": "do-cong-so",
+    "name": "ĐỒ CÔNG SỞ",
+    "description": "Thanh lịch, chỉn chu và vẫn thoải mái suốt ngày dài.",
+    "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_154915.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "men",
+    "slug": "men",
+    "name": "MEN",
+    "description": "Thời trang nam hiện đại, đơn giản và dễ phối cho mọi ngày.",
+    "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "new-arrivals",
+    "slug": "new-arrivals",
+    "name": "NEW ARRIVALS",
+    "description": "Những thiết kế mới nhất vừa cập bến Routine, cập nhật hàng tuần.",
+    "image": "https://res.cloudinary.com/ubkdyrwp/image/upload/v1794633302/routine_products/___nh_ch___p_m__n_h__nh_2026-0_mwfybxvv.webp",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "outerwear",
+    "slug": "outerwear",
+    "name": "OUTERWEAR",
+    "description": "Áo khoác giữ ấm và tôn dáng, phù hợp thời tiết chuyển mùa.",
+    "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_172949.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "phu-kien",
+    "slug": "phu-kien",
+    "name": "PHỤ KIỆN",
+    "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
+    "image": "/images/categories/accessories.jpg",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "quan",
+    "slug": "quan",
+    "name": "QUẦN",
+    "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
+    "image": "/images/categories/bottoms.jpg",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "tops",
+    "slug": "tops",
+    "name": "TOPS",
+    "description": "Áo thun, áo sơ mi và áo len được chọn lọc kỹ về chất liệu.",
+    "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "unisex",
+    "slug": "unisex",
+    "name": "UNISEX",
+    "description": "Thiết kế phi giới tính, tối giản và linh hoạt cho mọi phong cách.",
+    "image": "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013347.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "vay",
+    "slug": "vay",
+    "name": "VÁY",
+    "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
+    "image": "/images/categories/women.jpg",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  },
+  {
+    "id": "women",
+    "slug": "women",
+    "name": "WOMEN",
+    "description": "Tối giản nhưng vẫn nữ tính, dễ dàng biến hóa từ ngày sang tối.",
+    "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_2_anh_chup_man_hinh_2026_09_25_171747.png",
+    "type": "standard",
+    "parentId": null,
+    "createdAt": "2026-09-07T02:33:06.000Z"
+  }
+]

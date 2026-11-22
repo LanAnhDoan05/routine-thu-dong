@@ -30,8 +30,8 @@ export default function HeroSlider({
     return (
       <div className={`${styles.sliderContainer} ${className}`} style={style}>
         <Image
-          src="/images/hero/hero-right-1.svg"
-          alt="Hero"
+          src="/media/img_1789390850925_czk0k9.webp"
+          alt="Routine Thu Đông Hero Look"
           width={1200}
           height={800}
           className={styles.slideImage}
@@ -65,7 +65,7 @@ export default function HeroSlider({
               className={styles.slideImage}
               priority={i === 0}
               onError={(e) => {
-                e.currentTarget.src = "/images/hero/hero-right-1.svg";
+                e.currentTarget.src = "/media/img_1789390850925_czk0k9.webp";
               }}
             />
             {overlay ? <div className={styles.overlayGradient} /> : null}

@@ -1,6 +1,7 @@
 import { slugify } from "@/data/products";
 import { fetchApi } from "./api";
 import { getCategoryImageFallback } from "./categoryImages";
+import fallbackCategories from "@/data/categoriesFallback.json";
 
 function normalizeCategory(c) {
   if (!c) return null;
@@ -38,9 +39,11 @@ export async function getCategories() {
       }
     }
   } catch (err) {
-    console.error('[categoryService] getCategories failed:', err.message);
+    console.warn('[categoryService] getCategories failed, using fallback categories:', err.message);
   }
-  return [];
+  return Array.isArray(fallbackCategories) && fallbackCategories.length > 0
+    ? fallbackCategories.map(normalizeCategory).filter(Boolean)
+    : [];
 }
 
 export async function getCategoryById(id) {

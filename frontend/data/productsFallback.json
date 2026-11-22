@@ -1,0 +1,4906 @@
+[
+  {
+    "id": "p_10f25dja007",
+    "slug": "ao-khoac-denim-nam-nhan-vai-routine-form-loose",
+    "name": "Áo Khoác Denim Nam Nhãn Vải ROUTINE Form Loose",
+    "description": "Áo khoác denim nam nhãn vải phong cách trẻ trung cá tính streetwear, form loose rộng rãi chuẩn xu hướng thời trang giới trẻ.",
+    "shortDescription": "Áo Khoác Denim Nam Nhãn Vải ROUTINE Form Loose form Loose, chất liệu Denim bền chắc, đứng phom, wash màu tự nhiên.",
+    "price": 799000,
+    "originalPrice": 799000,
+    "gender": "men",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "streetstyle",
+      "smart-casual"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Denim bền chắc, đứng phom, wash màu tự nhiên",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 6,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003059.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003111.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003135.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Indigo"
+    ],
+    "stockQuantity": 91,
+    "isFeatured": false,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:26.176Z",
+    "updatedAt": "2026-11-22T19:27:31.156Z",
+    "soldCount": 27,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609626554-6801",
+        "productId": "p_10f25dja007",
+        "sku": "10F25DJA007-INDIGO-S",
+        "color": "Indigo",
+        "size": "S",
+        "price": 799000,
+        "stockQuantity": 101,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:26.556Z"
+      },
+      {
+        "id": "var-1794609626939-5721",
+        "productId": "p_10f25dja007",
+        "sku": "10F25DJA007-INDIGO-M",
+        "color": "Indigo",
+        "size": "M",
+        "price": 799000,
+        "stockQuantity": 101,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:26.941Z"
+      },
+      {
+        "id": "var-1794609627319-3280",
+        "productId": "p_10f25dja007",
+        "sku": "10F25DJA007-INDIGO-L",
+        "color": "Indigo",
+        "size": "L",
+        "price": 799000,
+        "stockQuantity": 101,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:27.320Z"
+      },
+      {
+        "id": "var-1794609627699-5548",
+        "productId": "p_10f25dja007",
+        "sku": "10F25DJA007-INDIGO-XL",
+        "color": "Indigo",
+        "size": "XL",
+        "price": 799000,
+        "stockQuantity": 101,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:27.701Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f25drew001",
+    "slug": "dam-thun-slimme-nu-raglan-xe-ta-truoc-nhun-eo",
+    "name": "Đầm Thun Slimme Nữ Raglan Xẻ Tà Trước Nhún Eo",
+    "description": "Đầm thun Slimme cho nữ thiết kế xẻ trước dễ di chuyển, may nhún phần eo tạo điểm nhấn tôn đường cong quyến rũ.",
+    "shortDescription": "Đầm Thun Slimme Nữ Raglan Xẻ Tà Trước Nhún Eo form A Line / Fitted, chất liệu Thun Slimme co giãn đàn hồi cao, ôm gọn cơ thể.",
+    "price": 549000,
+    "originalPrice": 549000,
+    "gender": "women",
+    "categoryId": "vay",
+    "categorySlug": "vay",
+    "styles": [
+      "smart-casual",
+      "minimal"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Thun Slimme co giãn đàn hồi cao, ôm gọn cơ thể",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 1,
+    "images": [
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_2_anh_chup_man_hinh_2026_09_25_171747.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_2_anh_chup_man_hinh_2026_09_25_171758.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_2_anh_chup_man_hinh_2026_09_25_171812.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_2_anh_chup_man_hinh_2026_09_25_171820.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Black",
+      "Beige"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:54.201Z",
+    "updatedAt": "2026-11-13T23:59:43.686Z",
+    "soldCount": 16,
+    "category": {
+      "id": "vay",
+      "slug": "vay",
+      "name": "VÁY",
+      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
+      "image": "/images/categories/women.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609654581-3936",
+        "productId": "p_10f25drew001",
+        "sku": "10F25DREW001-BLACK-XS",
+        "color": "Black",
+        "size": "XS",
+        "price": 549000,
+        "stockQuantity": 31,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:54.583Z"
+      },
+      {
+        "id": "var-1794609654960-5964",
+        "productId": "p_10f25drew001",
+        "sku": "10F25DREW001-BLACK-S",
+        "color": "Black",
+        "size": "S",
+        "price": 549000,
+        "stockQuantity": 36,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:54.961Z"
+      },
+      {
+        "id": "var-1794609655340-1076",
+        "productId": "p_10f25drew001",
+        "sku": "10F25DREW001-BLACK-M",
+        "color": "Black",
+        "size": "M",
+        "price": 549000,
+        "stockQuantity": 39,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:55.342Z"
+      },
+      {
+        "id": "var-1794609655720-4879",
+        "productId": "p_10f25drew001",
+        "sku": "10F25DREW001-BLACK-L",
+        "color": "Black",
+        "size": "L",
+        "price": 549000,
+        "stockQuantity": 20,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:55.722Z"
+      },
+      {
+        "id": "var-1794609656100-8221",
+        "productId": "p_10f25drew001",
+        "sku": "10F25DREW001-BEIGE-XS",
+        "color": "Beige",
+        "size": "XS",
+        "price": 549000,
+        "stockQuantity": 15,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:56.101Z"
+      },
+      {
+        "id": "var-1794609656479-2075",
+        "productId": "p_10f25drew001",
+        "sku": "10F25DREW001-BEIGE-S",
+        "color": "Beige",
+        "size": "S",
+        "price": 549000,
+        "stockQuantity": 23,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:56.481Z"
+      },
+      {
+        "id": "var-1794609656859-4916",
+        "productId": "p_10f25drew001",
+        "sku": "10F25DREW001-BEIGE-M",
+        "color": "Beige",
+        "size": "M",
+        "price": 549000,
+        "stockQuantity": 16,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:56.861Z"
+      },
+      {
+        "id": "var-1794609657238-886",
+        "productId": "p_10f25drew001",
+        "sku": "10F25DREW001-BEIGE-L",
+        "color": "Beige",
+        "size": "L",
+        "price": 549000,
+        "stockQuantity": 19,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:57.240Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f25pfo012",
+    "slug": "quan-tay-dai-nam-slim",
+    "name": "Quần tây dài nam.Slim",
+    "description": "Men's Dress Trousers Slim Fit ôm nhẹ tôn dáng chân, chất vải chống nhăn tối ưu cho quý ông bận rộn.",
+    "shortDescription": "Quần tây dài nam.Slim form Slim, chất liệu Poly Spandex co giãn 4 chiều vận động linh hoạt.",
+    "price": 549000,
+    "originalPrice": 549000,
+    "gender": "men",
+    "categoryId": "quan",
+    "categorySlug": "quan",
+    "styles": [
+      "office",
+      "smart-casual",
+      "minimal"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Poly Spandex co giãn 4 chiều vận động linh hoạt",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 3,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_3_anh_chup_man_hinh_2026_09_24_075515.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_3_anh_chup_man_hinh_2026_09_24_075523.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_3_anh_chup_man_hinh_2026_09_24_075534.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_3_anh_chup_man_hinh_2026_09_24_075604.png"
+    ],
+    "sizes": [
+      "29",
+      "30",
+      "31",
+      "32",
+      "34"
+    ],
+    "colors": [
+      "Navy",
+      "Black",
+      "Beige"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:30.573Z",
+    "updatedAt": "2026-11-13T23:59:44.166Z",
+    "soldCount": 22,
+    "category": {
+      "id": "quan",
+      "slug": "quan",
+      "name": "QUẦN",
+      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
+      "image": "/images/categories/bottoms.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609630951-4402",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-NAVY-29",
+        "color": "Navy",
+        "size": "29",
+        "price": 549000,
+        "stockQuantity": 38,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:30.953Z"
+      },
+      {
+        "id": "var-1794609631330-8693",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-NAVY-30",
+        "color": "Navy",
+        "size": "30",
+        "price": 549000,
+        "stockQuantity": 39,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:31.332Z"
+      },
+      {
+        "id": "var-1794609631712-1390",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-NAVY-31",
+        "color": "Navy",
+        "size": "31",
+        "price": 549000,
+        "stockQuantity": 44,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:31.714Z"
+      },
+      {
+        "id": "var-1794609632092-4054",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-NAVY-32",
+        "color": "Navy",
+        "size": "32",
+        "price": 549000,
+        "stockQuantity": 15,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:32.094Z"
+      },
+      {
+        "id": "var-1794609632473-3493",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-NAVY-34",
+        "color": "Navy",
+        "size": "34",
+        "price": 549000,
+        "stockQuantity": 23,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:32.474Z"
+      },
+      {
+        "id": "var-1794609632851-2740",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BLACK-29",
+        "color": "Black",
+        "size": "29",
+        "price": 549000,
+        "stockQuantity": 31,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:32.853Z"
+      },
+      {
+        "id": "var-1794609633230-5072",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BLACK-30",
+        "color": "Black",
+        "size": "30",
+        "price": 549000,
+        "stockQuantity": 17,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:33.232Z"
+      },
+      {
+        "id": "var-1794609633616-9917",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BLACK-31",
+        "color": "Black",
+        "size": "31",
+        "price": 549000,
+        "stockQuantity": 42,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:33.617Z"
+      },
+      {
+        "id": "var-1794609634090-3215",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BLACK-32",
+        "color": "Black",
+        "size": "32",
+        "price": 549000,
+        "stockQuantity": 27,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:34.092Z"
+      },
+      {
+        "id": "var-1794609634469-1924",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BLACK-34",
+        "color": "Black",
+        "size": "34",
+        "price": 549000,
+        "stockQuantity": 41,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:34.471Z"
+      },
+      {
+        "id": "var-1794609634850-9401",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BEIGE-29",
+        "color": "Beige",
+        "size": "29",
+        "price": 549000,
+        "stockQuantity": 20,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:34.851Z"
+      },
+      {
+        "id": "var-1794609635230-9511",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BEIGE-30",
+        "color": "Beige",
+        "size": "30",
+        "price": 549000,
+        "stockQuantity": 42,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:35.232Z"
+      },
+      {
+        "id": "var-1794609635611-4101",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BEIGE-31",
+        "color": "Beige",
+        "size": "31",
+        "price": 549000,
+        "stockQuantity": 24,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:35.613Z"
+      },
+      {
+        "id": "var-1794609635991-4810",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BEIGE-32",
+        "color": "Beige",
+        "size": "32",
+        "price": 549000,
+        "stockQuantity": 27,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:35.993Z"
+      },
+      {
+        "id": "var-1794609636371-444",
+        "productId": "p_10f25pfo012",
+        "sku": "10F25PFO012-BEIGE-34",
+        "color": "Beige",
+        "size": "34",
+        "price": 549000,
+        "stockQuantity": 22,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:36.372Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f26cap017",
+    "slug": "non-luoi-trai-nam-hinh-theu-freesize",
+    "name": "Nón lưỡi trai nam hình thêu.Freesize",
+    "description": "Nón lưỡi trai thêu linh vật Routine thiết kế unisex tiện dụng, nâng tầm outfit đường phố ấn tượng.",
+    "shortDescription": "Nón lưỡi trai nam hình thêu.Freesize form Freesize, chất liệu Cotton dệt kẻ sọc bền đẹp, thấm mồ hôi.",
+    "price": 349000,
+    "originalPrice": 349000,
+    "gender": "unisex",
+    "categoryId": "phu-kien",
+    "categorySlug": "phu-kien",
+    "styles": [
+      "streetstyle",
+      "sporty-chic"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Cotton dệt kẻ sọc bền đẹp, thấm mồ hôi",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 1,
+    "images": [
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013347.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013353.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013402.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013408.png"
+    ],
+    "sizes": [
+      "Freesize"
+    ],
+    "colors": [
+      "Beige/Navy"
+    ],
+    "stockQuantity": 15,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:41:04.564Z",
+    "updatedAt": "2026-11-14T05:20:01.624Z",
+    "soldCount": 30,
+    "category": {
+      "id": "phu-kien",
+      "slug": "phu-kien",
+      "name": "PHỤ KIỆN",
+      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
+      "image": "/images/categories/accessories.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "pv-5992d166-0bd8-44c7-8da8-6399b0076dc8",
+        "productId": "p_10f26cap017",
+        "sku": "10F26CAP017-BEIGENAVY-Freesize",
+        "color": "Beige/Navy",
+        "size": "Freesize",
+        "price": 349000,
+        "stockQuantity": 15,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:20:01.624Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f26dpaw057",
+    "slug": "quan-denim-nu-wash-sang-form-straight",
+    "name": "Quần Denim+ Nữ Wash Sáng Form Straight",
+    "description": "Quần Denim+ Nữ Wash Sáng Form Straight ống thẳng kéo dài đôi chân, màu wash sáng năng động thời thượng.",
+    "shortDescription": "Quần Denim+ Nữ Wash Sáng Form Straight form Straight, chất liệu Denim+ cao cấp co giãn nhẹ, giữ form chuẩn.",
+    "price": 849000,
+    "originalPrice": 849000,
+    "gender": "women",
+    "categoryId": "quan",
+    "categorySlug": "quan",
+    "styles": [
+      "streetstyle",
+      "smart-casual"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Denim+ cao cấp co giãn nhẹ, giữ form chuẩn",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 6,
+    "images": [
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_jean_quan_jean_2_anh_chup_man_hinh_2026_09_26_024803.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_jean_quan_jean_2_anh_chup_man_hinh_2026_09_26_024815.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_jean_quan_jean_2_anh_chup_man_hinh_2026_09_26_024828.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_jean_quan_jean_2_anh_chup_man_hinh_2026_09_26_024836.png"
+    ],
+    "sizes": [
+      "24",
+      "26",
+      "28",
+      "30"
+    ],
+    "colors": [
+      "L/Indigo"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:41:00.094Z",
+    "updatedAt": "2026-11-13T23:59:45.124Z",
+    "soldCount": 9,
+    "category": {
+      "id": "quan",
+      "slug": "quan",
+      "name": "QUẦN",
+      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
+      "image": "/images/categories/bottoms.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609660475-2943",
+        "productId": "p_10f26dpaw057",
+        "sku": "10F26DPAW057-LINDIGO-24",
+        "color": "L/Indigo",
+        "size": "24",
+        "price": 849000,
+        "stockQuantity": 30,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:41:00.477Z"
+      },
+      {
+        "id": "var-1794609660856-2507",
+        "productId": "p_10f26dpaw057",
+        "sku": "10F26DPAW057-LINDIGO-26",
+        "color": "L/Indigo",
+        "size": "26",
+        "price": 849000,
+        "stockQuantity": 36,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:41:00.857Z"
+      },
+      {
+        "id": "var-1794609661236-6688",
+        "productId": "p_10f26dpaw057",
+        "sku": "10F26DPAW057-LINDIGO-28",
+        "color": "L/Indigo",
+        "size": "28",
+        "price": 849000,
+        "stockQuantity": 20,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:41:01.238Z"
+      },
+      {
+        "id": "var-1794609661616-5006",
+        "productId": "p_10f26dpaw057",
+        "sku": "10F26DPAW057-LINDIGO-30",
+        "color": "L/Indigo",
+        "size": "30",
+        "price": 849000,
+        "stockQuantity": 31,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:41:01.617Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f26kniw051",
+    "slug": "ao-det-kim-nu-tay-phong-co-tron-regular",
+    "name": "Áo Dệt Kim Nữ Tay Phồng Cổ Tròn Regular",
+    "description": "Áo Dệt Kim Nữ Tay Phồng Cổ Tròn Regular tôn vẻ nữ tính, nhẹ nhàng phối đồ dễ dàng cho những ngày se lạnh.",
+    "shortDescription": "Áo Dệt Kim Nữ Tay Phồng Cổ Tròn Regular form Regular, chất liệu Dệt kim Knitwear mềm êm, co giãn tốt.",
+    "price": 449000,
+    "originalPrice": 449000,
+    "gender": "women",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "basic",
+      "smart-casual",
+      "minimal"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Dệt kim Knitwear mềm êm, co giãn tốt",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 8,
+    "images": [
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162305.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162311.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162324.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Navy",
+      "Beige",
+      "Pink"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:49.158Z",
+    "updatedAt": "2026-11-13T23:59:45.600Z",
+    "soldCount": 29,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609649540-8951",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-NAVY-S",
+        "color": "Navy",
+        "size": "S",
+        "price": 449000,
+        "stockQuantity": 17,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:49.542Z"
+      },
+      {
+        "id": "var-1794609649920-5713",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-NAVY-M",
+        "color": "Navy",
+        "size": "M",
+        "price": 449000,
+        "stockQuantity": 26,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:49.922Z"
+      },
+      {
+        "id": "var-1794609650300-2674",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-NAVY-L",
+        "color": "Navy",
+        "size": "L",
+        "price": 449000,
+        "stockQuantity": 28,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:50.301Z"
+      },
+      {
+        "id": "var-1794609650680-8049",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-NAVY-XL",
+        "color": "Navy",
+        "size": "XL",
+        "price": 449000,
+        "stockQuantity": 15,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:50.682Z"
+      },
+      {
+        "id": "var-1794609651060-4223",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-BEIGE-S",
+        "color": "Beige",
+        "size": "S",
+        "price": 449000,
+        "stockQuantity": 36,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:51.062Z"
+      },
+      {
+        "id": "var-1794609651440-8298",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-BEIGE-M",
+        "color": "Beige",
+        "size": "M",
+        "price": 449000,
+        "stockQuantity": 22,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:51.442Z"
+      },
+      {
+        "id": "var-1794609651822-7751",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-BEIGE-L",
+        "color": "Beige",
+        "size": "L",
+        "price": 449000,
+        "stockQuantity": 42,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:51.824Z"
+      },
+      {
+        "id": "var-1794609652200-9638",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-BEIGE-XL",
+        "color": "Beige",
+        "size": "XL",
+        "price": 449000,
+        "stockQuantity": 39,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:52.202Z"
+      },
+      {
+        "id": "var-1794609652581-8559",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-PINK-S",
+        "color": "Pink",
+        "size": "S",
+        "price": 449000,
+        "stockQuantity": 18,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:52.582Z"
+      },
+      {
+        "id": "var-1794609652960-8014",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-PINK-M",
+        "color": "Pink",
+        "size": "M",
+        "price": 449000,
+        "stockQuantity": 18,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:52.962Z"
+      },
+      {
+        "id": "var-1794609653340-9989",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-PINK-L",
+        "color": "Pink",
+        "size": "L",
+        "price": 449000,
+        "stockQuantity": 15,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:53.342Z"
+      },
+      {
+        "id": "var-1794609653722-1818",
+        "productId": "p_10f26kniw051",
+        "sku": "10F26KNIW051-PINK-XL",
+        "color": "Pink",
+        "size": "XL",
+        "price": 449000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:53.724Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f26pol003p",
+    "slug": "ao-polo-tay-ngan-nam-soc-ngang-fitted",
+    "name": "Áo Polo Tay Ngắn Nam Sọc Ngang Fitted",
+    "description": "Áo Polo Tay Ngắn Nam Sọc Ngang Fitted phong thái đĩnh đạc, sang trọng cho nam giới nơi công sở và gặp gỡ bạn bè.",
+    "shortDescription": "Áo Polo Tay Ngắn Nam Sọc Ngang Fitted form Fitted, chất liệu Cotton Poly dệt họa tiết sọc ngang jacquard cao cấp.",
+    "price": 699000,
+    "originalPrice": 699000,
+    "gender": "men",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "smart-casual",
+      "office"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Cotton Poly dệt họa tiết sọc ngang jacquard cao cấp",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 9,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_154915.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_154926.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_154935.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_154944.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Brown",
+      "Navy",
+      "Red"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:21.137Z",
+    "updatedAt": "2026-11-13T23:59:46.080Z",
+    "soldCount": 16,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609621516-3371",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-BROWN-S",
+        "color": "Brown",
+        "size": "S",
+        "price": 699000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:21.517Z"
+      },
+      {
+        "id": "var-1794609621895-5843",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-BROWN-M",
+        "color": "Brown",
+        "size": "M",
+        "price": 699000,
+        "stockQuantity": 15,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:21.897Z"
+      },
+      {
+        "id": "var-1794609622275-3815",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-BROWN-L",
+        "color": "Brown",
+        "size": "L",
+        "price": 699000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:22.276Z"
+      },
+      {
+        "id": "var-1794609622655-2326",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-BROWN-XL",
+        "color": "Brown",
+        "size": "XL",
+        "price": 699000,
+        "stockQuantity": 26,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:22.656Z"
+      },
+      {
+        "id": "var-1794609623034-6731",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-NAVY-S",
+        "color": "Navy",
+        "size": "S",
+        "price": 699000,
+        "stockQuantity": 20,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:23.036Z"
+      },
+      {
+        "id": "var-1794609623416-681",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-NAVY-M",
+        "color": "Navy",
+        "size": "M",
+        "price": 699000,
+        "stockQuantity": 41,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:23.417Z"
+      },
+      {
+        "id": "var-1794609623795-9538",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-NAVY-L",
+        "color": "Navy",
+        "size": "L",
+        "price": 699000,
+        "stockQuantity": 44,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:23.797Z"
+      },
+      {
+        "id": "var-1794609624175-6935",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-NAVY-XL",
+        "color": "Navy",
+        "size": "XL",
+        "price": 699000,
+        "stockQuantity": 38,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:24.177Z"
+      },
+      {
+        "id": "var-1794609624555-38",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-RED-S",
+        "color": "Red",
+        "size": "S",
+        "price": 699000,
+        "stockQuantity": 16,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:24.556Z"
+      },
+      {
+        "id": "var-1794609624936-7620",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-RED-M",
+        "color": "Red",
+        "size": "M",
+        "price": 699000,
+        "stockQuantity": 35,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:24.937Z"
+      },
+      {
+        "id": "var-1794609625316-2396",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-RED-L",
+        "color": "Red",
+        "size": "L",
+        "price": 699000,
+        "stockQuantity": 22,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:25.317Z"
+      },
+      {
+        "id": "var-1794609625696-3047",
+        "productId": "p_10f26pol003p",
+        "sku": "10F26POL003P-RED-XL",
+        "color": "Red",
+        "size": "XL",
+        "price": 699000,
+        "stockQuantity": 26,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:25.698Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f26psh004",
+    "slug": "quan-short-nam-vai-nylon-tui-hop-relax",
+    "name": "Quần short nam vải nylon túi hộp.Relax",
+    "description": "Quần short nam vải nylon túi hộp Relax năng động dã ngoại hoặc thể thao đường phố, nhiều túi tiện lợi.",
+    "shortDescription": "Quần short nam vải nylon túi hộp.Relax form Relax, chất liệu Cotton Nylon chống thấm nhẹ, mau khô.",
+    "price": 549000,
+    "originalPrice": 549000,
+    "gender": "men",
+    "categoryId": "bottoms",
+    "categorySlug": "bottoms",
+    "styles": [
+      "sporty-chic",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Cotton Nylon chống thấm nhẹ, mau khô",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 6,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104729.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104737.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104745.png"
+    ],
+    "sizes": [
+      "29",
+      "30",
+      "31",
+      "32",
+      "34"
+    ],
+    "colors": [
+      "Black",
+      "Beige"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:38.858Z",
+    "updatedAt": "2026-11-13T23:59:46.557Z",
+    "soldCount": 22,
+    "category": {
+      "id": "bottoms",
+      "slug": "bottoms",
+      "name": "BOTTOMS",
+      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609639240-5312",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BLACK-29",
+        "color": "Black",
+        "size": "29",
+        "price": 549000,
+        "stockQuantity": 26,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:39.241Z"
+      },
+      {
+        "id": "var-1794609639619-2359",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BLACK-30",
+        "color": "Black",
+        "size": "30",
+        "price": 549000,
+        "stockQuantity": 16,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:39.621Z"
+      },
+      {
+        "id": "var-1794609640002-9950",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BLACK-31",
+        "color": "Black",
+        "size": "31",
+        "price": 549000,
+        "stockQuantity": 36,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:40.003Z"
+      },
+      {
+        "id": "var-1794609640384-2824",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BLACK-32",
+        "color": "Black",
+        "size": "32",
+        "price": 549000,
+        "stockQuantity": 41,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:40.386Z"
+      },
+      {
+        "id": "var-1794609640766-6408",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BLACK-34",
+        "color": "Black",
+        "size": "34",
+        "price": 549000,
+        "stockQuantity": 31,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:40.768Z"
+      },
+      {
+        "id": "var-1794609641147-8036",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BEIGE-29",
+        "color": "Beige",
+        "size": "29",
+        "price": 549000,
+        "stockQuantity": 22,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:41.148Z"
+      },
+      {
+        "id": "var-1794609641528-1034",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BEIGE-30",
+        "color": "Beige",
+        "size": "30",
+        "price": 549000,
+        "stockQuantity": 17,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:41.530Z"
+      },
+      {
+        "id": "var-1794609641910-5143",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BEIGE-31",
+        "color": "Beige",
+        "size": "31",
+        "price": 549000,
+        "stockQuantity": 30,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:41.911Z"
+      },
+      {
+        "id": "var-1794609642290-2861",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BEIGE-32",
+        "color": "Beige",
+        "size": "32",
+        "price": 549000,
+        "stockQuantity": 22,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:42.292Z"
+      },
+      {
+        "id": "var-1794609642669-2608",
+        "productId": "p_10f26psh004",
+        "sku": "10F26PSH004-BEIGE-34",
+        "color": "Beige",
+        "size": "34",
+        "price": 549000,
+        "stockQuantity": 21,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:42.671Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f26shl001",
+    "slug": "ao-so-mi-tay-dai-nam-soc-ra-than-theu-nguc-boxy",
+    "name": "Áo Sơ Mi Tay Dài Nam Sọc Rã Thân Thêu Ngực Boxy",
+    "description": "Áo Sơ Mi Tay Dài Nam Sọc Rã Thân Thêu Ngực Boxy phong cách hiện đại trẻ trung, form rộng thoải mái.",
+    "shortDescription": "Áo Sơ Mi Tay Dài Nam Sọc Rã Thân Thêu Ngực Boxy form Boxy, chất liệu Cotton Blend kẻ sọc mềm mại, chống nhăn.",
+    "price": 579000,
+    "originalPrice": 579000,
+    "gender": "men",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "streetstyle",
+      "smart-casual"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Cotton Blend kẻ sọc mềm mại, chống nhăn",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 9,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_5_anh_chup_man_hinh_2026_09_25_160333.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_5_anh_chup_man_hinh_2026_09_25_160345.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_5_anh_chup_man_hinh_2026_09_25_160355.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_5_anh_chup_man_hinh_2026_09_25_160403.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Pink/White",
+      "Blue/White"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": true,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:15.502Z",
+    "updatedAt": "2026-11-13T23:59:47.039Z",
+    "soldCount": 26,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609615896-3731",
+        "productId": "p_10f26shl001",
+        "sku": "10F26SHL001-PINKWHITE-S",
+        "color": "Pink/White",
+        "size": "S",
+        "price": 579000,
+        "stockQuantity": 17,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:15.897Z"
+      },
+      {
+        "id": "var-1794609616276-9454",
+        "productId": "p_10f26shl001",
+        "sku": "10F26SHL001-PINKWHITE-M",
+        "color": "Pink/White",
+        "size": "M",
+        "price": 579000,
+        "stockQuantity": 37,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:16.277Z"
+      },
+      {
+        "id": "var-1794609616656-965",
+        "productId": "p_10f26shl001",
+        "sku": "10F26SHL001-PINKWHITE-L",
+        "color": "Pink/White",
+        "size": "L",
+        "price": 579000,
+        "stockQuantity": 29,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:16.657Z"
+      },
+      {
+        "id": "var-1794609617035-4335",
+        "productId": "p_10f26shl001",
+        "sku": "10F26SHL001-PINKWHITE-XL",
+        "color": "Pink/White",
+        "size": "XL",
+        "price": 579000,
+        "stockQuantity": 21,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:17.037Z"
+      },
+      {
+        "id": "var-1794609617417-4661",
+        "productId": "p_10f26shl001",
+        "sku": "10F26SHL001-BLUEWHITE-S",
+        "color": "Blue/White",
+        "size": "S",
+        "price": 579000,
+        "stockQuantity": 40,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:17.419Z"
+      },
+      {
+        "id": "var-1794609617797-3462",
+        "productId": "p_10f26shl001",
+        "sku": "10F26SHL001-BLUEWHITE-M",
+        "color": "Blue/White",
+        "size": "M",
+        "price": 579000,
+        "stockQuantity": 35,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:17.799Z"
+      },
+      {
+        "id": "var-1794609618179-1546",
+        "productId": "p_10f26shl001",
+        "sku": "10F26SHL001-BLUEWHITE-L",
+        "color": "Blue/White",
+        "size": "L",
+        "price": 579000,
+        "stockQuantity": 40,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:18.180Z"
+      },
+      {
+        "id": "var-1794609618659-6991",
+        "productId": "p_10f26shl001",
+        "sku": "10F26SHL001-BLUEWHITE-XL",
+        "color": "Blue/White",
+        "size": "XL",
+        "price": 579000,
+        "stockQuantity": 35,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:18.661Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f26shl016",
+    "slug": "ao-so-mi-tay-dai-nam-oxford-light-blue-fitted",
+    "name": "Áo Sơ Mi Tay Dài Nam Oxford Light Blue Fitted",
+    "description": "Áo Sơ Mi Tay Dài Nam Oxford Light Blue Fitted dáng ôm vừa vặn, lịch sự thanh lịch công sở.",
+    "shortDescription": "Áo Sơ Mi Tay Dài Nam Oxford Light Blue Fitted form Fitted, chất liệu Oxford Cotton dệt thoáng khí, bề mặt vải sang trọng.",
+    "price": 549000,
+    "originalPrice": 549000,
+    "gender": "men",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "smart-casual",
+      "office",
+      "minimal"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Oxford Cotton dệt thoáng khí, bề mặt vải sang trọng",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 10,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_4_anh_chup_man_hinh_2026_09_25_160154.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_4_anh_chup_man_hinh_2026_09_25_160201.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_4_anh_chup_man_hinh_2026_09_25_160209.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_4_anh_chup_man_hinh_2026_09_25_160219.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Light Blue"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:13.357Z",
+    "updatedAt": "2026-11-13T23:59:47.518Z",
+    "soldCount": 26,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609613869-8647",
+        "productId": "p_10f26shl016",
+        "sku": "10F26SHL016-LIGHTBLUE-S",
+        "color": "Light Blue",
+        "size": "S",
+        "price": 549000,
+        "stockQuantity": 30,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:13.870Z"
+      },
+      {
+        "id": "var-1794609614249-373",
+        "productId": "p_10f26shl016",
+        "sku": "10F26SHL016-LIGHTBLUE-M",
+        "color": "Light Blue",
+        "size": "M",
+        "price": 549000,
+        "stockQuantity": 30,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:14.251Z"
+      },
+      {
+        "id": "var-1794609614630-1937",
+        "productId": "p_10f26shl016",
+        "sku": "10F26SHL016-LIGHTBLUE-L",
+        "color": "Light Blue",
+        "size": "L",
+        "price": 549000,
+        "stockQuantity": 20,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:14.631Z"
+      },
+      {
+        "id": "var-1794609615009-3950",
+        "productId": "p_10f26shl016",
+        "sku": "10F26SHL016-LIGHTBLUE-XL",
+        "color": "Light Blue",
+        "size": "XL",
+        "price": 549000,
+        "stockQuantity": 16,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:15.011Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10f26shlw025",
+    "slug": "ao-so-mi-nu-tay-dai-ru-nhe-dang-suong-relax",
+    "name": "Áo Sơ Mi Nữ Tay Dài Rủ Nhẹ Dáng Suông Relax",
+    "description": "Áo Sơ Mi Nữ Tay Dài Rủ Nhẹ Dáng Suông Relax thoải mái, thanh lịch nơi công sở, tôn nét dịu dàng phái đẹp.",
+    "shortDescription": "Áo Sơ Mi Nữ Tay Dài Rủ Nhẹ Dáng Suông Relax form Relax, chất liệu Chất vải rủ mềm mịn nhẹ nhàng, thoáng mát.",
+    "price": 549000,
+    "originalPrice": 549000,
+    "gender": "women",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "smart-casual",
+      "office",
+      "minimal"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Chất vải rủ mềm mịn nhẹ nhàng, thoáng mát",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 5,
+    "images": [
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_2_anh_chup_man_hinh_2026_09_26_021228.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_2_anh_chup_man_hinh_2026_09_26_021236.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_2_anh_chup_man_hinh_2026_09_26_021248.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_2_anh_chup_man_hinh_2026_09_26_021258.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": true,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:45.530Z",
+    "updatedAt": "2026-11-13T23:59:47.997Z",
+    "soldCount": 6,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609645912-4180",
+        "productId": "p_10f26shlw025",
+        "sku": "10F26SHLW025-BLACK-XS",
+        "color": "Black",
+        "size": "XS",
+        "price": 549000,
+        "stockQuantity": 41,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:45.913Z"
+      },
+      {
+        "id": "var-1794609646298-4246",
+        "productId": "p_10f26shlw025",
+        "sku": "10F26SHLW025-BLACK-S",
+        "color": "Black",
+        "size": "S",
+        "price": 549000,
+        "stockQuantity": 41,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:46.299Z"
+      },
+      {
+        "id": "var-1794609646678-7790",
+        "productId": "p_10f26shlw025",
+        "sku": "10F26SHLW025-BLACK-M",
+        "color": "Black",
+        "size": "M",
+        "price": 549000,
+        "stockQuantity": 34,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:46.679Z"
+      },
+      {
+        "id": "var-1794609647058-6069",
+        "productId": "p_10f26shlw025",
+        "sku": "10F26SHLW025-BLACK-L",
+        "color": "Black",
+        "size": "L",
+        "price": 549000,
+        "stockQuantity": 26,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:47.059Z"
+      },
+      {
+        "id": "var-1794609647443-4397",
+        "productId": "p_10f26shlw025",
+        "sku": "10F26SHLW025-WHITE-XS",
+        "color": "White",
+        "size": "XS",
+        "price": 549000,
+        "stockQuantity": 39,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:47.444Z"
+      },
+      {
+        "id": "var-1794609647823-1735",
+        "productId": "p_10f26shlw025",
+        "sku": "10F26SHLW025-WHITE-S",
+        "color": "White",
+        "size": "S",
+        "price": 549000,
+        "stockQuantity": 40,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:47.824Z"
+      },
+      {
+        "id": "var-1794609648204-7240",
+        "productId": "p_10f26shlw025",
+        "sku": "10F26SHLW025-WHITE-M",
+        "color": "White",
+        "size": "M",
+        "price": 549000,
+        "stockQuantity": 35,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:48.206Z"
+      },
+      {
+        "id": "var-1794609648585-5976",
+        "productId": "p_10f26shlw025",
+        "sku": "10F26SHLW025-WHITE-L",
+        "color": "White",
+        "size": "L",
+        "price": 549000,
+        "stockQuantity": 16,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:48.586Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10s25pol024",
+    "slug": "ao-polo-nam-ngan-tay-cotton-poly-form-fitted-premium",
+    "name": "Áo Polo Nam Ngắn Tay Cotton Poly Form Fitted Premium (Easy Buy)",
+    "description": "Áo polo premium nam bo tay lịch lãm form fitted, đang trong chương trình ưu đãi đặc biệt giảm 20% cho khách hàng thân thiết.",
+    "shortDescription": "Áo Polo Nam Ngắn Tay Cotton Poly Form Fitted Premium (Easy Buy) form Fitted, chất liệu Cotton Polyester bền màu chống nhăn, thoáng mát.",
+    "price": 359000,
+    "originalPrice": 449000,
+    "gender": "men",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "smart-casual",
+      "office",
+      "basic"
+    ],
+    "badge": "SALE",
+    "status": "ACTIVE",
+    "materials": "Cotton Polyester bền màu chống nhăn, thoáng mát",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 5,
+    "images": [
+      "https://res.cloudinary.com/ubkdyrwp/image/upload/v1794613860/routine_products/___nh_ch___p_m__n_h__nh_2026-0_mwfmr893.jpg",
+      "https://res.cloudinary.com/ubkdyrwp/image/upload/v1794613861/routine_products/___nh_ch___p_m__n_h__nh_2026-0_mwfmr9t3.jpg",
+      "https://res.cloudinary.com/ubkdyrwp/image/upload/v1794613862/routine_products/___nh_ch___p_m__n_h__nh_2026-0_mwfmraj5.webp"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "stockQuantity": 305,
+    "isFeatured": true,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:41:05.423Z",
+    "updatedAt": "2026-11-22T10:16:51.665Z",
+    "soldCount": 10,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "pv-35e14d50-2c5f-4b06-b850-38a6887af834",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-BLACK-L",
+        "color": "Black",
+        "size": "L",
+        "price": 359000,
+        "stockQuantity": 41,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      },
+      {
+        "id": "pv-6bebebf6-d8e0-40ca-b49f-40e9bd9fff06",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-WHITE-XL",
+        "color": "White",
+        "size": "XL",
+        "price": 359000,
+        "stockQuantity": 39,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      },
+      {
+        "id": "pv-be0a5bba-944b-4420-926f-bdbf366169e4",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-WHITE-S",
+        "color": "White",
+        "size": "S",
+        "price": 359000,
+        "stockQuantity": 19,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      },
+      {
+        "id": "pv-d40e8aae-6db5-424f-b032-3386f0e6ac5e",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-WHITE-M",
+        "color": "White",
+        "size": "M",
+        "price": 359000,
+        "stockQuantity": 20,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      },
+      {
+        "id": "pv-db500dba-fe1d-40fc-a1b0-bc066aa0cd70",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-BLACK-2XL",
+        "color": "Black",
+        "size": "2XL",
+        "price": 359000,
+        "stockQuantity": 23,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      },
+      {
+        "id": "pv-e0d51fc1-3733-47fa-95e5-66caebba059a",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-WHITE-2XL",
+        "color": "White",
+        "size": "2XL",
+        "price": 359000,
+        "stockQuantity": 35,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      },
+      {
+        "id": "pv-e8647469-15d7-4d54-8df7-c25a3bf853bd",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-BLACK-S",
+        "color": "Black",
+        "size": "S",
+        "price": 359000,
+        "stockQuantity": 33,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      },
+      {
+        "id": "pv-e99e6acd-3215-4abf-989f-091d3753d4cd",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-WHITE-L",
+        "color": "White",
+        "size": "L",
+        "price": 359000,
+        "stockQuantity": 35,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      },
+      {
+        "id": "pv-f2c3c76b-099a-40ec-a987-bced5b07a888",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-BLACK-M",
+        "color": "Black",
+        "size": "M",
+        "price": 359000,
+        "stockQuantity": 26,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      },
+      {
+        "id": "pv-ffe894e6-e92b-4776-b901-fcb949dc7909",
+        "productId": "p_10s25pol024",
+        "sku": "10S25POL024-BLACK-XL",
+        "color": "Black",
+        "size": "XL",
+        "price": 359000,
+        "stockQuantity": 37,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T23:51:14.598Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10s26dpa057",
+    "slug": "quan-denim-nam-xanh-navy-xep-ly-loose",
+    "name": "Quần Denim Nam Xanh Navy Xếp Ly Loose",
+    "description": "Quần Denim Nam Xanh Navy Xếp Ly Loose ống rộng thời thượng kết hợp đường xếp ly độc đáo tạo phong cách khác biệt.",
+    "shortDescription": "Quần Denim Nam Xanh Navy Xếp Ly Loose form Loose, chất liệu Denim 100% Cotton thoáng mát, giữ dáng.",
+    "price": 799000,
+    "originalPrice": 799000,
+    "gender": "men",
+    "categoryId": "quan",
+    "categorySlug": "quan",
+    "styles": [
+      "streetstyle",
+      "smart-casual"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Denim 100% Cotton thoáng mát, giữ dáng",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 3,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_1_anh_chup_man_hinh_2026_09_24_093457.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_1_anh_chup_man_hinh_2026_09_24_093519.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_1_anh_chup_man_hinh_2026_09_24_093536.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_1_anh_chup_man_hinh_2026_09_24_093551.png"
+    ],
+    "sizes": [
+      "29",
+      "30",
+      "31",
+      "32"
+    ],
+    "colors": [
+      "D/Navy"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:36.856Z",
+    "updatedAt": "2026-11-13T23:59:48.475Z",
+    "soldCount": 24,
+    "category": {
+      "id": "quan",
+      "slug": "quan",
+      "name": "QUẦN",
+      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
+      "image": "/images/categories/bottoms.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609637235-2714",
+        "productId": "p_10s26dpa057",
+        "sku": "10S26DPA057-DNAVY-29",
+        "color": "D/Navy",
+        "size": "29",
+        "price": 799000,
+        "stockQuantity": 37,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:37.237Z"
+      },
+      {
+        "id": "var-1794609637616-3753",
+        "productId": "p_10s26dpa057",
+        "sku": "10S26DPA057-DNAVY-30",
+        "color": "D/Navy",
+        "size": "30",
+        "price": 799000,
+        "stockQuantity": 23,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:37.617Z"
+      },
+      {
+        "id": "var-1794609637996-1892",
+        "productId": "p_10s26dpa057",
+        "sku": "10S26DPA057-DNAVY-31",
+        "color": "D/Navy",
+        "size": "31",
+        "price": 799000,
+        "stockQuantity": 23,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:37.998Z"
+      },
+      {
+        "id": "var-1794609638378-3183",
+        "productId": "p_10s26dpa057",
+        "sku": "10S26DPA057-DNAVY-32",
+        "color": "D/Navy",
+        "size": "32",
+        "price": 799000,
+        "stockQuantity": 32,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:38.380Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10s26dps012",
+    "slug": "quan-short-denim-nam-loose",
+    "name": "Quần short denim nam. Loose",
+    "description": "Quần short denim nam Loose wash sáng mát mẻ cho những chuyến du lịch và hoạt động ngoài trời mùa hè.",
+    "shortDescription": "Quần short denim nam. Loose form Loose, chất liệu Denim wash sáng, thoáng khí.",
+    "price": 499000,
+    "originalPrice": 499000,
+    "gender": "men",
+    "categoryId": "bottoms",
+    "categorySlug": "bottoms",
+    "styles": [
+      "basic",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Denim wash sáng, thoáng khí",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 3,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_2_anh_chup_man_hinh_2026_09_24_093925.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_2_anh_chup_man_hinh_2026_09_24_093938.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_2_anh_chup_man_hinh_2026_09_24_094015.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_2_anh_chup_man_hinh_2026_09_24_094025.png"
+    ],
+    "sizes": [
+      "29",
+      "30",
+      "31",
+      "32",
+      "34"
+    ],
+    "colors": [
+      "Light Blue"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:43.149Z",
+    "updatedAt": "2026-11-13T23:59:48.957Z",
+    "soldCount": 14,
+    "category": {
+      "id": "bottoms",
+      "slug": "bottoms",
+      "name": "BOTTOMS",
+      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609643528-7418",
+        "productId": "p_10s26dps012",
+        "sku": "10S26DPS012-LIGHTBLUE-29",
+        "color": "Light Blue",
+        "size": "29",
+        "price": 499000,
+        "stockQuantity": 26,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:43.530Z"
+      },
+      {
+        "id": "var-1794609643909-2610",
+        "productId": "p_10s26dps012",
+        "sku": "10S26DPS012-LIGHTBLUE-30",
+        "color": "Light Blue",
+        "size": "30",
+        "price": 499000,
+        "stockQuantity": 34,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:43.911Z"
+      },
+      {
+        "id": "var-1794609644290-3091",
+        "productId": "p_10s26dps012",
+        "sku": "10S26DPS012-LIGHTBLUE-31",
+        "color": "Light Blue",
+        "size": "31",
+        "price": 499000,
+        "stockQuantity": 41,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:44.292Z"
+      },
+      {
+        "id": "var-1794609644671-5957",
+        "productId": "p_10s26dps012",
+        "sku": "10S26DPS012-LIGHTBLUE-32",
+        "color": "Light Blue",
+        "size": "32",
+        "price": 499000,
+        "stockQuantity": 39,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:44.673Z"
+      },
+      {
+        "id": "var-1794609645051-3670",
+        "productId": "p_10s26dps012",
+        "sku": "10S26DPS012-LIGHTBLUE-34",
+        "color": "Light Blue",
+        "size": "34",
+        "price": 499000,
+        "stockQuantity": 18,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:45.052Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10s26dpsw018",
+    "slug": "quan-short-denim-nu-straight",
+    "name": "Quần short denim nữ. Straight",
+    "description": "Quần short denim nữ Straight năng động trẻ trung cho mùa hè, dễ dàng phối cùng croptop hoặc áo thun.",
+    "shortDescription": "Quần short denim nữ. Straight form Straight, chất liệu Denim mềm mát cho mùa hè.",
+    "price": 499000,
+    "originalPrice": 499000,
+    "gender": "women",
+    "categoryId": "bottoms",
+    "categorySlug": "bottoms",
+    "styles": [
+      "basic",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Denim mềm mát cho mùa hè",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 8,
+    "images": [
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_kaki_q_kaki_1_anh_chup_man_hinh_2026_09_27_175407.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_kaki_q_kaki_1_anh_chup_man_hinh_2026_09_27_175417.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_kaki_q_kaki_1_anh_chup_man_hinh_2026_09_27_175425.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_kaki_q_kaki_1_anh_chup_man_hinh_2026_09_27_175432.png"
+    ],
+    "sizes": [
+      "24",
+      "26",
+      "28",
+      "30",
+      "32"
+    ],
+    "colors": [
+      "L/Indigo"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:41:02.093Z",
+    "updatedAt": "2026-11-13T23:59:49.437Z",
+    "soldCount": 7,
+    "category": {
+      "id": "bottoms",
+      "slug": "bottoms",
+      "name": "BOTTOMS",
+      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609662470-2027",
+        "productId": "p_10s26dpsw018",
+        "sku": "10S26DPSW018-LINDIGO-24",
+        "color": "L/Indigo",
+        "size": "24",
+        "price": 499000,
+        "stockQuantity": 29,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:41:02.472Z"
+      },
+      {
+        "id": "var-1794609662850-7964",
+        "productId": "p_10s26dpsw018",
+        "sku": "10S26DPSW018-LINDIGO-26",
+        "color": "L/Indigo",
+        "size": "26",
+        "price": 499000,
+        "stockQuantity": 22,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:41:02.852Z"
+      },
+      {
+        "id": "var-1794609663230-5762",
+        "productId": "p_10s26dpsw018",
+        "sku": "10S26DPSW018-LINDIGO-28",
+        "color": "L/Indigo",
+        "size": "28",
+        "price": 499000,
+        "stockQuantity": 33,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:41:03.232Z"
+      },
+      {
+        "id": "var-1794609663612-6302",
+        "productId": "p_10s26dpsw018",
+        "sku": "10S26DPSW018-LINDIGO-30",
+        "color": "L/Indigo",
+        "size": "30",
+        "price": 499000,
+        "stockQuantity": 26,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:41:03.613Z"
+      },
+      {
+        "id": "var-1794609663991-7320",
+        "productId": "p_10s26dpsw018",
+        "sku": "10S26DPSW018-LINDIGO-32",
+        "color": "L/Indigo",
+        "size": "32",
+        "price": 499000,
+        "stockQuantity": 29,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:41:03.993Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10s26dskw002",
+    "slug": "vay-denim-nu-xep-ly-aline",
+    "name": "Váy denim nữ xếp ly. Aline",
+    "description": "Váy denim nữ xếp ly form A-Line kết hợp nét trẻ trung của denim với thiết kế xếp ly nữ tính ngọt ngào.",
+    "shortDescription": "Váy denim nữ xếp ly. Aline form A Line, chất liệu Denim dệt chéo twill bền đẹp, đứng dáng xòe.",
+    "price": 549000,
+    "originalPrice": 549000,
+    "gender": "women",
+    "categoryId": "vay",
+    "categorySlug": "vay",
+    "styles": [
+      "streetstyle",
+      "basic"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Denim dệt chéo twill bền đẹp, đứng dáng xòe",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 7,
+    "images": [
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_3_anh_chup_man_hinh_2026_09_25_172045.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_3_anh_chup_man_hinh_2026_09_25_172052.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_3_anh_chup_man_hinh_2026_09_25_172100.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_3_anh_chup_man_hinh_2026_09_25_172106.png"
+    ],
+    "sizes": [
+      "24",
+      "26",
+      "28",
+      "30",
+      "32"
+    ],
+    "colors": [
+      "D/Navy"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:57.715Z",
+    "updatedAt": "2026-11-13T23:59:49.919Z",
+    "soldCount": 24,
+    "category": {
+      "id": "vay",
+      "slug": "vay",
+      "name": "VÁY",
+      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
+      "image": "/images/categories/women.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609658094-9316",
+        "productId": "p_10s26dskw002",
+        "sku": "10S26DSKW002-DNAVY-24",
+        "color": "D/Navy",
+        "size": "24",
+        "price": 549000,
+        "stockQuantity": 31,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:58.096Z"
+      },
+      {
+        "id": "var-1794609658475-5090",
+        "productId": "p_10s26dskw002",
+        "sku": "10S26DSKW002-DNAVY-26",
+        "color": "D/Navy",
+        "size": "26",
+        "price": 549000,
+        "stockQuantity": 35,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:58.476Z"
+      },
+      {
+        "id": "var-1794609658855-9727",
+        "productId": "p_10s26dskw002",
+        "sku": "10S26DSKW002-DNAVY-28",
+        "color": "D/Navy",
+        "size": "28",
+        "price": 549000,
+        "stockQuantity": 26,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:58.856Z"
+      },
+      {
+        "id": "var-1794609659234-5714",
+        "productId": "p_10s26dskw002",
+        "sku": "10S26DSKW002-DNAVY-30",
+        "color": "D/Navy",
+        "size": "30",
+        "price": 549000,
+        "stockQuantity": 40,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:59.236Z"
+      },
+      {
+        "id": "var-1794609659615-967",
+        "productId": "p_10s26dskw002",
+        "sku": "10S26DSKW002-DNAVY-32",
+        "color": "D/Navy",
+        "size": "32",
+        "price": 549000,
+        "stockQuantity": 30,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:59.616Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10s26pfo007",
+    "slug": "quan-tay-dai-nam-hai-ly-tapered",
+    "name": "Quần tây dài nam hai ly.Tapered",
+    "description": "Men's Double-Pleat Dress Pants Tapered thiết kế 2 ly phong cách retro lịch lãm chuẩn form công sở hiện đại.",
+    "shortDescription": "Quần tây dài nam hai ly.Tapered form Tapered, chất liệu Rayon Poly cao cấp chống nhăn, giữ nếp ly chuẩn.",
+    "price": 649000,
+    "originalPrice": 649000,
+    "gender": "men",
+    "categoryId": "quan",
+    "categorySlug": "quan",
+    "styles": [
+      "smart-casual",
+      "office",
+      "minimal"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Rayon Poly cao cấp chống nhăn, giữ nếp ly chuẩn",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 6,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_2_anh_chup_man_hinh_2026_09_24_074936.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_2_anh_chup_man_hinh_2026_09_24_075001.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_2_anh_chup_man_hinh_2026_09_24_075011.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_2_anh_chup_man_hinh_2026_09_24_075022.png"
+    ],
+    "sizes": [
+      "29",
+      "30",
+      "31",
+      "32",
+      "34"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:28.177Z",
+    "updatedAt": "2026-11-13T23:59:50.396Z",
+    "soldCount": 11,
+    "category": {
+      "id": "quan",
+      "slug": "quan",
+      "name": "QUẦN",
+      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
+      "image": "/images/categories/bottoms.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609628571-2600",
+        "productId": "p_10s26pfo007",
+        "sku": "10S26PFO007-BLACK-29",
+        "color": "Black",
+        "size": "29",
+        "price": 649000,
+        "stockQuantity": 35,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:28.572Z"
+      },
+      {
+        "id": "var-1794609628952-4405",
+        "productId": "p_10s26pfo007",
+        "sku": "10S26PFO007-BLACK-30",
+        "color": "Black",
+        "size": "30",
+        "price": 649000,
+        "stockQuantity": 28,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:28.954Z"
+      },
+      {
+        "id": "var-1794609629333-8618",
+        "productId": "p_10s26pfo007",
+        "sku": "10S26PFO007-BLACK-31",
+        "color": "Black",
+        "size": "31",
+        "price": 649000,
+        "stockQuantity": 34,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:29.335Z"
+      },
+      {
+        "id": "var-1794609629712-1256",
+        "productId": "p_10s26pfo007",
+        "sku": "10S26PFO007-BLACK-32",
+        "color": "Black",
+        "size": "32",
+        "price": 649000,
+        "stockQuantity": 40,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:29.713Z"
+      },
+      {
+        "id": "var-1794609630092-1923",
+        "productId": "p_10s26pfo007",
+        "sku": "10S26PFO007-BLACK-34",
+        "color": "Black",
+        "size": "34",
+        "price": 649000,
+        "stockQuantity": 41,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:30.095Z"
+      }
+    ]
+  },
+  {
+    "id": "p_10s26tss025",
+    "slug": "ao-thun-tay-ngan-nam-hinh-theu-boxy",
+    "name": "Áo thun tay ngắn nam hình thêu.Boxy",
+    "description": "Men's Embroidered Short Sleeve T-Shirt - Boxy Fit form rộng thoải mái, họa tiết thêu nổi bật cá tính.",
+    "shortDescription": "Áo thun tay ngắn nam hình thêu.Boxy form Boxy, chất liệu 100% Cotton định lượng cao thoáng mát thấm hút.",
+    "price": 449000,
+    "originalPrice": 449000,
+    "gender": "men",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "basic",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "100% Cotton định lượng cao thoáng mát thấm hút",
+    "care": "Giặt máy ở nhiệt độ bình thường. Không dùng thuốc tẩy. Phơi trong bóng râm.",
+    "rating": 5,
+    "reviewCount": 9,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_7_anh_chup_man_hinh_2026_09_18_093329.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_7_anh_chup_man_hinh_2026_09_18_093337.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_7_anh_chup_man_hinh_2026_09_18_093346.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_7_anh_chup_man_hinh_2026_09_18_093355.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Rainy Day"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T22:40:19.137Z",
+    "updatedAt": "2026-11-13T23:59:50.877Z",
+    "soldCount": 17,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609619515-2796",
+        "productId": "p_10s26tss025",
+        "sku": "10S26TSS025-RAINYDAY-S",
+        "color": "Rainy Day",
+        "size": "S",
+        "price": 449000,
+        "stockQuantity": 39,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:19.517Z"
+      },
+      {
+        "id": "var-1794609619895-3720",
+        "productId": "p_10s26tss025",
+        "sku": "10S26TSS025-RAINYDAY-M",
+        "color": "Rainy Day",
+        "size": "M",
+        "price": 449000,
+        "stockQuantity": 18,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:19.897Z"
+      },
+      {
+        "id": "var-1794609620276-8081",
+        "productId": "p_10s26tss025",
+        "sku": "10S26TSS025-RAINYDAY-L",
+        "color": "Rainy Day",
+        "size": "L",
+        "price": 449000,
+        "stockQuantity": 36,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:20.277Z"
+      },
+      {
+        "id": "var-1794609620656-1918",
+        "productId": "p_10s26tss025",
+        "sku": "10S26TSS025-RAINYDAY-XL",
+        "color": "Rainy Day",
+        "size": "XL",
+        "price": 449000,
+        "stockQuantity": 30,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:20.658Z"
+      }
+    ]
+  },
+  {
+    "id": "p-e6244704-0d29-42b6-9811-a0e1e3062278",
+    "slug": "test-demo-ao-thun-routine-cotton-2026-e3062278",
+    "name": "[TEST-DEMO] Áo Thun Routine Cotton 2026",
+    "description": "Sản phẩm mẫu có sẵn dùng cho người dùng tự do thao tác sửa giá, đổi ảnh, chuyển ACTIVE/INACTIVE trên Admin",
+    "shortDescription": null,
+    "price": 250000,
+    "originalPrice": 300000,
+    "gender": "men",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 0,
+    "reviewCount": 0,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_2_anh_chup_man_hinh_2026_09_16_133437.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_2_anh_chup_man_hinh_2026_09_16_133449.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_2_anh_chup_man_hinh_2026_09_16_133459.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_2_anh_chup_man_hinh_2026_09_16_133512.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_2_anh_chup_man_hinh_2026_09_16_133523.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_2_anh_chup_man_hinh_2026_09_16_133538.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_2_anh_chup_man_hinh_2026_09_16_133546.png"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "stockQuantity": 60,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-13T20:19:30.505Z",
+    "updatedAt": "2026-11-13T21:59:54.865Z",
+    "soldCount": 4,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "pv-13bc87bb-3771-4c71-9e5b-0d7830d525c6",
+        "productId": "p-e6244704-0d29-42b6-9811-a0e1e3062278",
+        "sku": "TEST-DEMO-WHT-L",
+        "color": "White",
+        "size": "L",
+        "price": 250000,
+        "stockQuantity": 20,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T20:19:30.505Z"
+      },
+      {
+        "id": "pv-1fee883a-dd8c-43b3-9a62-622eef3ae530",
+        "productId": "p-e6244704-0d29-42b6-9811-a0e1e3062278",
+        "sku": "TEST-DEMO-WHT-M",
+        "color": "White",
+        "size": "M",
+        "price": 250000,
+        "stockQuantity": 20,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T20:19:30.505Z"
+      },
+      {
+        "id": "pv-6a4c8f9e-1286-4a42-a8b0-37bbef8fbecf",
+        "productId": "p-e6244704-0d29-42b6-9811-a0e1e3062278",
+        "sku": "TEST-DEMO-BLK-XL",
+        "color": "Black",
+        "size": "XL",
+        "price": 250000,
+        "stockQuantity": 20,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T20:19:30.505Z"
+      }
+    ]
+  },
+  {
+    "id": "p-ed20cac6-0df3-4f15-a143-ac02d994fccd",
+    "slug": "tui-tote-demin-ke-soc-freesize",
+    "name": "Túi tote demin kẻ sọc Freesize",
+    "description": "Mã sản phẩm: 10S26BAG001\n\nForm: Tote bag\n\nFabric: Cotton Spandex\n\nCollection: Essential",
+    "shortDescription": "",
+    "price": 179000,
+    "originalPrice": 349000,
+    "gender": "unisex",
+    "categoryId": "phu-kien",
+    "categorySlug": "phu-kien",
+    "styles": [
+      "minimal",
+      "smart-casual"
+    ],
+    "badge": "NEW",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 0,
+    "reviewCount": 0,
+    "images": [
+      "https://res.cloudinary.com/ubkdyrwp/image/upload/v1794633302/routine_products/___nh_ch___p_m__n_h__nh_2026-0_mwfybxvv.webp",
+      "https://res.cloudinary.com/ubkdyrwp/image/upload/v1794633307/routine_products/___nh_ch___p_m__n_h__nh_2026-0_mwfyc2mm.webp",
+      "https://res.cloudinary.com/ubkdyrwp/image/upload/v1794633312/routine_products/___nh_ch___p_m__n_h__nh_2026-0_mwfyc5sj.jpg",
+      "https://res.cloudinary.com/ubkdyrwp/image/upload/v1794633316/routine_products/___nh_ch___p_m__n_h__nh_2026-0_mwfyc8yt.webp"
+    ],
+    "sizes": [
+      "FREESIZE"
+    ],
+    "colors": [
+      "Denim Blue"
+    ],
+    "stockQuantity": 2,
+    "isFeatured": true,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-11-14T05:18:44.484Z",
+    "updatedAt": "2026-11-22T19:31:07.833Z",
+    "soldCount": 8,
+    "category": {
+      "id": "phu-kien",
+      "slug": "phu-kien",
+      "name": "PHỤ KIỆN",
+      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
+      "image": "/images/categories/accessories.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "pv-35137236-fc9e-4a7c-97e6-9493a0d5b61d",
+        "productId": "p-ed20cac6-0df3-4f15-a143-ac02d994fccd",
+        "sku": "TTDK-DNM-FREESIZE",
+        "color": "Denim Blue",
+        "size": "FREESIZE",
+        "price": 179000,
+        "stockQuantity": 10,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:21:41.069Z"
+      }
+    ]
+  },
+  {
+    "id": "p001",
+    "slug": "essential-cotton-t-shirt",
+    "name": "Essential Cotton T-Shirt",
+    "description": "Áo thun cotton form regular, chất liệu mềm mại, thấm hút tốt, dễ phối cho mọi outfit hàng ngày.",
+    "shortDescription": null,
+    "price": 299000,
+    "originalPrice": 399000,
+    "gender": "unisex",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "basic",
+      "minimal"
+    ],
+    "badge": "BEST SELLER",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.5,
+    "reviewCount": 2,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_3_anh_chup_man_hinh_2026_09_17_155543.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_3_anh_chup_man_hinh_2026_09_17_155553.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_3_anh_chup_man_hinh_2026_09_17_155601.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_3_anh_chup_man_hinh_2026_09_17_155616.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_3_anh_chup_man_hinh_2026_09_17_155635.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_3_anh_chup_man_hinh_2026_09_17_155646.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "XS"
+    ],
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "stockQuantity": 190,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-14T05:38:29.909Z",
+    "soldCount": 110,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p002",
+    "slug": "oversized-basic-tee",
+    "name": "Oversized Basic Tee",
+    "description": "Form oversized rộng rãi, vai rơi nhẹ, phù hợp phong cách streetstyle tối giản.",
+    "shortDescription": null,
+    "price": 329000,
+    "originalPrice": 329000,
+    "gender": "unisex",
+    "categoryId": "tops",
+    "categorySlug": "tops",
+    "styles": [
+      "basic",
+      "streetstyle"
+    ],
+    "badge": "NEW",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.5,
+    "reviewCount": 76,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160300.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160310.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "stockQuantity": 92,
+    "isFeatured": true,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:55.802Z",
+    "soldCount": 100,
+    "category": {
+      "id": "tops",
+      "slug": "tops",
+      "name": "TOPS",
+      "description": "Áo thun, áo sơ mi và áo len được chọn lọc kỹ về chất liệu.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p003",
+    "slug": "classic-white-shirt",
+    "name": "Classic White Shirt",
+    "description": "Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.Áo sơ mi form slim fit, vải cotton pha, phù hợp đi làm lẫn dạo phố.",
+    "shortDescription": null,
+    "price": 339000,
+    "originalPrice": 699000,
+    "gender": "men",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "minimal"
+    ],
+    "badge": "BEST SELLER",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 3,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_4_anh_chup_man_hinh_2026_09_25_160154.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_4_anh_chup_man_hinh_2026_09_25_160201.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_4_anh_chup_man_hinh_2026_09_25_160209.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_4_anh_chup_man_hinh_2026_09_25_160219.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_vest_ao_vest_4_anh_chup_man_hinh_2026_09_25_160227.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black",
+      "White",
+      "Navy"
+    ],
+    "stockQuantity": 78,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:45.839Z",
+    "soldCount": 101,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p004",
+    "slug": "linen-blend-shirt",
+    "name": "Linen Blend Shirt",
+    "description": "Áo sơ mi vải linen pha, thoáng mát, mang hơi hướng vintage nhẹ nhàng.",
+    "shortDescription": null,
+    "price": 499000,
+    "originalPrice": 499000,
+    "gender": "men",
+    "categoryId": "tops",
+    "categorySlug": "tops",
+    "styles": [
+      "smart-casual",
+      "vintage"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.4,
+    "reviewCount": 41,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_8_anh_chup_man_hinh_2026_09_18_093700.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_8_anh_chup_man_hinh_2026_09_18_093711.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_8_anh_chup_man_hinh_2026_09_18_093720.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_8_anh_chup_man_hinh_2026_09_18_093731.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_8_anh_chup_man_hinh_2026_09_18_093740.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_8_anh_chup_man_hinh_2026_09_18_093751.png"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "S"
+    ],
+    "colors": [
+      "Beige",
+      "Black",
+      "Denim Blue"
+    ],
+    "stockQuantity": 4,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:48.190Z",
+    "soldCount": 109,
+    "category": {
+      "id": "tops",
+      "slug": "tops",
+      "name": "TOPS",
+      "description": "Áo thun, áo sơ mi và áo len được chọn lọc kỹ về chất liệu.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p005",
+    "slug": "straight-fit-jeans",
+    "name": "Straight Fit Jeans",
+    "description": "Quần jeans form straight fit basic, dễ phối, bền màu sau nhiều lần giặt.",
+    "shortDescription": null,
+    "price": 549000,
+    "originalPrice": 699000,
+    "gender": "men",
+    "categoryId": "quan",
+    "categorySlug": "quan",
+    "styles": [
+      "basic",
+      "streetstyle"
+    ],
+    "badge": "BEST SELLER",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.6,
+    "reviewCount": 152,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_3_anh_chup_man_hinh_2026_09_24_094717.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_3_anh_chup_man_hinh_2026_09_24_094732.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_3_anh_chup_man_hinh_2026_09_24_094742.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_jean_quan_jean_3_anh_chup_man_hinh_2026_09_24_094754.png"
+    ],
+    "sizes": [
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black",
+      "Denim Blue"
+    ],
+    "stockQuantity": 75,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:53.455Z",
+    "soldCount": 104,
+    "category": {
+      "id": "quan",
+      "slug": "quan",
+      "name": "QUẦN",
+      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
+      "image": "/images/categories/bottoms.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p006",
+    "slug": "tapered-trousers",
+    "name": "Tapered Trousers",
+    "description": "Quần âu ống côn nhẹ, phù hợp đi làm hoặc phối cùng áo sơ mi cho set đồ công sở.",
+    "shortDescription": null,
+    "price": 879000,
+    "originalPrice": 879000,
+    "gender": "men",
+    "categoryId": "bottoms",
+    "categorySlug": "bottoms",
+    "styles": [
+      "smart-casual",
+      "minimal"
+    ],
+    "badge": "NEW",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.5,
+    "reviewCount": 63,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_1_anh_chup_man_hinh_2026_09_18_161302.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_1_anh_chup_man_hinh_2026_09_18_161318.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_1_anh_chup_man_hinh_2026_09_18_161326.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_1_anh_chup_man_hinh_2026_09_18_161336.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_1_anh_chup_man_hinh_2026_09_18_161509.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_tay_quan_tay_1_anh_chup_man_hinh_2026_09_18_161516.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black",
+      "khaki",
+      "Beige"
+    ],
+    "stockQuantity": 5,
+    "isFeatured": true,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-14T06:13:15.679Z",
+    "soldCount": 103,
+    "category": {
+      "id": "bottoms",
+      "slug": "bottoms",
+      "name": "BOTTOMS",
+      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p009",
+    "slug": "structured-blazer",
+    "name": "Structured Blazer",
+    "description": "Blazer form vai vuông nhẹ, hoàn thiện set đồ công sở tối giản.",
+    "shortDescription": null,
+    "price": 1099000,
+    "originalPrice": 1399000,
+    "gender": "women",
+    "categoryId": "outerwear",
+    "categorySlug": "outerwear",
+    "styles": [
+      "smart-casual",
+      "minimal"
+    ],
+    "badge": "NEW",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.8,
+    "reviewCount": 44,
+    "images": [
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_172949.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_172954.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_173001.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_173010.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XS"
+    ],
+    "colors": [
+      "Black",
+      "Beige",
+      "Navy",
+      "Grey"
+    ],
+    "stockQuantity": 257,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:47.720Z",
+    "soldCount": 104,
+    "category": {
+      "id": "outerwear",
+      "slug": "outerwear",
+      "name": "OUTERWEAR",
+      "description": "Áo khoác giữ ấm và tôn dáng, phù hợp thời tiết chuyển mùa.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_172949.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p0103",
+    "slug": "dam-thun-nu-tay-ngan-cotton-dang-suong",
+    "name": "Đầm Thun Nữ Tay Ngắn Cotton Dáng Suông",
+    "description": "Đầm Thun Nữ Tay Ngắn Cotton Dáng Suông",
+    "shortDescription": null,
+    "price": 499000,
+    "originalPrice": 499000,
+    "gender": "women",
+    "categoryId": "vay",
+    "categorySlug": "vay",
+    "styles": [
+      "basic",
+      "sporty-chic",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790616051855_f9jw3s.webp",
+      "/api/v1/media/img_1790616053076_nidmsx.webp",
+      "/api/v1/media/img_1790616054253_uupam2.webp",
+      "/api/v1/media/img_1790616055317_hzfx2o.webp"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Grey"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:21:50.105Z",
+    "updatedAt": "2026-11-13T21:59:46.310Z",
+    "soldCount": 4,
+    "category": {
+      "id": "vay",
+      "slug": "vay",
+      "name": "VÁY",
+      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
+      "image": "/images/categories/women.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p015",
+    "slug": "basic-hoodie",
+    "name": "Basic Hoodie",
+    "description": "Hoodie basic form regular, chất liệu dày dặn, giữ ấm tốt cho mùa se lạnh.",
+    "shortDescription": null,
+    "price": 449000,
+    "originalPrice": 699000,
+    "gender": "unisex",
+    "categoryId": "tops",
+    "categorySlug": "tops",
+    "styles": [
+      "basic",
+      "streetstyle"
+    ],
+    "badge": "BEST SELLER",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.7,
+    "reviewCount": 103,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_1_anh_chup_man_hinh_2026_09_16_133048.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_1_anh_chup_man_hinh_2026_09_16_133056.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_1_anh_chup_man_hinh_2026_09_16_133113.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_1_anh_chup_man_hinh_2026_09_16_133122.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_1_anh_chup_man_hinh_2026_09_16_133153.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_ni_ao_ni_1_anh_chup_man_hinh_2026_09_16_133201.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XS",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Brown",
+      "Cream"
+    ],
+    "stockQuantity": 98,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:36:12.218Z",
+    "soldCount": 99,
+    "category": {
+      "id": "tops",
+      "slug": "tops",
+      "name": "TOPS",
+      "description": "Áo thun, áo sơ mi và áo len được chọn lọc kỹ về chất liệu.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p017",
+    "slug": "cargo-pants",
+    "name": "Cargo Pants",
+    "description": "Quần cargo nhiều túi tiện dụng, form relax fit thoải mái vận động.",
+    "shortDescription": null,
+    "price": 529000,
+    "originalPrice": 649000,
+    "gender": "unisex",
+    "categoryId": "bottoms",
+    "categorySlug": "bottoms",
+    "styles": [
+      "streetstyle",
+      "sporty-chic"
+    ],
+    "badge": "SALE",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.5,
+    "reviewCount": 78,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_2_anh_chup_man_hinh_2026_09_25_145652.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_2_anh_chup_man_hinh_2026_09_25_145704.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_2_anh_chup_man_hinh_2026_09_25_145713.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_2_anh_chup_man_hinh_2026_09_25_145723.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_2_anh_chup_man_hinh_2026_09_25_145741.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_2_anh_chup_man_hinh_2026_09_25_145753.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_2_anh_chup_man_hinh_2026_09_25_145809.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black",
+      "khaki",
+      "Beige"
+    ],
+    "stockQuantity": 96,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:43.198Z",
+    "soldCount": 101,
+    "category": {
+      "id": "bottoms",
+      "slug": "bottoms",
+      "name": "BOTTOMS",
+      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p019",
+    "slug": "canvas-sneakers",
+    "name": "Canvas Sneakers",
+    "description": "Giày sneaker canvas tối giản, dễ phối với hầu hết trang phục hàng ngày.",
+    "shortDescription": null,
+    "price": 649000,
+    "originalPrice": 649000,
+    "gender": "unisex",
+    "categoryId": "phu-kien",
+    "categorySlug": "phu-kien",
+    "styles": [
+      "basic",
+      "minimal"
+    ],
+    "badge": "BEST SELLER",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.6,
+    "reviewCount": 112,
+    "images": [
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_giay_dep_dep_1_anh_chup_man_hinh_2026_09_27_182644.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_giay_dep_dep_1_anh_chup_man_hinh_2026_09_27_182652.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_giay_dep_dep_1_anh_chup_man_hinh_2026_09_27_182659.png"
+    ],
+    "sizes": [
+      "39"
+    ],
+    "colors": [
+      "White",
+      "Black",
+      "Beige"
+    ],
+    "stockQuantity": 0,
+    "isFeatured": true,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:49.126Z",
+    "soldCount": 102,
+    "category": {
+      "id": "phu-kien",
+      "slug": "phu-kien",
+      "name": "PHỤ KIỆN",
+      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
+      "image": "/images/categories/accessories.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p020",
+    "slug": "chunky-sneakers",
+    "name": "Chunky Sneakers",
+    "description": "Giày sneaker đế dày phong cách thể thao, tăng chiều cao nhẹ.",
+    "shortDescription": null,
+    "price": 899000,
+    "originalPrice": 1099000,
+    "gender": "unisex",
+    "categoryId": "phu-kien",
+    "categorySlug": "phu-kien",
+    "styles": [
+      "sporty-chic",
+      "streetstyle"
+    ],
+    "badge": "SALE",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.5,
+    "reviewCount": 66,
+    "images": [
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_giay_dep_dep_4_anh_chup_man_hinh_2026_09_27_183250.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_giay_dep_dep_4_anh_chup_man_hinh_2026_09_27_183258.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_giay_dep_dep_4_anh_chup_man_hinh_2026_09_27_183305.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_giay_dep_dep_4_brown.png"
+    ],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "stockQuantity": 94,
+    "isFeatured": true,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:52.047Z",
+    "soldCount": 103,
+    "category": {
+      "id": "phu-kien",
+      "slug": "phu-kien",
+      "name": "PHỤ KIỆN",
+      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
+      "image": "/images/categories/accessories.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p022",
+    "slug": "leather-belt",
+    "name": "Leather Belt",
+    "description": "Thắt lưng da thật khóa kim loại tối giản, hoàn thiện set đồ công sở.",
+    "shortDescription": null,
+    "price": 299000,
+    "originalPrice": 499000,
+    "gender": "men",
+    "categoryId": "phu-kien",
+    "categorySlug": "phu-kien",
+    "styles": [
+      "smart-casual",
+      "minimal"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.6,
+    "reviewCount": 22,
+    "images": [
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_tui_vi_balo_tui_1_anh_chup_man_hinh_2026_09_28_010233.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_tui_vi_balo_tui_1_anh_chup_man_hinh_2026_09_28_010244.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_tui_vi_balo_tui_1_anh_chup_man_hinh_2026_09_28_010253.png"
+    ],
+    "sizes": [
+      "one size"
+    ],
+    "colors": [
+      "Black",
+      "Brown"
+    ],
+    "stockQuantity": 96,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:51.105Z",
+    "soldCount": 102,
+    "category": {
+      "id": "phu-kien",
+      "slug": "phu-kien",
+      "name": "PHỤ KIỆN",
+      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
+      "image": "/images/categories/accessories.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p023",
+    "slug": "bucket-hat",
+    "name": "Bucket Hat",
+    "description": "Mũ bucket form basic, phụ kiện điểm nhấn cho outfit streetstyle.",
+    "shortDescription": "",
+    "price": 179000,
+    "originalPrice": 229000,
+    "gender": "unisex",
+    "categoryId": "phu-kien",
+    "categorySlug": "phu-kien",
+    "styles": [
+      "streetstyle",
+      "sporty-chic"
+    ],
+    "badge": "BEST SELLER",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.3,
+    "reviewCount": 31,
+    "images": [
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013347.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013353.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013402.png",
+      "/uploads/routine_phu_kien_20261107t221439z_1_001_phu_kien_non_bang_do_mu_1_anh_chup_man_hinh_2026_09_28_013408.png"
+    ],
+    "sizes": [
+      "ONE-SIZE",
+      "39",
+      "40",
+      "41",
+      "42"
+    ],
+    "colors": [
+      "Black",
+      "Olive",
+      "Brown"
+    ],
+    "stockQuantity": 96,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-14T05:19:34.235Z",
+    "soldCount": 101,
+    "category": {
+      "id": "phu-kien",
+      "slug": "phu-kien",
+      "name": "PHỤ KIỆN",
+      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
+      "image": "/images/categories/accessories.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "pv-0bc86cdc-1f7e-480a-b1f1-3af2f32c118c",
+        "productId": "p023",
+        "sku": "BH-BRN-40",
+        "color": "Brown",
+        "size": "40",
+        "price": 179000,
+        "stockQuantity": 6,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-216785e7-a42c-409f-b031-78c8219003ab",
+        "productId": "p023",
+        "sku": "BH-OLV-39",
+        "color": "Olive",
+        "size": "39",
+        "price": 179000,
+        "stockQuantity": 6,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-4d119976-3599-4693-a28c-bc5331039601",
+        "productId": "p023",
+        "sku": "BH-BRN-ONESIZE",
+        "color": "Brown",
+        "size": "ONE-SIZE",
+        "price": 179000,
+        "stockQuantity": 6,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-528281f2-9616-47b5-af67-48a160f00d81",
+        "productId": "p023",
+        "sku": "BH-BLK-ONESIZE",
+        "color": "Black",
+        "size": "ONE-SIZE",
+        "price": 179000,
+        "stockQuantity": 7,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-540f83f4-b0ab-4088-83c7-44c50fe0c0d1",
+        "productId": "p023",
+        "sku": "BH-BRN-39",
+        "color": "Brown",
+        "size": "39",
+        "price": 179000,
+        "stockQuantity": 6,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-606644bb-68cb-4154-bea8-3e817dcf33f6",
+        "productId": "p023",
+        "sku": "BH-BLK-41",
+        "color": "Black",
+        "size": "41",
+        "price": 179000,
+        "stockQuantity": 7,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-66b62229-00c7-41a7-aacd-3ba366909ef9",
+        "productId": "p023",
+        "sku": "BH-BLK-42",
+        "color": "Black",
+        "size": "42",
+        "price": 179000,
+        "stockQuantity": 7,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-82697d0e-125e-4e55-9468-8b44a4d09e00",
+        "productId": "p023",
+        "sku": "BH-OLV-ONESIZE",
+        "color": "Olive",
+        "size": "ONE-SIZE",
+        "price": 179000,
+        "stockQuantity": 7,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-92f73710-5ae4-414f-a6c1-8b7e23df2f0c",
+        "productId": "p023",
+        "sku": "BH-BLK-39",
+        "color": "Black",
+        "size": "39",
+        "price": 179000,
+        "stockQuantity": 7,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-970ac166-a297-4e88-ac60-380dac8017e2",
+        "productId": "p023",
+        "sku": "BH-BRN-41",
+        "color": "Brown",
+        "size": "41",
+        "price": 179000,
+        "stockQuantity": 6,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-b099f3a1-b0a2-4768-9d39-9600ce1a0f77",
+        "productId": "p023",
+        "sku": "BH-BRN-42",
+        "color": "Brown",
+        "size": "42",
+        "price": 179000,
+        "stockQuantity": 6,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-d815fd7f-6f1f-4fd6-8548-b3237ddb96a3",
+        "productId": "p023",
+        "sku": "BH-OLV-40",
+        "color": "Olive",
+        "size": "40",
+        "price": 179000,
+        "stockQuantity": 6,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-dce6af32-7fef-4c37-ab7b-c07910bab1fe",
+        "productId": "p023",
+        "sku": "BH-OLV-41",
+        "color": "Olive",
+        "size": "41",
+        "price": 179000,
+        "stockQuantity": 6,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-e059d0f2-c941-4088-93f8-a532e3e8e6a3",
+        "productId": "p023",
+        "sku": "BH-BLK-40",
+        "color": "Black",
+        "size": "40",
+        "price": 179000,
+        "stockQuantity": 7,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      },
+      {
+        "id": "pv-fb6f0472-a5a3-4f48-853a-93aebdb90c55",
+        "productId": "p023",
+        "sku": "BH-OLV-42",
+        "color": "Olive",
+        "size": "42",
+        "price": 179000,
+        "stockQuantity": 6,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-14T05:19:34.235Z"
+      }
+    ]
+  },
+  {
+    "id": "p024",
+    "slug": "wool-blend-coat",
+    "name": "Wool Blend Coat",
+    "description": "Áo khoác dạ pha len, form dáng thanh lịch, giữ ấm tốt cho mùa đông.",
+    "shortDescription": null,
+    "price": 1399000,
+    "originalPrice": 1799000,
+    "gender": "unisex",
+    "categoryId": "outerwear",
+    "categorySlug": "outerwear",
+    "styles": [
+      "minimal",
+      "smart-casual"
+    ],
+    "badge": "BEST SELLER",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.8,
+    "reviewCount": 48,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_12_anh_chup_man_hinh_2026_09_16_110112.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_12_anh_chup_man_hinh_2026_09_16_110137.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_12_anh_chup_man_hinh_2026_09_16_110151.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_12_anh_chup_man_hinh_2026_09_16_110215.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_12_anh_chup_man_hinh_2026_09_16_110223.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_12_anh_chup_man_hinh_2026_09_16_110338.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "camel",
+      "Black",
+      "Brown",
+      "Olive",
+      "Grey"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:52.985Z",
+    "soldCount": 104,
+    "category": {
+      "id": "outerwear",
+      "slug": "outerwear",
+      "name": "OUTERWEAR",
+      "description": "Áo khoác giữ ấm và tôn dáng, phù hợp thời tiết chuyển mùa.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_172949.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p025",
+    "slug": "relaxed-fit-polo",
+    "name": "Relaxed Fit Polo",
+    "description": "Áo polo form relaxed, chất liệu piqué thoáng mát, dễ phối đi làm hoặc đi chơi.",
+    "shortDescription": null,
+    "price": 359000,
+    "originalPrice": 359000,
+    "gender": "men",
+    "categoryId": "tops",
+    "categorySlug": "tops",
+    "styles": [
+      "smart-casual",
+      "basic"
+    ],
+    "badge": "NEW",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.5,
+    "reviewCount": 57,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_17_155024.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_17_155040.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_17_155051.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_17_155100.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": true,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:51.574Z",
+    "soldCount": 101,
+    "category": {
+      "id": "tops",
+      "slug": "tops",
+      "name": "TOPS",
+      "description": "Áo thun, áo sơ mi và áo len được chọn lọc kỹ về chất liệu.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p026",
+    "slug": "high-waist-jeans",
+    "name": "High Waist Jeans",
+    "description": "Quần jeans lưng cao tôn dáng, chất liệu co giãn nhẹ, dễ mặc cả ngày.",
+    "shortDescription": null,
+    "price": 599000,
+    "originalPrice": 799000,
+    "gender": "women",
+    "categoryId": "quan",
+    "categorySlug": "quan",
+    "styles": [
+      "basic",
+      "vintage"
+    ],
+    "badge": "SALE",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.6,
+    "reviewCount": 84,
+    "images": [
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_jean_quan_jean_1_anh_chup_man_hinh_2026_09_26_024257.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_jean_quan_jean_1_anh_chup_man_hinh_2026_09_26_024305.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_jean_quan_jean_1_anh_chup_man_hinh_2026_09_26_024330.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_quan_jean_quan_jean_1_anh_chup_man_hinh_2026_09_26_024430.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XS"
+    ],
+    "colors": [
+      "blue",
+      "Grey",
+      "Denim Blue"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:46.778Z",
+    "soldCount": 103,
+    "category": {
+      "id": "quan",
+      "slug": "quan",
+      "name": "QUẦN",
+      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
+      "image": "/images/categories/bottoms.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p027",
+    "slug": "silk-blend-blouse",
+    "name": "Silk Blend Blouse",
+    "description": "Áo blouse pha lụa mềm mại, rủ đẹp, phù hợp môi trường công sở.",
+    "shortDescription": null,
+    "price": 349000,
+    "originalPrice": 549000,
+    "gender": "women",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "smart-casual",
+      "minimal"
+    ],
+    "badge": "NEW",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.7,
+    "reviewCount": 39,
+    "images": [
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_1_anh_chup_man_hinh_2026_09_25_171512.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_1_anh_chup_man_hinh_2026_09_25_171521.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_1_anh_chup_man_hinh_2026_09_25_171529.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_1_anh_chup_man_hinh_2026_09_25_171541.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_1_anh_chup_man_hinh_2026_09_25_171602.png",
+      "/uploads/routine_nu_20261107t221437z_1_001_nu_dam_dam_1_anh_chup_man_hinh_2026_09_25_171609.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XS"
+    ],
+    "colors": [
+      "Cream",
+      "Beige",
+      "White"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": true,
+    "isTrending": true,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:59:53.924Z",
+    "soldCount": 100,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p028",
+    "slug": "track-jacket",
+    "name": "Track Jacket",
+    "description": "Áo khoác track jacket phong cách thể thao, chất liệu nhẹ, thoáng khí.",
+    "shortDescription": null,
+    "price": 599000,
+    "originalPrice": 599000,
+    "gender": "unisex",
+    "categoryId": "outerwear",
+    "categorySlug": "outerwear",
+    "styles": [
+      "sporty-chic",
+      "streetstyle"
+    ],
+    "badge": "LIMITED",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 4.4,
+    "reviewCount": 45,
+    "images": [
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_15_anh_chup_man_hinh_2026_09_16_113414.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_15_anh_chup_man_hinh_2026_09_16_113426.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_15_anh_chup_man_hinh_2026_09_16_113434.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_15_anh_chup_man_hinh_2026_09_16_113450.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_15_anh_chup_man_hinh_2026_09_16_113502.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_15_anh_chup_man_hinh_2026_09_16_113510.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_15_anh_chup_man_hinh_2026_09_16_113518.png",
+      "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_15_anh_chup_man_hinh_2026_09_16_113528.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black",
+      "Grey",
+      "Olive"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-07T02:33:06.000Z",
+    "updatedAt": "2026-11-13T21:36:17.794Z",
+    "soldCount": 99,
+    "category": {
+      "id": "outerwear",
+      "slug": "outerwear",
+      "name": "OUTERWEAR",
+      "description": "Áo khoác giữ ấm và tôn dáng, phù hợp thời tiết chuyển mùa.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_172949.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p0316",
+    "slug": "ao-khoac-nu-recycle-denim-loose",
+    "name": "Áo khoác nữ recycle denim.Loose",
+    "description": "Áo khoác nữ recycle denim.Loose",
+    "shortDescription": null,
+    "price": 899000,
+    "originalPrice": 899000,
+    "gender": "women",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "minimal",
+      "smart-casual",
+      "vintage"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790615203193_v9ll33.webp",
+      "/api/v1/media/img_1790615201910_chlgv3.webp",
+      "/api/v1/media/img_1790615206336_guyfea.webp",
+      "/api/v1/media/img_1790615204838_8dsx5u.webp"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Brown"
+    ],
+    "stockQuantity": 75,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:07:40.318Z",
+    "updatedAt": "2026-11-13T21:59:43.959Z",
+    "soldCount": 3,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p0947",
+    "slug": "ao-khoac-denim-nu-dark-navy-cuc-gai-form-regular",
+    "name": "Áo Khoác Denim Nữ Dark Navy Cúc Gài Form Regular",
+    "description": "Áo Khoác Denim Nữ Dark Navy Cúc Gài Form Regular phong cách cổ điển năng động vượt thời gian, dễ phối đồ cùng áo thun, chân váy hoặc quần jeans.",
+    "shortDescription": null,
+    "price": 799000,
+    "originalPrice": 799000,
+    "gender": "women",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "streetstyle",
+      "smart-casual",
+      "minimal"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Denim Dark Navy bền màu, đứng form",
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790614402132_a9ob0l.webp",
+      "/api/v1/media/img_1790614396719_50nt3p.webp"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "D/NAVY"
+    ],
+    "stockQuantity": 75,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T16:54:20.954Z",
+    "updatedAt": "2026-11-13T22:40:02.198Z",
+    "soldCount": 8,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609603956-202",
+        "productId": "p0947",
+        "sku": "10F25DJAW003-DNAVY-S",
+        "color": "D/NAVY",
+        "size": "S",
+        "price": 799000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:03.958Z"
+      },
+      {
+        "id": "var-1794609604651-527",
+        "productId": "p0947",
+        "sku": "10F25DJAW003-DNAVY-M",
+        "color": "D/NAVY",
+        "size": "M",
+        "price": 799000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:04.653Z"
+      },
+      {
+        "id": "var-1794609605133-40",
+        "productId": "p0947",
+        "sku": "10F25DJAW003-DNAVY-L",
+        "color": "D/NAVY",
+        "size": "L",
+        "price": 799000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:05.134Z"
+      }
+    ]
+  },
+  {
+    "id": "p2048",
+    "slug": "quan-denim-nu-relax",
+    "name": "Quần denim nữ. Relax",
+    "description": "Quần denim nữ. Relax",
+    "shortDescription": null,
+    "price": 849000,
+    "originalPrice": 849000,
+    "gender": "women",
+    "categoryId": "cat-jeans",
+    "categorySlug": "cat-jeans",
+    "styles": [
+      "basic",
+      "streetstyle",
+      "vintage",
+      "smart-casual"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790616187187_888791.webp",
+      "/api/v1/media/img_1790616179065_huuu3c.webp",
+      "/api/v1/media/img_1790616183945_tm6zws.webp",
+      "/api/v1/media/img_1790616188891_nia5eo.webp"
+    ],
+    "sizes": [
+      "24",
+      "26",
+      "28",
+      "30"
+    ],
+    "colors": [
+      "Navy"
+    ],
+    "stockQuantity": 20,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:24:22.049Z",
+    "updatedAt": "2026-11-13T21:59:44.431Z",
+    "soldCount": 8,
+    "category": {
+      "id": "cat-jeans",
+      "slug": "cat-jeans",
+      "name": "Jeans",
+      "description": "",
+      "image": "",
+      "type": "standard",
+      "parentId": "bottoms",
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p2615",
+    "slug": "tui-tai-che-coffee-lovers-5-da-nang-freesize",
+    "name": "Túi tái chế Coffee Lovers 5 đa năng. Freesize",
+    "description": "Form: Tote bag\n\nFabric: Poly\n\nCollection: Together In Times",
+    "shortDescription": null,
+    "price": 49000,
+    "originalPrice": 89000,
+    "gender": "unisex",
+    "categoryId": "phu-kien",
+    "categorySlug": "phu-kien",
+    "styles": [
+      "streetstyle"
+    ],
+    "badge": "NEW",
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790565974916_ph1k66.webp",
+      "/api/v1/media/img_1790565978044_p7b82y.webp",
+      "/api/v1/media/img_1790565978984_4o8xwo.webp"
+    ],
+    "sizes": [
+      "DEFAULT",
+      "Default"
+    ],
+    "colors": [
+      "green"
+    ],
+    "stockQuantity": 25,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T03:28:02.617Z",
+    "updatedAt": "2026-11-13T21:59:44.901Z",
+    "soldCount": 3,
+    "category": {
+      "id": "phu-kien",
+      "slug": "phu-kien",
+      "name": "PHỤ KIỆN",
+      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
+      "image": "/images/categories/accessories.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p2723",
+    "slug": "dam-nu-co-thuyen-ngang-form-straight",
+    "name": "Đầm nữ cổ thuyền ngang form straight",
+    "description": "Đầm dài nữ cổ thuyền thương hiệu Routine tay cộc sang trọng, tôn dáng quý phái dự tiệc hoặc gặp gỡ đối tác.",
+    "shortDescription": null,
+    "price": 899000,
+    "originalPrice": 899000,
+    "gender": "women",
+    "categoryId": "vay",
+    "categorySlug": "vay",
+    "styles": [
+      "basic",
+      "minimal",
+      "smart-casual"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Polyester cao cấp, mềm mịn, hạn chế nhăn",
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790615890400_o083ze.webp",
+      "/api/v1/media/img_1790615886338_3g2r2r.webp",
+      "/api/v1/media/img_1790615889187_mfap2j.webp",
+      "/api/v1/media/img_1790615891533_nsqsvt.webp"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "BLACK",
+      "GREEN"
+    ],
+    "stockQuantity": 20,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:19:12.725Z",
+    "updatedAt": "2026-11-13T22:40:05.514Z",
+    "soldCount": 3,
+    "category": {
+      "id": "vay",
+      "slug": "vay",
+      "name": "VÁY",
+      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
+      "image": "/images/categories/women.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609606092-223",
+        "productId": "p2723",
+        "sku": "10F23DREW005-BLACK-XS",
+        "color": "BLACK",
+        "size": "XS",
+        "price": 899000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:06.094Z"
+      },
+      {
+        "id": "var-1794609606572-650",
+        "productId": "p2723",
+        "sku": "10F23DREW005-BLACK-S",
+        "color": "BLACK",
+        "size": "S",
+        "price": 899000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:06.574Z"
+      },
+      {
+        "id": "var-1794609607050-972",
+        "productId": "p2723",
+        "sku": "10F23DREW005-BLACK-M",
+        "color": "BLACK",
+        "size": "M",
+        "price": 899000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:07.051Z"
+      },
+      {
+        "id": "var-1794609607532-764",
+        "productId": "p2723",
+        "sku": "10F23DREW005-BLACK-L",
+        "color": "BLACK",
+        "size": "L",
+        "price": 899000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:07.533Z"
+      },
+      {
+        "id": "var-1794609608011-626",
+        "productId": "p2723",
+        "sku": "10F23DREW005-GREEN-XS",
+        "color": "GREEN",
+        "size": "XS",
+        "price": 899000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:08.013Z"
+      },
+      {
+        "id": "var-1794609608487-831",
+        "productId": "p2723",
+        "sku": "10F23DREW005-GREEN-S",
+        "color": "GREEN",
+        "size": "S",
+        "price": 899000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:08.489Z"
+      },
+      {
+        "id": "var-1794609608964-798",
+        "productId": "p2723",
+        "sku": "10F23DREW005-GREEN-M",
+        "color": "GREEN",
+        "size": "M",
+        "price": 899000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:08.966Z"
+      },
+      {
+        "id": "var-1794609609444-513",
+        "productId": "p2723",
+        "sku": "10F23DREW005-GREEN-L",
+        "color": "GREEN",
+        "size": "L",
+        "price": 899000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:09.446Z"
+      }
+    ]
+  },
+  {
+    "id": "p2913",
+    "slug": "ao-sweatshirt-nam-tay-dai-vai-ni-form-fitted",
+    "name": "Áo Sweatshirt Nam Tay Dài Vải Nỉ Form Fitted",
+    "description": "Áo Sweatshirt Nam Tay Dài Vải Nỉ Form Fitted\n",
+    "shortDescription": null,
+    "price": 579000,
+    "originalPrice": 579000,
+    "gender": "men",
+    "categoryId": "ao",
+    "categorySlug": "ao",
+    "styles": [
+      "basic",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790617219974_gkskag.png",
+      "/api/v1/media/img_1790617225996_wsa2uv.png",
+      "/api/v1/media/img_1790617229833_bn7fqs.png",
+      "/api/v1/media/img_1790617232626_ocfbmx.png",
+      "/api/v1/media/img_1790617235151_0q46h2.png",
+      "/api/v1/media/img_1790617240232_3vsu8s.png",
+      "/api/v1/media/img_1790617245968_8repjh.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Black",
+      "pumice-stone",
+      "Cream"
+    ],
+    "stockQuantity": 300,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:42:12.915Z",
+    "updatedAt": "2026-11-13T21:59:49.694Z",
+    "soldCount": 4,
+    "category": {
+      "id": "ao",
+      "slug": "ao",
+      "name": "ÁO",
+      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
+      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p3680",
+    "slug": "ao-khoac-tay-dai-nu-cao-co-phoi-mau-form-loose",
+    "name": "Áo Khoác Tay Dài Nữ Cao Cổ Phối Màu Form Loose",
+    "description": "Áo Khoác Tay Dài Nữ Cao Cổ Phối Màu Form Loose",
+    "shortDescription": null,
+    "price": 499000,
+    "originalPrice": 499000,
+    "gender": "women",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "basic",
+      "sporty-chic",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790614720251_wpirqa.webp",
+      "/api/v1/media/img_1790614718888_0249rw.webp",
+      "/api/v1/media/img_1790614715048_bk3o0i.webp",
+      "/api/v1/media/img_1790614717611_5w60ct.webp"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "White"
+    ],
+    "stockQuantity": 75,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T16:59:33.681Z",
+    "updatedAt": "2026-11-13T21:59:48.658Z",
+    "soldCount": 3,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p4235",
+    "slug": "ao-so-mi-tay-dai-nu-regular-cropped",
+    "name": "Áo sơ mi tay dài nữ. Regular cropped",
+    "description": "Áo sơ mi tay dài nữ. Regular cropped",
+    "shortDescription": null,
+    "price": 579000,
+    "originalPrice": 579000,
+    "gender": "women",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "basic",
+      "smart-casual",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790615374849_7qimz6.webp",
+      "/api/v1/media/img_1790615373146_lcleg6.webp",
+      "/api/v1/media/img_1790615381237_qgnbiy.webp",
+      "/api/v1/media/img_1790615376155_50fr46.webp"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "colors": [
+      "Navy"
+    ],
+    "stockQuantity": 75,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:12:14.236Z",
+    "updatedAt": "2026-11-13T21:59:52.515Z",
+    "soldCount": 5,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p5112",
+    "slug": "ao-khoac-the-thao-nu-chong-tia-uv-bo-chun-loose",
+    "name": "Áo khoác thể thao nữ chống tia UV bo chun loose",
+    "description": "Áo khoác thể thao nữ chống tia UV bo chun loose\n",
+    "shortDescription": null,
+    "price": 729000,
+    "originalPrice": 729000,
+    "gender": "women",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "basic",
+      "sporty-chic",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790614536721_1a9sg1.webp",
+      "/api/v1/media/img_1790614537926_riphpw.webp",
+      "/api/v1/media/img_1790614529970_gcwt20.webp",
+      "/api/v1/media/img_1790614526920_xnlxt2.webp",
+      "/api/v1/media/img_1790614531167_atlamu.webp",
+      "/api/v1/media/img_1790614535126_9l68f8.webp"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Beige"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T16:57:55.113Z",
+    "updatedAt": "2026-11-13T21:59:56.740Z",
+    "soldCount": 1,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p5265",
+    "slug": "dam-sat-nach-nu-xep-ly-a-line",
+    "name": "Đầm sát nách nữ xếp ly. A line",
+    "description": "Đầm sát nách nữ xếp ly. A line",
+    "shortDescription": null,
+    "price": 899000,
+    "originalPrice": 899000,
+    "gender": "women",
+    "categoryId": "vay",
+    "categorySlug": "vay",
+    "styles": [
+      "basic",
+      "streetstyle",
+      "minimal",
+      "smart-casual",
+      "vintage"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790615979321_zzw67c.webp",
+      "/api/v1/media/img_1790615975723_g7e7pj.webp",
+      "/api/v1/media/img_1790615978240_fiyztd.webp",
+      "/api/v1/media/img_1790615980338_7i1l86.webp",
+      "/api/v1/media/img_1790615984090_dxbcy7.webp",
+      "/api/v1/media/img_1790615977146_dwkomb.webp"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "White"
+    ],
+    "stockQuantity": 75,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:20:25.267Z",
+    "updatedAt": "2026-09-28T17:20:25.267Z",
+    "soldCount": 0,
+    "category": {
+      "id": "vay",
+      "slug": "vay",
+      "name": "VÁY",
+      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
+      "image": "/images/categories/women.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p5439",
+    "slug": "ao-khoac-nu-regular",
+    "name": "Áo khoác nữ. Regular",
+    "description": "Áo khoác gió nhẹ nữ Regular phom vừa vặn che chắn bảo vệ da, phối màu thời thượng.",
+    "shortDescription": null,
+    "price": 579000,
+    "originalPrice": 579000,
+    "gender": "women",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "sporty-chic",
+      "streetstyle",
+      "basic"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": "Nylon / Polyester thoáng mát chống gió",
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790571658570_cjjv37.webp",
+      "/api/v1/media/img_1790571657185_jzwuo4.webp",
+      "/api/v1/media/img_1790571660881_yfnp77.webp",
+      "/api/v1/media/img_1790571659700_bvur9j.webp"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "BEIGE",
+      "PINK"
+    ],
+    "stockQuantity": 80,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T05:12:05.440Z",
+    "updatedAt": "2026-11-13T22:40:09.825Z",
+    "soldCount": 1,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": [
+      {
+        "id": "var-1794609610398-325",
+        "productId": "p5439",
+        "sku": "10S26WJAW005-BEIGE-S",
+        "color": "BEIGE",
+        "size": "S",
+        "price": 579000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:10.400Z"
+      },
+      {
+        "id": "var-1794609610874-358",
+        "productId": "p5439",
+        "sku": "10S26WJAW005-BEIGE-M",
+        "color": "BEIGE",
+        "size": "M",
+        "price": 579000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:10.876Z"
+      },
+      {
+        "id": "var-1794609611350-498",
+        "productId": "p5439",
+        "sku": "10S26WJAW005-BEIGE-L",
+        "color": "BEIGE",
+        "size": "L",
+        "price": 579000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:11.352Z"
+      },
+      {
+        "id": "var-1794609611827-189",
+        "productId": "p5439",
+        "sku": "10S26WJAW005-PINK-S",
+        "color": "PINK",
+        "size": "S",
+        "price": 579000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:11.828Z"
+      },
+      {
+        "id": "var-1794609612305-966",
+        "productId": "p5439",
+        "sku": "10S26WJAW005-PINK-M",
+        "color": "PINK",
+        "size": "M",
+        "price": 579000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:12.306Z"
+      },
+      {
+        "id": "var-1794609612780-113",
+        "productId": "p5439",
+        "sku": "10S26WJAW005-PINK-L",
+        "color": "PINK",
+        "size": "L",
+        "price": 579000,
+        "stockQuantity": 25,
+        "status": "ACTIVE",
+        "createdAt": "2026-11-13T22:40:12.782Z"
+      }
+    ]
+  },
+  {
+    "id": "p6989",
+    "slug": "ao-phao-nu-chan-bong-co-roi-form-regular",
+    "name": "Áo phao nữ chần bông cổ rời form regular",
+    "description": "Áo phao nữ chần bông cổ rời form regular",
+    "shortDescription": null,
+    "price": 999000,
+    "originalPrice": 999000,
+    "gender": "women",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "minimal",
+      "smart-casual",
+      "vintage",
+      "streetstyle",
+      "basic"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790615139207_xifv8w.webp",
+      "/api/v1/media/img_1790615107021_nqr1w3.webp",
+      "/api/v1/media/img_1790615105979_8rgg8v.webp"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Olive"
+    ],
+    "stockQuantity": 10,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:06:06.991Z",
+    "updatedAt": "2026-09-28T17:06:06.991Z",
+    "soldCount": 0,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p8436",
+    "slug": "ao-khoac-bomber-nam-da-lon-khoa-keo-form-regular",
+    "name": "Áo Khoác Bomber Nam Da Lộn Khóa Kéo Form Regular",
+    "description": "Áo khoác bomber nam form regular mang đậm phong cách hiện đại pha chút cổ điển, dễ dàng trở thành điểm nhấn trong mọi outfit. Thiết kế dáng ngắn, bo gấu và cổ tay mang lại vẻ năng động, nam tính, phù hợp cho nhiều dịp từ đi làm, dạo phố đến những buổi gặp gỡ cuối tuần.\n- Chất liệu Da lộn: Bề mặt mềm mịn, sang trọng và giữ ấm tốt. Chất vải da lộn giúp áo có độ đứng phom tự nhiên, dễ phối đồ và mang lại cảm giác ấm áp trong thời tiết mát lạnh.\n- Form Regular: Dáng vừa vặn, không quá ôm cũng không quá rộng, tạo sự cân đối và thoải mái khi mặc. Phù hợp với nhiều dáng người, dễ phối cùng quần jean, kaki hoặc quần tây.\nHướng dẫn sử dụng và bảo quản:\n+ Giặt ở nhiệt độ bình thường, với đồ có màu tương tự\n+ Không được dùng hóa chất tẩy\n+ Hạn chế sử dụng máy sấy, ủi ở nhiệt độ bình thường\n+ Lột mặt trái khi giặt và phơi\n",
+    "shortDescription": null,
+    "price": 799000,
+    "originalPrice": 799000,
+    "gender": "men",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "basic",
+      "streetstyle"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790607659023_qxykp7.png",
+      "/api/v1/media/img_1790607669395_5hyyw6.png",
+      "/api/v1/media/img_1790607681106_ya7vy9.png",
+      "/api/v1/media/img_1790607695409_7wr4g0.png",
+      "/api/v1/media/img_1790607706881_vlu5ym.png",
+      "/api/v1/media/img_1790607712823_zwrcll.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Denim Blue",
+      "White"
+    ],
+    "stockQuantity": 200,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T15:03:28.438Z",
+    "updatedAt": "2026-11-13T21:59:47.251Z",
+    "soldCount": 4,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p8618",
+    "slug": "ao-khoac-nu-co-mu-tay-dai-form-regular",
+    "name": "Áo Khoác Nữ Có Mũ Tay Dài Form Regular",
+    "description": "Áo Khoác Nữ Có Mũ Tay Dài Form Regular",
+    "shortDescription": null,
+    "price": 479000,
+    "originalPrice": 479000,
+    "gender": "women",
+    "categoryId": "ao-khoac",
+    "categorySlug": "ao-khoac",
+    "styles": [
+      "basic",
+      "minimal",
+      "streetstyle",
+      "smart-casual"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790615032758_z911c0.webp",
+      "/api/v1/media/img_1790615031716_67ajbw.webp",
+      "/api/v1/media/img_1790615030395_9j0f7i.webp",
+      "/api/v1/media/img_1790615027546_cier82.webp"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:04:38.621Z",
+    "updatedAt": "2026-09-28T17:04:38.621Z",
+    "soldCount": 0,
+    "category": {
+      "id": "ao-khoac",
+      "slug": "ao-khoac",
+      "name": "ÁO KHOÁC",
+      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
+      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  },
+  {
+    "id": "p9984",
+    "slug": "dam-thun-slimme-nu-co-v-phoi-kieu-co-form-fitted",
+    "name": "Đầm Thun Slimme Nữ Cổ V Phối Kiểu Cổ Form Fitted",
+    "description": "Áo polo dệt kim tayĐầm Thun Slimme Nữ Cổ V Phối Kiểu Cổ Form Fitted ngắn nữ. Regular",
+    "shortDescription": null,
+    "price": 579000,
+    "originalPrice": 579000,
+    "gender": "women",
+    "categoryId": "vay",
+    "categorySlug": "vay",
+    "styles": [
+      "basic",
+      "streetstyle",
+      "vintage",
+      "smart-casual"
+    ],
+    "badge": null,
+    "status": "ACTIVE",
+    "materials": null,
+    "care": null,
+    "rating": 5,
+    "reviewCount": 0,
+    "images": [
+      "/api/v1/media/img_1790615778726_qjmzik.webp",
+      "/api/v1/media/img_1790615775304_3t78bd.webp",
+      "/api/v1/media/img_1790615776548_074dul.webp",
+      "/api/v1/media/img_1790615777699_6gpg6d.webp",
+      "/api/v1/media/img_1790615773899_b3wvgi.webp",
+      "/api/v1/media/img_1790615771415_ppvlsw.webp"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "stockQuantity": 100,
+    "isFeatured": false,
+    "isTrending": false,
+    "vector_x": null,
+    "vector_y": null,
+    "createdAt": "2026-09-28T17:17:29.987Z",
+    "updatedAt": "2026-11-13T21:59:50.165Z",
+    "soldCount": 7,
+    "category": {
+      "id": "vay",
+      "slug": "vay",
+      "name": "VÁY",
+      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
+      "image": "/images/categories/women.jpg",
+      "type": "standard",
+      "parentId": null,
+      "createdAt": "2026-09-07T02:33:06.000Z"
+    },
+    "variants": []
+  }
+]

@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
-const RAW_BACKEND = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api/v1')
+const isVercel = !!process.env.VERCEL;
+const isProduction = process.env.NODE_ENV === 'production';
+const RAW_BACKEND = (process.env.NEXT_PUBLIC_API_URL || '')
   .replace(/\/api\/v1\/?$/, '')
   .replace(/\/+$/, '');
+
+const shouldProxy = !isVercel && RAW_BACKEND && /^https?:\/\//.test(RAW_BACKEND) && !RAW_BACKEND.includes('localhost');
 
 const nextConfig = {
   reactStrictMode: true,
@@ -13,16 +17,11 @@ const nextConfig = {
     unoptimized: true,
   },
   async rewrites() {
-    // Chỉ rewrite sang backend ngoài khi RAW_BACKEND là URL tuyệt đối (vd: http://localhost:5001)
-    if (RAW_BACKEND && /^https?:\/\//.test(RAW_BACKEND)) {
+    if (shouldProxy) {
       return [
         {
-          source: '/api/v1/media/:path*',
-          destination: `${RAW_BACKEND}/api/v1/media/:path*`,
-        },
-        {
-          source: '/uploads/:path*',
-          destination: `${RAW_BACKEND}/uploads/:path*`,
+          source: '/api/v1/:path*',
+          destination: `${RAW_BACKEND}/api/v1/:path*`,
         },
       ];
     }

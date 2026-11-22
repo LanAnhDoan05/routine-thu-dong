@@ -3,6 +3,7 @@ import path from 'path';
 import { NextResponse } from 'next/server';
 
 const UPLOADS_DIR = path.resolve(process.cwd(), 'public/uploads');
+const MEDIA_DIR = path.resolve(process.cwd(), 'public/media');
 const RAW_API_BASE = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api/v1').trim().replace(/\/+$/, '');
 const API_BASE = RAW_API_BASE.endsWith('/api/v1') ? RAW_API_BASE : `${RAW_API_BASE}/api/v1`;
 
@@ -50,7 +51,10 @@ async function getBackendMedia(id) {
     });
   } catch (error) {
     console.error('[media route] Backend media request failed:', error);
-    return new NextResponse('Không thể tải hình ảnh từ máy chủ lưu trữ.', { status: 502 });
+    return new NextResponse(DEFAULT_SVG, {
+      status: 200,
+      headers: { 'Content-Type': 'image/svg+xml', 'Cache-Control': 'public, max-age=3600' },
+    });
   }
 }
 
@@ -64,11 +68,13 @@ export async function GET(request, { params }) {
   }
 
   const cleanFilename = path.basename(id);
-  const filePath = path.join(UPLOADS_DIR, cleanFilename);
+  const uploadPath = path.join(UPLOADS_DIR, cleanFilename);
+  const mediaPath = path.join(MEDIA_DIR, cleanFilename);
+  const targetPath = fs.existsSync(uploadPath) ? uploadPath : fs.existsSync(mediaPath) ? mediaPath : null;
 
-  if (fs.existsSync(filePath)) {
+  if (targetPath) {
     try {
-      const fileBuffer = fs.readFileSync(filePath);
+      const fileBuffer = fs.readFileSync(targetPath);
       const ext = path.extname(cleanFilename).toLowerCase();
       const contentType = MIME_MAP[ext] || 'image/jpeg';
 

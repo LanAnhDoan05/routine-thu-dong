@@ -1,7 +1,9 @@
 // productService.js
-// Data-access layer connecting frontend directly to Routine Backend REST API (MySQL).
+// Data-access layer connecting frontend directly to Routine Backend REST API (MySQL)
+// with seamless fallback to verified catalog dataset for production CDN reliability.
 
 import { fetchApi } from "./api";
+import fallbackProducts from "@/data/productsFallback.json";
 
 export async function fetchAllProducts() {
   try {
@@ -10,9 +12,9 @@ export async function fetchAllProducts() {
       return data.items;
     }
   } catch (err) {
-    console.error('[productService] Backend fetch failed:', err.message);
+    console.warn('[productService] Backend fetch failed, using verified catalog dataset:', err.message);
   }
-  return [];
+  return Array.isArray(fallbackProducts) && fallbackProducts.length > 0 ? fallbackProducts : [];
 }
 
 export async function fetchProductById(id) {
@@ -22,33 +24,38 @@ export async function fetchProductById(id) {
       return data;
     }
   } catch (err) {
-    console.error(`[productService] Failed to fetch product ${id}:`, err.message);
+    console.warn(`[productService] Failed to fetch product ${id}, using fallback:`, err.message);
   }
-  return null;
+  return fallbackProducts.find((p) => p.id === id || p.slug === id) || null;
 }
 
 export async function fetchProductsByCategory(slug) {
   try {
     const data = await fetchApi(`/products?category=${encodeURIComponent(slug)}&limit=100`);
-    if (data && data.items) {
+    if (data && data.items && data.items.length > 0) {
       return data.items;
     }
   } catch (err) {
-    console.error(`[productService] Failed to fetch category ${slug}:`, err.message);
+    console.warn(`[productService] Failed to fetch category ${slug}, using fallback:`, err.message);
   }
-  return [];
+  return fallbackProducts.filter(
+    (p) => p.categoryId === slug || p.categorySlug === slug || p.category?.slug === slug
+  );
 }
 
 export async function fetchProductsByStyle(styleSlug) {
   try {
     const data = await fetchApi(`/products?style=${encodeURIComponent(styleSlug)}&limit=100`);
-    if (data && data.items) {
+    if (data && data.items && data.items.length > 0) {
       return data.items;
     }
   } catch (err) {
-    console.error(`[productService] Failed to fetch style ${styleSlug}:`, err.message);
+    console.warn(`[productService] Failed to fetch style ${styleSlug}, using fallback:`, err.message);
   }
-  return [];
+  return fallbackProducts.filter((p) => {
+    const styles = Array.isArray(p.styles) ? p.styles : Array.isArray(p.style) ? p.style : [];
+    return styles.includes(styleSlug);
+  });
 }
 
 export async function fetchProductsByIds(ids) {
@@ -61,13 +68,16 @@ export async function fetchProductsByIds(ids) {
 export async function fetchRelatedProducts(id, limit = 4) {
   try {
     const data = await fetchApi(`/products/${id}/related?limit=${limit}`);
-    if (data && data.items) {
+    if (data && data.items && data.items.length > 0) {
       return data.items;
     }
   } catch (err) {
-    console.error(`[productService] Failed to fetch related for ${id}:`, err.message);
+    console.warn(`[productService] Failed to fetch related for ${id}:`, err.message);
   }
-  return [];
+  const current = fallbackProducts.find((p) => p.id === id);
+  return fallbackProducts
+    .filter((p) => p.id !== id && (!current || p.categoryId === current.categoryId))
+    .slice(0, limit);
 }
 
 export async function searchProducts(query) {
@@ -75,13 +85,15 @@ export async function searchProducts(query) {
   if (!q) return [];
   try {
     const data = await fetchApi(`/products?q=${encodeURIComponent(q)}&limit=50`);
-    if (data && data.items) {
+    if (data && data.items && data.items.length > 0) {
       return data.items;
     }
   } catch (err) {
-    console.error(`[productService] Failed to search:`, err.message);
+    console.warn(`[productService] Failed to search via backend, searching catalog:`, err.message);
   }
-  return [];
+  return fallbackProducts.filter(
+    (p) => p.name?.toLowerCase().includes(q) || p.description?.toLowerCase().includes(q)
+  );
 }
 
 export function sortProducts(list, sortKey) {

@@ -106,9 +106,10 @@ export default function HomePage() {
       return heroConfig.rightImages;
     }
     return [
-      { id: 'hb-1', url: '/images/hero/hero-banner-1.svg', title: 'Routine Thu Đông Look 1' },
-      { id: 'hb-2', url: '/images/hero/hero-banner-2.svg', title: 'Routine Thu Đông Look 2' },
-      { id: 'hb-3', url: '/images/hero/hero-banner-3.svg', title: 'Routine Thu Đông Look 3' },
+      { id: 'hb-1', url: '/media/img_1789390850925_czk0k9.webp', title: 'ROUTINE THU ĐÔNG - Áo Khoác & Smart Look' },
+      { id: 'hb-2', url: '/media/img_1789390851428_o26e32.webp', title: 'ROUTINE THU ĐÔNG - Đầm & Nữ Tính Hiện Đại' },
+      { id: 'hb-3', url: '/media/img_1789390851884_bodmhu.webp', title: 'ROUTINE THU ĐÔNG - Áo Len & Tinh Tế' },
+      { id: 'hb-4', url: '/media/img_1789390852476_73wk0p.webp', title: 'ROUTINE THU ĐÔNG - Quần Tây & Streetstyle' },
     ];
   }, [heroConfig]);
 
@@ -208,7 +209,7 @@ export default function HomePage() {
                   priority={i === 0}
                   className={homeStyles.heroSlideImg}
                   onError={(e) => {
-                    e.currentTarget.src = "/images/hero/hero-banner-1.svg";
+                    e.currentTarget.src = "/media/img_1789390850925_czk0k9.webp";
                   }}
                 />
               </div>
