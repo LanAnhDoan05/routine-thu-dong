@@ -3,17 +3,20 @@ export function getApiBase() {
   if (typeof window !== 'undefined') {
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const envBase = (process.env.NEXT_PUBLIC_API_URL || '').trim().replace(/\/+$/, '');
-    // Trên Vercel / Production: nếu chưa cấu hình hoặc trỏ nhầm localhost, dùng relative /api/v1
-    if (!isLocal && (!envBase || envBase.includes('localhost') || envBase.includes('127.0.0.1'))) {
-      return '/api/v1';
-    }
-    if (envBase) {
+    
+    if (envBase && (!envBase.includes('localhost') || isLocal)) {
       return envBase.endsWith('/api/v1') ? envBase : `${envBase}/api/v1`;
     }
-    return isLocal ? 'http://localhost:5001/api/v1' : '/api/v1';
+    
+    if (isLocal) {
+      return 'http://localhost:5001/api/v1';
+    }
+
+    // Trên Production Vercel: trỏ trực tiếp backend Vercel đang vận hành thực tế
+    return 'https://routine-thu-dong.vercel.app/api/v1';
   }
 
-  const raw = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001').trim().replace(/\/+$/, '');
+  const raw = (process.env.NEXT_PUBLIC_API_URL || 'https://routine-thu-dong.vercel.app').trim().replace(/\/+$/, '');
   return raw.endsWith('/api/v1') ? raw : `${raw}/api/v1`;
 }
 
