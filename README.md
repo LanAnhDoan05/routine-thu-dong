@@ -1,4 +1,4 @@
-# Routine — Smart Fashion E-Commerce & AI Stylist Platform
+# Routine Thu Đông — Smart Fashion E-Commerce & AI Stylist Platform
 
 > **Nền tảng thương mại điện tử thời trang cao cấp** kết hợp công nghệ **Smart Outfit**, **Trợ lý tư vấn tạo mẫu ảo AI Stylist thế hệ mới** (tích hợp Google Gemini AI & Bộ chuẩn hóa ngữ nghĩa thời trang tiếng Việt), **Hệ sinh thái phân tích tiếp thị đa nền tảng (Omni-channel Analytics)**, cổng thanh toán trực tuyến **VNPay Sandbox** và hệ thống quản trị **Admin Portal** hoàn chỉnh.
 
