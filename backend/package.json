@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "npx prisma generate",
+    "postinstall": "prisma generate",
     "start": "node ./bin/www",
     "dev": "node --watch ./bin/www",
     "test:ai-validation": "node --test tests/test_ai_request_validation.js",
