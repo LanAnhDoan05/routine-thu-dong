@@ -53,7 +53,7 @@ export default function ProfilePage() {
         <div className={styles.grid}>
           <div className={styles.infoGroup}>
             <span className={styles.label}>Họ và tên</span>
-            <span className={styles.value}>{user?.name || user?.fullName || "Khách hàng Routine Thu Đông"}</span>
+            <span className={styles.value}>{user?.name || user?.fullName || "Khách hàng Routine"}</span>
           </div>
           <div className={styles.infoGroup}>
             <span className={styles.label}>Số điện thoại</span>

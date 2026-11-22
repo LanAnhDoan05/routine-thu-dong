@@ -276,7 +276,7 @@ export default function DashboardPage() {
           <div>
             <h2 className={styles.sectionTitle}>Đơn Hàng Gần Đây ({recentOrders.length})</h2>
             <p style={{ fontSize: 12.5, color: "var(--color-text-secondary)", marginTop: 2 }}>
-              Các đơn hàng mới nhất đặt qua hệ thống Routine Thu Đông Storefront
+              Các đơn hàng mới nhất đặt qua hệ thống Routine Storefront
             </p>
           </div>
           <Link href="/orders" target="_blank" className={styles.viewAllBtn}>

@@ -46,12 +46,12 @@ export default function AIStylistFloatingWidget() {
     <div className={styles.aiFloatingRoot}>
       {/* Cửa sổ chat dạng Popup */}
       {isOpen && (
-        <div className={styles.aiPopupWindow} role="dialog" aria-label="Routine Thu Đông AI Stylist Chat">
+        <div className={styles.aiPopupWindow} role="dialog" aria-label="Routine AI Stylist Chat">
           <div className={styles.aiPopupHeader}>
             <div className={styles.headerLeft}>
               <div className={styles.onlineIndicator}></div>
               <div>
-                <h4 className={styles.headerTitle}>ROUTINE THU ĐÔNG AI STYLIST</h4>
+                <h4 className={styles.headerTitle}>ROUTINE AI STYLIST</h4>
                 <p className={styles.headerSubtitle}>
                   {currentProductId ? "Đang xem sản phẩm — Gợi ý phối đồ" : "Trợ lý thời trang trực tuyến"}
                 </p>

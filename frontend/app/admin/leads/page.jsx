@@ -180,7 +180,7 @@ export default function AdminLeadsPage() {
     <div className={styles.page}>
       <PageHeader
         title="Khách hàng cần tư vấn"
-        subtitle="Chỉ hiển thị những khách đã đồng ý chia sẻ hội thoại với chuyên viên Routine Thu Đông."
+        subtitle="Chỉ hiển thị những khách đã đồng ý chia sẻ hội thoại với chuyên viên Routine."
         actions={<button type="button" className={styles.refreshButton} onClick={loadLeads}>Làm mới</button>}
       />
 

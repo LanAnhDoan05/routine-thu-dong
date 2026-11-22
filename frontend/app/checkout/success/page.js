@@ -7,6 +7,7 @@ import CheckoutHeader from "@/components/checkout/CheckoutHeader";
 import EmptyState from "@/components/common/EmptyState";
 import Loading from "@/components/common/Loading";
 import { useOrders } from "@/context/OrderContext";
+import { trackEvent } from "@/lib/attribution";
 
 export default function OrderSuccessPage() {
   return (
@@ -27,6 +28,7 @@ function OrderSuccessInner() {
   useEffect(() => {
     let active = true;
     if (orderId) {
+      trackEvent({ action: "PURCHASE", metadata: { orderId } });
       fetchOrder(orderId).then((data) => {
         if (active) {
           if (data) setOrder(data);
@@ -78,7 +80,7 @@ function OrderSuccessInner() {
           ORDER CONFIRMED
         </h1>
         <p style={{ color: "var(--color-text-secondary)", marginBottom: 4 }}>
-          Cảm ơn bạn đã mua sắm cùng Routine Thu Đông.
+          Cảm ơn bạn đã mua sắm cùng Routine.
         </p>
         <p style={{ color: "var(--color-text-secondary)", marginBottom: 20 }}>
           Đơn hàng của bạn đã được tiếp nhận.

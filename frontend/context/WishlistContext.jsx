@@ -11,6 +11,7 @@ import {
   clearWishlistApi,
 } from "@/lib/wishlistService";
 import { useUser } from "@/context/UserContext";
+import { trackEvent } from "@/lib/attribution";
 
 const WishlistContext = createContext(null);
 
@@ -81,6 +82,7 @@ export function WishlistProvider({ children }) {
   const addToWishlist = useCallback(
     (id) => {
       if (!isLoggedIn || !user?.id) return;
+      trackEvent({ action: "WISHLIST", productId: id });
       setProductIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
       addItemApi(id)
         .then((res) => {
@@ -114,6 +116,7 @@ export function WishlistProvider({ children }) {
   const toggleWishlist = useCallback(
     (id) => {
       if (!isLoggedIn || !user?.id) return;
+      trackEvent({ action: "WISHLIST", productId: id });
       setProductIds((prev) =>
         prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
       );

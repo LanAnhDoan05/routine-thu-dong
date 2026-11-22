@@ -6,9 +6,9 @@ export default function Logo({ className = "" }) {
     <Link
       href="/"
       className={`${styles.logoLink} ${className}`}
-      aria-label="Routine Thu Đông — về trang chủ"
+      aria-label="Routine — về trang chủ"
     >
-      <span className={styles.brandName}>ROUTINE THU ĐÔNG</span>
+      <span className={styles.brandName}>ROUTINE</span>
     </Link>
   );
 }

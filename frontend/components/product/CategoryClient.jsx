@@ -9,6 +9,7 @@ import ProductSort from "@/components/product/ProductSort";
 import Modal from "@/components/common/Modal";
 import { getCategoryBySlug } from "@/lib/categoryService";
 import { filterProducts, sortProducts, fetchProductsByCategory } from "@/lib/productService";
+import { trackEvent } from "@/lib/attribution";
 
 export default function CategoryClient({ initialCategory, initialProducts = [], slug }) {
   const [category, setCategory] = useState(initialCategory);
@@ -21,6 +22,8 @@ export default function CategoryClient({ initialCategory, initialProducts = [], 
   useEffect(() => {
     let active = true;
     if (!slug) return;
+
+    trackEvent({ action: "CATEGORY_VIEW", metadata: { slug } });
 
     if (!initialCategory || initialProducts.length === 0) {
       Promise.all([

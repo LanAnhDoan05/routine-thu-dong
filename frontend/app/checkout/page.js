@@ -14,6 +14,7 @@ import { useCheckout } from "@/context/CheckoutContext";
 import { useUser } from "@/context/UserContext";
 import { useToast } from "@/components/common/Toast";
 import { checkAddressApi } from "@/lib/shippingService";
+import { trackEvent } from "@/lib/attribution";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -22,6 +23,10 @@ export default function CheckoutPage() {
     useCheckout();
   const { user, isLoggedIn, savedAddress, setSavedAddress } = useUser();
   const { showToast } = useToast();
+
+  useEffect(() => {
+    trackEvent({ action: "BEGIN_CHECKOUT", metadata: { itemsCount: items.length, subtotal } });
+  }, [items.length, subtotal]);
 
   const [forceEditAddress, setForceEditAddress] = useState(false);
   const showAddressForm = forceEditAddress || !address;

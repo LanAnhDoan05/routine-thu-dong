@@ -6,8 +6,8 @@ export async function generateMetadata({ params }) {
   const product = await fetchProductById(id);
   if (!product) {
     return {
-      title: "Sản phẩm không tìm thấy — Routine Thu Đông",
-      description: "Sản phẩm không tồn tại hoặc đã ngừng kinh doanh trên Routine Thu Đông.",
+      title: "Sản phẩm không tìm thấy — Routine",
+      description: "Sản phẩm không tồn tại hoặc đã ngừng kinh doanh trên Routine.",
     };
   }
 
@@ -28,20 +28,20 @@ export async function generateMetadata({ params }) {
 
   const description =
     product.description ||
-    `Mua ngay ${product.name} chính hãng Routine Thu Đông với mức giá ${Number(product.price || 0).toLocaleString("vi-VN")}đ. Thiết kế tối giản, chất liệu cao cấp.`;
+    `Mua ngay ${product.name} chính hãng Routine với mức giá ${Number(product.price || 0).toLocaleString("vi-VN")}đ. Thiết kế tối giản, chất liệu cao cấp.`;
 
   return {
-    title: `${product.name} — Routine Thu Đông`,
+    title: `${product.name} — Routine`,
     description,
     openGraph: {
-      title: `${product.name} | Routine Thu Đông`,
+      title: `${product.name} | Routine`,
       description,
       images: mainImage ? [{ url: mainImage, alt: product.name }] : [],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} | Routine Thu Đông`,
+      title: `${product.name} | Routine`,
       description,
       images: mainImage ? [mainImage] : [],
     },

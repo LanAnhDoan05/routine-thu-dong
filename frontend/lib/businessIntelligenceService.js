@@ -117,3 +117,83 @@ export async function askAdminBiAssistant(question) {
     return { success: false, error: err.message };
   }
 }
+
+/**
+ * Kích hoạt phân tích kinh doanh AI theo yêu cầu (Nút "PHÂN TÍCH & ĐƯA RA KIẾN NGHỊ" - A1)
+ */
+export async function triggerBiOnDemandAnalysis(params = {}) {
+  try {
+    const data = await fetchApi('/bi/analyze', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+    return data;
+  } catch (err) {
+    console.error('[BI Service] triggerBiOnDemandAnalysis error:', err.message);
+    throw err;
+  }
+}
+
+/**
+ * Lấy chỉ số kinh doanh theo khoảng thời gian chọn (7d, 30d, 90d, this_month, custom - A3)
+ */
+export async function fetchBiPeriodMetrics(params = {}) {
+  const query = new URLSearchParams();
+  if (params.period) query.set('period', params.period);
+  if (params.startDate) query.set('startDate', params.startDate);
+  if (params.endDate) query.set('endDate', params.endDate);
+
+  try {
+    const data = await fetchApi(`/bi/metrics?${query.toString()}`);
+    return data;
+  } catch (err) {
+    console.error('[BI Service] fetchBiPeriodMetrics error:', err.message);
+    return null;
+  }
+}
+
+/**
+ * Lấy danh sách lịch sử các phiên phân tích đã lưu (A6 Khu vực 4)
+ */
+export async function fetchBiReportsList(params = {}) {
+  const query = new URLSearchParams();
+  if (params.page) query.set('page', params.page);
+  if (params.limit) query.set('limit', params.limit);
+
+  try {
+    const data = await fetchApi(`/bi/reports?${query.toString()}`);
+    return data;
+  } catch (err) {
+    console.error('[BI Service] fetchBiReportsList error:', err.message);
+    return null;
+  }
+}
+
+/**
+ * Lấy chi tiết báo cáo phân tích theo ID từ Database (A6 Khu vực 3)
+ */
+export async function fetchBiReportDetail(reportId) {
+  try {
+    const data = await fetchApi(`/bi/reports/${reportId}`);
+    return data;
+  } catch (err) {
+    console.error('[BI Service] fetchBiReportDetail error:', err.message);
+    throw err;
+  }
+}
+
+/**
+ * Cập nhật trạng thái kiến nghị (VIEWED, IN_PROGRESS, COMPLETED, ARCHIVED - A6 Khu vực 3)
+ */
+export async function updateBiRecommendationStatus(recommendationId, status) {
+  try {
+    const data = await fetchApi(`/bi/recommendations/${recommendationId}/status`, {
+      method: 'PATCH',
+      body: JSON.stringify({ status }),
+    });
+    return data;
+  } catch (err) {
+    console.error('[BI Service] updateBiRecommendationStatus error:', err.message);
+    throw err;
+  }
+}

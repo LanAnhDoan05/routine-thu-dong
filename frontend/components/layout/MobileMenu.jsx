@@ -57,7 +57,7 @@ export default function MobileMenu({ isOpen, onClose, categories = [] }) {
           borderBottom: "1px solid var(--color-border)"
         }}
       >
-        <span style={{ fontWeight: 800, letterSpacing: "0.16em", fontSize: 17 }}>ROUTINE THU ĐÔNG</span>
+        <span style={{ fontWeight: 800, letterSpacing: "0.16em", fontSize: 17 }}>ROUTINE</span>
         <button aria-label="Đóng menu" onClick={onClose} style={{ padding: 8 }}>
           <CloseIcon />
         </button>

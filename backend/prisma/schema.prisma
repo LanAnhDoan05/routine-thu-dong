@@ -499,6 +499,54 @@ model Notification {
   @@map("notifications")
 }
 
+model AiBiReport {
+  id                  String               @id @default(uuid())
+  adminId             String?              @map("admin_id")
+  period              String               @default("30d")
+  startDate           DateTime?            @map("start_date")
+  endDate             DateTime?            @map("end_date")
+  status              String               @default("COMPLETED")
+  metricsSnapshot     Json?                @map("metrics_snapshot")
+  executiveSummary    String?              @map("executive_summary") @db.LongText
+  salesAnalysis       String?              @map("sales_analysis") @db.LongText
+  demandAnalysis      String?              @map("demand_analysis") @db.LongText
+  conversionAnalysis  String?              @map("conversion_analysis") @db.LongText
+  inventoryAnalysis   String?              @map("inventory_analysis") @db.LongText
+  opportunityAnalysis String?              @map("opportunity_analysis") @db.LongText
+  createdAt           DateTime             @default(now()) @map("created_at")
+  updatedAt           DateTime             @default(now()) @updatedAt @map("updated_at")
+  recommendations     AiBiRecommendation[]
+
+  @@index([createdAt])
+  @@index([adminId])
+  @@map("ai_bi_reports")
+}
+
+model AiBiRecommendation {
+  id                 String     @id @default(uuid())
+  reportId           String     @map("report_id")
+  title              String     @db.VarChar(255)
+  category           String     @default("PRODUCT") @db.VarChar(50)
+  priority           String     @default("MEDIUM") @db.VarChar(20)
+  issueDetected      String     @map("issue_detected") @db.Text
+  dataEvidence       String     @map("data_evidence") @db.Text
+  rootCauseAnalysis  String     @map("root_cause_analysis") @db.Text
+  proposedAction     String     @map("proposed_action") @db.Text
+  expectedOutcome    String     @map("expected_outcome") @db.Text
+  risksAndConditions String     @map("risks_and_conditions") @db.Text
+  confidenceLevel    String     @map("confidence_level") @db.Text
+  status             String     @default("PENDING") @db.VarChar(50)
+  createdAt          DateTime   @default(now()) @map("created_at")
+  updatedAt          DateTime   @default(now()) @updatedAt @map("updated_at")
+  report             AiBiReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@index([reportId])
+  @@index([status])
+  @@index([priority])
+  @@index([category])
+  @@map("ai_bi_recommendations")
+}
+
 enum Role {
   CUSTOMER
   ADMIN

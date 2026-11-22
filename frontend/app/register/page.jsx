@@ -125,7 +125,7 @@ export default function RegisterPage() {
     <AuthLayout>
       <AuthHeader
         title="Tạo tài khoản"
-        subtitle="Tham gia Routine Thu Đông và bắt đầu xây dựng phong cách của riêng bạn."
+        subtitle="Tham gia Routine và bắt đầu xây dựng phong cách của riêng bạn."
       />
 
       <StepIndicator currentStep={1} />
@@ -145,7 +145,7 @@ export default function RegisterPage() {
 
         <div className={styles.genderGroup}>
           <label className={styles.genderLabel}>
-            Giới tính <span className={styles.genderSubLabel}>(để Routine Thu Đông gợi ý outfit chuẩn dáng cho bạn)</span>
+            Giới tính <span className={styles.genderSubLabel}>(để Routine gợi ý outfit chuẩn dáng cho bạn)</span>
           </label>
           <div className={styles.genderOptions}>
             <button
@@ -174,7 +174,7 @@ export default function RegisterPage() {
 
         <div className={styles.dobGroup}>
           <label className={styles.dobLabel} htmlFor="register-dob">
-            Ngày tháng năm sinh <span className={styles.dobSubLabel}>(để Routine Thu Đông gửi ưu đãi sinh nhật đặc biệt 🎂)</span>
+            Ngày tháng năm sinh <span className={styles.dobSubLabel}>(để Routine gửi ưu đãi sinh nhật đặc biệt 🎂)</span>
           </label>
           <div className={styles.dobInputWrap}>
             <input

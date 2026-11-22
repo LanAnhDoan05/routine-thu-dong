@@ -59,7 +59,7 @@ export default function HeroSlider({
           >
             <Image
               src={src}
-              alt={img.title || "Routine Thu Đông Hero Look"}
+              alt={img.title || "Routine Hero Look"}
               width={1200}
               height={800}
               className={styles.slideImage}

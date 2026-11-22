@@ -80,7 +80,7 @@ async function getAiInsight(req, res) {
  */
 async function createMarketingPlan(req, res) {
   try {
-    const { objective, targetSegment, budget, timeframe, focusCategory } = req.body;
+    const { objective, targetSegment, budget, timeframe, focusCategory } = req.body || {};
     const data = await biService.generateMarketingPlan({
       objective,
       targetSegment,
@@ -110,6 +110,79 @@ async function askAssistant(req, res) {
   }
 }
 
+/**
+ * POST /api/v1/bi/analyze (On-Demand AI Business Intelligence Analysis - A1)
+ */
+async function analyze(req, res) {
+  try {
+    const { period, startDate, endDate } = req.body || {};
+    const adminId = req.user ? req.user.id : null;
+    const result = await biService.runOnDemandAiBusinessAnalysis({
+      adminId,
+      period: period || '30d',
+      startDate,
+      endDate,
+    });
+    return sendSuccess(res, result, 'Phân tích và khởi tạo kiến nghị AI thành công');
+  } catch (error) {
+    return sendError(res, error.message, 500);
+  }
+}
+
+/**
+ * GET /api/v1/bi/metrics
+ */
+async function getMetrics(req, res) {
+  try {
+    const { period, startDate, endDate } = req.query;
+    const data = await biService.calculatePeriodMetrics({ period, startDate, endDate });
+    return sendSuccess(res, data, 'Lấy chỉ số kinh doanh kỳ phân tích thành công');
+  } catch (error) {
+    return sendError(res, error.message, 500);
+  }
+}
+
+/**
+ * GET /api/v1/bi/reports (Historical analysis sessions - A6 Khu vực 4)
+ */
+async function getReports(req, res) {
+  try {
+    const { page, limit } = req.query;
+    const data = await biService.getAiBiReportsList({ page, limit });
+    return sendSuccess(res, data, 'Lấy danh sách lịch sử phân tích thành công');
+  } catch (error) {
+    return sendError(res, error.message, 500);
+  }
+}
+
+/**
+ * GET /api/v1/bi/reports/:id
+ */
+async function getReportById(req, res) {
+  try {
+    const data = await biService.getAiBiReportDetail(req.params.id);
+    return sendSuccess(res, data, 'Lấy chi tiết báo cáo phân tích thành công');
+  } catch (error) {
+    return sendError(res, error.message, 500);
+  }
+}
+
+/**
+ * PATCH /api/v1/bi/recommendations/:id/status (A6 Khu vực 3 Status update)
+ */
+async function updateRecommendation(req, res) {
+  try {
+    const { status } = req.body;
+    if (!status) {
+      return sendError(res, 'Vui lòng cung cấp trạng thái cần cập nhật', 400);
+    }
+    const data = await biService.updateRecommendationStatus(req.params.id, status);
+    return sendSuccess(res, data, 'Cập nhật trạng thái kiến nghị thành công');
+  } catch (error) {
+    return sendError(res, error.message, 500);
+  }
+}
+
 module.exports = {
   getOverview,
   getRevenue,
@@ -119,4 +192,9 @@ module.exports = {
   getAiInsight,
   createMarketingPlan,
   askAssistant,
+  analyze,
+  getMetrics,
+  getReports,
+  getReportById,
+  updateRecommendation,
 };

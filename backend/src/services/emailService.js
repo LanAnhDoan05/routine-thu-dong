@@ -27,7 +27,7 @@ if (process.env.SMTP_USER && process.env.SMTP_PASS) {
  * Gửi email mã xác thực OTP
  */
 async function sendOtpEmail(toEmail, otpCode, receiverName = 'Quý khách') {
-  const subject = `[Routine Thu Đông] ${otpCode} là mã xác thực tài khoản của bạn`;
+  const subject = `[Routine] ${otpCode} là mã xác thực tài khoản của bạn`;
   
   const htmlContent = `
     <!DOCTYPE html>
@@ -51,25 +51,25 @@ async function sendOtpEmail(toEmail, otpCode, receiverName = 'Quý khách') {
     <body>
       <div class="container">
         <div class="header">
-          <h1>ROUTINE THU ĐÔNG</h1>
+          <h1>ROUTINE</h1>
         </div>
         <div class="content">
           <div class="greeting">Xin chào ${receiverName},</div>
           <div class="desc">
-            Chúng tôi nhận được yêu cầu xác thực hoặc đặt lại mật khẩu cho tài khoản Routine Thu Đông của bạn. Vui lòng nhập mã xác thực OTP dưới đây để tiếp tục:
+            Chúng tôi nhận được yêu cầu xác thực hoặc đặt lại mật khẩu cho tài khoản Routine của bạn. Vui lòng nhập mã xác thực OTP dưới đây để tiếp tục:
           </div>
           <div class="otp-box">
             <div class="otp-code">${otpCode}</div>
           </div>
           <div class="warning">
-            ⚠️ <strong>Lưu ý bảo mật:</strong> Mã xác thực có hiệu lực trong vòng <strong>5 phút</strong>. Tuyệt đối không chia sẻ mã này cho bất kỳ ai, kể cả nhân viên Routine Thu Đông.
+            ⚠️ <strong>Lưu ý bảo mật:</strong> Mã xác thực có hiệu lực trong vòng <strong>5 phút</strong>. Tuyệt đối không chia sẻ mã này cho bất kỳ ai, kể cả nhân viên Routine.
           </div>
           <div class="desc" style="margin-bottom: 0;">
             Nếu bạn không yêu cầu thao tác này, bạn có thể yên tâm bỏ qua email này. Mật khẩu của bạn vẫn an toàn.
           </div>
         </div>
         <div class="footer">
-          &copy; ${new Date().getFullYear()} Routine Thu Đông. Mọi quyền được bảo lưu.<br>
+          &copy; ${new Date().getFullYear()} Routine. Mọi quyền được bảo lưu.<br>
           Thời trang tối giản, phong cách hiện đại.
         </div>
       </div>
@@ -110,7 +110,7 @@ async function sendOtpEmail(toEmail, otpCode, receiverName = 'Quý khách') {
  * Gửi email thông báo đổi mật khẩu thành công
  */
 async function sendPasswordResetSuccessEmail(toEmail, receiverName = 'Quý khách') {
-  const subject = '[Routine Thu Đông] Mật khẩu tài khoản của bạn đã được cập nhật thành công';
+  const subject = '[Routine] Mật khẩu tài khoản của bạn đã được cập nhật thành công';
   
   const htmlContent = `
     <!DOCTYPE html>
@@ -128,12 +128,12 @@ async function sendPasswordResetSuccessEmail(toEmail, receiverName = 'Quý khác
     <body>
       <div class="container">
         <div class="header">
-          <h2 style="margin:0; letter-spacing:0.15em;">ROUTINE THU ĐÔNG</h2>
+          <h2 style="margin:0; letter-spacing:0.15em;">ROUTINE</h2>
         </div>
         <div class="content">
           <div class="success-badge">✓ Mật khẩu đã được thay đổi thành công</div>
           <p>Xin chào ${receiverName},</p>
-          <p>Mật khẩu cho tài khoản Routine Thu Đông của bạn (${toEmail}) vừa được cập nhật vào lúc ${new Date().toLocaleString('vi-VN')}.</p>
+          <p>Mật khẩu cho tài khoản Routine của bạn (${toEmail}) vừa được cập nhật vào lúc ${new Date().toLocaleString('vi-VN')}.</p>
           <p>Nếu bạn thực hiện thay đổi này, bạn không cần phải làm gì thêm.</p>
           <p style="color:#ef4444;">Nếu bạn KHÔNG thực hiện thay đổi này, vui lòng liên hệ ngay với bộ phận CSKH của chúng tôi để bảo vệ tài khoản.</p>
         </div>
@@ -284,7 +284,7 @@ async function sendOrderInvoiceEmail({ order, customerEmail, customerName }) {
   const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
   const orderTrackingUrl = `${frontendUrl}/orders`;
 
-  const subject = `[Routine Thu Đông] Hóa đơn xác nhận đơn hàng #${orderId}`;
+  const subject = `[Routine] Hóa đơn xác nhận đơn hàng #${orderId}`;
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -317,14 +317,14 @@ async function sendOrderInvoiceEmail({ order, customerEmail, customerName }) {
         <div class="container">
           <!-- Header Brand -->
           <div class="header">
-            <h1 class="logo">ROUTINE THU ĐÔNG</h1>
+            <h1 class="logo">ROUTINE</h1>
             <div class="slogan">SMART FASHION FOR MODERN LIFE</div>
           </div>
 
           <!-- Nội dung chính -->
           <div class="body-content">
             <div class="title-block">
-              <div style="font-size: 13px; color: #64748b; margin-bottom: 4px;">CẢM ƠN BẠN ĐÃ ĐẶT HÀNG TẠI ROUTINE THU ĐÔNG</div>
+              <div style="font-size: 13px; color: #64748b; margin-bottom: 4px;">CẢM ƠN BẠN ĐÃ ĐẶT HÀNG TẠI ROUTINE</div>
               <h2 style="margin: 0 0 12px 0; color: #0f172a; font-size: 22px;">Hóa đơn đơn hàng #${orderId}</h2>
               <span class="badge" style="background-color: ${paymentBadgeBg}; color: ${paymentBadgeColor};">
                 ${paymentBadgeText}
@@ -333,7 +333,7 @@ async function sendOrderInvoiceEmail({ order, customerEmail, customerName }) {
 
             <p style="font-size: 14px; line-height: 1.6; color: #334155; margin-bottom: 20px;">
               Xin chào <strong>${receiverName}</strong>,<br>
-              Đơn hàng của bạn đã được tiếp nhận và đang được đội ngũ Routine Thu Đông chuẩn bị để gửi đi sớm nhất. Dưới đây là thông tin chi tiết hóa đơn:
+              Đơn hàng của bạn đã được tiếp nhận và đang được đội ngũ Routine chuẩn bị để gửi đi sớm nhất. Dưới đây là thông tin chi tiết hóa đơn:
             </p>
 
             <!-- Thông tin giao hàng & người nhận -->
@@ -411,10 +411,10 @@ async function sendOrderInvoiceEmail({ order, customerEmail, customerName }) {
 
           <!-- Footer -->
           <div class="footer">
-            <strong>Routine Thu Đông</strong> · Thời trang nam nữ phong cách hiện đại tối giản<br>
+            <strong>Routine</strong> · Thời trang nam nữ phong cách hiện đại tối giản<br>
             Hotline CSKH: <strong>1900 63 68 89</strong> (8:30 - 21:30 hàng ngày) · Email: cskh@routine.vn<br>
             Chính sách đổi trả miễn phí trong vòng <strong>15 ngày</strong> kể từ khi nhận hàng.<br>
-            &copy; ${new Date().getFullYear()} Routine Thu Đông. All rights reserved.
+            &copy; ${new Date().getFullYear()} Routine. All rights reserved.
           </div>
         </div>
       </div>
@@ -455,7 +455,7 @@ async function sendWelcomeEmail({
 
   const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
   const shopUrl = `${frontendUrl}/smart-outfit`;
-  const subject = `[Routine Thu Đông] Chào mừng bạn! Tặng bạn Voucher ${couponCode} giảm 15% cho đơn hàng đầu tiên`;
+  const subject = `[Routine] Chào mừng bạn! Tặng bạn Voucher ${couponCode} giảm 15% cho đơn hàng đầu tiên`;
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -463,7 +463,7 @@ async function sendWelcomeEmail({
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Chào mừng thành viên mới - Routine Thu Đông</title>
+      <title>Chào mừng thành viên mới - Routine</title>
       <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f8fafc; color: #1e293b; }
         .wrapper { width: 100%; background-color: #f8fafc; padding: 32px 0; }
@@ -490,12 +490,12 @@ async function sendWelcomeEmail({
       <div class="wrapper">
         <div class="container">
           <div class="header">
-            <h1>ROUTINE THU ĐÔNG</h1>
+            <h1>ROUTINE</h1>
           </div>
           <div class="content">
             <div class="greeting">Xin chào ${customerName},</div>
             <div class="desc">
-              Chào mừng bạn đã gia nhập cộng đồng phong cách <strong>Routine Thu Đông</strong>! Để cảm ơn bạn đã đăng ký tài khoản thành viên, chúng tôi trân trọng gửi tặng bạn mã giảm giá độc quyền dành riêng cho khách hàng mới:
+              Chào mừng bạn đã gia nhập cộng đồng phong cách <strong>Routine</strong>! Để cảm ơn bạn đã đăng ký tài khoản thành viên, chúng tôi trân trọng gửi tặng bạn mã giảm giá độc quyền dành riêng cho khách hàng mới:
             </div>
 
             <!-- Thẻ Voucher Quà Tặng -->
@@ -522,9 +522,9 @@ async function sendWelcomeEmail({
             </div>
           </div>
           <div class="footer">
-            <strong>Routine Thu Đông</strong> · Thời trang nam nữ phong cách hiện đại tối giản<br>
+            <strong>Routine</strong> · Thời trang nam nữ phong cách hiện đại tối giản<br>
             Hotline hỗ trợ: <strong>1900 63 68 89</strong> · Email: cskh@routine.vn<br>
-            &copy; ${new Date().getFullYear()} Routine Thu Đông. All rights reserved.
+            &copy; ${new Date().getFullYear()} Routine. All rights reserved.
           </div>
         </div>
       </div>

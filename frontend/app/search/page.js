@@ -8,6 +8,7 @@ import ProductFilter, { getPriceRangeByLabel } from "@/components/product/Produc
 import ProductSort from "@/components/product/ProductSort";
 import Modal from "@/components/common/Modal";
 import { searchProducts, filterProducts, sortProducts } from "@/lib/productService";
+import { trackEvent } from "@/lib/attribution";
 
 const popularSearches = ["T-shirt", "Áo sơ mi", "Quần jeans", "Smart Casual"];
 const RECENT_KEY = "routine_recent_searches";
@@ -68,6 +69,7 @@ function SearchPageInner() {
   useEffect(() => {
     let ignore = false;
     if (initialQuery) {
+      trackEvent({ action: "SEARCH", metadata: { query: initialQuery } });
       searchProducts(initialQuery).then((res) => {
         if (!ignore) setResults(res || []);
       });

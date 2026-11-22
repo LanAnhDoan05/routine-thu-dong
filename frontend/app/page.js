@@ -202,7 +202,7 @@ export default function HomePage() {
               >
                 <Image
                   src={src}
-                  alt={img.title || "Routine Thu Đông Hero Banner"}
+                  alt={img.title || "Routine Hero Banner"}
                   width={1920}
                   height={1080}
                   priority={i === 0}
@@ -221,7 +221,7 @@ export default function HomePage() {
 
         {/* Hero Content (ROUTINE) */}
         <div className={homeStyles.heroContent}>
-          <span className={homeStyles.heroEyebrow}>ROUTINE THU ĐÔNG — SMART FASHION</span>
+          <span className={homeStyles.heroEyebrow}>ROUTINE — SMART FASHION</span>
           <h1 className={homeStyles.heroTitle}>
             {heroTitle}
           </h1>

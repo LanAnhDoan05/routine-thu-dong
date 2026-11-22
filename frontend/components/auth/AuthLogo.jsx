@@ -10,9 +10,9 @@ export default function AuthLogo({ variant = "dark" }) {
     <Link
       href="/"
       className={`${styles.logo} ${variant === "light" ? styles.logoLight : ""}`}
-      aria-label="Về trang chủ Routine Thu Đông"
+      aria-label="Về trang chủ Routine"
     >
-      ROUTINE THU ĐÔNG
+      ROUTINE
     </Link>
   );
 }

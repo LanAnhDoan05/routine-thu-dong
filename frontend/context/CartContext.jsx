@@ -198,7 +198,20 @@ export function CartProvider({ children }) {
   );
 
   const removeFromCart = useCallback((lineId) => {
-    setItems((prev) => prev.filter((item) => item.lineId !== lineId));
+    setItems((prev) => {
+      const removedItem = prev.find((item) => item.lineId === lineId);
+      if (removedItem) {
+        fetchApi("/analytics/track", {
+          method: "POST",
+          body: JSON.stringify({
+            action: "REMOVE_FROM_CART",
+            productId: removedItem.productId,
+            metadata: { name: removedItem.name, quantity: removedItem.quantity },
+          }),
+        }).catch(() => {});
+      }
+      return prev.filter((item) => item.lineId !== lineId);
+    });
     removeItemApi(lineId).catch((e) => console.warn("Lỗi xóa khỏi DB:", e.message));
   }, []);
 
