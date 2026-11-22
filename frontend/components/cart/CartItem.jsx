@@ -45,7 +45,7 @@ export default function CartItem({ item, editable = true }) {
         </Link>
         {item.category && (
           <span style={{ fontSize: 12, color: "var(--color-text-secondary)", textTransform: "uppercase", letterSpacing: "0.03em" }}>
-            {item.category}
+            {typeof item.category === "object" ? (item.category?.name || item.category?.slug || "") : item.category}
           </span>
         )}
         <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>

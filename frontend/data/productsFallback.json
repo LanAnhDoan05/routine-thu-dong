@@ -43,16 +43,7 @@
     "createdAt": "2026-11-13T22:40:26.176Z",
     "updatedAt": "2026-11-22T19:27:31.156Z",
     "soldCount": 27,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao-khoac",
     "variants": [
       {
         "id": "var-1794609626554-6801",
@@ -98,7 +89,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:27.701Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p_10f25drew001",
@@ -145,16 +137,7 @@
     "createdAt": "2026-11-13T22:40:54.201Z",
     "updatedAt": "2026-11-13T23:59:43.686Z",
     "soldCount": 16,
-    "category": {
-      "id": "vay",
-      "slug": "vay",
-      "name": "VÁY",
-      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
-      "image": "/images/categories/women.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "vay",
     "variants": [
       {
         "id": "var-1794609654581-3936",
@@ -244,7 +227,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:57.240Z"
       }
-    ]
+    ],
+    "categoryName": "VÁY"
   },
   {
     "id": "p_10f25pfo012",
@@ -294,16 +278,7 @@
     "createdAt": "2026-11-13T22:40:30.573Z",
     "updatedAt": "2026-11-13T23:59:44.166Z",
     "soldCount": 22,
-    "category": {
-      "id": "quan",
-      "slug": "quan",
-      "name": "QUẦN",
-      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
-      "image": "/images/categories/bottoms.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "quan",
     "variants": [
       {
         "id": "var-1794609630951-4402",
@@ -470,7 +445,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:36.372Z"
       }
-    ]
+    ],
+    "categoryName": "QUẦN"
   },
   {
     "id": "p_10f26cap017",
@@ -513,16 +489,7 @@
     "createdAt": "2026-11-13T22:41:04.564Z",
     "updatedAt": "2026-11-14T05:20:01.624Z",
     "soldCount": 30,
-    "category": {
-      "id": "phu-kien",
-      "slug": "phu-kien",
-      "name": "PHỤ KIỆN",
-      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
-      "image": "/images/categories/accessories.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "phu-kien",
     "variants": [
       {
         "id": "pv-5992d166-0bd8-44c7-8da8-6399b0076dc8",
@@ -535,7 +502,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-14T05:20:01.624Z"
       }
-    ]
+    ],
+    "categoryName": "PHỤ KIỆN"
   },
   {
     "id": "p_10f26dpaw057",
@@ -581,16 +549,7 @@
     "createdAt": "2026-11-13T22:41:00.094Z",
     "updatedAt": "2026-11-13T23:59:45.124Z",
     "soldCount": 9,
-    "category": {
-      "id": "quan",
-      "slug": "quan",
-      "name": "QUẦN",
-      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
-      "image": "/images/categories/bottoms.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "quan",
     "variants": [
       {
         "id": "var-1794609660475-2943",
@@ -636,7 +595,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:41:01.617Z"
       }
-    ]
+    ],
+    "categoryName": "QUẦN"
   },
   {
     "id": "p_10f26kniw051",
@@ -685,16 +645,7 @@
     "createdAt": "2026-11-13T22:40:49.158Z",
     "updatedAt": "2026-11-13T23:59:45.600Z",
     "soldCount": 29,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao",
     "variants": [
       {
         "id": "var-1794609649540-8951",
@@ -828,7 +779,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:53.724Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO"
   },
   {
     "id": "p_10f26pol003p",
@@ -876,16 +828,7 @@
     "createdAt": "2026-11-13T22:40:21.137Z",
     "updatedAt": "2026-11-13T23:59:46.080Z",
     "soldCount": 16,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao",
     "variants": [
       {
         "id": "var-1794609621516-3371",
@@ -1019,7 +962,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:25.698Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO"
   },
   {
     "id": "p_10f26psh004",
@@ -1067,16 +1011,7 @@
     "createdAt": "2026-11-13T22:40:38.858Z",
     "updatedAt": "2026-11-13T23:59:46.557Z",
     "soldCount": 22,
-    "category": {
-      "id": "bottoms",
-      "slug": "bottoms",
-      "name": "BOTTOMS",
-      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "bottoms",
     "variants": [
       {
         "id": "var-1794609639240-5312",
@@ -1188,7 +1123,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:42.671Z"
       }
-    ]
+    ],
+    "categoryName": "BOTTOMS"
   },
   {
     "id": "p_10f26shl001",
@@ -1235,16 +1171,7 @@
     "createdAt": "2026-11-13T22:40:15.502Z",
     "updatedAt": "2026-11-13T23:59:47.039Z",
     "soldCount": 26,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao",
     "variants": [
       {
         "id": "var-1794609615896-3731",
@@ -1334,7 +1261,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:18.661Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO"
   },
   {
     "id": "p_10f26shl016",
@@ -1381,16 +1309,7 @@
     "createdAt": "2026-11-13T22:40:13.357Z",
     "updatedAt": "2026-11-13T23:59:47.518Z",
     "soldCount": 26,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao",
     "variants": [
       {
         "id": "var-1794609613869-8647",
@@ -1436,7 +1355,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:15.011Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO"
   },
   {
     "id": "p_10f26shlw025",
@@ -1484,16 +1404,7 @@
     "createdAt": "2026-11-13T22:40:45.530Z",
     "updatedAt": "2026-11-13T23:59:47.997Z",
     "soldCount": 6,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao",
     "variants": [
       {
         "id": "var-1794609645912-4180",
@@ -1583,7 +1494,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:48.586Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO"
   },
   {
     "id": "p_10s25pol024",
@@ -1631,16 +1543,7 @@
     "createdAt": "2026-11-13T22:41:05.423Z",
     "updatedAt": "2026-11-22T10:16:51.665Z",
     "soldCount": 10,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao",
     "variants": [
       {
         "id": "pv-35e14d50-2c5f-4b06-b850-38a6887af834",
@@ -1752,7 +1655,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T23:51:14.598Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO"
   },
   {
     "id": "p_10s26dpa057",
@@ -1798,16 +1702,7 @@
     "createdAt": "2026-11-13T22:40:36.856Z",
     "updatedAt": "2026-11-13T23:59:48.475Z",
     "soldCount": 24,
-    "category": {
-      "id": "quan",
-      "slug": "quan",
-      "name": "QUẦN",
-      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
-      "image": "/images/categories/bottoms.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "quan",
     "variants": [
       {
         "id": "var-1794609637235-2714",
@@ -1853,7 +1748,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:38.380Z"
       }
-    ]
+    ],
+    "categoryName": "QUẦN"
   },
   {
     "id": "p_10s26dps012",
@@ -1900,16 +1796,7 @@
     "createdAt": "2026-11-13T22:40:43.149Z",
     "updatedAt": "2026-11-13T23:59:48.957Z",
     "soldCount": 14,
-    "category": {
-      "id": "bottoms",
-      "slug": "bottoms",
-      "name": "BOTTOMS",
-      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "bottoms",
     "variants": [
       {
         "id": "var-1794609643528-7418",
@@ -1966,7 +1853,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:45.052Z"
       }
-    ]
+    ],
+    "categoryName": "BOTTOMS"
   },
   {
     "id": "p_10s26dpsw018",
@@ -2013,16 +1901,7 @@
     "createdAt": "2026-11-13T22:41:02.093Z",
     "updatedAt": "2026-11-13T23:59:49.437Z",
     "soldCount": 7,
-    "category": {
-      "id": "bottoms",
-      "slug": "bottoms",
-      "name": "BOTTOMS",
-      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "bottoms",
     "variants": [
       {
         "id": "var-1794609662470-2027",
@@ -2079,7 +1958,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:41:03.993Z"
       }
-    ]
+    ],
+    "categoryName": "BOTTOMS"
   },
   {
     "id": "p_10s26dskw002",
@@ -2126,16 +2006,7 @@
     "createdAt": "2026-11-13T22:40:57.715Z",
     "updatedAt": "2026-11-13T23:59:49.919Z",
     "soldCount": 24,
-    "category": {
-      "id": "vay",
-      "slug": "vay",
-      "name": "VÁY",
-      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
-      "image": "/images/categories/women.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "vay",
     "variants": [
       {
         "id": "var-1794609658094-9316",
@@ -2192,7 +2063,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:59.616Z"
       }
-    ]
+    ],
+    "categoryName": "VÁY"
   },
   {
     "id": "p_10s26pfo007",
@@ -2240,16 +2112,7 @@
     "createdAt": "2026-11-13T22:40:28.177Z",
     "updatedAt": "2026-11-13T23:59:50.396Z",
     "soldCount": 11,
-    "category": {
-      "id": "quan",
-      "slug": "quan",
-      "name": "QUẦN",
-      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
-      "image": "/images/categories/bottoms.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "quan",
     "variants": [
       {
         "id": "var-1794609628571-2600",
@@ -2306,7 +2169,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:30.095Z"
       }
-    ]
+    ],
+    "categoryName": "QUẦN"
   },
   {
     "id": "p_10s26tss025",
@@ -2352,16 +2216,7 @@
     "createdAt": "2026-11-13T22:40:19.137Z",
     "updatedAt": "2026-11-13T23:59:50.877Z",
     "soldCount": 17,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao",
     "variants": [
       {
         "id": "var-1794609619515-2796",
@@ -2407,7 +2262,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:20.658Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO"
   },
   {
     "id": "p-e6244704-0d29-42b6-9811-a0e1e3062278",
@@ -2453,16 +2309,7 @@
     "createdAt": "2026-11-13T20:19:30.505Z",
     "updatedAt": "2026-11-13T21:59:54.865Z",
     "soldCount": 4,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao",
     "variants": [
       {
         "id": "pv-13bc87bb-3771-4c71-9e5b-0d7830d525c6",
@@ -2497,7 +2344,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T20:19:30.505Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO"
   },
   {
     "id": "p-ed20cac6-0df3-4f15-a143-ac02d994fccd",
@@ -2540,16 +2388,7 @@
     "createdAt": "2026-11-14T05:18:44.484Z",
     "updatedAt": "2026-11-22T19:31:07.833Z",
     "soldCount": 8,
-    "category": {
-      "id": "phu-kien",
-      "slug": "phu-kien",
-      "name": "PHỤ KIỆN",
-      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
-      "image": "/images/categories/accessories.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "phu-kien",
     "variants": [
       {
         "id": "pv-35137236-fc9e-4a7c-97e6-9493a0d5b61d",
@@ -2562,7 +2401,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-14T05:21:41.069Z"
       }
-    ]
+    ],
+    "categoryName": "PHỤ KIỆN"
   },
   {
     "id": "p001",
@@ -2613,17 +2453,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-14T05:38:29.909Z",
     "soldCount": 110,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao",
+    "variants": [],
+    "categoryName": "ÁO"
   },
   {
     "id": "p002",
@@ -2669,17 +2501,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:55.802Z",
     "soldCount": 100,
-    "category": {
-      "id": "tops",
-      "slug": "tops",
-      "name": "TOPS",
-      "description": "Áo thun, áo sơ mi và áo len được chọn lọc kỹ về chất liệu.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "tops",
+    "variants": [],
+    "categoryName": "TOPS"
   },
   {
     "id": "p003",
@@ -2727,17 +2551,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:45.839Z",
     "soldCount": 101,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao",
+    "variants": [],
+    "categoryName": "ÁO"
   },
   {
     "id": "p004",
@@ -2787,17 +2603,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:48.190Z",
     "soldCount": 109,
-    "category": {
-      "id": "tops",
-      "slug": "tops",
-      "name": "TOPS",
-      "description": "Áo thun, áo sơ mi và áo len được chọn lọc kỹ về chất liệu.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "tops",
+    "variants": [],
+    "categoryName": "TOPS"
   },
   {
     "id": "p005",
@@ -2848,17 +2656,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:53.455Z",
     "soldCount": 104,
-    "category": {
-      "id": "quan",
-      "slug": "quan",
-      "name": "QUẦN",
-      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
-      "image": "/images/categories/bottoms.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "quan",
+    "variants": [],
+    "categoryName": "QUẦN"
   },
   {
     "id": "p006",
@@ -2908,17 +2708,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-14T06:13:15.679Z",
     "soldCount": 103,
-    "category": {
-      "id": "bottoms",
-      "slug": "bottoms",
-      "name": "BOTTOMS",
-      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "bottoms",
+    "variants": [],
+    "categoryName": "BOTTOMS"
   },
   {
     "id": "p009",
@@ -2968,17 +2760,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:47.720Z",
     "soldCount": 104,
-    "category": {
-      "id": "outerwear",
-      "slug": "outerwear",
-      "name": "OUTERWEAR",
-      "description": "Áo khoác giữ ấm và tôn dáng, phù hợp thời tiết chuyển mùa.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_172949.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "outerwear",
+    "variants": [],
+    "categoryName": "OUTERWEAR"
   },
   {
     "id": "p0103",
@@ -3025,17 +2809,9 @@
     "createdAt": "2026-09-28T17:21:50.105Z",
     "updatedAt": "2026-11-13T21:59:46.310Z",
     "soldCount": 4,
-    "category": {
-      "id": "vay",
-      "slug": "vay",
-      "name": "VÁY",
-      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
-      "image": "/images/categories/women.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "vay",
+    "variants": [],
+    "categoryName": "VÁY"
   },
   {
     "id": "p015",
@@ -3087,17 +2863,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:36:12.218Z",
     "soldCount": 99,
-    "category": {
-      "id": "tops",
-      "slug": "tops",
-      "name": "TOPS",
-      "description": "Áo thun, áo sơ mi và áo len được chọn lọc kỹ về chất liệu.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "tops",
+    "variants": [],
+    "categoryName": "TOPS"
   },
   {
     "id": "p017",
@@ -3148,17 +2916,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:43.198Z",
     "soldCount": 101,
-    "category": {
-      "id": "bottoms",
-      "slug": "bottoms",
-      "name": "BOTTOMS",
-      "description": "Quần jeans, trousers và short với form dáng chuẩn tối giản.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_quan_kaki_quan_kaki_1_anh_chup_man_hinh_2026_09_24_104720.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "bottoms",
+    "variants": [],
+    "categoryName": "BOTTOMS"
   },
   {
     "id": "p019",
@@ -3202,17 +2962,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:49.126Z",
     "soldCount": 102,
-    "category": {
-      "id": "phu-kien",
-      "slug": "phu-kien",
-      "name": "PHỤ KIỆN",
-      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
-      "image": "/images/categories/accessories.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "phu-kien",
+    "variants": [],
+    "categoryName": "PHỤ KIỆN"
   },
   {
     "id": "p020",
@@ -3261,17 +3013,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:52.047Z",
     "soldCount": 103,
-    "category": {
-      "id": "phu-kien",
-      "slug": "phu-kien",
-      "name": "PHỤ KIỆN",
-      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
-      "image": "/images/categories/accessories.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "phu-kien",
+    "variants": [],
+    "categoryName": "PHỤ KIỆN"
   },
   {
     "id": "p022",
@@ -3314,17 +3058,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:51.105Z",
     "soldCount": 102,
-    "category": {
-      "id": "phu-kien",
-      "slug": "phu-kien",
-      "name": "PHỤ KIỆN",
-      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
-      "image": "/images/categories/accessories.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "phu-kien",
+    "variants": [],
+    "categoryName": "PHỤ KIỆN"
   },
   {
     "id": "p023",
@@ -3373,16 +3109,7 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-14T05:19:34.235Z",
     "soldCount": 101,
-    "category": {
-      "id": "phu-kien",
-      "slug": "phu-kien",
-      "name": "PHỤ KIỆN",
-      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
-      "image": "/images/categories/accessories.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "phu-kien",
     "variants": [
       {
         "id": "pv-0bc86cdc-1f7e-480a-b1f1-3af2f32c118c",
@@ -3549,7 +3276,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-14T05:19:34.235Z"
       }
-    ]
+    ],
+    "categoryName": "PHỤ KIỆN"
   },
   {
     "id": "p024",
@@ -3601,17 +3329,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:52.985Z",
     "soldCount": 104,
-    "category": {
-      "id": "outerwear",
-      "slug": "outerwear",
-      "name": "OUTERWEAR",
-      "description": "Áo khoác giữ ấm và tôn dáng, phù hợp thời tiết chuyển mùa.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_172949.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "outerwear",
+    "variants": [],
+    "categoryName": "OUTERWEAR"
   },
   {
     "id": "p025",
@@ -3658,17 +3378,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:51.574Z",
     "soldCount": 101,
-    "category": {
-      "id": "tops",
-      "slug": "tops",
-      "name": "TOPS",
-      "description": "Áo thun, áo sơ mi và áo len được chọn lọc kỹ về chất liệu.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_len_ao_len_5_anh_chup_man_hinh_2026_09_17_160251.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "tops",
+    "variants": [],
+    "categoryName": "TOPS"
   },
   {
     "id": "p026",
@@ -3717,17 +3429,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:46.778Z",
     "soldCount": 103,
-    "category": {
-      "id": "quan",
-      "slug": "quan",
-      "name": "QUẦN",
-      "description": "Quần dài, quần short với form dáng chuẩn tối giản.",
-      "image": "/images/categories/bottoms.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "quan",
+    "variants": [],
+    "categoryName": "QUẦN"
   },
   {
     "id": "p027",
@@ -3777,17 +3481,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:59:53.924Z",
     "soldCount": 100,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao",
+    "variants": [],
+    "categoryName": "ÁO"
   },
   {
     "id": "p028",
@@ -3839,17 +3535,9 @@
     "createdAt": "2026-09-07T02:33:06.000Z",
     "updatedAt": "2026-11-13T21:36:17.794Z",
     "soldCount": 99,
-    "category": {
-      "id": "outerwear",
-      "slug": "outerwear",
-      "name": "OUTERWEAR",
-      "description": "Áo khoác giữ ấm và tôn dáng, phù hợp thời tiết chuyển mùa.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_vest_ao_vest_1_anh_chup_man_hinh_2026_09_25_172949.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "outerwear",
+    "variants": [],
+    "categoryName": "OUTERWEAR"
   },
   {
     "id": "p0316",
@@ -3895,17 +3583,9 @@
     "createdAt": "2026-09-28T17:07:40.318Z",
     "updatedAt": "2026-11-13T21:59:43.959Z",
     "soldCount": 3,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao-khoac",
+    "variants": [],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p0947",
@@ -3949,16 +3629,7 @@
     "createdAt": "2026-09-28T16:54:20.954Z",
     "updatedAt": "2026-11-13T22:40:02.198Z",
     "soldCount": 8,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao-khoac",
     "variants": [
       {
         "id": "var-1794609603956-202",
@@ -3993,7 +3664,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:05.134Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p2048",
@@ -4041,17 +3713,9 @@
     "createdAt": "2026-09-28T17:24:22.049Z",
     "updatedAt": "2026-11-13T21:59:44.431Z",
     "soldCount": 8,
-    "category": {
-      "id": "cat-jeans",
-      "slug": "cat-jeans",
-      "name": "Jeans",
-      "description": "",
-      "image": "",
-      "type": "standard",
-      "parentId": "bottoms",
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "cat-jeans",
+    "variants": [],
+    "categoryName": "Jeans"
   },
   {
     "id": "p2615",
@@ -4093,17 +3757,9 @@
     "createdAt": "2026-09-28T03:28:02.617Z",
     "updatedAt": "2026-11-13T21:59:44.901Z",
     "soldCount": 3,
-    "category": {
-      "id": "phu-kien",
-      "slug": "phu-kien",
-      "name": "PHỤ KIỆN",
-      "description": "Điểm nhấn nhỏ hoàn thiện outfit của bạn.",
-      "image": "/images/categories/accessories.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "phu-kien",
+    "variants": [],
+    "categoryName": "PHỤ KIỆN"
   },
   {
     "id": "p2723",
@@ -4151,16 +3807,7 @@
     "createdAt": "2026-09-28T17:19:12.725Z",
     "updatedAt": "2026-11-13T22:40:05.514Z",
     "soldCount": 3,
-    "category": {
-      "id": "vay",
-      "slug": "vay",
-      "name": "VÁY",
-      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
-      "image": "/images/categories/women.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "vay",
     "variants": [
       {
         "id": "var-1794609606092-223",
@@ -4250,7 +3897,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:09.446Z"
       }
-    ]
+    ],
+    "categoryName": "VÁY"
   },
   {
     "id": "p2913",
@@ -4301,17 +3949,9 @@
     "createdAt": "2026-09-28T17:42:12.915Z",
     "updatedAt": "2026-11-13T21:59:49.694Z",
     "soldCount": 4,
-    "category": {
-      "id": "ao",
-      "slug": "ao",
-      "name": "ÁO",
-      "description": "Tất cả các mẫu áo tối giản, dễ phối đồ.",
-      "image": "/uploads/routine_nu_20261107t221437z_1_001_nu_ao_len_ao_len_1_anh_chup_man_hinh_2026_09_25_162255.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao",
+    "variants": [],
+    "categoryName": "ÁO"
   },
   {
     "id": "p3680",
@@ -4357,17 +3997,9 @@
     "createdAt": "2026-09-28T16:59:33.681Z",
     "updatedAt": "2026-11-13T21:59:48.658Z",
     "soldCount": 3,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao-khoac",
+    "variants": [],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p4235",
@@ -4413,17 +4045,9 @@
     "createdAt": "2026-09-28T17:12:14.236Z",
     "updatedAt": "2026-11-13T21:59:52.515Z",
     "soldCount": 5,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao-khoac",
+    "variants": [],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p5112",
@@ -4472,17 +4096,9 @@
     "createdAt": "2026-09-28T16:57:55.113Z",
     "updatedAt": "2026-11-13T21:59:56.740Z",
     "soldCount": 1,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao-khoac",
+    "variants": [],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p5265",
@@ -4532,17 +4148,9 @@
     "createdAt": "2026-09-28T17:20:25.267Z",
     "updatedAt": "2026-09-28T17:20:25.267Z",
     "soldCount": 0,
-    "category": {
-      "id": "vay",
-      "slug": "vay",
-      "name": "VÁY",
-      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
-      "image": "/images/categories/women.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "vay",
+    "variants": [],
+    "categoryName": "VÁY"
   },
   {
     "id": "p5439",
@@ -4589,16 +4197,7 @@
     "createdAt": "2026-09-28T05:12:05.440Z",
     "updatedAt": "2026-11-13T22:40:09.825Z",
     "soldCount": 1,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
+    "category": "ao-khoac",
     "variants": [
       {
         "id": "var-1794609610398-325",
@@ -4666,7 +4265,8 @@
         "status": "ACTIVE",
         "createdAt": "2026-11-13T22:40:12.782Z"
       }
-    ]
+    ],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p6989",
@@ -4714,17 +4314,9 @@
     "createdAt": "2026-09-28T17:06:06.991Z",
     "updatedAt": "2026-09-28T17:06:06.991Z",
     "soldCount": 0,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao-khoac",
+    "variants": [],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p8436",
@@ -4773,17 +4365,9 @@
     "createdAt": "2026-09-28T15:03:28.438Z",
     "updatedAt": "2026-11-13T21:59:47.251Z",
     "soldCount": 4,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao-khoac",
+    "variants": [],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p8618",
@@ -4831,17 +4415,9 @@
     "createdAt": "2026-09-28T17:04:38.621Z",
     "updatedAt": "2026-09-28T17:04:38.621Z",
     "soldCount": 0,
-    "category": {
-      "id": "ao-khoac",
-      "slug": "ao-khoac",
-      "name": "ÁO KHOÁC",
-      "description": "Áo khoác nhẹ đến giữ ấm, hoàn thiện mọi outfit.",
-      "image": "/uploads/routine_nam_20261107t221434z_1_001_nam_ao_khoac_1_anh_chup_man_hinh_2026_09_16_003048.png",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "ao-khoac",
+    "variants": [],
+    "categoryName": "ÁO KHOÁC"
   },
   {
     "id": "p9984",
@@ -4891,16 +4467,8 @@
     "createdAt": "2026-09-28T17:17:29.987Z",
     "updatedAt": "2026-11-13T21:59:50.165Z",
     "soldCount": 7,
-    "category": {
-      "id": "vay",
-      "slug": "vay",
-      "name": "VÁY",
-      "description": "Váy tối giản, dễ mặc cho nhiều dịp khác nhau.",
-      "image": "/images/categories/women.jpg",
-      "type": "standard",
-      "parentId": null,
-      "createdAt": "2026-09-07T02:33:06.000Z"
-    },
-    "variants": []
+    "category": "vay",
+    "variants": [],
+    "categoryName": "VÁY"
   }
 ]

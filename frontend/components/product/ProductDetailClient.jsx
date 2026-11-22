@@ -99,7 +99,9 @@ export default function ProductDetailClient({ initialProduct, initialRelated = [
       <nav className="breadcrumb" style={{ marginBottom: 24 }} aria-label="Breadcrumb">
         <Link href="/">Home</Link>
         <span>/</span>
-        <Link href={`/category/${product.category}`}>{product.category}</Link>
+        <Link href={`/category/${typeof product.category === 'object' ? (product.category?.slug || product.category?.id || '') : (product.categorySlug || product.category || '')}`}>
+          {typeof product.category === 'object' ? (product.category?.name || product.category?.slug || '') : (product.categoryName || product.category || '')}
+        </Link>
         <span>/</span>
         <span className="breadcrumb-current">{product.name}</span>
       </nav>

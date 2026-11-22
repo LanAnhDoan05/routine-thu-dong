@@ -153,7 +153,11 @@ export default function ProductCard({ product }) {
       </div>
 
       <div className={styles.info}>
-        <span className={styles.category}>{product.category}</span>
+        <span className={styles.category}>
+          {typeof product.category === "object"
+            ? (product.category?.name || product.category?.slug || "")
+            : (product.categoryName || product.category || product.categoryId || "")}
+        </span>
         <span className={styles.name}>{product.name}</span>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 6, flexWrap: "wrap", marginTop: 2 }}>
           <div className="price" style={{ display: "flex", alignItems: "baseline", flexWrap: "wrap", gap: 6 }}>
