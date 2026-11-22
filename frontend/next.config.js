@@ -1,11 +1,9 @@
 /** @type {import('next').NextConfig} */
-const isVercel = !!process.env.VERCEL;
-const isProduction = process.env.NODE_ENV === 'production';
 const RAW_BACKEND = (process.env.NEXT_PUBLIC_API_URL || '')
   .replace(/\/api\/v1\/?$/, '')
   .replace(/\/+$/, '');
 
-const shouldProxy = !isVercel && RAW_BACKEND && /^https?:\/\//.test(RAW_BACKEND) && !RAW_BACKEND.includes('localhost');
+const shouldProxy = RAW_BACKEND && /^https?:\/\//.test(RAW_BACKEND) && !RAW_BACKEND.includes('localhost') && !RAW_BACKEND.includes('127.0.0.1');
 
 const nextConfig = {
   reactStrictMode: true,

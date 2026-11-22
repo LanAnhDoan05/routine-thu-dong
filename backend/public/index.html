@@ -1,13 +1,37 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <title>Express</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROUTINE THU ĐÔNG — Backend API</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 32px; max-width: 600px; width: 100%; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); }
+    h1 { font-size: 24px; margin-top: 0; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
+    .badge { display: inline-block; padding: 4px 10px; background: #059669; color: #fff; font-size: 12px; font-weight: bold; border-radius: 9999px; }
+    p { color: #94a3b8; line-height: 1.6; }
+    ul { list-style: none; padding: 0; margin: 20px 0; }
+    li { padding: 10px 14px; background: #0f172a; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-family: monospace; }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
 </head>
-
 <body>
-  <h1>Express</h1>
-  <p>Welcome to Express</p>
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <h1>ROUTINE THU ĐÔNG</h1>
+      <span class="badge">API ACTIVE</span>
+    </div>
+    <p>Hệ thống Backend REST API phục vụ nền tảng Thương mại điện tử thời trang ROUTINE THU ĐÔNG, kết nối cơ sở dữ liệu Aiven Cloud MySQL và Cloudinary Storage.</p>
+    <ul>
+      <li><span>GET /api/v1/products</span> <a href="/api/v1/products">Khám phá</a></li>
+      <li><span>GET /api/v1/categories</span> <a href="/api/v1/categories">Khám phá</a></li>
+      <li><span>GET /api/v1/settings/hero-banners</span> <a href="/api/v1/settings/hero-banners">Khám phá</a></li>
+      <li><span>GET /health</span> <a href="/health">Kiểm tra</a></li>
+    </ul>
+    <div style="font-size: 12px; color: #64748b; margin-top: 24px; text-align: center;">
+      ROUTINE THU ĐÔNG © 2026 — Production Node.js Serverless Service
+    </div>
+  </div>
 </body>
-
 </html>
