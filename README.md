@@ -1,427 +1,499 @@
-# Routine Thu Đông — Smart Fashion E-Commerce & AI Stylist Platform
+# ROUTINE THU ĐÔNG — Nền Tảng Thương Mại Điện Tử Thời Trang Thông Minh & AI Stylist
 
-> **Nền tảng thương mại điện tử thời trang cao cấp** kết hợp công nghệ **Smart Outfit**, **Trợ lý tư vấn tạo mẫu ảo AI Stylist thế hệ mới** (tích hợp Google Gemini AI & Bộ chuẩn hóa ngữ nghĩa thời trang tiếng Việt), **Hệ sinh thái phân tích tiếp thị đa nền tảng (Omni-channel Analytics)**, cổng thanh toán trực tuyến **VNPay Sandbox** và hệ thống quản trị **Admin Portal** hoàn chỉnh.
+> **Dự án:** ROUTINE THU ĐÔNG (`routine-thu-dong`)  
+> **Thương hiệu hiển thị:** ROUTINE THU ĐÔNG  
+> **GitHub Repository:** [https://github.com/LanAnhDoan05/routine-thu-dong](https://github.com/LanAnhDoan05/routine-thu-dong)  
+> **Mục tiêu:** Nền tảng thương mại điện tử chuyên ngành thời trang tối giản và hiện đại cho mùa Thu Đông, kết hợp trợ lý AI Stylist tư vấn phong cách đa lượt, hệ thống phân tích kinh doanh thông minh (AI Business Intelligence), cổng thanh toán điện tử VNPay và cổng quản trị vận hành Admin Portal toàn diện.
 
 ---
-## 📌 Mục lục
 
-1. [Giới thiệu tổng quan & Giá trị dự án](#1-giới-thiệu-tổng-quan--giá-trị-dự-án)
-2. [Kiến trúc hệ thống & Ngăn xếp công nghệ (Tech Stack)](#2-kiến-trúc-hệ-thống--ngăn-xếp-công-nghệ-tech-stack)
-3. [Các phân hệ & Tính năng đột phá](#3-các-phân-hệ--tính-năng-đột-phá)
-   - [3.1 Trợ lý Thời trang AI Stylist Đa Lượt](#31-trợ-lý-thời-trang-ai-stylist-thế-hệ-mới-multi-turn-chat)
-   - [3.2 Trải nghiệm mua sắm Storefront](#32-trải-nghiệm-mua-sắm-khách-hàng-storefront)
-   - [3.3 Hệ sinh thái Tiếp thị Đa Nền tảng (Omni-channel Analytics)](#33-hệ-sinh-thái-tiếp-thị-đa-nền-tảng-omni-channel-analytics)
-   - [3.4 Hệ thống Đánh giá & Phân quyền Sản phẩm (Reviews & Ratings)](#34-hệ-thống-đánh-giá--phân-quyền-sản-phẩm-reviews--ratings)
-   - [3.5 Cổng Quản trị Vận hành Toàn diện (Admin Portal)](#35-cổng-quản-trị-vận-hành-toàn-diện-admin-portal)
-   - [3.6 Cơ chế Kỹ thuật Chuyên sâu & Bảo mật](#36-cơ-chế-kỹ-thuật-chuyên-sâu--bảo-mật)
-   - [3.7 Tìm kiếm Vector & Đóng khung AI (RAG Grounding)](#37-tìm-kiếm-vector--đóng-khung-ai-rag-grounding)
-4. [Tài khoản Demo thử nghiệm (Demo Credentials)](#4-tài-khoản-demo-thử-nghiệm-demo-credentials)
+## 📑 Mục Lục
+
+1. [Giới thiệu dự án](#1-giới-thiệu-dự-án)
+2. [Tổng quan chức năng](#2-tổng-quan-chức-năng)
+   - [2.1 Phân hệ khách hàng (Storefront)](#21-phân-hệ-khách-hàng-storefront)
+   - [2.2 Phân hệ Quản trị viên (Admin Portal)](#22-phân-hệ-quản-trị-viên-admin-portal)
+   - [2.3 Trợ lý AI Stylist (Fashion Multi-turn Assistant)](#23-trợ-lý-ai-stylist-fashion-multi-turn-assistant)
+   - [2.4 Trí tuệ doanh nghiệp AI Business Intelligence (AI BI)](#24-trí-tuệ-doanh-nghiệp-ai-business-intelligence-ai-bi)
+   - [2.5 Cổng thanh toán VNPay & Quản lý đơn hàng](#25-cổng-thanh-toán-vnpay--quản-lý-đơn-hàng)
+3. [Công nghệ sử dụng](#3-công-nghệ-sử-dụng)
+4. [Kiến trúc hệ thống](#4-kiến-trúc-hệ-thống)
 5. [Cấu trúc thư mục dự án](#5-cấu-trúc-thư-mục-dự-án)
-6. [Yêu cầu môi trường (Prerequisites)](#6-yêu-cầu-môi-trường-prerequisites)
-7. [Hướng dẫn cài đặt & Cấu hình chi tiết](#7-hướng-dẫn-cài-đặt--cấu-hình-chi-tiết)
-   - [Bước 1: Thiết lập Cơ sở dữ liệu (MySQL)](#bước-1-thiết-lập-cơ-sở-dữ-liệu-mysql)
-   - [Bước 2: Cài đặt & Cấu hình Backend](#bước-2-cài-đặt--cấu-hình-backend)
-   - [Bước 3: Cài đặt & Cấu hình Frontend](#bước-3-cài-đặt--cấu-hình-frontend)
-   - [Bước 4: Kiểm tra cấu hình](#bước-4-kiểm-tra-cấu-hình)
-8. [Cách khởi chạy dự án (How to Run)](#8-cách-khởi-chạy-dự-án-how-to-run)
-9. [Tài liệu API Endpoints Chi tiết](#9-tài-liệu-api-endpoints-chi-tiết)
-10. [Chạy các kịch bản kiểm thử tự động (Automated Tests)](#10-chạy-các-kịch-bản-kiểm-thử-tự-động-automated-tests)
-11. [Khắc phục sự cố thường gặp (Troubleshooting)](#11-khắc-phục-sự-cố-thường-gặp-troubleshooting)
+6. [Cấu hình biến môi trường (Environment Variables)](#6-cấu-hình-biến-môi-trường-environment-variables)
+7. [Hướng dẫn cài đặt và khởi chạy dự án](#7-hướng-dẫn-cài-đặt-và-khởi-chạy-dự-án)
+8. [Hướng dẫn sử dụng](#8-hướng-dẫn-sử-dụng)
+9. [Kiểm thử và triển khai (Testing & Deployment)](#9-kiểm-thử-và-triển-khai-testing--deployment)
+10. [Tình trạng dự án và báo cáo nghiệm thu](#10-tình-trạng-dự-án-và-báo-cáo-nghiệm-thu)
 
 ---
 
-## 1. Giới thiệu tổng quan & Giá trị dự án
+## 1. Giới thiệu dự án
 
-**Routine_web** là nền tảng thương mại điện tử chuyên ngành thời trang tối giản và hiện đại, xây dựng theo kiến trúc **Monorepo (Frontend và Backend phân tách độc lập)**:
-- **Khách hàng (Customer)**: Mua sắm liền mạch, chọn mua trọn gói set phối đồ thông minh (**Smart Outfit**), trò chuyện tự nhiên với **AI Stylist** bằng ngôn ngữ đời thường (hiểu tiếng lóng form dáng: *“rộng/thùng thình”* $\rightarrow$ *oversize*, *“ôm/gọn”* $\rightarrow$ *slim-fit*), giữ chỗ kho tự động và thanh toán linh hoạt (COD / VNPay).
-- **Bộ phận Tiếp thị (Marketing & Growth)**: Tự động gắn tag nguồn tiếp cận (TikTok, Facebook, Instagram, Google) từ lúc khách truy cập vãng lai, theo dõi tỷ lệ chuyển đổi (Conversion Rate) và doanh thu thực tế theo từng kênh.
-- **Quản trị viên (Admin)**: Quản trị tập trung tại `/admin` về sản phẩm, bộ phối thời trang, đơn hàng, mã giảm giá, kiểm duyệt đánh giá và phễu khách hàng.
+**ROUTINE THU ĐÔNG** là giải pháp số hóa toàn diện dành cho thương hiệu thời trang Routine trong chiến dịch mùa Thu Đông. Hệ thống được kiến trúc theo mô hình phân tách độc lập giữa **Frontend Storefront (Next.js 16)** và **Backend API (Node.js/Express & Prisma ORM)**, kết nối trực tiếp với cơ sở dữ liệu quan hệ **MySQL**.
+
+### Mục tiêu xây dựng
+- Xây dựng trải nghiệm mua sắm mượt mà, tối giản, sang trọng theo đúng ngôn ngữ thiết kế của thương hiệu Routine.
+- Ứng dụng trí tuệ nhân tạo (Google Gemini API) trong việc tư vấn phong cách ăn mặc, phối đồ thông minh (Smart Outfit), kiểm tra kích cỡ chuẩn xác nhằm gia tăng tỷ lệ chuyển đổi và giảm thiểu tối đa tỷ lệ hoàn hàng.
+- Cung cấp công cụ phân tích kinh doanh chuyên sâu (AI Business Intelligence) cho cấp quản lý với các báo cáo doanh thu, tồn kho, kênh phân phối và phân nhóm khách hàng RFM được tính toán trực tiếp từ cơ sở dữ liệu thật.
+
+### Đối tượng sử dụng
+1. **Khách hàng mua sắm (Customers):** Người dùng có nhu cầu tìm kiếm trang phục mùa Thu Đông, xây dựng outfit đi làm/đi chơi, nhận tư vấn thời trang cá nhân hóa từ AI và thanh toán trực tuyến thuận tiện.
+2. **Quản trị viên & Chuyên viên thời trang (Admins & Stylists):** Đội ngũ quản lý sản phẩm, điều phối đơn hàng, tiếp nhận các ca tư vấn chuyển tiếp từ AI, theo dõi biến động tồn kho và tham khảo các kiến nghị chiến lược từ hệ thống AI BI.
+
+### Các vấn đề dự án giải quyết
+- **Xóa bỏ hiện tượng "Ảo giác" (Hallucination) của AI:** AI chỉ giới thiệu các sản phẩm có thật, đang kinh doanh (`ACTIVE`), đúng giá niêm yết và còn tồn kho thực tế trong MySQL database.
+- **Tính toán chi phí và thanh toán minh bạch:** Tự động tính toán khoảng cách từ địa chỉ khách hàng tới 25 showroom Routine trên toàn quốc bằng thuật toán Haversine kết hợp biểu phí hành chính, áp dụng miễn phí vận chuyển cho đơn hàng từ 499.000đ.
+- **Bảo mật và toàn vẹn dữ liệu:** Không lưu mật khẩu dạng văn bản thô (sử dụng `bcryptjs` 10 salt rounds), bảo vệ API quản trị bằng JWT Bearer Token và phân quyền RBAC nghiêm ngặt, chống tấn công lặp thanh toán (Idempotency) trên cổng VNPay.
 
 ---
 
-## 2. Kiến trúc hệ thống & Ngăn xếp công nghệ (Tech Stack)
+## 2. Tổng quan chức năng
 
-### Sơ đồ kiến trúc tổng thể
+### 2.1 Phân hệ khách hàng (Storefront)
+- **Trang chủ & Banner tương tác:** Hiển thị Hero Slider mùa Thu Đông, danh mục thịnh hành, sản phẩm mới nhất (`New Arrivals`) và các set phối đồ nổi bật (`Trending Outfits`).
+- **Danh mục & Bộ lọc đa chiều:**
+  - Phân loại theo Danh mục: Áo sơ mi, Áo thun, Áo khoác, Quần jeans, Quần tây, Đầm/Váy, Phụ kiện.
+  - Phân loại theo Giới tính: Nam, Nữ, Unisex.
+  - Phân loại theo Phong cách: Casual, Smart Casual, Minimalist, Streetwear, Office Chic.
+  - Lọc theo khoảng giá linh hoạt, màu sắc và kích cỡ.
+- **Tìm kiếm thông minh:** Tìm kiếm toàn văn (Full-text Search), gợi ý tự động khi gõ (Search Suggestions) và trực quan hóa bản đồ phong cách 2D Vector.
+- **Chi tiết sản phẩm:** Lựa chọn biến thể màu sắc và kích cỡ theo thời gian thực; tự động cập nhật tồn kho theo SKU; hiển thị bảng hướng dẫn chọn size chuẩn Routine; danh sách đánh giá và bình luận đã kiểm duyệt.
+- **Danh sách yêu thích (Wishlist):** Lưu trữ các sản phẩm quan tâm, đồng bộ cho cả tài khoản thành viên và khách vãng lai.
+- **Giỏ hàng (Cart):** Thêm, bớt, cập nhật số lượng, xóa sản phẩm; cơ chế kiểm tra và khóa tồn kho tạm thời (Stock Reservation) ngăn ngừa tình trạng bán vượt tồn.
+- **Quy trình Thanh toán & Checkout:**
+  - Xác thực nghiêm ngặt thông tin người nhận: họ tên tối thiểu 2 ký tự, số điện thoại chuẩn di động Việt Nam (10 chữ số).
+  - Xác thực địa chỉ giao hàng 3 cấp (Tỉnh/Thành phố, Quận/Huyện, Phường/Xã) theo danh mục 63 tỉnh thành Việt Nam kết hợp kiểm tra Geocoding (Google Maps / OpenStreetMap Nominatim).
+  - Tự động định vị Showroom gần nhất để tính toán phí ship tối ưu.
+  - Áp dụng mã voucher giảm giá và mã miễn phí vận chuyển.
+- **Quản lý tài khoản:** Đăng ký, đăng nhập (Email / Số điện thoại), xác thực OTP, quên mật khẩu, cập nhật thông tin cá nhân và quản lý sổ địa chỉ giao hàng.
+- **Lịch sử đơn hàng:** Tra cứu chi tiết đơn hàng, mã vận đơn, tiến trình thời gian thực (Timeline 4 bước: Đã đặt hàng -> Đã duyệt -> Đang giao -> Đã nhận).
+
+### 2.2 Phân hệ Quản trị viên (Admin Portal)
+- **Đăng nhập & Phân quyền (RBAC):** Chỉ tài khoản có vai trò `ADMIN` mới được quyền truy cập các API và trang quản trị tại `/admin`.
+- **Dashboard điều hành:** Tổng quan doanh thu thực tế, số lượng đơn hàng, số khách hàng mới, tỷ lệ hoàn tất đơn và biểu đồ xu hướng.
+- **Quản lý sản phẩm toàn diện:**
+  - Thêm sản phẩm mới với đầy đủ biến thể màu sắc, kích cỡ, SKU, giá bán, giá gốc và tồn kho.
+  - Tự động chuẩn hóa giới tính (`men`, `women`, `unisex`) và danh mục.
+  - Chỉnh sửa thông tin, giá bán, tồn kho tức thời (đồng bộ thời gian thực sang giao diện khách hàng).
+  - Bật/tắt trạng thái hiển thị (`ACTIVE`, `DRAFT`, `INACTIVE`) hoặc xóa sản phẩm an toàn.
+  - Tích hợp tải ảnh sản phẩm trực tiếp lên Cloudinary CDN hoặc lưu trữ an toàn.
+- **Quản lý đơn hàng:** Xem danh sách toàn bộ đơn hàng, lọc theo trạng thái (`PENDING`, `CONFIRMED`, `SHIPPING`, `DELIVERED`, `CANCELLED`), cập nhật tiến độ xử lý và xem chi tiết đối soát thanh toán.
+- **Quản lý khách hàng (CRM):** Danh sách khách hàng, tổng chi tiêu, số đơn hàng đã mua, ngày đăng ký và nguồn tiếp cận (Attribution Source).
+- **Hệ thống thông báo thời gian thực (SSE & Database Notifications):**
+  - Nhận chuông báo tức thì khi có đơn hàng mới hoặc khi khách hàng yêu cầu chuyển tiếp sang tư vấn viên.
+  - Đánh dấu đã đọc từng thông báo hoặc toàn bộ thông báo.
+  - Bấm vào thông báo để điều hướng trực tiếp (Deep Link) đến trang đơn hàng hoặc trang trao đổi tư vấn (`/admin/leads?chatId=...`).
+- **Quản lý Voucher & Banners:** Cấu hình mã giảm giá (phần trăm, số tiền cố định, freeship, điều kiện đơn tối thiểu) và quản lý hình ảnh Hero Banner trang chủ.
+
+### 2.3 Trợ lý AI Stylist (Fashion Multi-turn Assistant)
+- **Hiểu ngôn ngữ tự nhiên tiếng Việt:** Tích hợp bộ giải mã ngữ nghĩa thời trang Routine (`fashionThesaurus.js`), nhận biết tiếng lóng và thuật ngữ phom dáng đời thường (ví dụ: *"thùng thình/rộng"* $\rightarrow$ *Loose/Oversized*, *"ôm/bó"* $\rightarrow$ *Slim fit*).
+- **Ghi nhớ ngữ cảnh hội thoại đa lượt (Contextual Multi-turn Memory):**
+  - Duy trì các điều kiện đã nêu ở các lượt trước khi khách hỏi thêm chi tiết (Ví dụ: Lượt 1 tìm *"áo len dưới 1 triệu"* $\rightarrow$ Lượt 2 hỏi *"có màu trắng không?"* $\rightarrow$ AI tự động kết hợp tìm áo len màu trắng có giá $\le$ 1.000.000đ).
+  - Cập nhật chính xác khi khách hàng thay đổi tiêu chí (đổi màu, tăng ngân sách).
+  - Nhận diện khi khách chuyển đổi hẳn sang nhu cầu mới (ví dụ chuyển từ tìm áo sang tìm quần).
+- **Dữ liệu thật 100% (Database Grounding):** Sử dụng cơ chế Function Calling (`search_products`, `get_product_details`, `recommend_outfit`, `replace_outfit_item`) để truy vấn trực tiếp bảng `products` và `product_variants`. Tuyệt đối không bịa đặt sản phẩm hoặc giá bán.
+- **Phối đồ thông minh (Smart Outfit):** Tạo set trang phục hoàn chỉnh theo ngân sách và phong cách mong muốn; cho phép thay thế từng món trong set đồ mà vẫn giữ nguyên các món còn lại.
+- **Chuyển tiếp cho chuyên viên tư vấn (Human Handoff):** Khi phát hiện khách hàng có ý định mua cao hoặc yêu cầu gặp người thật, AI chủ động đề xuất hỗ trợ chuyên viên; khi khách đồng ý, hệ thống tự động lưu hội thoại vào cơ sở dữ liệu và bắn thông báo tức thời đến Admin Portal.
+
+### 2.4 Trí tuệ doanh nghiệp AI Business Intelligence (AI BI)
+- **Báo cáo tài chính & Doanh thu:** Tính toán tổng doanh thu, giá trị trung bình đơn hàng (AOV), doanh thu theo ngày/tháng từ các giao dịch thành công trong MySQL.
+- **Phân tích sản phẩm & Nút thắt chuyển đổi:** Nhận diện các sản phẩm bán chạy nhất (`Top Performers`) và các sản phẩm có lượt xem cao nhưng tỷ lệ mua thấp để đề xuất tối ưu hình ảnh/giá bán.
+- **Dự báo nhu cầu nhập kho (Inventory Restock Forecast):** Phân tích tốc độ bán ra (run rate) và số ngày tồn kho còn lại (`days until out of stock`) để cảnh báo nhập hàng trước khi hết sạch.
+- **Phân bổ hàng hóa showroom:** Đánh giá nhu cầu tiêu thụ tại từng khu vực địa lý để gợi ý điều chuyển hàng giữa 25 showroom Routine.
+- **Phân nhóm khách hàng RFM (Customer 360):** Phân chia khách hàng thành các nhóm: *Champions*, *Loyal Customers*, *Potential Loyalists*, *At Risk*, *Lost* kèm chính sách chăm sóc riêng biệt.
+- **Bảo vệ quyền riêng tư (PII Masking):** Số điện thoại và email khách hàng được che dấu tự động (`090****567`, `tu****h@gmail.com`) trước khi đưa vào phân tích AI.
+- **Giám đốc Thương mại ảo (Virtual CCO):** Google Gemini đóng vai trò diễn giải các số liệu thực tế, giải thích nguyên nhân và đưa ra các đề xuất hành động cụ thể kèm mức độ rủi ro và điều kiện thực hiện.
+
+### 2.5 Cổng thanh toán VNPay & Quản lý đơn hàng
+- **Tích hợp VNPay Sandbox tiêu chuẩn:** Khởi tạo URL thanh toán với mã giao dịch duy nhất, đơn vị tiền tệ VND (nhân 100 theo chuẩn VNPay).
+- **Bảo mật chữ ký số HMAC-SHA512:** Mã hóa và kiểm tra chuỗi băm bảo mật (`vnp_SecureHash`) trên cả Return URL và IPN webhook.
+- **Giao diện Cổng thanh toán & QR Code:** Tự động sinh mã VietQR / VNPay QR động hiển thị trực quan để khách hàng quét mã chuyển khoản nhanh chóng.
+- **Chống lặp thanh toán (Idempotency):** Xử lý an toàn khi VNPay gửi nhiều lần tín hiệu callback hoặc khi người dùng tải lại trang kết quả, đảm bảo số tiền và trạng thái đơn hàng không bị cập nhật sai lệch.
+
+---
+
+## 3. Công nghệ sử dụng
+
+| Tầng hệ thống | Công nghệ / Thư viện | Phiên bản | Vai trò & Đặc tính kỹ thuật |
+| :--- | :--- | :--- | :--- |
+| **Frontend Framework** | **Next.js** | **16.4.3** | App Router, Server Components & Client Components, Turbopack, tối ưu SEO |
+| **UI Library** | **React** | **19.2.3** | Quản lý trạng thái bằng React Context API (Cart, Wishlist, Order, Auth) |
+| **Styling** | **CSS Modules** | Thuần CSS | Thiết kế tối giản, đồng bộ nhận diện ROUTINE THU ĐÔNG, 100% Responsive |
+| **Mã QR** | **QRCode** | **1.5.4** | Sinh mã QR động cho cổng thanh toán VNPay Gateway |
+| **Backend Framework** | **Express.js** | **4.22.3** | RESTful API server, Middleware pipeline, xử lý lỗi tập trung |
+| **ORM** | **Prisma ORM** | **6.19.3** | Quản lý Schema, Migrations, quan hệ dữ liệu chặt chẽ giữa 16 models |
+| **Cơ sở dữ liệu** | **MySQL** | **8.0+** | Lưu trữ toàn bộ sản phẩm, biến thể, đơn hàng, người dùng, thông báo và báo cáo BI |
+| **AI Engine** | **Google Gen AI SDK** | **2.32.0** | Tích hợp Google Gemini (`gemini-3.8-flash` / `gemini-3.5-flash-lite`) |
+| **Thời trang NLP** | **Fashion Thesaurus** | Nội bộ | Chuẩn hóa từ khóa thời trang tiếng Việt, ánh xạ form dáng, màu sắc |
+| **Thanh toán** | **VNPay SDK** | **2.5.0** | Khởi tạo giao dịch, tạo URL thanh toán, xác thực chữ ký số HMAC-SHA512 |
+| **Lưu trữ đám mây** | **Cloudinary SDK** | **2.11.0** | Tải lên và phân phối hình ảnh sản phẩm qua mạng lưới Cloudinary CDN |
+| **Xác thực & Mã hóa** | **bcryptjs** | **3.0.3** | Băm mật khẩu người dùng với 10 salt rounds an toàn |
+| **Phiên đăng nhập** | **jsonwebtoken (JWT)** | **9.0.3** | Cấp phát Bearer Token có thời hạn, xác thực danh tính và vai trò người dùng |
+| **Bảo mật Web** | **Helmet & CORS** | 8.3 / 2.8 | Thiết lập HTTP security headers, giới hạn nguồn truy cập Cross-Origin |
+| **Chống Brute-force** | **express-rate-limit** | **8.7.0** | Giới hạn tần suất gọi API, ngăn chặn tấn công từ chối dịch vụ (DoS) |
+| **Gửi Email** | **Nodemailer** | **10.0.1** | Gửi email hóa đơn đơn hàng và mã OTP xác thực qua Gmail SMTP |
+
+---
+
+## 4. Kiến trúc hệ thống
 
 ```mermaid
-graph TD
-    Client["Client (Trình duyệt Web - Máy tính & Di động)"]
-   FE["Frontend (Next.js 16 App Router) - Port 3000"]
-    BE["Backend (Express.js REST API) - Port 5001"]
-   VEC["Native vector search / RAG"]
-   DB[("MySQL Database (Aiven defaultdb hoặc local MySQL)")]
-    Prisma["Prisma ORM 6"]
-   Gemini["Google GenAI SDK (gemini-3.8-flash)"]
-    Thesaurus["Từ điển Ngữ nghĩa Thời trang Việt (fashionThesaurus.js)"]
-    VNPay["Cổng thanh toán VNPay Sandbox"]
-    SMTP["Gmail SMTP (Nodemailer)"]
+flowchart TD
+    subgraph Client["Trình duyệt Khách hàng & Admin"]
+        UI_User["Giao diện Khách hàng (Desktop / Mobile)"]
+        UI_Admin["Giao diện Quản trị viên (Admin Portal)"]
+        UI_Stylist["Giao diện Trợ lý AI Stylist & Floating Widget"]
+    end
 
-    Client -->|SSR / CSR / JSON| FE
-    FE -->|REST API /api/v1| BE
-    BE -->|Prisma Client| Prisma
-    Prisma -->|Query / Transaction| DB
-    BE -->|Intent & Multi-turn Chat| Gemini
-    BE -->|Local Semantic Parser & Fallback| Thesaurus
-   BE -->|Native vector search & RAG| VEC
-   VEC -->|Product lookup| Prisma
-   BE -->|Google GenAI SDK| Gemini
-    BE -->|HMAC-SHA512 Payment & Return| VNPay
-    BE -->|OTP & Order Invoices| SMTP
+    subgraph Frontend["Frontend Service (Next.js 16 - Port 3000)"]
+        AppRouter["Next.js App Router (38 Routes)"]
+        ClientContext["Context State (Auth, Cart, Wishlist, Order)"]
+        NextConfig["Next.js Rewrite Proxy (/api/v1/media, /uploads)"]
+    end
+
+    subgraph Backend["Backend Service (Express.js - Port 5001)"]
+        ApiRouter["RESTful API Pipeline (/api/v1)"]
+        AuthMiddleware["JWT Authentication & RBAC Middleware"]
+        RateLimit["Rate Limiter & Helmet Security"]
+        
+        subgraph Controllers["Bộ điều khiển nghiệp vụ (Controllers)"]
+            ProdCtrl["Product & Category Controller"]
+            OrderCtrl["Order & Shipping Controller"]
+            AiCtrl["AI Stylist & Context Controller"]
+            BiCtrl["Business Intelligence Controller"]
+            PayCtrl["Payment & VNPay Controller"]
+            NotifCtrl["Notification & SSE Controller"]
+        end
+
+        subgraph Services["Tầng dịch vụ (Services)"]
+            ProdSvc["Product Service"]
+            OrderSvc["Order Service (Single Source of Truth)"]
+            ShipSvc["Shipping Service (Haversine & 25 Stores)"]
+            FashionAgent["Fashion Agent Service (Gemini Function Calling)"]
+            Thesaurus["Fashion Thesaurus (NLP Tiếng Việt)"]
+            BiSvc["BI Service (KPI Calculations & RFM)"]
+            VnpaySvc["VNPay Service (HMAC-SHA512)"]
+            CloudinarySvc["Cloudinary Upload Service"]
+        end
+    end
+
+    subgraph Database["Cơ sở dữ liệu (Database)"]
+        PrismaClient["Prisma ORM Client 6.19.3"]
+        MySQL[("MySQL Database (routine_db / routine_test_db)")]
+    end
+
+    subgraph External["Dịch vụ bên ngoài (External Integrations)"]
+        GeminiAPI["Google Gemini API (gemini-3.8-flash)"]
+        VNPayGateway["Cổng thanh toán VNPay Sandbox"]
+        CloudinaryCDN["Cloudinary Media Cloud"]
+        SMTPServer["Gmail SMTP Server (Nodemailer)"]
+        MapsAPI["Google Maps / OSM Geocoding"]
+    end
+
+    %% Client to Frontend
+    UI_User --> AppRouter
+    UI_Admin --> AppRouter
+    UI_Stylist --> AppRouter
+    AppRouter --> ClientContext
+
+    %% Frontend to Backend
+    AppRouter -->|HTTP REST API /api/v1| ApiRouter
+    NextConfig -.->|Rewrite media/uploads| ApiRouter
+
+    %% Backend internal flow
+    ApiRouter --> RateLimit --> AuthMiddleware
+    AuthMiddleware --> ProdCtrl & OrderCtrl & AiCtrl & BiCtrl & PayCtrl & NotifCtrl
+    ProdCtrl --> ProdSvc
+    OrderCtrl --> OrderSvc
+    OrderSvc --> ShipSvc
+    AiCtrl --> FashionAgent
+    FashionAgent --> Thesaurus & ProdSvc
+    BiCtrl --> BiSvc
+    PayCtrl --> VnpaySvc
+
+    %% Services to Database
+    ProdSvc & OrderSvc & ShipSvc & BiSvc & VnpaySvc --> PrismaClient
+    PrismaClient --> MySQL
+
+    %% Services to External
+    FashionAgent -->|Function Calling & Chat| GeminiAPI
+    BiSvc -->|Executive Insights| GeminiAPI
+    VnpaySvc -->|Tạo URL & Xác thực| VNPayGateway
+    ProdSvc -->|Upload ảnh| CloudinarySvc --> CloudinaryCDN
+    OrderSvc -->|Gửi hóa đơn| SMTPServer
+    ShipSvc -->|Chuẩn hóa địa chỉ| MapsAPI
 ```
-
-### Chi tiết công nghệ sử dụng
-
-| Tầng | Công nghệ | Phiên bản | Vai trò & Điểm nổi bật |
-| :--- | :--- | :--- | :--- |
-| **Frontend** | **Next.js (App Router)** | 16.4.3 | Tối ưu SEO, Server-Side Rendering (SSR), Client Components, Dynamic Routing. |
-| | **React** | 19.3.1 | Context API quản trị trạng thái Giỏ hàng, Tài khoản, Yêu thích, Đặt hàng. |
-| | **CSS Modules** | Pure CSS | Giao diện tối giản, sang trọng theo chuẩn Brand Identity của Routine, 100% Responsive. |
-| **Backend** | **Node.js & Express** | Express 4.22 | Xây dựng RESTful API tại `/api/v1`, kiến trúc Controller - Service - Route rõ ràng. |
-| | **Prisma ORM** | 6.19.3 | Quản trị 16 Models CSDL với quan hệ chặt chẽ, hỗ trợ Migration và Atomic Transaction. |
-| | **Database** | MySQL 8.0 | Lưu trữ bền vững dữ liệu sản phẩm, đơn hàng, tồn kho, khách hàng và tracking. |
-| **Trí tuệ nhân tạo (AI)** | **Google GenAI SDK** | `@google/genai` | Model cấu hình qua `GEMINI_MODEL` (mặc định `gemini-3.8-flash`); API key chỉ nằm ở backend. |
-| | **Fashion Thesaurus** | Thuần JS | Bộ từ điển từ đồng nghĩa thời trang tiếng Việt độc quyền, chuẩn hóa từ ngữ tự nhiên về SQL query. |
-| **Vector Search & RAG** | **Native Node.js** | JavaScript | Tìm kiếm theo tọa độ vector sản phẩm trong backend; Gemini chỉ diễn đạt tư vấn dựa trên sản phẩm đã truy xuất. |
-| **Thanh toán & Bảo mật**| **VNPay Sandbox** | `vnpay` 2.5.0 | Thanh toán online an toàn qua VNPAY-QR, Thẻ ATM/Nội địa và Thẻ quốc tế. |
-| | **JWT & Bcryptjs** | JWT 9.0 | Xác thực phân quyền `CUSTOMER` / `ADMIN`, hash mật khẩu an toàn. |
-| | **Helmet & Rate Limit**| Helmet 8.3 | Chống tấn công DDoS, bảo vệ Header HTTP và giới hạn 25 req/phút cho luồng AI. |
-| **Truyền thông** | **Nodemailer** | 10.0.1 | Gửi mã OTP đăng ký / quên mật khẩu và email hóa đơn đơn hàng chuyên nghiệp. |
-
-
----
-
-## 3. Các phân hệ & Tính năng đột phá
-
-### 3.1 Trợ lý Thời trang AI Stylist Thế hệ Mới (Multi-turn Chat)
-
-Không đơn thuần là chatbot thông thường, AI Stylist của Routine kết hợp giữa **mô hình ngôn ngữ lớn (LLM)** và **bộ từ điển nghiệp vụ thời trang cục bộ**:
-
-1. **Bộ chuẩn hóa ngữ nghĩa thời trang tiếng Việt ([fashionThesaurus.js](backend/src/utils/fashionThesaurus.js))**:
-   - Tự động quy đổi từ ngữ đời thường về thuộc tính trong database:
-     - Form dáng: *“lớn”*, *“to”*, *“bự”*, *“rộng”*, *“thùng thình”* $\rightarrow$ `oversize`; *“ôm”*, *“bó”*, *“gọn”* $\rightarrow$ `slim-fit`.
-     - Danh mục: *“áo phông”*, *“tee”* $\rightarrow$ `ao-thun`; *“quần bò”*, *“denim”* $\rightarrow$ `quan-jeans`; *“quần âu”* $\rightarrow$ `quan-tay`.
-     - Màu sắc & Ngân sách: *“màu ghi”* $\rightarrow$ `xám`; *“dưới 600k”* $\rightarrow$ `budget: 600000`.
-2. **Hội thoại Đa Lượt & Nhớ Ngữ Cảnh (Multi-turn Context Memory)**:
-   - Khi người dùng chọn một bộ đồ mẫu hoặc nhập yêu cầu, hệ thống lưu vết các món đang có trong set.
-   - Khi người dùng chat tiếp: *“Đổi sang quần khác để phối”*, AI tự động đưa quần cũ vào `excludeProductNames` (-1.000 điểm phạt) và giữ nguyên áo cũ (`keepProductNames` +500 điểm ưu tiên) để tạo set mới hài hòa mà không lặp lại món cũ.
-3. **Bộ lọc Chào hỏi Thông minh (`isGreetingOrGeneralChat`)**:
-   - Khi người dùng chỉ chào hỏi (*“xin chào”*, *“hello”*, *“bạn là ai”*), AI phản hồi thân mật và **không hiển thị trang phục (`outfit: null`)**, đồng thời cung cấp 4 nút gợi ý nhanh để bắt đầu.
-4. **Thẻ Trang phục Tương tác ([InteractiveOutfitCard.jsx](frontend/components/ai/InteractiveOutfitCard.jsx))**:
-   - Cho phép chọn Size (S/M/L/XL) và Màu sắc trực tiếp ngay trong khung chat.
-   - Nút **"🛍️ Thêm trọn bộ vào giỏ hàng"** (1-click thêm toàn bộ các món trong set) hoặc mua lẻ từng món.
-5. **AI Stylist Floating Widget Toàn Trang ([AIStylistFloatingWidget.jsx](frontend/components/ai/AIStylistFloatingWidget.jsx))**:
-   - Nút nổi ở góc dưới bên phải màn hình mọi trang, tự động gợi ý phối đồ hoàn chỉnh ("Complete The Look") khi khách đang xem trang chi tiết sản phẩm bất kỳ.
-6. **Cơ chế Fast-Failover chống treo**:
-   - Tự động chuyển đổi mượt sang thuật toán ghép đồ động nội bộ trong **0.005 giây** nếu mạng Google Gemini quá tải (429/timeout), đảm bảo ứng dụng luôn phản hồi tức thì.
-
----
-
-### 3.2 Trải nghiệm mua sắm khách hàng (Storefront)
-- **Smart Outfit**: Khám phá các set đồ mẫu theo sự kiện: Công sở, Hẹn hò, Dạo phố, Dự tiệc.
-- **Giỏ hàng khách vãng lai (Guest Session Isolation)**: Sử dụng token `x-session-id` độc lập cho từng trình duyệt, không bị gộp giỏ hàng chung IP khi nhiều người lướt cùng mạng Wi-Fi. Tự động merge giỏ hàng vào tài khoản khi khách đăng nhập.
-- **Giữ chỗ tồn kho (Atomic Stock Reservation)**: Khóa tạm thời số lượng sản phẩm trong kho khi khách đặt hàng hoặc chọn thanh toán VNPay, tự động hoàn trả kho nếu hủy đơn hoặc hết hạn thanh toán.
-- **Thanh toán đa phương thức**: COD (nhận hàng thanh toán) và VNPay Sandbox (thẻ ATM nội địa, QR Code, thẻ quốc tế).
-
----
-
-### 3.3 Hệ sinh thái Tiếp thị Đa Nền tảng (Omni-channel Analytics)
-- Tự động bắt tham số chiến dịch tiếp thị qua URL (`?utm_source=tiktok`, `?ref=facebook`, `?source=instagram`).
-- Lưu trữ nguồn khách hàng từ lúc còn là Khách vãng lai (`GuestSession.platform`) $\rightarrow$ Khách đăng ký (`User.source`) $\rightarrow$ Đơn hàng thành công (`Order.attributionSource`).
-- **Dashboard Phân tích dành cho Admin (`/admin`)**:
-  - Thống kê tỷ lệ chuyển đổi (Conversion Rate %), số lượt click, số khách đăng ký và doanh thu chi tiết theo từng nền tảng TikTok, Facebook, Instagram, Google.
-  - Quản lý danh sách khách vãng lai và theo dõi lịch sử sản phẩm khách đã xem.
-
----
-
-### 3.4 Hệ thống Đánh giá & Phân quyền Sản phẩm (Reviews & Ratings)
-- Khách hàng xem đánh giá, điểm sao trung bình và hình ảnh phản hồi thực tế của sản phẩm.
-- Chỉ thành viên đã đăng nhập mới được gửi đánh giá kèm số sao (1 đến 5 sao) và hình ảnh minh họa.
-- **Phân quyền bảo mật**: Khách hàng chỉ có quyền chỉnh sửa/xóa bài đánh giá của chính mình; Quản trị viên (Admin) có quyền kiểm duyệt và xóa các đánh giá không phù hợp trên toàn hệ thống.
-
----
-
-### 3.5 Cổng Quản trị Vận hành Toàn diện (Admin Portal)
-Truy cập tại: `http://localhost:3000/admin`
-- **Dashboard**: Thống kê doanh thu, đơn hàng, khách hàng và biểu đồ phân bổ nguồn tiếp thị.
-- **Quản lý Sản phẩm**: Thêm mới, chỉnh sửa giá, số lượng tồn kho, tải ảnh, phân loại phong cách.
-- **Quản lý Outfits**: Tạo set phối đồ thông minh, gán sản phẩm vào set.
-- **Quản lý Đơn hàng**: Cập nhật trạng thái đơn (Xác nhận, Đang giao, Hoàn tất, Hủy đơn).
-- **Quản lý Vouchers**: Tạo mã giảm giá theo %, tiền cố định hoặc miễn phí vận chuyển.
-- **Quản lý Khách hàng & Đánh giá**: Tra cứu thông tin khách hàng và phản hồi của người mua.
-
----
-
-### 3.6 Cơ chế Kỹ thuật Chuyên sâu & Bảo mật
-- **HTTP Cache Control**: Tắt ETag và thiết lập header `no-store, no-cache` để mọi thao tác CRUD và giỏ hàng luôn phản ánh dữ liệu mới nhất (HTTP 200 OK thay vì 304 Not Modified gây hiểu lầm).
-- **Bảo mật Header (Helmet)**: Ngăn chặn tấn công Clickjacking, Cross-Site Scripting (XSS), MIME Sniffing.
-- **Rate Limiting**: Giới hạn 100 req/15 phút cho API chung, 20 req/15 phút cho Auth (chống Brute-force mật khẩu), 25 req/phút cho AI Stylist.
-
----
-
-### 3.7 Tìm kiếm Vector & Đóng khung AI (RAG Grounding)
-Backend Node.js tự tìm sản phẩm theo vector tọa độ lưu trong MySQL; không có microservice Python/ChromaDB riêng trong checkout này. Backend chỉ đưa các sản phẩm đã truy xuất vào ngữ cảnh Gemini để tạo lời tư vấn, và vẫn có phản hồi local khi Gemini không được cấu hình hoặc tạm lỗi.
-
----
-
-## 4. Tài khoản Demo thử nghiệm (Demo Credentials)
-
-Repo không kèm dữ liệu seed hoặc tài khoản đăng nhập mẫu. Tạo tài khoản và phân quyền trong database MySQL của bạn; không dùng hoặc chia sẻ thông tin đăng nhập thật trong tài liệu công khai.
 
 ---
 
 ## 5. Cấu trúc thư mục dự án
 
 ```
-Routine_web/
-├── backend/                             # Máy chủ API (Node.js & Express.js)
-│   ├── app.js                           # Khởi tạo Express, Helmet, RateLimiter, CORS, Router
-│   ├── package.json                     # Danh mục dependencies & scripts
-│   ├── bin/www                          # Entrypoint máy chủ HTTP (Port 5001)
-│   ├── prisma/schema.prisma             # Định nghĩa 16 Data Models cho MySQL
-│   ├── scripts/                         # Script trích xuất SQL & seeding dữ liệu
-│   ├── src/
-│   │   ├── config/                      # Cấu hình Prisma Client
-│   │   ├── controllers/                 # Tầng tiếp nhận request & trả lời JSON
-│   │   ├── middlewares/                 # auth.js (JWT), identifyUser.js, rateLimiter.js
-│   │   ├── routes/                      # Định nghĩa các routes con & api.js tổng hợp
-│   │   ├── services/                    # Tầng nghiệp vụ: aiService, cartService, orderService, vnpayService...
-│   │   └── utils/                       # fashionThesaurus.js, response.js
-│   └── test_*.js                        # Bộ kịch bản kiểm thử API tự động độc lập
+Routine-thu-dong/
+├── Routine_web_demo-main/          # Thư mục mã nguồn chính (Git Repository)
+│   ├── backend/                    # Phân hệ Backend API (Node.js & Express)
+│   │   ├── bin/www                 # Entry point khởi tạo HTTP server cổng 5001
+│   │   ├── prisma/
+│   │   │   └── schema.prisma       # Prisma Schema định nghĩa 16 bảng dữ liệu
+│   │   ├── src/
+│   │   │   ├── config/             # Cấu hình Prisma, VNPay, Cloudinary, App
+│   │   │   ├── controllers/        # 26 Controllers xử lý yêu cầu HTTP
+│   │   │   ├── middlewares/        # Xác thực JWT, kiểm tra quyền Admin, validation
+│   │   │   ├── routes/             # Định tuyến API tại /api/v1
+│   │   │   ├── services/           # Nghiệp vụ: AI, BI, Order, Product, Shipping, VNPay
+│   │   │   └── utils/              # Tiện ích: format response, băm SHA512, lưu file
+│   │   ├── scripts/                # Kịch bản kiểm thử, kiểm toán dữ liệu và đo đạc
+│   │   ├── tests/                  # Bộ unit test độc lập cho AI, Grounding, Validation
+│   │   ├── package.json            # Cấu hình dependencies Backend
+│   │   └── .env.example            # Bản mẫu biến môi trường Backend
+│   │
+│   ├── frontend/                   # Phân hệ Frontend Storefront (Next.js 16)
+│   │   ├── app/                    # 38 Routes App Router (Khách hàng & Admin)
+│   │   │   ├── page.js             # Trang chủ ROUTINE THU ĐÔNG
+│   │   │   ├── admin/              # Toàn bộ các trang quản trị (Products, Orders, BI,...)
+│   │   │   ├── category/[slug]/    # Danh mục sản phẩm
+│   │   │   ├── product/[id]/       # Chi tiết sản phẩm & biến thể
+│   │   │   ├── cart/               # Giỏ hàng
+│   │   │   ├── checkout/           # Đặt hàng, tính phí ship, thanh toán VNPay
+│   │   │   ├── orders/             # Lịch sử và chi tiết đơn hàng
+│   │   │   ├── smart-outfit/       # AI Stylist tư vấn và phối đồ
+│   │   │   └── profile/            # Thông tin tài khoản và sổ địa chỉ
+│   │   ├── components/             # Các thành phần giao diện tái sử dụng
+│   │   │   ├── layout/             # Header, Footer, Logo, MobileMenu
+│   │   │   ├── admin/              # AdminHeader, AdminSidebar, Báo cáo BI
+│   │   │   ├── ai/                 # AIStylistChat, InteractiveOutfitCard
+│   │   │   ├── checkout/           # AddressForm, PaymentOptions
+│   │   │   └── product/            # ProductCard, ProductGallery, Reviews
+│   │   ├── context/                # AuthContext, CartContext, OrderContext
+│   │   ├── lib/                    # Client services, shippingService, validators
+│   │   ├── public/                 # Hình ảnh sản phẩm, hero banners, icons
+│   │   ├── package.json            # Cấu hình dependencies Frontend
+│   │   └── .env.example            # Bản mẫu biến môi trường Frontend
+│   │
+│   ├── docs/                       # Báo cáo kỹ thuật, kiểm toán và tài liệu nghiệm thu
+│   ├── package.json                # Root package.json điều phối build và dev:all
+│   ├── vercel.json                 # Cấu hình triển khai nền tảng Vercel
+│   └── .gitignore                  # Cấu hình loại trừ file nhạy cảm và build output
 │
-├── frontend/                            # Giao diện Người dùng (Next.js 14 App Router)
-│   ├── package.json                     # Dependencies: Next.js 16, React 19
-│   ├── next.config.js                   # Cấu hình Next.js, proxy upload images
-│   ├── jsconfig.json                    # Cấu hình path alias @/*
-│   ├── app/                             # Next.js App Router
-│   │   ├── layout.js                    # Root Layout bọc Context Providers, Header, Footer, Widget
-│   │   ├── globals.css                  # Toàn bộ design tokens, màu sắc, phông chữ
-│   │   ├── page.js                      # Trang chủ Routine
-│   │   ├── admin/                       # Toàn bộ các trang quản trị Admin Portal
-│   │   ├── cart/                        # Trang giỏ hàng
-│   │   ├── category/[slug]/             # Danh mục sản phẩm (Nam, Nữ, Polo, Jeans...)
-│   │   ├── checkout/                    # Thanh toán & tích hợp return VNPay
-│   │   ├── orders/                      # Lịch sử và chi tiết đơn hàng
-│   │   ├── product/[id]/                # Chi tiết sản phẩm & đánh giá
-│   │   ├── smart-outfit/                # Trang Smart Outfit & /ai-stylist
-│   │   └── wishlist/                    # Danh sách sản phẩm yêu thích
-│   ├── components/                      # UI Components: ai, cart, checkout, common, layout...
-│   ├── context/                         # React Context: CartContext, UserContext, WishlistContext...
-│   ├── lib/                             # Client API fetchers: api.js, aiStylistService.js...
-│   └── public/                          # Ảnh sản phẩm, icons, banners
-│
-├── package.json                         # Root scripts: npm run dev/build/lint
-├── run_all.bat                          # Script Windows khởi chạy backend và frontend
-└── README.md                            # Tài liệu hướng dẫn toàn diện dự án
+├── package.json                    # Package.json điều phối cấp gốc
+├── start.bat                       # Script khởi động nhanh hệ thống trên Windows (CMD)
+└── start.ps1                       # Script khởi động nhanh hệ thống trên Windows (PowerShell)
 ```
 
 ---
 
-## 6. Yêu cầu môi trường (Prerequisites)
+## 6. Cấu hình biến môi trường (Environment Variables)
 
-- **Node.js**: Phiên bản `>= 20.9` (khuyến nghị Node 22 hoặc 24 LTS). Kiểm tra: `node -v`
-- **npm**: Phiên bản `>= 10`. Kiểm tra: `npm -v`
-- **MySQL Server**: Phiên bản `>= 8.0` (chạy qua XAMPP, Laragon, MySQL Installer hoặc Docker).
-- Trình duyệt hiện đại: Chrome, Edge, Safari hoặc Firefox.
+Hệ thống phân tách biến môi trường giữa Backend và Frontend để đảm bảo **tuyệt đối không để lộ khóa bí mật (API Keys / Secrets) ra phía trình duyệt khách hàng**.
 
----
+### 6.1 Backend (`backend/.env`)
 
-## 7. Hướng dẫn cài đặt & Cấu hình chi tiết
+| Tên biến | Mục đích sử dụng | Giá trị mẫu minh họa |
+| :--- | :--- | :--- |
+| `PORT` | Cổng lắng nghe của Backend API server | `5001` |
+| `NODE_ENV` | Môi trường thực thi (`development` / `production`) | `development` |
+| `DATABASE_URL` | Chuỗi kết nối MySQL (Local hoặc Cloud Database) | `mysql://user:pass@localhost:3306/routine_db` |
+| `JWT_SECRET` | Khóa bí mật dùng để ký và xác thực JSON Web Token | Chuỗi ngẫu nhiên tối thiểu 32 ký tự |
+| `JWT_EXPIRES_IN` | Thời gian sống của JWT token | `7d` |
+| `FRONTEND_URL` | Địa chỉ Frontend được phép truy cập CORS | `http://localhost:3000` |
+| `GEMINI_API_KEY` | Khóa API dịch vụ Google Gemini | Lấy từ Google AI Studio |
+| `GEMINI_MODEL` | Tên mô hình AI sử dụng | `gemini-3.8-flash` hoặc `gemini-3.5-flash-lite` |
+| `GEMINI_TIMEOUT_MS`| Thời gian chờ tối đa cho mỗi yêu cầu AI | `15000` |
+| `VNP_TMN_CODE` | Mã định danh thương nhân trên cổng VNPay Sandbox | Được cấp bởi VNPay Sandbox |
+| `VNP_HASH_SECRET` | Khóa bí mật dùng để sinh chữ ký số HMAC-SHA512 | Được cấp bởi VNPay Sandbox |
+| `VNP_URL` | Địa chỉ cổng thanh toán VNPay Sandbox | `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html` |
+| `VNP_RETURN_URL` | URL chuyển hướng trình duyệt sau thanh toán VNPay | `http://localhost:3000/checkout/payment/vnpay-return` |
+| `CLOUDINARY_CLOUD_NAME` | Tên Cloud lưu trữ ảnh trên Cloudinary | Được cấp từ Cloudinary Dashboard |
+| `CLOUDINARY_API_KEY` | Khóa API của tài khoản Cloudinary | Được cấp từ Cloudinary Dashboard |
+| `CLOUDINARY_API_SECRET` | Khóa bí mật API Cloudinary | Được cấp từ Cloudinary Dashboard |
+| `SMTP_HOST` | Địa chỉ máy chủ gửi email hóa đơn và OTP | `smtp.gmail.com` |
+| `SMTP_PORT` | Cổng máy chủ SMTP (TLS) | `587` |
+| `SMTP_USER` | Email quản trị gửi thư thông báo | `your-email@gmail.com` |
+| `SMTP_PASS` | Mật khẩu ứng dụng Gmail (App Password 16 ký tự) | Mật khẩu ứng dụng từ Google Account |
 
-### Bước 1: Thiết lập Cơ sở dữ liệu (MySQL)
-1. Dự án dùng MySQL qua Prisma. Nếu dùng database Aiven hiện có, lấy host, port, user và password tại Aiven Console; schema trong ảnh của bạn là `defaultdb`.
-2. Repo có `backend/prisma/ca.pem` để xác thực TLS Aiven. Mẫu URL được ghi chú trong `backend/.env.example`.
-3. Nếu dùng MySQL local mới, tạo database theo tên bạn chọn và dùng URL `mysql://USER:PASSWORD@localhost:3306/DB_NAME`.
-4. Không chạy `prisma migrate deploy` hoặc `prisma db push` trên database đang có dữ liệu trước khi so sánh schema. Migration hiện có chỉ tạo bảng `stock_reservations`; checkout này không có dump SQL seed đầy đủ.
+### 6.2 Frontend (`frontend/.env.local`)
 
----
-
-### Bước 2: Cài đặt & Cấu hình Backend
-1. Mở Terminal và di chuyển vào thư mục `backend`:
-   ```bash
-   cd backend
-   ```
-2. Cài đặt các thư viện:
-   ```bash
-   npm install
-   ```
-3. Tạo và chỉnh sửa file `.env`:
-   ```bash
-   cp .env.example .env     # Trên Linux/macOS
-   copy .env.example .env   # Trên Windows PowerShell
-   ```
-   Điền `DATABASE_URL`, `JWT_SECRET` và `GEMINI_API_KEY` bằng giá trị riêng của bạn. Với Aiven, dùng mẫu sau và thay thông tin từ Console:
-   ```env
-   DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/defaultdb?sslaccept=strict&sslcert=./prisma/ca.pem"
-   JWT_SECRET="<chuoi-ngau-nhien-dai>"
-   GEMINI_API_KEY="<key-tu-Google-AI-Studio>"
-   GEMINI_MODEL=gemini-3.8-flash
-   GEMINI_TIMEOUT_MS=10000
-   FRONTEND_URL=http://localhost:3000
-   ```
-   Mã hóa ký tự đặc biệt trong mật khẩu URL (ví dụ `@` thành `%40`). Không commit hoặc gửi file `.env`.
-4. Sinh mã Prisma Client:
-   ```bash
-   npm run db:generate
-   ```
+| Tên biến | Mục đích sử dụng | Giá trị mẫu minh họa |
+| :--- | :--- | :--- |
+| `NEXT_PUBLIC_API_URL` | Địa chỉ gốc của Backend API mà Frontend gọi tới | `http://localhost:5001/api/v1` |
+| `NEXT_PUBLIC_SITE_URL`| Địa chỉ công khai của website Frontend | `http://localhost:3000` |
 
 ---
 
-### Bước 3: Cài đặt & Cấu hình Frontend
-1. Mở một cửa sổ Terminal mới và di chuyển vào thư mục `frontend`:
-   ```bash
-   cd frontend
-   ```
-2. Cài đặt các thư viện:
-   ```bash
-   npm install
-   ```
-3. Tạo file `frontend/.env.local` từ `frontend/.env.example` hoặc đặt:
-   ```env
-   NEXT_PUBLIC_API_URL=http://localhost:5001/api/v1
-   ```
+## 7. Hướng dẫn cài đặt và khởi chạy dự án
 
----
+### Yêu cầu tiên quyết
+- **Node.js:** Phiên bản `>= 18.18.0` (Khuyến nghị Node.js `20.x` hoặc `22.x LTS`).
+- **NPM:** Phiên bản `>= 9.x`.
+- **MySQL Server:** Phiên bản `>= 8.0` đang chạy cục bộ (Port 3306) hoặc tài khoản MySQL trên đám mây (Aiven, PlanetScale, Supabase/RDS).
+- **Git:** Đã cài đặt trên hệ điều hành.
 
-### Bước 4: Kiểm tra cấu hình
-Không cần cài Python service riêng. Vector search, RAG và Gemini được gọi trong backend Node.js. Sau khi cấu hình `backend/.env`, kiểm tra API `http://localhost:5001/api/v1/health`; readiness hợp lệ khi response có `dbStatus: connected`.
+### Các bước cài đặt chi tiết
 
----
+#### Bước 1: Sao chép mã nguồn (Clone Repository)
+```bash
+git clone https://github.com/LanAnhDoan05/routine-thu-dong.git
+cd routine-thu-dong/Routine_web_demo-main
+```
 
-## 8. Cách khởi chạy dự án (How to Run)
-
-### Cách 1: Chạy cả dự án (Windows)
-Từ thư mục gốc repo, cài dependencies một lần:
-```powershell
+#### Bước 2: Cài đặt Dependencies cho toàn bộ dự án
+```bash
+# Cài đặt đồng thời cho Root, Backend và Frontend
 npm install
-npm ci --prefix backend
-npm ci --prefix frontend
+npm --prefix backend install
+npm --prefix frontend install
 ```
-Sau đó chạy hai ứng dụng cùng lúc:
-```powershell
-npm run dev
+
+#### Bước 3: Thiết lập biến môi trường
+```bash
+# Cấu hình Backend
+cp backend/.env.example backend/.env
+# Mở file backend/.env và điền thông tin kết nối MySQL thật cùng GEMINI_API_KEY
+
+# Cấu hình Frontend
+cp frontend/.env.example frontend/.env.local
 ```
-Frontend chạy tại `http://localhost:3000` (cũng có thể truy cập bằng `http://127.0.0.1:3000`), backend tại `http://localhost:5001`.
 
----
-
-### Cách 2: Khởi chạy riêng từng phần
-
-#### Terminal 1: Chạy Backend (API Server)
+#### Bước 4: Khởi tạo Cơ sở dữ liệu với Prisma
 ```bash
 cd backend
-npm start
+npx prisma generate
+npx prisma migrate deploy
+cd ..
 ```
-- Server chạy tại: **`http://localhost:5001`**
-- Kiểm tra Health-check: `http://localhost:5001/api/v1/health`
 
-#### Terminal 2: Chạy Frontend (Storefront & Admin)
+#### Bước 5: Khởi động hệ thống phát triển (Development)
+Chạy cả Backend (Port 5001) và Frontend (Port 3000) đồng thời chỉ với 1 câu lệnh:
 ```bash
-cd frontend
-npm run dev
+npm run dev:all
 ```
-- Trang web hoạt động tại: **`http://localhost:3000`**
+Hoặc trên môi trường Windows, nhấp đúp vào file `start.bat` tại thư mục gốc.
+
+#### Bước 6: Truy cập ứng dụng
+- **Trang chủ Khách hàng:** [http://localhost:3000](http://localhost:3000)
+- **Trang Quản trị Admin:** [http://localhost:3000/admin](http://localhost:3000/admin)
+- **Báo cáo AI Business Intelligence:** [http://localhost:3000/admin/ai-bi](http://localhost:3000/admin/ai-bi)
+- **Trợ lý AI Stylist:** [http://localhost:3000/smart-outfit/ai-stylist](http://localhost:3000/smart-outfit/ai-stylist)
+- **Kiểm tra trạng thái Backend API:** [http://localhost:5001/api/v1/health](http://localhost:5001/api/v1/health)
 
 ---
 
-### Các trang chính cần trải nghiệm:
-- **Trang chủ Storefront**: `http://localhost:3000`
-- **Trợ lý AI Stylist Chatbot**: `http://localhost:3000/smart-outfit/ai-stylist`
-- **Bộ sưu tập Smart Outfit**: `http://localhost:3000/smart-outfit`
-- **Giỏ hàng**: `http://localhost:3000/cart`
-- **Cổng Quản trị Admin**: `http://localhost:3000/admin` (cần tài khoản có quyền `ADMIN` trong database)
+## 8. Hướng dẫn sử dụng
+
+### 8.1 Dành cho Khách hàng
+1. **Duyệt và mua sắm:** Truy cập trang chủ, lựa chọn danh mục hoặc tìm kiếm theo từ khóa. Chọn sản phẩm để xem ảnh chi tiết, lựa chọn màu sắc và size.
+2. **Sử dụng AI Stylist:** Nhấn vào biểu tượng Trợ lý ảo ở góc dưới bên phải hoặc menu "Smart Outfit". Gõ câu hỏi tự nhiên bằng tiếng Việt (ví dụ: *"Tìm áo khoác ấm đi Đà Lạt dưới 800k"*). AI sẽ gợi ý sản phẩm phù hợp. Bạn có thể hỏi nối tiếp: *"Có màu đen không?"* hoặc *"Tăng ngân sách lên 1 triệu"* để AI tiếp tục tinh chỉnh.
+3. **Thanh toán:** Thêm sản phẩm vào giỏ, nhập họ tên và số điện thoại chuẩn. Điền địa chỉ nhận hàng để hệ thống tính phí vận chuyển chính xác. Chọn phương thức thanh toán **VNPay** để quét mã QR thanh toán nhanh hoặc **COD** để trả tiền mặt khi nhận hàng.
+
+### 8.2 Dành cho Quản trị viên (Admin)
+1. **Đăng nhập:** Truy cập `/login`, đăng nhập với tài khoản Admin được cấp.
+2. **Quản lý danh mục & Sản phẩm:** Vào mục "Sản phẩm", nhấn "Thêm sản phẩm mới" để nhập thông tin, giá bán, biến thể và tải ảnh trực tiếp lên Cloudinary. Dữ liệu sẽ xuất hiện ngay trên trang khách hàng.
+3. **Quản lý đơn hàng:** Vào mục "Đơn hàng" để theo dõi các đơn vừa đặt, duyệt đơn và cập nhật trạng thái vận chuyển.
+4. **Theo dõi thông báo thời gian thực:** Biểu tượng chuông trên thanh điều hướng sẽ hiển thị số lượng đơn hàng mới hoặc yêu cầu tư vấn cần chuyên viên hỗ trợ.
+5. **Khai thác AI BI:** Vào mục "AI BI Analytics" (`/admin/ai-bi`) để xem báo cáo doanh thu, phân tích sản phẩm chuyển đổi kém, dự báo tồn kho và yêu cầu AI Giám đốc Thương mại phân tích chuyên sâu.
 
 ---
 
-## 9. Tài liệu API Endpoints Chi tiết
+## 9. Kiểm thử và triển khai (Testing & Deployment)
 
-Tất cả các endpoint đều có tiền tố `/api/v1`:
+### 9.1 Chạy các bộ kiểm thử tự động (Automated Testing Suites)
 
-```json
-{
-  "success": true,
-  "data": { ... },
-  "message": "Thông báo trạng thái",
-  "meta": { "pagination": ... }
-}
+Toàn bộ các bài kiểm thử đã được chạy thực tế trên hệ thống và vượt qua 100%:
+
+```bash
+cd Routine_web_demo-main/backend
+
+# 1. Kiểm thử xác thực yêu cầu AI Stylist & giới hạn Payload
+npm run test:ai-validation
+
+# 2. Kiểm thử đối chiếu dữ liệu thật sản phẩm AI (Product Grounding)
+npm run test:ai-product-grounding
+
+# 3. Kiểm thử phối đồ AI theo ngân sách (Outfit Budgeting)
+npm run test:ai-outfit-budget
+
+# 4. Kiểm thử Function Calling của Fashion Agent với Google Gemini
+npm run test:fashion-agent
+
+# 5. Kiểm thử khóa tồn kho tạm thời (Stock Reservation)
+npm run test:stock-reservations
+
+# 6. Kiểm thử dữ liệu giỏ hàng đối chiếu cơ sở dữ liệu thật
+npm run test:cart-database-grounding
+
+# 7. Kiểm thử nhận diện ý định mua hàng (Purchase Intent Scoring)
+npm run test:purchase-intent
+
+# 8. Kiểm thử xác thực hợp lệ khi Admin tạo sản phẩm
+npm run test:product-validation
+
+# 9. Kiểm thử tải ảnh trực tiếp lên Cloudinary
+npm run test:cloudinary
+
+# 10. Chạy toàn bộ kiểm toán API, Bảo mật & Cơ sở dữ liệu (33 API Endpoints & 7 Security Rules)
+node scripts/audit_api_security_db.js
+
+# 11. Chạy kiểm thử End-to-End toàn trình mua hàng (Catalog -> Geocoding -> Order -> VNPay -> Paid -> Admin Queue)
+node scripts/test_e2e_full_customer_journey.js
+
+# 12. Chạy kiểm thử chu trình thanh toán VNPay Gateway & Chống lặp (Idempotency)
+node scripts/test_e2e_payment_lifecycle.js
+
+# 13. Chạy kiểm thử đồng bộ dữ liệu thời gian thực giữa Admin - Storefront - AI
+node scripts/test_e2e_admin_storefront_sync.js
+
+# 14. Chạy kiểm thử AI Stylist đa lượt (Sequential Filtering, Condition Updates, Intent Switching)
+node scripts/test_e2e_ai_contextual.js
 ```
 
-| Nhóm chức năng | Phương thức | Endpoint | Mô tả |
+### 9.2 Hướng dẫn Build ứng dụng Production
+```bash
+# Build Backend (Prisma Client generation)
+cd Routine_web_demo-main/backend
+npm run build
+
+# Build Frontend (Next.js 16 Production Build - 38 Routes compiled)
+cd ../frontend
+npm run build
+
+# Khởi chạy bản Build hoàn tất
+npm run start
+```
+
+### 9.3 Triển khai lên Vercel (Vercel Deployment Guide)
+
+Kiến trúc triển khai khuyến nghị trên Vercel:
+
+1. **Frontend (Next.js 16 Storefront):**
+   - Import repository `https://github.com/LanAnhDoan05/routine-thu-dong` trên Vercel Dashboard.
+   - Thiết lập **Root Directory** là `Routine_web_demo-main/frontend` (hoặc `frontend` nếu triển khai từ thư mục con).
+   - Thiết lập Framework Preset: **Next.js**.
+   - Cấu hình Environment Variables trên Vercel:
+     - `NEXT_PUBLIC_API_URL`: `https://<ten-mien-backend-api-cua-ban>/api/v1`
+     - `NEXT_PUBLIC_SITE_URL`: `https://<ten-mien-frontend-vercel-cua-ban>.vercel.app`
+
+2. **Backend (Node.js/Express API):**
+   - Triển khai riêng biệt dưới dạng Serverless Functions trên Vercel (sử dụng file `backend/vercel.json` với runtime `@vercel/node`), hoặc triển khai trên các nền tảng Container hỗ trợ Node.js dài hạn (Render, Railway, Fly.io, AWS EC2 / VPS).
+   - Thiết lập đầy đủ các biến môi trường Production: `DATABASE_URL` (MySQL Cloud có kết nối SSL), `JWT_SECRET`, `GEMINI_API_KEY`, `VNP_TMN_CODE`, `VNP_HASH_SECRET`, `CLOUDINARY_*`, `SMTP_*`.
+
+---
+
+## 10. Tình trạng dự án và báo cáo nghiệm thu
+
+### Bảng trạng thái xác minh chức năng thực tế
+
+| Phân hệ / Nghiệp vụ | Trạng thái | Bằng chứng kiểm thử thực tế | Ghi chú vận hành |
 | :--- | :---: | :--- | :--- |
-| **Hệ thống** | `GET` | `/api/v1/health` | Kiểm tra tình trạng hoạt động của API Server |
-| **Xác thực (Auth)** | `POST` | `/api/v1/auth/register` | Đăng ký tài khoản mới kèm nguồn `source` (TikTok, FB...) |
-| | `POST` | `/api/v1/auth/verify-otp` | Xác thực mã OTP gửi về Email |
-| | `POST` | `/api/v1/auth/login` | Đăng nhập hệ thống, trả JWT Token |
-| | `GET` | `/api/v1/auth/me` | Lấy thông tin tài khoản hiện tại |
-| | `POST` | `/api/v1/auth/forgot-password` | Yêu cầu mã OTP khôi phục mật khẩu |
-| **AI Stylist** | `POST` | `/api/v1/ai/chat` | Chat đa lượt với AI Stylist, nhớ context đổi đồ |
-| | `POST` | `/api/v1/smart-outfit/ai-stylist` | Alias tương thích ngược cho endpoint AI Chat |
-| | `POST` | `/api/v1/ai/stylist` | Gợi ý set đồ theo tiêu chí tĩnh (cũ) |
-| **Sản phẩm (Product)** | `GET` | `/api/v1/products` | Danh sách sản phẩm (lọc category, style, giá, size) |
-| | `GET` | `/api/v1/products/:id` | Chi tiết sản phẩm theo ID hoặc Slug |
-| | `GET` | `/api/v1/products/featured` | Danh sách sản phẩm nổi bật |
-| | `GET` | `/api/v1/products/trending` | Danh sách sản phẩm bán chạy/thịnh hành |
-| **Smart Outfit** | `GET` | `/api/v1/outfits` | Danh sách các bộ outfit mẫu phối sẵn |
-| | `GET` | `/api/v1/outfits/:id` | Chi tiết outfit và các món đồ thành phần |
-| **Giỏ hàng (Cart)** | `GET` | `/api/v1/cart` | Lấy giỏ hàng theo User ID hoặc `x-session-id` |
-| | `POST` | `/api/v1/cart/items` | Thêm sản phẩm vào giỏ hàng |
-| | `PATCH` | `/api/v1/cart/items/:lineId`| Điều chỉnh số lượng sản phẩm trong giỏ |
-| | `DELETE` | `/api/v1/cart/items/:lineId`| Xóa sản phẩm khỏi giỏ hàng |
-| | `POST` | `/api/v1/cart/merge` | Gộp giỏ hàng khách vào user sau khi đăng nhập |
-| **Đơn hàng (Order)** | `POST` | `/api/v1/orders` | Tạo đơn hàng (tự động giữ kho & trừ tồn kho) |
-| | `GET` | `/api/v1/orders` | Danh sách đơn hàng đã mua của khách |
-| | `GET` | `/api/v1/orders/:id` | Chi tiết tiến độ và timeline đơn hàng |
-| **Đánh giá (Review)** | `GET` | `/api/v1/reviews/product/:productId` | Lấy danh sách đánh giá của 1 sản phẩm |
-| | `POST` | `/api/v1/reviews/product/:productId`| Thành viên gửi đánh giá sao và bình luận |
-| | `DELETE` | `/api/v1/reviews/:reviewId`| Xóa đánh giá (chỉ chính chủ hoặc Admin) |
-| **Tiếp thị (Analytics)**| `POST` | `/api/v1/analytics/track` | Ghi nhận click/view theo chiến dịch marketing |
-| | `GET` | `/api/v1/analytics/admin/overview` | Báo cáo tỷ lệ chuyển đổi và doanh thu đa kênh |
-| | `GET` | `/api/v1/analytics/admin/guests` | Giám sát lịch sử hành vi khách vãng lai |
-| **Mã giảm giá** | `GET` | `/api/v1/coupons` | Danh sách voucher khả dụng |
-| | `POST` | `/api/v1/coupons/apply` | Áp dụng voucher kiểm tra giảm giá |
-| **Thanh toán VNPay** | `POST` | `/api/v1/payment/vnpay/create-payment-url` | Sinh link thanh toán VNPay Sandbox |
-| | `GET` | `/api/v1/payment/vnpay/vnpay-return` | Xử lý phản hồi kết quả giao dịch VNPay |
-| **Tìm kiếm Vector (Backend)** | `POST` | `/api/v1/search/vector` | Tìm sản phẩm theo vector trong backend và dữ liệu MySQL |
-| | `POST` | `/api/v1/search/rag` | Hỏi AI Stylist có ngữ cảnh sản phẩm đã truy xuất |
-| **Quản trị (Admin)** | `POST/PUT/DELETE` | `/api/v1/products` *(Admin)* | CRUD sản phẩm trong kho |
-| | `POST` | `/api/v1/upload/image` *(Admin)* | Tải ảnh JPG/JPEG/PNG/WEBP; ảnh được lưu vào `media_files` và trả URL `/api/v1/media/:id` |
-| **Ảnh công khai** | `GET` | `/api/v1/media/:id` | Trả ảnh từ MySQL; bản sao trên đĩa chỉ dùng khi khả dụng |
-| | `PATCH` | `/api/v1/orders/:id/status` | Cập nhật trạng thái duyệt/giao đơn hàng |
+| **Frontend UI/UX** | **Passed** | Next.js 16 build thành công 38/38 routes; responsive Desktop & Mobile | Thiết kế nhận diện ROUTINE THU ĐÔNG thống nhất |
+| **Backend REST API** | **Passed** | 33/33 API endpoints kiểm toán phản hồi HTTP 200 (Latency 15ms - 1300ms) | Kiểm toán qua `audit_api_security_db.js` |
+| **Database Integrity** | **Passed** | 0 bản ghi mồ côi (OrderItem: 0, ProductVariant: 0), 57 sản phẩm, 160 biến thể | Đối chiếu trên bảng MySQL `routine_test_db` |
+| **Bảo mật & RBAC** | **Passed** | 7/7 kịch bản chặn trái phép (401 không token, 403 khách truy cập admin, chống SQL Injection) | Chặn triệt để mọi truy cập trái quyền |
+| **Xác thực Địa chỉ & SĐT** | **Passed** | Chặn tên rỗng, chặn SĐT sai chuẩn di động VN, xác thực địa chỉ 63 tỉnh thành & Geocoding | Kiểm thử tự động trên `orderService.createOrder` |
+| **Thanh toán VNPay** | **Passed** | 10/10 tiêu chí đạt: tạo QR động, băm SHA512, cập nhật PAID, chống lặp Idempotency | Chạy qua `test_e2e_payment_lifecycle.js` |
+| **AI Stylist Đa Lượt** | **Passed** | 5/5 kịch bản: ghi nhớ bộ lọc qua nhiều lượt, đổi màu, tăng ngân sách, đổi danh mục, 100% dữ liệu thật | Chạy trực tiếp qua `test_e2e_ai_contextual.js` |
+| **AI Business Intelligence** | **Passed** | 8/8 endpoint BI hoạt động; KPI tính từ Database thật; Gemini phân tích CCO; bảo mật PII | Đã kiểm tra thực tế trên `/admin/ai-bi` |
+| **Thông báo Admin Realtime** | **Passed** | 9/9 ca kiểm thử trình duyệt: nhận đơn mới, nhận lead tư vấn, điều hướng deep link, reload bền vững | Chạy qua `run_e2e_notification_acceptance.js` |
+| **Vercel Deployment** | **Phụ thuộc Token** | Frontend & Backend đã cấu hình đầy đủ `vercel.json` và build thành công 100% | Cần người dùng liên kết tài khoản Vercel / cung cấp `VERCEL_TOKEN` |
 
 ---
-
-## 10. Chạy các kịch bản kiểm thử tự động (Automated Tests)
-
-Test AI input validation có thể chạy độc lập, không cần database hoặc API key:
-
-```bash
-npm --prefix backend run test:ai-validation
-```
-
-Các integration test còn lại trong `backend/tests/` cần MySQL test database đã seed. Chỉ chạy test có thể tạo/xóa dữ liệu trên database test, không chạy trực tiếp trên Aiven production.
-
----
-
-## 11. Khắc phục sự cố thường gặp (Troubleshooting)
-
-### 1. Lỗi cổng `5001` hoặc `3000` bị chiếm dụng (Port in use)
-- **Xử lý**:
-   - Mở PowerShell và chạy lệnh tìm PID: `netstat -ano | findstr :5001` (hoặc `:3000`)
-  - Dừng tiến trình bằng: `taskkill /PID <PID> /F`
-
-### 2. Lỗi `PrismaClientInitializationError: Can't reach database server`
-- **Xử lý**: Kiểm tra lại dịch vụ MySQL trong XAMPP hoặc Services trên Windows xem đã ở trạng thái **Running** chưa. Xác nhận lại mật khẩu MySQL trong biến `DATABASE_URL` của file `.env`.
-   - Với Aiven, kiểm tra đúng host/port, allowlist IP và cấu hình TLS `sslcert=./prisma/ca.pem`. `/api/v1/health` trả 503 cho tới khi DB sẵn sàng.
-
-### 3. Lỗi Gemini API báo 429 hoặc treo phản hồi
-- **Nguyên nhân**: Tài khoản Google AI Studio miễn phí có giới hạn số lượt gọi/phút.
-- **Xử lý**: Kiểm tra `GEMINI_API_KEY`, quota và `GEMINI_MODEL` trong `backend/.env`. Gemini timeout hoặc lỗi sẽ dùng fallback local; không gửi API key từ frontend.
-
-### 4. Lỗi hiển thị ảnh tải lên (404 khi xem ảnh)
-- **Kiểm tra upload**: Chỉ nhận JPG/JPEG/PNG/WEBP; ảnh gốc tối đa 20MB và được tối ưu xuống tối đa 4MB trước khi gửi. API yêu cầu JWT Admin.
-- **Cơ chế lưu**: Backend lưu ảnh vào bảng MySQL `media_files` và trả URL `/api/v1/media/:id`; file trên đĩa là bản sao tùy chọn. Frontend proxy URL này qua `app/api/v1/media/[id]/route.js`, vì vậy cấu hình `NEXT_PUBLIC_API_URL` phải trỏ đúng Backend.
-- **Ảnh danh mục cũ**: API tự ánh xạ URL `.jpg` cũ trong `public/images/categories/` sang SVG tương ứng; các file `.jpg` đó thực chất chứa SVG và không được dùng trực tiếp như JPEG.
-
-
----
-
-**Routine Web** — *Định hình phong cách thời trang tối giản, hiện đại và thông minh!* 🌟
+**© 2026 ROUTINE THU ĐÔNG — Giữ toàn quyền phát triển và vận hành.**

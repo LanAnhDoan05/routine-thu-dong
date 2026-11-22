@@ -51,12 +51,12 @@ export async function checkAddressApi(addressData) {
           ? { lat: 21.0285, lng: 105.8542 }
           : { lat: 16.0544, lng: 108.2022 },
         nearestStore: isHcm
-          ? { name: "Routine Lê Lợi", distanceKm: 2, city: "TP. Hồ Chí Minh" }
+          ? { name: "Routine Thu Đông Lê Lợi", distanceKm: 2, city: "TP. Hồ Chí Minh" }
           : isHoangHoaTham
-          ? { name: "Routine Mai Hắc Đế", distanceKm: 5.8, city: "Hà Nội" }
+          ? { name: "Routine Thu Đông Mai Hắc Đế", distanceKm: 5.8, city: "Hà Nội" }
           : isHn
-          ? { name: "Routine Mai Hắc Đế", distanceKm: 5.8, city: "Hà Nội" }
-          : { name: "Routine Đà Nẵng", distanceKm: 2, city: "Đà Nẵng" },
+          ? { name: "Routine Thu Đông Mai Hắc Đế", distanceKm: 5.8, city: "Hà Nội" }
+          : { name: "Routine Thu Đông Đà Nẵng", distanceKm: 2, city: "Đà Nẵng" },
         source: "client_fallback",
       };
     }

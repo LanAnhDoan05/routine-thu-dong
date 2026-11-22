@@ -1,29 +1,6 @@
 {
-  "services": {
-    "frontend": {
-      "root": "frontend",
-      "framework": "nextjs"
-    },
-    "backend": {
-      "root": "backend",
-      "runtime": "node",
-      "entrypoint": "app.js"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": {
-        "type": "service",
-        "service": "backend"
-      }
-    },
-    {
-      "source": "/(.*)",
-      "destination": {
-        "type": "service",
-        "service": "frontend"
-      }
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "npm --prefix backend run build && npm --prefix frontend run build",
+  "outputDirectory": "frontend/.next"
 }

@@ -51,7 +51,7 @@ export default function OutfitDetail({ outfit, products, relatedProducts = [] })
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={currentDisplayImg}
-                alt={outfit.name || outfit.title || "Routine Outfit"}
+                alt={outfit.name || outfit.title || "Routine Thu Đông Outfit"}
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 onError={(e) => {
                   const fallback = products[0]?.images?.[0] || products[0]?.image || "/images/hero/auth-hero.jpg";
@@ -66,7 +66,7 @@ export default function OutfitDetail({ outfit, products, relatedProducts = [] })
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={products[0]?.images?.[0] || products[0]?.image || "/images/hero/auth-hero.jpg"}
-                alt={outfit.name || outfit.title || "Routine Outfit"}
+                alt={outfit.name || outfit.title || "Routine Thu Đông Outfit"}
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </div>

@@ -120,7 +120,7 @@ async function chat(req, res, next) {
         {
           isStaffTakeover: true,
           status: conversation.status,
-          message: 'Tin nhắn của bạn đã được chuyển tới chuyên viên tư vấn Routine. Chuyên viên sẽ phản hồi bạn trong giây lát!',
+          message: 'Tin nhắn của bạn đã được chuyển tới chuyên viên tư vấn Routine Thu Đông. Chuyên viên sẽ phản hồi bạn trong giây lát!',
           conversationId: conversation.id,
           turnCount: conversation.turnCount || 0,
         },

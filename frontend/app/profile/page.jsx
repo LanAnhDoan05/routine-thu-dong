@@ -41,7 +41,7 @@ export default function ProfilePage() {
   return (
     <div className="container" style={{ maxWidth: 860, margin: "40px auto", padding: "0 16px" }}>
       <div className={styles.profileHeader}>
-        <span className={styles.eyebrow}>ROUTINE MEMBERSHIP</span>
+        <span className={styles.eyebrow}>ROUTINE THU ĐÔNG MEMBERSHIP</span>
         <h1 className={styles.title}>HỒ SƠ CÁ NHÂN</h1>
         <p className={styles.subtitle}>Quản lý thông tin tài khoản và trải nghiệm mua sắm của bạn.</p>
       </div>
@@ -53,7 +53,7 @@ export default function ProfilePage() {
         <div className={styles.grid}>
           <div className={styles.infoGroup}>
             <span className={styles.label}>Họ và tên</span>
-            <span className={styles.value}>{user?.name || user?.fullName || "Khách hàng Routine"}</span>
+            <span className={styles.value}>{user?.name || user?.fullName || "Khách hàng Routine Thu Đông"}</span>
           </div>
           <div className={styles.infoGroup}>
             <span className={styles.label}>Số điện thoại</span>

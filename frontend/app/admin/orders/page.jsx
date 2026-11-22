@@ -230,7 +230,7 @@ export default function AdminOrdersPage() {
     <div className={styles.container}>
       <PageHeader
         title="Quản lý Đơn hàng"
-        subtitle="Theo dõi, duyệt đơn, cập nhật tiến độ giao hàng và xử lý hóa đơn cho toàn bộ đơn hàng của Routine"
+        subtitle="Theo dõi, duyệt đơn, cập nhật tiến độ giao hàng và xử lý hóa đơn cho toàn bộ đơn hàng của Routine Thu Đông"
         actions={
           <button
             type="button"

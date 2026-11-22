@@ -441,8 +441,8 @@ function formatOutfitForStylist(outfitRecord, intent = {}) {
 
   return {
     id: outfitRecord.id || `outfit-${Date.now()}`,
-    title: outfitRecord.title || outfitRecord.name || 'Bộ Phối Thời Trang Routine',
-    name: outfitRecord.title || outfitRecord.name || 'Bộ Phối Thời Trang Routine',
+    title: outfitRecord.title || outfitRecord.name || 'Bộ Phối Thời Trang Routine Thu Đông',
+    name: outfitRecord.title || outfitRecord.name || 'Bộ Phối Thời Trang Routine Thu Đông',
     style: outfitRecord.style || intent.style || 'minimal',
     occasion: outfitRecord.occasion || intent.occasion || 'weekend',
     fit: intent.fit || 'regular',
@@ -891,7 +891,7 @@ async function assembleDynamicOutfit(intent, currentProduct = null, userMessage 
         ? chosenBottom.name
         : chosenTop && chosenBottom
     ? `Bộ Phối ${chosenTop.name.split(' - ')[0]} & ${chosenBottom.name.split(' - ')[0]}`
-    : (chosenTop ? `Set Thời Trang ${chosenTop.name}` : 'Bộ Phối Thời Trang Routine');
+    : (chosenTop ? `Set Thời Trang ${chosenTop.name}` : 'Bộ Phối Thời Trang Routine Thu Đông');
 
   const outfitStyle = intent.style || (intent.fit === 'oversize' ? 'streetstyle' : (intent.occasion === 'office' ? 'smart-casual' : 'minimal'));
 
@@ -922,7 +922,7 @@ async function analyzeImageWithGemini(imageBase64) {
     base64Data = parts[1];
   }
 
-  const prompt = `Bạn là Trợ lý phân tích thị giác thời trang (Visual Fashion AI Stylist) của thương hiệu Routine.
+  const prompt = `Bạn là Trợ lý phân tích thị giác thời trang (Visual Fashion AI Stylist) của thương hiệu Routine Thu Đông.
 Hãy quan sát kỹ bức ảnh trang phục và trích xuất các đặc điểm thời trang sang JSON duy nhất (không viết markdown):
 {
   "category": "ao-len" | "ao-khoac" | "cat-blazer" | "ao-thun" | "ao-somi" | "ao-polo" | "ao-ni" | "quan-jeans" | "quan-tay" | "quan-kaki" | "vay" | null,
@@ -1028,9 +1028,9 @@ async function chatWithStylist({
       if (!outfit && products.length > 0) {
         outfit = {
           id: `dyn-outfit-${Date.now().toString(36)}`,
-          title: products.length > 1 ? `Gợi ý phối đồ Routine (${products.length} món)` : products[0].name,
-          name: products.length > 1 ? `Gợi ý phối đồ Routine (${products.length} món)` : products[0].name,
-          description: 'Set trang phục đồng điệu phong cách Routine dành cho bạn',
+          title: products.length > 1 ? `Gợi ý phối đồ Routine Thu Đông (${products.length} món)` : products[0].name,
+          name: products.length > 1 ? `Gợi ý phối đồ Routine Thu Đông (${products.length} món)` : products[0].name,
+          description: 'Set trang phục đồng điệu phong cách Routine Thu Đông dành cho bạn',
           products: products,
           items: products,
           total: products.reduce((sum, p) => sum + (Number(p.price) || 0), 0),
@@ -1044,9 +1044,9 @@ async function chatWithStylist({
       if (!finalMessage) {
         if (products.length > 0) {
           const productList = products.slice(0, 3).map((p, idx) => `* **Món ${idx + 1}:** ${p.name} (Giá: ${new Intl.NumberFormat('vi-VN').format(p.price)}đ)`).join('\n');
-          finalMessage = `Chào bạn, mình đã tuyển chọn set đồ phối ăn ý từ catalog Routine dành cho bạn:\n\n${productList}\n\nBạn có thể chọn size, màu sắc và thêm trực tiếp vào giỏ hàng ngay bên dưới nhé!`;
+          finalMessage = `Chào bạn, mình đã tuyển chọn set đồ phối ăn ý từ catalog Routine Thu Đông dành cho bạn:\n\n${productList}\n\nBạn có thể chọn size, màu sắc và thêm trực tiếp vào giỏ hàng ngay bên dưới nhé!`;
         } else {
-          finalMessage = 'Hiện tại mình chưa tìm thấy sản phẩm đang bán phù hợp với yêu cầu này trong catalog Routine.';
+          finalMessage = 'Hiện tại mình chưa tìm thấy sản phẩm đang bán phù hợp với yêu cầu này trong catalog Routine Thu Đông.';
         }
       }
 
@@ -1169,12 +1169,12 @@ async function chatWithStylist({
       `Gợi ý áo polo phối quần tây cho size ${sizeRecommendation.size}`,
       `Tìm áo phông oversize size ${sizeRecommendation.size} dạo phố`,
       intent.fit === 'oversize' ? 'Nếu mình muốn mặc vừa sát người thì sao?' : 'Mình thích mặc form rộng thoải mái thì chọn size nào?',
-      'Xem thêm bảng số đo chi tiết của Routine',
+      'Xem thêm bảng số đo chi tiết của Routine Thu Đông',
     ];
 
     let fullMessage = `Dạ chào bạn! ${sizeRecommendation.reason}`;
     if (outfit && outfit.products?.length > 0) {
-      fullMessage += `\n\nRoutine cũng đã chuẩn bị sẵn gợi ý set đồ theo đúng **Size ${sizeRecommendation.size}** để bạn tham khảo ngay bên dưới nhé:`;
+      fullMessage += `\n\nRoutine Thu Đông cũng đã chuẩn bị sẵn gợi ý set đồ theo đúng **Size ${sizeRecommendation.size}** để bạn tham khảo ngay bên dưới nhé:`;
     }
 
     return {

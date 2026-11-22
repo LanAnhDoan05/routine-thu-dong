@@ -106,9 +106,9 @@ export default function HomePage() {
       return heroConfig.rightImages;
     }
     return [
-      { id: 'hb-1', url: '/images/hero/hero-banner-1.svg', title: 'Routine Look 1' },
-      { id: 'hb-2', url: '/images/hero/hero-banner-2.svg', title: 'Routine Look 2' },
-      { id: 'hb-3', url: '/images/hero/hero-banner-3.svg', title: 'Routine Look 3' },
+      { id: 'hb-1', url: '/images/hero/hero-banner-1.svg', title: 'Routine Thu Đông Look 1' },
+      { id: 'hb-2', url: '/images/hero/hero-banner-2.svg', title: 'Routine Thu Đông Look 2' },
+      { id: 'hb-3', url: '/images/hero/hero-banner-3.svg', title: 'Routine Thu Đông Look 3' },
     ];
   }, [heroConfig]);
 
@@ -202,7 +202,7 @@ export default function HomePage() {
               >
                 <Image
                   src={src}
-                  alt={img.title || "Routine Hero Banner"}
+                  alt={img.title || "Routine Thu Đông Hero Banner"}
                   width={1920}
                   height={1080}
                   priority={i === 0}

@@ -116,7 +116,7 @@ export default function OrdersPage() {
               Hồ sơ khách hàng
             </span>
             <p style={{ margin: "4px 0 0", fontSize: "16px", fontWeight: 700, color: "var(--color-text)" }}>
-              {user.name || user.fullName || "Khách hàng Routine"}
+              {user.name || user.fullName || "Khách hàng Routine Thu Đông"}
             </p>
           </div>
           <div>

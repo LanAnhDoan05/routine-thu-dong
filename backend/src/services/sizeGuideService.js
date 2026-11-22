@@ -124,7 +124,7 @@ async function recommendSize({ height = null, weight = null, fitPreference = nul
       height,
       weight: null,
       confidence: 'medium',
-      reason: `Với chiều cao ${height}cm, bạn phù hợp với size ${chosen.size} (khoảng ${chosen.minHeight} - ${chosen.maxHeight}cm). Để tư vấn chuẩn xác 100%, bạn có thể cho Routine biết thêm cân nặng của mình nhé!`,
+      reason: `Với chiều cao ${height}cm, bạn phù hợp với size ${chosen.size} (khoảng ${chosen.minHeight} - ${chosen.maxHeight}cm). Để tư vấn chuẩn xác 100%, bạn có thể cho Routine Thu Đông biết thêm cân nặng của mình nhé!`,
       details: chosen,
     };
   }
@@ -208,15 +208,15 @@ async function recommendSize({ height = null, weight = null, fitPreference = nul
     // Đậm người: ưu tiên size theo cân nặng để vòng ngực, vai và bụng thoải mái
     recommendedSize = weightSize.size;
     secondarySize = heightSize.size;
-    explanation = `Với chiều cao ${height}cm và cân nặng ${weight}kg, vóc dáng của bạn đậm người. Routine khuyên bạn nên chọn **Size ${recommendedSize}** để phần ngực, vai và bụng được thoải mái, không bị bó sát. Nếu thích mặc ôm gọn thì có thể cân nhắc size ${secondarySize}.`;
+    explanation = `Với chiều cao ${height}cm và cân nặng ${weight}kg, vóc dáng của bạn đậm người. Routine Thu Đông khuyên bạn nên chọn **Size ${recommendedSize}** để phần ngực, vai và bụng được thoải mái, không bị bó sát. Nếu thích mặc ôm gọn thì có thể cân nhắc size ${secondarySize}.`;
   } else if (heightOrder > weightOrder) {
     // Cao gầy: cân nhắc giữa chiều dài áo/quần và độ rộng
     recommendedSize = heightSize.size;
     secondarySize = weightSize.size;
-    explanation = `Với chiều cao ${height}cm và cân nặng ${weight}kg, bạn có vóc dáng cao thanh mảnh. Routine tư vấn bạn nên chọn **Size ${recommendedSize}** để áo và quần có chiều dài vừa vặn không bị ngắn. Bạn có thể chọn các thiết kế Regular hoặc form suông để tôn dáng chuẩn nhất nhé!`;
+    explanation = `Với chiều cao ${height}cm và cân nặng ${weight}kg, bạn có vóc dáng cao thanh mảnh. Routine Thu Đông tư vấn bạn nên chọn **Size ${recommendedSize}** để áo và quần có chiều dài vừa vặn không bị ngắn. Bạn có thể chọn các thiết kế Regular hoặc form suông để tôn dáng chuẩn nhất nhé!`;
   } else {
     recommendedSize = heightSize.size;
-    explanation = `Với chiều cao ${height}cm và cân nặng ${weight}kg, kích cỡ tối ưu nhất cho bạn là **Size ${recommendedSize}** theo bảng size chuẩn Routine.`;
+    explanation = `Với chiều cao ${height}cm và cân nặng ${weight}kg, kích cỡ tối ưu nhất cho bạn là **Size ${recommendedSize}** theo bảng size chuẩn Routine Thu Đông.`;
   }
 
   if (fitPreference === 'oversize' && recommendedSize !== 'XXL') {

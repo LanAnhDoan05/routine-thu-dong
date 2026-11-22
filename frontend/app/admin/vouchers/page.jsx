@@ -244,7 +244,7 @@ export default function AdminVouchersPage() {
     <div className={styles.container}>
       <PageHeader
         title="Quản lý Mã giảm giá (Vouchers)"
-        subtitle="Quản lý kho mã khuyến mãi, thiết lập điều kiện áp dụng, tỷ lệ giảm giá và trạng thái kích hoạt trên toàn hệ thống Routine"
+        subtitle="Quản lý kho mã khuyến mãi, thiết lập điều kiện áp dụng, tỷ lệ giảm giá và trạng thái kích hoạt trên toàn hệ thống Routine Thu Đông"
         actions={
           <button
             type="button"

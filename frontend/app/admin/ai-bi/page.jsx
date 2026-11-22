@@ -67,7 +67,7 @@ export default function BusinessIntelligencePage() {
   const [chatMessages, setChatMessages] = useState([
     {
       role: "ai",
-      text: "Xin chào Quản trị viên! Tôi là Trợ lý AI Quản Trị Kinh Doanh của Routine. Tôi đã kết nối dữ liệu thời gian thực từ MySQL (doanh thu, đơn hàng, tồn kho, khách hàng). Bạn cần tôi hỗ trợ phân tích vấn đề gì?",
+      text: "Xin chào Quản trị viên! Tôi là Trợ lý AI Quản Trị Kinh Doanh của Routine Thu Đông. Tôi đã kết nối dữ liệu thời gian thực từ MySQL (doanh thu, đơn hàng, tồn kho, khách hàng). Bạn cần tôi hỗ trợ phân tích vấn đề gì?",
       time: "Vừa xong",
     },
   ]);
@@ -1309,7 +1309,7 @@ export default function BusinessIntelligencePage() {
             <div className={styles.card}>
               <div className={styles.cardHeader}>
                 <div>
-                  <h2 className={styles.cardTitle}>Phân Bố Nhu Cầu Địa Lý & Mạng Lưới 25 Showroom Routine</h2>
+                  <h2 className={styles.cardTitle}>Phân Bố Nhu Cầu Địa Lý & Mạng Lưới 25 Showroom Routine Thu Đông</h2>
                   <p style={{ margin: "4px 0 0 0", fontSize: 13, color: "#6b7280" }}>
                     So sánh tỷ trọng đơn hàng thực tế theo tỉnh thành giao hàng với mật độ 25 Showroom toàn quốc.
                   </p>
@@ -1368,7 +1368,7 @@ export default function BusinessIntelligencePage() {
                 </div>
 
                 <div className={styles.card} style={{ border: "1px solid #e5e7eb" }}>
-                  <h3 className={styles.cardTitle}>Mạng Lưới 25 Showroom Routine Toàn Quốc</h3>
+                  <h3 className={styles.cardTitle}>Mạng Lưới 25 Showroom Routine Thu Đông Toàn Quốc</h3>
                   <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 14 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid #f3f4f6" }}>
                       <span>Showroom Miền Nam (TP.HCM, Cần Thơ, Bình Dương)</span>
@@ -1627,7 +1627,7 @@ export default function BusinessIntelligencePage() {
                   <span className={styles.aiInsightTitle}>
                     🎯 Bản Kế Hoạch Chiến Dịch Tiếp Thị Hoàn Chỉnh (Grounded Marketing Strategy)
                   </span>
-                  <span style={{ fontSize: 12, color: "#4f46e5", fontWeight: 700 }}>Gemini CMO Routine</span>
+                  <span style={{ fontSize: 12, color: "#4f46e5", fontWeight: 700 }}>Gemini CMO Routine Thu Đông</span>
                 </div>
                 <div className={styles.aiInsightContent}>{mktPlan}</div>
               </div>
@@ -1655,7 +1655,7 @@ export default function BusinessIntelligencePage() {
                     className={msg.role === "user" ? styles.chatBubbleUser : styles.chatBubbleAi}
                   >
                     <div style={{ fontSize: 11, fontWeight: 700, color: msg.role === "user" ? "#9ca3af" : "#6366f1", marginBottom: 4 }}>
-                      {msg.role === "user" ? "Quản trị viên" : "✨ Routine AI Executive Assistant"} - {msg.time}
+                      {msg.role === "user" ? "Quản trị viên" : "✨ Routine Thu Đông AI Executive Assistant"} - {msg.time}
                     </div>
                     <div style={{ whiteSpace: "pre-wrap" }}>{msg.text}</div>
                   </div>

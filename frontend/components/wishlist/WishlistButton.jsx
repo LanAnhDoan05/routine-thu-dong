@@ -19,7 +19,7 @@ export default function WishlistButton({ productId, size = "md", className = "" 
     if (
       !requireAuth({
         title: "Yêu thích sản phẩm",
-        message: "Vui lòng đăng nhập tài khoản Routine để lưu sản phẩm vào danh sách yêu thích của riêng bạn.",
+        message: "Vui lòng đăng nhập tài khoản Routine Thu Đông để lưu sản phẩm vào danh sách yêu thích của riêng bạn.",
       })
     ) {
       return;

@@ -276,7 +276,7 @@ export default function DashboardPage() {
           <div>
             <h2 className={styles.sectionTitle}>Đơn Hàng Gần Đây ({recentOrders.length})</h2>
             <p style={{ fontSize: 12.5, color: "var(--color-text-secondary)", marginTop: 2 }}>
-              Các đơn hàng mới nhất đặt qua hệ thống Routine Storefront
+              Các đơn hàng mới nhất đặt qua hệ thống Routine Thu Đông Storefront
             </p>
           </div>
           <Link href="/orders" target="_blank" className={styles.viewAllBtn}>
@@ -419,7 +419,7 @@ function ProductMiniList({ title, items, emptyText, showStock, showSales, badgeT
                 <Link href={`/product/${p.id}`} target="_blank" className={styles.miniName}>
                   {p.name}
                 </Link>
-                <span className={styles.miniMeta}>{p.categoryName || "Thời trang Routine"}</span>
+                <span className={styles.miniMeta}>{p.categoryName || "Thời trang Routine Thu Đông"}</span>
               </div>
               <div style={{ textAlign: "right", flexShrink: 0 }}>
                 {showSales ? (

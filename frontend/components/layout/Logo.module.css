@@ -12,17 +12,25 @@
 }
 
 .brandName {
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 850;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.14em;
   line-height: 1;
   color: #0f172a;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1023px) {
   .brandName {
-    font-size: 17px;
-    letter-spacing: 0.16em;
+    font-size: 15px;
+    letter-spacing: 0.10em;
+  }
+}
+
+@media (max-width: 480px) {
+  .brandName {
+    font-size: 13.5px;
+    letter-spacing: 0.08em;
   }
 }

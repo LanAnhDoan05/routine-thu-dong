@@ -47,7 +47,7 @@ export default function CheckoutPage() {
         initialAddress = {
           ...savedAddress,
           nearestStore: {
-            name: "Routine Mai Hắc Đế",
+            name: "Routine Thu Đông Mai Hắc Đế",
             slug: "routine-mai-hac-de",
             address: "73A Mai Hắc Đế, Hai Bà Trưng, Hà Nội",
             city: "Hà Nội",

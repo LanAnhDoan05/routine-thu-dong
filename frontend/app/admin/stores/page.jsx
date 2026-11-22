@@ -233,7 +233,7 @@ export default function StoresAdminPage() {
     setResetting(true);
     try {
       await resetDefaultStores();
-      showToast("Hệ thống đã đồng bộ lại 25 cửa hàng Routine chính thức!", "success");
+      showToast("Hệ thống đã đồng bộ lại 25 cửa hàng Routine Thu Đông chính thức!", "success");
       setIsResetConfirmOpen(false);
       await loadData();
     } catch (err) {
@@ -247,8 +247,8 @@ export default function StoresAdminPage() {
     <div className={styles.container}>
       {/* Page Header */}
       <PageHeader
-        title="Quản lý cửa hàng Routine"
-        subtitle="Quản lý mạng lưới 25 showroom và chi nhánh Routine trên toàn quốc"
+        title="Quản lý cửa hàng Routine Thu Đông"
+        subtitle="Quản lý mạng lưới 25 showroom và chi nhánh Routine Thu Đông trên toàn quốc"
         breadcrumb="Vận hành / Cửa hàng"
       />
 
@@ -352,7 +352,7 @@ export default function StoresAdminPage() {
             type="button"
             className={styles.resetBtn}
             onClick={() => setIsResetConfirmOpen(true)}
-            title="Đồng bộ lại danh sách 25 cửa hàng gốc Routine"
+            title="Đồng bộ lại danh sách 25 cửa hàng gốc Routine Thu Đông"
           >
             Khôi phục mặc định
           </button>
@@ -504,7 +504,7 @@ export default function StoresAdminPage() {
           >
             <div className={styles.modalHeader}>
               <h3 className={styles.modalTitle}>
-                {formData.id ? "Chỉnh sửa thông tin cửa hàng" : "Thêm mới cửa hàng Routine"}
+                {formData.id ? "Chỉnh sửa thông tin cửa hàng" : "Thêm mới cửa hàng Routine Thu Đông"}
               </h3>
               <button
                 type="button"
@@ -524,7 +524,7 @@ export default function StoresAdminPage() {
                     <input
                       type="text"
                       className={styles.formInput}
-                      placeholder="Ví dụ: Routine Lê Lợi"
+                      placeholder="Ví dụ: Routine Thu Đông Lê Lợi"
                       value={formData.name}
                       onChange={handleNameChange}
                       required
@@ -702,7 +702,7 @@ export default function StoresAdminPage() {
       <ConfirmModal
         open={isResetConfirmOpen}
         title="Khôi phục danh sách cửa hàng mặc định"
-        description="Hệ thống sẽ đồng bộ lại toàn bộ 25 chi nhánh Routine chính thức (Bắc, Trung, Nam) vào cơ sở dữ liệu. Bạn có muốn tiếp tục?"
+        description="Hệ thống sẽ đồng bộ lại toàn bộ 25 chi nhánh Routine Thu Đông chính thức (Bắc, Trung, Nam) vào cơ sở dữ liệu. Bạn có muốn tiếp tục?"
         confirmLabel="Khôi phục 25 cửa hàng"
         cancelLabel="Hủy"
         tone="neutral"

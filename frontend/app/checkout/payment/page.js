@@ -85,7 +85,7 @@ export default function PaymentPage() {
         const vnpayRes = await createVNPayPaymentUrl({
           orderId: newOrder.id,
           amount: total,
-          orderInfo: `Thanh toan don hang ${newOrder.id} - Routine`,
+          orderInfo: `Thanh toan don hang ${newOrder.id} - Routine Thu Dong`,
         });
 
         if (!vnpayRes || !vnpayRes.paymentUrl) {

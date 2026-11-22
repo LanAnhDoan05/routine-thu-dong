@@ -521,7 +521,7 @@ async function validateAndLocateAddress(addressInput) {
     } catch (e) {}
 
     const nearestStore = {
-      name: dbMatch?.name || storeCoord?.name || "Routine Mai Hắc Đế",
+      name: dbMatch?.name || storeCoord?.name || "Routine Thu Đông Mai Hắc Đế",
       slug: slug,
       address: dbMatch?.address || `${storeCoord?.name}, ${storeCoord?.city}`,
       city: dbMatch?.city || storeCoord?.city || "Hà Nội",
@@ -625,7 +625,7 @@ function calculateShippingOptions(subtotal = 0, distanceKm = null, nearestStore 
   let expressOption = {
     id: "express",
     label: "Ship Hỏa Tốc (Nhân viên cửa hàng)",
-    provider: nearestStore ? `Showroom Routine ${nearestStore.name}` : "Nhân viên Routine",
+    provider: nearestStore ? `Showroom Routine Thu Đông ${nearestStore.name}` : "Nhân viên Routine Thu Đông",
     baseFee: 0,
     fee: 0,
     distanceKm: dist,
@@ -641,7 +641,7 @@ function calculateShippingOptions(subtotal = 0, distanceKm = null, nearestStore 
     expressOption.available = false;
     expressOption.fee = 100000;
     expressOption.reason = `Khoảng cách hiện tại: ${dist} km (vượt quá bán kính hỗ trợ hỏa tốc 30 km từ ${
-      nearestStore?.name || "cửa hàng Routine"
+      nearestStore?.name || "cửa hàng Routine Thu Đông"
     }).`;
   } else {
     expressOption.available = true;
@@ -838,7 +838,7 @@ async function calculateAdministrativeShippingFee(addressInput, subtotal = 0, sh
   const standardOption = {
     id: 'standard',
     label: 'Giao hàng Tiêu Chuẩn',
-    provider: 'Routine Logistics / Viettel Post',
+    provider: 'Routine Thu Đông Logistics / Viettel Post',
     zone,
     baseFee,
     discount: standardDiscount,
@@ -854,7 +854,7 @@ async function calculateAdministrativeShippingFee(addressInput, subtotal = 0, sh
   let expressOption = {
     id: 'express',
     label: 'Giao Hỏa Tốc (Giao nhanh)',
-    provider: 'Routine Express Courier',
+    provider: 'Routine Thu Đông Express Courier',
     zone,
     baseFee: isInner ? 50000 : 80000,
     fee: isInner ? 50000 : 80000,
@@ -886,4 +886,6 @@ module.exports = {
   matchAdministrativeShippingRule,
   calculateAdministrativeShippingFee,
   STORE_COORDINATES,
+  isKnownProvince,
+  VN_PROVINCES,
 };

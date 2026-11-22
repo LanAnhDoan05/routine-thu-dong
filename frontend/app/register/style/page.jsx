@@ -203,7 +203,7 @@ export default function RegisterStylePage() {
           </span>
           <h1 className={styles.successTitle}>Đăng ký thành công!</h1>
           <p className={styles.successSubtitle}>
-            Chào mừng bạn đến với Routine. Chúng tôi đã chuẩn bị sẵn món quà đặc biệt dành riêng cho bạn:
+            Chào mừng bạn đến với Routine Thu Đông. Chúng tôi đã chuẩn bị sẵn món quà đặc biệt dành riêng cho bạn:
           </p>
 
           {/* Thẻ Voucher chào mừng */}
@@ -253,7 +253,7 @@ export default function RegisterStylePage() {
               onClick={() => router.push("/")}
               style={{ marginTop: 4 }}
             >
-              Về trang chủ Routine
+              Về trang chủ Routine Thu Đông
             </button>
           </div>
         </div>

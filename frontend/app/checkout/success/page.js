@@ -80,7 +80,7 @@ function OrderSuccessInner() {
           ORDER CONFIRMED
         </h1>
         <p style={{ color: "var(--color-text-secondary)", marginBottom: 4 }}>
-          Cảm ơn bạn đã mua sắm cùng Routine.
+          Cảm ơn bạn đã mua sắm cùng Routine Thu Đông.
         </p>
         <p style={{ color: "var(--color-text-secondary)", marginBottom: 20 }}>
           Đơn hàng của bạn đã được tiếp nhận.

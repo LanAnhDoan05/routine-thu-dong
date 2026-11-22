@@ -21,7 +21,7 @@ export default function VNPayGatewayPage() {
         <div style={{ textAlign: "center", padding: "120px 0" }}>
           <Loading />
           <p style={{ marginTop: 16, color: "#64748b", fontSize: "14.5px" }}>
-            Đang khởi tạo cổng thanh toán Routine VNPAY-QR...
+            Đang khởi tạo cổng thanh toán Routine Thu Đông VNPAY-QR...
           </p>
         </div>
       }
@@ -278,8 +278,8 @@ function VNPayGatewayInner() {
       {/* Top Header */}
       <header className="payment-top-bar">
         <div className="container payment-top-inner">
-          <Link href="/" className="brand-logo" aria-label="Routine - về trang chủ">
-            ROUTINE
+          <Link href="/" className="brand-logo" aria-label="Routine Thu Đông - về trang chủ">
+            ROUTINE THU ĐÔNG
           </Link>
           <div className="security-tag">
             <span className="lock-icon" aria-hidden="true">🔒</span>
@@ -427,7 +427,7 @@ function VNPayGatewayInner() {
                   </div>
                   <div className="meta-row">
                     <span className="meta-label">Người nhận</span>
-                    <span className="meta-value">{order?.receiverName || "Khách hàng Routine"}</span>
+                    <span className="meta-value">{order?.receiverName || "Khách hàng Routine Thu Đông"}</span>
                   </div>
                   <div className="meta-row">
                     <span className="meta-label">Số điện thoại</span>

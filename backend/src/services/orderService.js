@@ -187,19 +187,49 @@ async function createOrder(identityId, orderInput) {
     orderItems = currentCart.items;
   }
 
-  const receiverName = (shippingAddress && (shippingAddress.name || shippingAddress.fullName || shippingAddress.receiverName)) || 'Khách hàng';
-  const phoneNumber = (shippingAddress && (shippingAddress.phone || shippingAddress.phoneNumber)) || '0123456789';
-  const fullAddress =
-    typeof shippingAddress === 'string'
-      ? shippingAddress
-      : [
-          shippingAddress?.address || shippingAddress?.street || '',
-          shippingAddress?.ward || '',
-          shippingAddress?.district || '',
-          shippingAddress?.city || shippingAddress?.province || '',
-        ]
-          .filter(Boolean)
-          .join(', ') || 'Địa chỉ nhận hàng';
+  const receiverName = (orderInput.name || orderInput.customerName || orderInput.receiverName || (shippingAddress && (shippingAddress.name || shippingAddress.fullName || shippingAddress.receiverName || shippingAddress.receiver_name)))?.toString().trim();
+  if (!receiverName || receiverName.length < 2) {
+    const error = new Error('Họ và tên người nhận hàng không được để trống (tối thiểu 2 ký tự)');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const rawPhone = (orderInput.phone || orderInput.phoneNumber || orderInput.customerPhone || (shippingAddress && (shippingAddress.phone || shippingAddress.phoneNumber || shippingAddress.phone_number)))?.toString().trim();
+  const cleanPhone = (rawPhone || '').replace(/[\s.-]/g, '');
+  const isValidPhone = /^(0|\+84|84)(3|5|7|8|9)[0-9]{8}$/.test(cleanPhone);
+  if (!rawPhone || !isValidPhone) {
+    const error = new Error('Số điện thoại người nhận không hợp lệ (yêu cầu số điện thoại di động Việt Nam 10 chữ số)');
+    error.statusCode = 400;
+    throw error;
+  }
+  const phoneNumber = cleanPhone.startsWith('+84') ? '0' + cleanPhone.slice(3) : cleanPhone.startsWith('84') ? '0' + cleanPhone.slice(2) : cleanPhone;
+
+  let fullAddress = '';
+  if (typeof shippingAddress === 'string') {
+    fullAddress = shippingAddress.trim();
+    if (fullAddress.length < 5) {
+      const error = new Error('Địa chỉ giao hàng quá ngắn hoặc không hợp lệ');
+      error.statusCode = 400;
+      throw error;
+    }
+  } else if (shippingAddress && typeof shippingAddress === 'object') {
+    const street = (shippingAddress.address || shippingAddress.street || '').toString().trim();
+    const ward = (shippingAddress.ward || '').toString().trim();
+    const district = (shippingAddress.district || '').toString().trim();
+    const city = (shippingAddress.city || shippingAddress.province || '').toString().trim();
+
+    if (!street) {
+      const error = new Error('Vui lòng nhập địa chỉ cụ thể (số nhà, tên đường)');
+      error.statusCode = 400;
+      throw error;
+    }
+
+    fullAddress = [street, ward, district, city].filter(Boolean).join(', ');
+  } else {
+    const error = new Error('Vui lòng cung cấp địa chỉ nhận hàng');
+    error.statusCode = 400;
+    throw error;
+  }
 
   // 1. Tự động kiểm tra và lấy lại giá sản phẩm thật từ MySQL Database (Single Source of Truth)
   // Tuyệt đối không tin tưởng giá sản phẩm hoặc subtotal gửi lên từ Client / AI Stylist

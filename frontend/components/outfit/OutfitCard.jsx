@@ -9,7 +9,7 @@ export default function OutfitCard({ outfit }) {
   const styleInfo = getStyleBySlug(outfit.style);
   const firstProductImg = outfitProducts[0]?.images?.[0] || outfitProducts[0]?.image;
   const coverImg = outfit.coverImage || outfit.image || firstProductImg || "/images/hero/auth-hero.jpg";
-  const displayName = outfit.name || outfit.title || "Routine Outfit";
+  const displayName = outfit.name || outfit.title || "Routine Thu Đông Outfit";
 
   return (
     <Link href={`/outfit/${outfit.id}`} style={{ display: "block" }}>

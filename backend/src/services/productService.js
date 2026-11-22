@@ -291,7 +291,7 @@ async function createProduct(productData = {}) {
   const {
     name,
     category,
-    gender,
+    gender = 'unisex',
     style = [],
     price,
     originalPrice,
@@ -304,10 +304,13 @@ async function createProduct(productData = {}) {
     status = 'ACTIVE',
   } = productData;
 
+  const rawGender = String(gender || 'unisex').toLowerCase();
+  const normalizedGender = rawGender === 'nam' ? 'men' : (rawGender === 'nu' || rawGender === 'nữ') ? 'women' : rawGender;
+
   if (typeof name !== 'string' || !name.trim()) throw badRequest('Tên sản phẩm không được để trống');
   if (typeof description !== 'string' || !description.trim()) throw badRequest('Mô tả sản phẩm không được để trống');
   if (!Number.isInteger(Number(price)) || Number(price) <= 0) throw badRequest('Giá sản phẩm phải là số nguyên dương');
-  if (!GENDERS.has(String(gender).toLowerCase())) throw badRequest('Giới tính sản phẩm không hợp lệ');
+  if (!GENDERS.has(normalizedGender)) throw badRequest('Giới tính sản phẩm không hợp lệ');
   if (!PRODUCT_STATUSES.has(status)) throw badRequest('Trạng thái sản phẩm không hợp lệ');
   if (originalPrice !== undefined && originalPrice !== null && originalPrice !== '' && (
     !Number.isInteger(Number(originalPrice)) || Number(originalPrice) < 0
@@ -331,7 +334,7 @@ async function createProduct(productData = {}) {
       shortDescription: productData.shortDescription || null,
       price: Number(price),
       originalPrice: originalPrice === '' || originalPrice === undefined ? null : (originalPrice === null ? null : Number(originalPrice)),
-      gender: String(gender).toLowerCase(),
+      gender: normalizedGender,
       categoryId: categoryRecord.id,
       categorySlug: categoryRecord.slug,
       styles: Array.isArray(style) ? style : [style].filter(Boolean),
@@ -380,9 +383,10 @@ async function updateProduct(id, updateData = {}) {
     else data.originalPrice = Number(value);
   }
   if (updateData.gender !== undefined) {
-    const gender = String(updateData.gender).toLowerCase();
-    if (!GENDERS.has(gender)) throw badRequest('Giới tính sản phẩm không hợp lệ');
-    data.gender = gender;
+    const rawGender = String(updateData.gender).toLowerCase();
+    const normalizedGender = rawGender === 'nam' ? 'men' : (rawGender === 'nu' || rawGender === 'nữ') ? 'women' : rawGender;
+    if (!GENDERS.has(normalizedGender)) throw badRequest('Giới tính sản phẩm không hợp lệ');
+    data.gender = normalizedGender;
   }
   if (updateData.status !== undefined) {
     if (!PRODUCT_STATUSES.has(updateData.status)) throw badRequest('Trạng thái sản phẩm không hợp lệ');

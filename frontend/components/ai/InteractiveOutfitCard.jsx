@@ -152,7 +152,7 @@ export default function InteractiveOutfitCard({ outfit }) {
       <div className={styles.outfitCardHeader}>
         <div>
           <span className={styles.outfitBadge}>{outfit.style ? outfit.style.toUpperCase() : "OUTFIT"}</span>
-          <h3 className={styles.outfitTitle}>{outfit.title || outfit.name || "Bộ phối thời trang Routine"}</h3>
+          <h3 className={styles.outfitTitle}>{outfit.title || outfit.name || "Bộ phối thời trang Routine Thu Đông"}</h3>
         </div>
         <span className={styles.outfitItemCount}>{products.length} món đồ</span>
       </div>

@@ -1,0 +1,597 @@
+[
+  {
+    "name": "home",
+    "url": "http://localhost:3000/",
+    "requiresAuth": false,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 175,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 98,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 55,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 47,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 32,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "category",
+    "url": "http://localhost:3000/category/ao",
+    "requiresAuth": false,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 1599,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 667,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 663,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 599,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 465,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "search",
+    "url": "http://localhost:3000/search?q=shirt",
+    "requiresAuth": false,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 123,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 56,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 42,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 47,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 28,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "product_detail",
+    "url": "http://localhost:3000/product/p001",
+    "requiresAuth": false,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 1333,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 1289,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 1275,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 1272,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 1174,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "cart",
+    "url": "http://localhost:3000/cart",
+    "requiresAuth": false,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 128,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 63,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 44,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 49,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 32,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "checkout",
+    "url": "http://localhost:3000/checkout",
+    "requiresAuth": false,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 128,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 51,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 42,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 42,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 33,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "login",
+    "url": "http://localhost:3000/login",
+    "requiresAuth": false,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 128,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 44,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 41,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 37,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 32,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "register",
+    "url": "http://localhost:3000/register",
+    "requiresAuth": false,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 158,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 44,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 39,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 43,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 37,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "ai_stylist",
+    "url": "http://localhost:3000/smart-outfit/ai-stylist",
+    "requiresAuth": false,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 154,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 47,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 53,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 49,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 34,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "admin_dashboard",
+    "url": "http://localhost:3000/admin",
+    "requiresAuth": true,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 82,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 40,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 32,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 35,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 29,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "admin_products",
+    "url": "http://localhost:3000/admin/products",
+    "requiresAuth": true,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 76,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 49,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 30,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 44,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 49,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "admin_product_new",
+    "url": "http://localhost:3000/admin/products/new",
+    "requiresAuth": true,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 81,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 54,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 34,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 41,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 26,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "admin_orders",
+    "url": "http://localhost:3000/admin/orders",
+    "requiresAuth": true,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 90,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 58,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 35,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 42,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 40,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "admin_customers",
+    "url": "http://localhost:3000/admin/customers",
+    "requiresAuth": true,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 106,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 61,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 49,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 48,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 42,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "admin_stores",
+    "url": "http://localhost:3000/admin/stores",
+    "requiresAuth": true,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 119,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 64,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 51,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 57,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 46,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "admin_vouchers",
+    "url": "http://localhost:3000/admin/vouchers",
+    "requiresAuth": true,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 114,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 54,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 49,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 49,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 45,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  },
+  {
+    "name": "admin_ai_bi",
+    "url": "http://localhost:3000/admin/ai-bi",
+    "requiresAuth": true,
+    "viewports": {
+      "desktop": {
+        "status": 200,
+        "loadTimeMs": 113,
+        "overflow": false
+      },
+      "laptop": {
+        "status": 200,
+        "loadTimeMs": 86,
+        "overflow": false
+      },
+      "tablet": {
+        "status": 200,
+        "loadTimeMs": 66,
+        "overflow": false
+      },
+      "mobile": {
+        "status": 200,
+        "loadTimeMs": 55,
+        "overflow": false
+      },
+      "mobile_small": {
+        "status": 200,
+        "loadTimeMs": 46,
+        "overflow": false
+      }
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "hasHorizontalOverflow": false
+  }
+]

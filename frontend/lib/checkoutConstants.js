@@ -336,7 +336,7 @@ export function getShippingMethods(address = null, subtotal = 0) {
     express: {
       id: "express",
       label: "Ship Hỏa Tốc (Nhân viên cửa hàng)",
-      provider: store?.name ? `Showroom Routine ${store.name}` : "Showroom Routine",
+      provider: store?.name ? `Showroom Routine Thu Đông ${store.name}` : "Showroom Routine Thu Đông",
       fee: exp.fee,
       isFree: exp.isFree,
       eta: "Giao ngay trong 1–2 giờ",

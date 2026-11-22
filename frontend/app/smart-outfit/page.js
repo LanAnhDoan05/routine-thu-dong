@@ -203,7 +203,7 @@ export default function SmartOutfitPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/hero/auth-hero.jpg"
-              alt="Create Your Outfit - Routine Fashion"
+              alt="Create Your Outfit - Routine Thu Đông Fashion"
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 60%)" }} />

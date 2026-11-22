@@ -213,7 +213,7 @@ export default function Header() {
                     <>
                       <div className={styles.userDropdownHeader}>
                         <p className={styles.userDropdownName}>
-                          {adminSession?.fullName || adminSession?.name || "Quản Trị Viên Routine"}
+                          {adminSession?.fullName || adminSession?.name || "Quản Trị Viên Routine Thu Đông"}
                         </p>
                         <p className={styles.userDropdownSub} style={{ color: "#d97706", fontWeight: "600" }}>
                           Quản trị viên (Admin)
@@ -248,10 +248,10 @@ export default function Header() {
                   ) : isCustomer ? (
                     /* 2. TÀI KHOẢN CUSTOMER (KHÁCH HÀNG) */
                     <>
-                      <div className={styles.userDropdownHeader}>
-                        <p className={styles.userDropdownName}>{user?.name || user?.fullName || "Khách hàng Routine"}</p>
+                    <div className={styles.userDropdownHeader}>
+                        <p className={styles.userDropdownName}>{user?.name || user?.fullName || "Khách hàng Routine Thu Đông"}</p>
                         <p className={styles.userDropdownSub}>
-                          {user?.phoneNumber || user?.email || "Thành viên Routine"}
+                          {user?.phoneNumber || user?.email || "Thành viên Routine Thu Đông"}
                         </p>
                       </div>
                       <Link

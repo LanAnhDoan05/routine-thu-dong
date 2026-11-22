@@ -43,3 +43,8 @@ routine_db.sql
 .backups/
 */.backups/
 backend/.backups/
+
+# Scratch & Temporary test artifacts
+scratch/
+*/scratch/
+backend/scratch/

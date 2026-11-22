@@ -145,7 +145,7 @@ async function askRAGStylist(keyword, limit = 4) {
   if (matchedProducts.length === 0) {
     return {
       user_query: keyword,
-      ai_response: "Hiện tại kho Routine chưa tìm thấy sản phẩm nào có tọa độ vector tương đồng với yêu cầu của bạn. Bạn hãy thử các từ khóa như 'áo len thu đông', 'quần jeans ống suông' nhé!",
+      ai_response: "Hiện tại kho Routine Thu Đông chưa tìm thấy sản phẩm nào có tọa độ vector tương đồng với yêu cầu của bạn. Bạn hãy thử các từ khóa như 'áo len thu đông', 'quần jeans ống suông' nhé!",
       grounded_products: []
     };
   }
@@ -156,15 +156,15 @@ async function askRAGStylist(keyword, limit = 4) {
   );
   const contextStr = contextLines.join('\n');
 
-  const systemInstruction = `Bạn là Chuyên viên Thời trang Độc quyền của thương hiệu Routine (AI Stylist).
+  const systemInstruction = `Bạn là Chuyên viên Thời trang Độc quyền của thương hiệu Routine Thu Đông (AI Stylist).
 
 ĐÂY LÀ QUY TẮC ĐÓNG KHUNG BẮT BUỘC (RAG GROUNDING):
-- Bạn CHỈ ĐƯỢC PHÉP tư vấn và gợi ý những sản phẩm NẰM TRONG DANH SÁCH DƯỚI ĐÂY (dữ liệu được trích xuất từ không gian Vector 2D của Routine).
+- Bạn CHỈ ĐƯỢC PHÉP tư vấn và gợi ý những sản phẩm NẰM TRONG DANH SÁCH DƯỚI ĐÂY (dữ liệu được trích xuất từ không gian Vector 2D của Routine Thu Đông).
 - TUYỆT ĐỐI KHÔNG tự bịa hoặc gợi ý sản phẩm không có trong danh sách này.
 - Hãy giải thích lý do vì sao những món đồ này phù hợp với yêu cầu của khách hàng dựa trên kiểu dáng, chất liệu, màu sắc và phom dáng.
-- Trình bày lịch sự, tinh tế, đúng phong cách tối giản (Minimalism) của Routine.`;
+- Trình bày lịch sự, tinh tế, đúng phong cách tối giản (Minimalism) của Routine Thu Đông.`;
 
-  const userPrompt = `DANH SÁCH SẢN PHẨM KHỚP TỌA ĐỘ TỪ KHO ROUTINE (VECTOR 2D):
+  const userPrompt = `DANH SÁCH SẢN PHẨM KHỚP TỌA ĐỘ TỪ KHO ROUTINE THU ĐÔNG (VECTOR 2D):
 ${contextStr}
 
 YÊU CẦU CỦA KHÁCH HÀNG:
@@ -187,7 +187,7 @@ Hãy viết lời tư vấn cụ thể và súc tích (1-2 đoạn), nêu rõ t�
   // Fallback nếu không có API key hoặc Gemini API bận
   if (!aiResponseText) {
     const pNames = matchedProducts.map(p => `"${p.name}" (${Number(p.price).toLocaleString('vi-VN')}đ)`).join(', ');
-    aiResponseText = `Dạ chào bạn! Dựa trên không gian vector tọa độ thời trang Routine, mình đã chọn ra các sản phẩm ăn ý nhất với mong muốn của bạn: ${pNames}. Những món đồ này sở hữu chất liệu chọn lọc, đường may tinh tế và phom dáng chuẩn, rất thích hợp cho phong cách hiện đại thường ngày.`;
+    aiResponseText = `Dạ chào bạn! Dựa trên không gian vector tọa độ thời trang Routine Thu Đông, mình đã chọn ra các sản phẩm ăn ý nhất với mong muốn của bạn: ${pNames}. Những món đồ này sở hữu chất liệu chọn lọc, đường may tinh tế và phom dáng chuẩn, rất thích hợp cho phong cách hiện đại thường ngày.`;
   }
 
   return {

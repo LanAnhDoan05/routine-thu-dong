@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./AuthText.module.css";
 
 /**
- * Wordmark "ROUTINE". `variant="light"` dùng khi đặt trên nền ảnh tối
+ * Wordmark "ROUTINE THU ĐÔNG". `variant="light"` dùng khi đặt trên nền ảnh tối
  * (panel bên trái của AuthLayout).
  */
 export default function AuthLogo({ variant = "dark" }) {
@@ -10,9 +10,9 @@ export default function AuthLogo({ variant = "dark" }) {
     <Link
       href="/"
       className={`${styles.logo} ${variant === "light" ? styles.logoLight : ""}`}
-      aria-label="Về trang chủ Routine"
+      aria-label="Về trang chủ Routine Thu Đông"
     >
-      ROUTINE
+      ROUTINE THU ĐÔNG
     </Link>
   );
 }

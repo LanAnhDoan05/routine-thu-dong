@@ -379,7 +379,7 @@ export default function BannersPage() {
                   className={`${styles.intervalBtn} ${slideInterval === ms ? styles.intervalBtnActive : ""}`}
                   onClick={() => setSlideInterval(ms)}
                 >
-                  {ms / 1000} giây {ms === 2500 ? "(Chuẩn Routine)" : ""}
+                  {ms / 1000} giây {ms === 2500 ? "(Chuẩn Routine Thu Đông)" : ""}
                 </button>
               ))}
             </div>
@@ -444,7 +444,7 @@ export default function BannersPage() {
         <>
           <PageHeader
             title="Ảnh Phong Cách Đăng Ký (/register/style)"
-            subtitle="Quản lý hình ảnh và phong cách thời trang Routine gợi ý cho khách hàng lựa chọn khi hoàn tất nhập thông tin tài khoản."
+            subtitle="Quản lý hình ảnh và phong cách thời trang Routine Thu Đông gợi ý cho khách hàng lựa chọn khi hoàn tất nhập thông tin tài khoản."
             actions={
               <div style={{ display: "flex", gap: 10 }}>
                 <Link

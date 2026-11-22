@@ -127,7 +127,7 @@ export default function AddressForm({ initialValues, onSave, onCancel }) {
           />
           {errors.address && <span className="field-error">{errors.address}</span>}
           <span style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 4, display: "block" }}>
-            * Hệ thống sẽ tự động xác thực địa chỉ này qua bản đồ Google Maps và tìm cửa hàng Routine gần nhất.
+            * Hệ thống sẽ tự động xác thực địa chỉ này qua bản đồ Google Maps và tìm cửa hàng Routine Thu Đông gần nhất.
           </span>
         </div>
 
