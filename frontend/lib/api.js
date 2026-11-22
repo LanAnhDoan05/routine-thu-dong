@@ -13,10 +13,10 @@ export function getApiBase() {
     }
 
     // Trên Production Vercel: trỏ trực tiếp backend Vercel đang vận hành thực tế
-    return 'https://routine-thu-dong.vercel.app/api/v1';
+    return 'https://routine-thu-dong-henna.vercel.app/api/v1';
   }
 
-  const raw = (process.env.NEXT_PUBLIC_API_URL || 'https://routine-thu-dong.vercel.app').trim().replace(/\/+$/, '');
+  const raw = (process.env.NEXT_PUBLIC_API_URL || 'https://routine-thu-dong-henna.vercel.app').trim().replace(/\/+$/, '');
   return raw.endsWith('/api/v1') ? raw : `${raw}/api/v1`;
 }
 
