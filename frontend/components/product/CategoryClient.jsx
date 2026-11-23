@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProductGrid from "@/components/product/ProductGrid";
@@ -10,6 +10,7 @@ import Modal from "@/components/common/Modal";
 import { getCategoryBySlug } from "@/lib/categoryService";
 import { filterProducts, sortProducts, fetchProductsByCategory } from "@/lib/productService";
 import { trackEvent } from "@/lib/attribution";
+import { trackViewItemList } from "@/lib/ga4";
 
 export default function CategoryClient({ initialCategory, initialProducts = [], slug }) {
   const [category, setCategory] = useState(initialCategory);
@@ -18,6 +19,23 @@ export default function CategoryClient({ initialCategory, initialProducts = [], 
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [baseProducts, setBaseProducts] = useState(initialProducts);
   const [loading, setLoading] = useState(!initialCategory && initialProducts.length === 0);
+  const trackedListRef = useRef(null);
+
+  useEffect(() => {
+    if (baseProducts.length > 0 && slug) {
+      const trackKey = `${slug}_${baseProducts.length}`;
+      if (trackedListRef.current !== trackKey) {
+        trackedListRef.current = trackKey;
+        try {
+          trackViewItemList({
+            listId: slug,
+            listName: category?.name || slug,
+            items: baseProducts,
+          });
+        } catch (err) {}
+      }
+    }
+  }, [baseProducts, slug, category?.name]);
 
   useEffect(() => {
     let active = true;

@@ -8,6 +8,7 @@ import EmptyState from "@/components/common/EmptyState";
 import Loading from "@/components/common/Loading";
 import { useOrders } from "@/context/OrderContext";
 import { trackEvent } from "@/lib/attribution";
+import { trackPurchase } from "@/lib/ga4";
 
 export default function OrderSuccessPage() {
   return (
@@ -31,7 +32,18 @@ function OrderSuccessInner() {
       trackEvent({ action: "PURCHASE", metadata: { orderId } });
       fetchOrder(orderId).then((data) => {
         if (active) {
-          if (data) setOrder(data);
+          if (data) {
+            setOrder(data);
+            try {
+              trackPurchase({
+                transactionId: data.id,
+                value: data.total,
+                shipping: data.shipping || 0,
+                coupon: data.appliedCoupon || undefined,
+                items: data.items || [],
+              });
+            } catch (err) {}
+          }
           setLoading(false);
         }
       });

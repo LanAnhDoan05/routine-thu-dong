@@ -18,6 +18,7 @@ import {
 import { useUser } from "@/context/UserContext";
 import { fetchProductById } from "@/lib/productService";
 import { isProductOutOfStock } from "@/data/products";
+import { trackAddToCart, trackRemoveFromCart } from "@/lib/ga4";
 
 const CartContext = createContext(null);
 
@@ -171,7 +172,22 @@ export function CartProvider({ children }) {
         price: product.price,
       }).catch((e) => console.warn("Lỗi lưu vào DB:", e.message));
 
-      // Ghi nhận sự kiện tracking ADD_TO_CART
+      // Ghi nhận sự kiện GA4 ADD_TO_CART
+      try {
+        trackAddToCart({
+          item: {
+            id: product.id,
+            name: product.name,
+            category: product.category,
+            price: product.price,
+            size: selectedSize,
+            color: selectedColor,
+            quantity,
+          },
+        });
+      } catch (err) {}
+
+      // Ghi nhận sự kiện tracking nội bộ ADD_TO_CART
       try {
         fetchApi("/analytics/track", {
           method: "POST",
@@ -201,6 +217,20 @@ export function CartProvider({ children }) {
     setItems((prev) => {
       const removedItem = prev.find((item) => item.lineId === lineId);
       if (removedItem) {
+        try {
+          trackRemoveFromCart({
+            item: {
+              id: removedItem.productId,
+              name: removedItem.name,
+              category: removedItem.category,
+              price: removedItem.price,
+              size: removedItem.size,
+              color: removedItem.color,
+              quantity: removedItem.quantity,
+            },
+          });
+        } catch (err) {}
+
         fetchApi("/analytics/track", {
           method: "POST",
           body: JSON.stringify({

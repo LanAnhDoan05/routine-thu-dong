@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState, useCallback } from "react";
 import AuthPromptModal from "@/components/common/AuthPromptModal";
+import { setGaUserId } from "@/lib/ga4";
 
 const USER_STORAGE_KEY = "routine_user_v1";
 
@@ -61,8 +62,10 @@ export function UserProvider({ children }) {
     try {
       if (user) {
         window.localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+        if (user.id) setGaUserId(user.id);
       } else {
         window.localStorage.removeItem(USER_STORAGE_KEY);
+        setGaUserId(null);
       }
     } catch (err) {
       console.error("Failed to save user to storage", err);

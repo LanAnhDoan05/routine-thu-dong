@@ -11,6 +11,7 @@ import { formatPrice } from "@/lib/format";
 import { getColorById } from "@/data/colors";
 import { isProductOutOfStock } from "@/data/products";
 import { useProductCardSettings } from "@/context/ProductCardSettingsContext";
+import { trackSelectItem } from "@/lib/ga4";
 import styles from "./ProductCard.module.css";
 
 function resolveColorHex(name = "") {
@@ -82,7 +83,15 @@ export default function ProductCard({ product }) {
   const secondImg = product.images?.[1];
 
   return (
-    <Link href={`/product/${product.id}`} className={`${styles.card} ${cardStyleClass}`}>
+    <Link
+      href={`/product/${product.id}`}
+      className={`${styles.card} ${cardStyleClass}`}
+      onClick={() => {
+        try {
+          trackSelectItem({ item: product });
+        } catch (err) {}
+      }}
+    >
       <div className={`${styles.imageWrap} ${isOutOfStock ? styles.outOfStockWrap : ""}`}>
         {firstImg ? (
           <Image

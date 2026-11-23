@@ -11,6 +11,7 @@ import LoadingButton from "@/components/auth/LoadingButton";
 import { validateEmail, validatePhone } from "@/lib/validation";
 import { loginWithPassword } from "@/lib/authService";
 import { useUser } from "@/context/UserContext";
+import { trackLogin } from "@/lib/ga4";
 import styles from "./page.module.css";
 
 export default function LoginPage() {
@@ -69,6 +70,7 @@ function LoginPageContent() {
       const adminDest = redirectTarget.startsWith("/admin") ? redirectTarget : "/admin/products";
       router.push(adminDest);
     } else {
+      trackLogin({ method: identifier.includes("@") ? "email" : "phone" });
       login(result.user, result.user?.stylePreference, result.token);
       // Khách hàng không được chuyển hướng vào /admin
       const custDest = redirectTarget.startsWith("/admin") ? "/" : redirectTarget;

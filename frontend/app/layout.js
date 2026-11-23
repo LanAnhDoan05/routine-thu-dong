@@ -9,6 +9,7 @@ import { OrderProvider } from "@/context/OrderContext";
 import { ProductCardSettingsProvider } from "@/context/ProductCardSettingsContext";
 import { ToastProvider } from "@/components/common/Toast";
 import AppShell from "@/components/layout/AppShell";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 export const metadata = {
   title: "Routine Thu Đông — Smart Fashion",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="vi">
       <body>
+        <GoogleAnalytics />
         <UserProvider>
           <RealtimeProvider>
             <RegistrationProvider>

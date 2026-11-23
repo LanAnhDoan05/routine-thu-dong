@@ -1,13 +1,23 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import CartItem from "@/components/cart/CartItem";
 import CartSummary from "@/components/cart/CartSummary";
 import EmptyCart from "@/components/cart/EmptyCart";
 import { useCart } from "@/context/CartContext";
+import { trackViewCart } from "@/lib/ga4";
 
 export default function CartPage() {
   const { items, subtotal, itemCount } = useCart();
+  const trackedRef = useRef(false);
+
+  useEffect(() => {
+    if (items.length > 0 && !trackedRef.current) {
+      trackedRef.current = true;
+      trackViewCart({ items, value: subtotal });
+    }
+  }, [items, subtotal]);
 
   if (items.length === 0) {
     return (

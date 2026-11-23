@@ -14,6 +14,7 @@ import { processPayment } from "@/lib/paymentService";
 import { getShippingFee } from "@/lib/checkoutConstants";
 import * as orderService from "@/lib/orderService";
 import { createVNPayPaymentUrl } from "@/lib/vnpayService";
+import { trackAddPaymentInfo } from "@/lib/ga4";
 
 export default function PaymentPage() {
   const router = useRouter();
@@ -38,6 +39,20 @@ export default function PaymentPage() {
       router.replace("/checkout");
     }
   }, [ready, items.length, checkout.address, router]);
+
+  useEffect(() => {
+    if (!ready || items.length === 0) return;
+    const shippingFee = getShippingFee(checkout.shippingMethod, checkout.address, subtotal);
+    const total = Math.max(subtotal + shippingFee - checkout.discount, 0);
+    try {
+      trackAddPaymentInfo({
+        items,
+        value: total,
+        paymentType: paymentMethodId.toUpperCase(),
+        coupon: checkout.voucherCode,
+      });
+    } catch (err) {}
+  }, [ready, paymentMethodId, items, subtotal, checkout.shippingMethod, checkout.address, checkout.discount, checkout.voucherCode]);
 
   if (!ready || items.length === 0 || !checkout.address) {
     return null;

@@ -9,6 +9,7 @@ import ProductSort from "@/components/product/ProductSort";
 import Modal from "@/components/common/Modal";
 import { searchProducts, filterProducts, sortProducts } from "@/lib/productService";
 import { trackEvent } from "@/lib/attribution";
+import { trackSearch, trackViewItemList } from "@/lib/ga4";
 
 const popularSearches = ["T-shirt", "Áo sơ mi", "Quần jeans", "Smart Casual"];
 const RECENT_KEY = "routine_recent_searches";
@@ -69,9 +70,24 @@ function SearchPageInner() {
   useEffect(() => {
     let ignore = false;
     if (initialQuery) {
+      try {
+        trackSearch({ searchTerm: initialQuery });
+      } catch (err) {}
       trackEvent({ action: "SEARCH", metadata: { query: initialQuery } });
       searchProducts(initialQuery).then((res) => {
-        if (!ignore) setResults(res || []);
+        if (!ignore) {
+          const items = res || [];
+          setResults(items);
+          if (items.length > 0) {
+            try {
+              trackViewItemList({
+                listId: `search_${encodeURIComponent(initialQuery)}`,
+                listName: `Search: ${initialQuery}`,
+                items,
+              });
+            } catch (err) {}
+          }
+        }
       });
     } else {
       Promise.resolve().then(() => {

@@ -12,6 +12,7 @@ import {
 } from "@/lib/wishlistService";
 import { useUser } from "@/context/UserContext";
 import { trackEvent } from "@/lib/attribution";
+import { trackAddToWishlist } from "@/lib/ga4";
 
 const WishlistContext = createContext(null);
 
@@ -82,6 +83,8 @@ export function WishlistProvider({ children }) {
   const addToWishlist = useCallback(
     (id) => {
       if (!isLoggedIn || !user?.id) return;
+      const targetItem = items.find((it) => it.id === id) || { id };
+      trackAddToWishlist({ item: targetItem });
       trackEvent({ action: "WISHLIST", productId: id });
       setProductIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
       addItemApi(id)
@@ -116,6 +119,11 @@ export function WishlistProvider({ children }) {
   const toggleWishlist = useCallback(
     (id) => {
       if (!isLoggedIn || !user?.id) return;
+      const isAdding = !productIds.includes(id);
+      if (isAdding) {
+        const targetItem = items.find((it) => it.id === id) || { id };
+        trackAddToWishlist({ item: targetItem });
+      }
       trackEvent({ action: "WISHLIST", productId: id });
       setProductIds((prev) =>
         prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import PlaceholderImage from "@/components/common/PlaceholderImage";
@@ -14,6 +14,7 @@ import { getCategoryImageFallback } from "@/lib/categoryImages";
 import { getStyles } from "@/lib/styleService";
 import { styles as defaultStyles } from "@/data/styles";
 import HeroSlider from "@/components/home/HeroSlider";
+import { trackViewItemList } from "@/lib/ga4";
 import homeStyles from "./Home.module.css";
 
 const genderFilters = [
@@ -141,6 +142,20 @@ export default function HomePage() {
   const featuredProducts = useMemo(() => {
     return allProducts.filter((product) => product.isFeatured || product.badge === "BEST SELLER").slice(0, 8);
   }, [allProducts]);
+
+  const trackedFeaturedRef = useRef(false);
+  useEffect(() => {
+    if (featuredProducts.length > 0 && !trackedFeaturedRef.current) {
+      trackedFeaturedRef.current = true;
+      try {
+        trackViewItemList({
+          listId: "featured_collection",
+          listName: "Featured Collection (8)",
+          items: featuredProducts,
+        });
+      } catch (err) {}
+    }
+  }, [featuredProducts]);
 
   const categorySections = useMemo(() => {
     const active = Array.from(

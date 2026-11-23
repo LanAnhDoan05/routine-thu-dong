@@ -9,6 +9,7 @@ import { formatPrice } from "@/lib/format";
 import { verifyVNPayReturn } from "@/lib/vnpayService";
 import { useCart } from "@/context/CartContext";
 import { useCheckout } from "@/context/CheckoutContext";
+import { trackPurchase } from "@/lib/ga4";
 
 export default function VNPayReturnPage() {
   return (
@@ -78,6 +79,13 @@ function VNPayReturnInner() {
 
   useEffect(() => {
     if (result?.valid && result?.success) {
+      try {
+        trackPurchase({
+          transactionId: result.orderId || result.transactionNo,
+          value: result.amount,
+          shipping: 0,
+        });
+      } catch (err) {}
       clearCart();
       checkout.reset();
     }

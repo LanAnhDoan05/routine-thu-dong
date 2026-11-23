@@ -15,6 +15,7 @@ import { useUser } from "@/context/UserContext";
 import { useToast } from "@/components/common/Toast";
 import { checkAddressApi } from "@/lib/shippingService";
 import { trackEvent } from "@/lib/attribution";
+import { trackBeginCheckout, trackAddShippingInfo } from "@/lib/ga4";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -25,8 +26,13 @@ export default function CheckoutPage() {
   const { showToast } = useToast();
 
   useEffect(() => {
+    if (items.length > 0) {
+      try {
+        trackBeginCheckout({ items, value: subtotal });
+      } catch (err) {}
+    }
     trackEvent({ action: "BEGIN_CHECKOUT", metadata: { itemsCount: items.length, subtotal } });
-  }, [items.length, subtotal]);
+  }, [items, subtotal]);
 
   const [forceEditAddress, setForceEditAddress] = useState(false);
   const showAddressForm = forceEditAddress || !address;
@@ -104,6 +110,13 @@ export default function CheckoutPage() {
       setForceEditAddress(true);
       return;
     }
+    try {
+      trackAddShippingInfo({
+        items,
+        value: subtotal,
+        shippingTier: shippingMethod,
+      });
+    } catch (err) {}
     router.push("/checkout/payment");
   }
 

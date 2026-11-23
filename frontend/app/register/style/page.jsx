@@ -13,6 +13,7 @@ import { register as registerUser } from "@/lib/authService";
 import styles from "./page.module.css";
 import styleList from "@/data/styles";
 import { getStyles } from "@/lib/styleService";
+import { trackSignUp } from "@/lib/ga4";
 
 const MAX_STYLES = 3;
 
@@ -114,6 +115,7 @@ export default function RegisterStylePage() {
         date: data.dateOfBirth || data.date || null,
         stylePreference: preferredStyle,
       };
+      trackSignUp({ method: "credentials" });
       login(
         customerData,
         preferredStyle,

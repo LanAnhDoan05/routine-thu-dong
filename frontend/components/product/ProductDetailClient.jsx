@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import ProductGallery from "@/components/product/ProductGallery";
 import ProductInfo from "@/components/product/ProductInfo";
@@ -9,11 +9,22 @@ import ProductReviews from "@/components/product/ProductReviews";
 import { fetchProductById, fetchRelatedProducts } from "@/lib/productService";
 import { recordAttributionFromUrl, trackEvent } from "@/lib/attribution";
 import { isProductOutOfStock } from "@/data/products";
+import { trackViewItem } from "@/lib/ga4";
 
 export default function ProductDetailClient({ initialProduct, initialRelated = [], productId }) {
   const [product, setProduct] = useState(initialProduct);
   const [related, setRelated] = useState(initialRelated);
   const [loading, setLoading] = useState(!initialProduct);
+  const trackedProductIdRef = useRef(null);
+
+  useEffect(() => {
+    if (product && product.id && trackedProductIdRef.current !== product.id) {
+      trackedProductIdRef.current = product.id;
+      try {
+        trackViewItem({ item: product });
+      } catch (err) {}
+    }
+  }, [product]);
 
   useEffect(() => {
     let active = true;
