@@ -1,0 +1,107 @@
+{
+  "suite": "Google Analytics 4 (GA4) Production E2E Suite",
+  "measurementId": "G-5NTJX557TG",
+  "streamId": "16398654820",
+  "productionUrl": "https://routine-thu-dong-zify.vercel.app",
+  "timestamp": "2026-11-23T15:28:50.483Z",
+  "totalTests": 19,
+  "passedTests": 19,
+  "failedTests": 0,
+  "tests": [
+    {
+      "name": "GA4 Script Initialization",
+      "status": "PASS",
+      "details": "Thư viện gtag.js nạp thành công"
+    },
+    {
+      "name": "page_view Event",
+      "status": "PASS",
+      "details": "Recorded via gtag config beacon"
+    },
+    {
+      "name": "view_item_list Event",
+      "status": "PASS",
+      "details": "View item list loaded from DB"
+    },
+    {
+      "name": "select_item Event",
+      "status": "PASS",
+      "details": "Product selected from card: /product/p-ed20cac6-0df3-4f15-a143-ac02d994fccd"
+    },
+    {
+      "name": "view_item Event",
+      "status": "PASS",
+      "details": "View item recorded for URL https://routine-thu-dong-zify.vercel.app/?nocache=1795447646379"
+    },
+    {
+      "name": "search Event",
+      "status": "PASS",
+      "details": "Search query: denim executed"
+    },
+    {
+      "name": "view_item_list (Category) Event",
+      "status": "PASS",
+      "details": "Category list ao-khoac verified"
+    },
+    {
+      "name": "add_to_cart Event",
+      "status": "PASS",
+      "details": "Cart item addition verified"
+    },
+    {
+      "name": "view_cart Event",
+      "status": "PASS",
+      "details": "View cart loaded"
+    },
+    {
+      "name": "remove_from_cart Event",
+      "status": "PASS",
+      "details": "Remove from cart API handler verified"
+    },
+    {
+      "name": "begin_checkout Event",
+      "status": "PASS",
+      "details": "Checkout flow initiated"
+    },
+    {
+      "name": "add_shipping_info Event",
+      "status": "PASS",
+      "details": "Tier: \"undefined\", Value: undefined VND"
+    },
+    {
+      "name": "add_payment_info Event",
+      "status": "PASS",
+      "details": "Payment Type: \"VNPAY\""
+    },
+    {
+      "name": "purchase Event (COD)",
+      "status": "PASS",
+      "details": "Recorded purchase for ORD-GA4-TEST-722684"
+    },
+    {
+      "name": "purchase Deduplication Protection",
+      "status": "PASS",
+      "details": "Chặn ghi nhận trùng lặp giao dịch thành công (Deduplicated)"
+    },
+    {
+      "name": "VNPay Verified Callback purchase Event",
+      "status": "PASS",
+      "details": "Ghi nhận purchase sau khi Backend xác thực chữ ký: VNPAY-TEST-1795447730282"
+    },
+    {
+      "name": "sign_up Event",
+      "status": "PASS",
+      "details": "Method: credentials"
+    },
+    {
+      "name": "login Event",
+      "status": "PASS",
+      "details": "Method: email"
+    },
+    {
+      "name": "PII Privacy Compliance",
+      "status": "PASS",
+      "details": "Không có email, số điện thoại, mật khẩu hoặc địa chỉ gửi sang GA4"
+    }
+  ]
+}

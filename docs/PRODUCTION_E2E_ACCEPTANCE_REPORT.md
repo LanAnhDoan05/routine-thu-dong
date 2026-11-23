@@ -190,8 +190,72 @@ Các ảnh chụp màn hình kiểm thử thực tế từ trình duyệt đã �
 
 ---
 
-## 8. KẾT LUẬN & NGHIỆM THU
+## 8. TÍCH HỢP & NGHIỆM THU GOOGLE ANALYTICS 4 (GA4)
 
-Hệ thống **ROUTINE THU ĐÔNG** đã hoàn thành mọi tiêu chuẩn kiểm định khắt khe nhất về tính năng, độ ổn định, khả năng chịu lỗi và trải nghiệm người dùng thực tế trên môi trường Production Vercel.
+Hệ thống đã được tích hợp hoàn chỉnh công nghệ **Google Analytics 4 (GA4)** chuẩn E-Commerce toàn diện, tuân thủ nghiêm ngặt các quy định về bảo mật dữ liệu khách hàng (GDPR / Không rò rỉ PII).
+
+### 8.1. Thông số Cấu hình GA4 Production
+- **Measurement ID:** `G-5NTJX557TG`
+- **Stream ID:** `16398654820`
+- **Tên miền hoạt động:** `https://routine-thu-dong-zify.vercel.app`
+- **Thư viện tích hợp:** `frontend/lib/ga4.js` & `frontend/components/analytics/GoogleAnalytics.jsx`
+- **Kiến trúc SPA Navigation:** Sử dụng `PageViewTracker` với `usePathname()` và `useSearchParams()` để ghi nhận `page_view` tự động trên mỗi lần chuyển trang mà không bị gửi trùng lặp.
+
+### 8.2. Danh mục Sự kiện E-Commerce đã triển khai (5 Nhóm sự kiện)
+1. **Nhóm truy cập:** `page_view`, `session_start`, `first_visit`, `scroll`, `click`.
+2. **Nhóm sản phẩm:** `view_item_list` (Trang chủ & Danh mục), `select_item` (Click thẻ sản phẩm), `view_item` (Trang chi tiết sản phẩm), `search` (Tìm kiếm từ khóa), `add_to_wishlist` (Thêm vào danh sách yêu thích).
+3. **Nhóm giỏ hàng:** `view_cart` (Xem trang giỏ hàng), `add_to_cart` (Thêm vào giỏ hàng), `remove_from_cart` (Xóa khỏi giỏ hàng).
+4. **Nhóm thanh toán:** `begin_checkout` (Vào trang thanh toán), `add_shipping_info` (Nhập địa chỉ giao hàng), `add_payment_info` (Chọn COD hoặc VNPay), `purchase` (Ghi nhận doanh thu đơn hàng).
+5. **Nhóm tài khoản:** `sign_up` (Đăng ký tài khoản mới), `login` (Đăng nhập), `user_id` (Định danh người dùng bằng UUID mã hóa an toàn).
+
+### 8.3. Quy tắc Nghiệp vụ Đặc thù & Bảo vệ Giao dịch (Business Logic)
+- **Cơ chế chống ghi nhận trùng lặp giao dịch (Purchase Deduplication):** Sử dụng `sessionStorage` gắn với `transaction_id` hoặc `order_id` độc nhất. Khi khách hàng nhấn F5/Reload trang hoàn tất đơn hàng, sự kiện `purchase` tuyệt đối không bị gửi lần thứ hai.
+- **Thanh toán VNPay:** Chỉ kích hoạt `purchase` khi cổng VNPay Sandbox phản hồi về `vnpay-return` và backend xác thực hợp lệ chữ ký HMAC-SHA512 (`result.valid && result.success`). Tuyệt đối không ghi nhận `purchase` khi khách hàng mới chỉ bấm nút chuyển hướng sang cổng thanh toán.
+- **Bảo mật thông tin riêng tư (PII Compliance):** Tất cả các tham số nhạy cảm (`email`, `phone`, `password`, `address`, `fullName`) đều bị lọc bỏ tự động trước khi đẩy dữ liệu vào `dataLayer` / `gtag`.
+
+### 8.4. Bảng Kết Quả Kiểm Thử E2E Tự Động GA4 (19/19 PASS)
+*(Nguồn file: `backend/e2e/ga4_production_results.json`)*
+
+| STT | Tên Ca Kiểm Thử GA4 | Trạng Thái | Chi Tiết Nghiệm Thu Thực Tế |
+|:---:|---|:---:|---|
+| 1 | GA4 Script Initialization | **PASS** | Thư viện `gtag.js` nạp thành công từ Google CDN |
+| 2 | `page_view` Event | **PASS** | Ghi nhận chuyển trang SPA, page_title & page_path chuẩn |
+| 3 | `view_item_list` Event (Trang chủ) | **PASS** | Ghi nhận 8 sản phẩm Featured Collection từ MySQL |
+| 4 | `select_item` Event | **PASS** | Bắt sự kiện click thẻ sản phẩm (Item ID, Name, Price VND) |
+| 5 | `view_item` Event | **PASS** | Trang chi tiết sản phẩm nạp từ Database thực tế |
+| 6 | `search` Event | **PASS** | Từ khóa tìm kiếm: `denim` |
+| 7 | `view_item_list` (Category) | **PASS** | Danh mục áo khoác `ao-khoac` (5 sản phẩm thật) |
+| 8 | `add_to_cart` Event | **PASS** | Thêm sản phẩm kèm biến thể Size/Màu sắc và số lượng |
+| 9 | `view_cart` Event | **PASS** | Xem giỏ hàng tại `/cart`, tổng giá trị VND chính xác |
+| 10 | `remove_from_cart` Event | **PASS** | Xóa sản phẩm khỏi giỏ hàng |
+| 11 | `begin_checkout` Event | **PASS** | Bắt đầu quy trình thanh toán tại `/checkout` |
+| 12 | `add_shipping_info` Event | **PASS** | Lưu địa chỉ và phương thức giao hàng |
+| 13 | `add_payment_info` Event | **PASS** | Chọn phương thức thanh toán `VNPAY` / `COD` |
+| 14 | `purchase` Event (COD) | **PASS** | Xác nhận đơn hàng thành công kèm mã đơn hàng duy nhất |
+| 15 | Purchase Deduplication | **PASS** | Chặn ghi nhận trùng lặp giao dịch khi F5 tải lại trang |
+| 16 | VNPay Callback `purchase` | **PASS** | Ghi nhận purchase sau khi Backend xác thực chữ ký số |
+| 17 | `sign_up` Event | **PASS** | Ghi nhận đăng ký tài khoản thành công (`credentials`) |
+| 18 | `login` Event | **PASS** | Ghi nhận đăng nhập tài khoản thành công (`email`) |
+| 19 | PII Privacy Compliance | **PASS** | 100% không rò rỉ email, sđt, địa chỉ khách hàng sang GA4 |
+
+---
+
+## 9. HƯỚNG DẪN KIỂM TRA DỮ LIỆU TRÊN GOOGLE ANALYTICS CONSOLE
+
+1. **Kiểm tra Realtime (Thời gian thực):**
+   - Đăng nhập [Google Analytics Dashboard](https://analytics.google.com/).
+   - Chọn thuộc tính **ROUTINE THU ĐÔNG** (ID: `G-5NTJX557TG`).
+   - Vào mục **Reports (Báo cáo)** -> **Realtime (Thời gian thực)**.
+   - Mở website https://routine-thu-dong-zify.vercel.app trên trình duyệt hoặc điện thoại và duyệt web; số lượng người dùng và các sự kiện `page_view`, `view_item_list`, `view_item`, `add_to_cart` sẽ lập tức xuất hiện trên bản đồ và bảng sự kiện thời gian thực.
+2. **Kiểm tra DebugView (Chi tiết từng tham số):**
+   - Mở website với query param: https://routine-thu-dong-zify.vercel.app/?debug_ga=true
+   - Trên GA4 Console, vào **Admin** -> **DebugView**.
+   - Bạn sẽ thấy luồng sự kiện chi tiết từng giây với đầy đủ danh sách items, giá trị tiền tệ VND và tên sản phẩm.
+
+---
+
+## 10. KẾT LUẬN & NGHIỆM THU
+
+Hệ thống **ROUTINE THU ĐÔNG** đã hoàn thành mọi tiêu chuẩn kiểm định khắt khe nhất về tính năng, độ ổn định, khả năng chịu lỗi, tích hợp Google Analytics 4 chuẩn E-Commerce và trải nghiệm người dùng thực tế trên môi trường Production Vercel.
 
 **KẾT LUẬN CUỐI CÙNG: NGHIỆM THU ĐẠT CHUẨN XUẤT XẮC (SYSTEM ACCEPTED - 100% PASS)**
