@@ -681,43 +681,69 @@ async function getAllOrdersForAdmin({
   source,
   paymentStatus,
   customerType,
+  scope = 'campaign',
 } = {}) {
-  const where = {};
+  const isCampaign = scope !== 'all';
+  const campaignOrderFilter = {
+    OR: [
+      { note: { contains: '[DEMO_2M_DATASET]' } },
+      { attributionSource: 'DEMO_DATASET' },
+    ],
+  };
+
+  const andConditions = [];
+
+  if (isCampaign) {
+    andConditions.push(campaignOrderFilter);
+  }
 
   if (status && status !== 'ALL') {
-    where.orderStatus = status.toUpperCase().trim();
+    andConditions.push({ orderStatus: status.toUpperCase().trim() });
   }
 
   if (paymentStatus && paymentStatus !== 'ALL') {
-    where.paymentStatus = paymentStatus.toUpperCase().trim();
+    andConditions.push({ paymentStatus: paymentStatus.toUpperCase().trim() });
   }
 
   if (source && source !== 'ALL') {
-    where.attributionSource = source.toUpperCase().trim();
+    andConditions.push({ attributionSource: source.toUpperCase().trim() });
   }
 
   if (customerType === 'MEMBER') {
-    where.userId = { not: null };
+    andConditions.push({ userId: { not: null } });
   } else if (customerType === 'GUEST') {
-    where.userId = null;
+    andConditions.push({ userId: null });
   }
 
   if (search && search.trim()) {
     const needle = search.trim();
-    where.OR = [
-      { id: { contains: needle } },
-      { receiverName: { contains: needle } },
-      { phoneNumber: { contains: needle } },
-      { user: { fullName: { contains: needle } } },
-      { user: { email: { contains: needle } } },
-    ];
+    andConditions.push({
+      OR: [
+        { id: { contains: needle } },
+        { receiverName: { contains: needle } },
+        { phoneNumber: { contains: needle } },
+        { user: { fullName: { contains: needle } } },
+        { user: { email: { contains: needle } } },
+      ],
+    });
   }
+
+  const where = andConditions.length > 0 ? { AND: andConditions } : {};
+  const baseScopeWhere = isCampaign ? campaignOrderFilter : {};
 
   const currentPage = Math.max(1, parseInt(page, 10) || 1);
   const pageSize = Math.max(1, parseInt(limit, 10) || 50);
   const skip = (currentPage - 1) * pageSize;
 
-  const [total, records] = await Promise.all([
+  const [
+    total,
+    records,
+    totalInScope,
+    revenueAgg,
+    statusGroupCounts,
+    totalMembersInScope,
+    totalGuestsInScope,
+  ] = await Promise.all([
     prisma.order.count({ where }),
     prisma.order.findMany({
       where,
@@ -740,13 +766,40 @@ async function getAllOrdersForAdmin({
       },
       orderBy: { createdAt: 'desc' },
     }),
+    prisma.order.count({ where: baseScopeWhere }),
+    prisma.order.aggregate({
+      where: { ...baseScopeWhere, orderStatus: { not: 'CANCELLED' } },
+      _sum: { total: true },
+    }),
+    prisma.order.groupBy({
+      by: ['orderStatus'],
+      where: baseScopeWhere,
+      _count: { id: true },
+    }),
+    prisma.order.count({ where: { ...baseScopeWhere, userId: { not: null } } }),
+    prisma.order.count({ where: { ...baseScopeWhere, userId: null } }),
   ]);
+
+  const statusMap = {};
+  statusGroupCounts.forEach((sg) => {
+    statusMap[sg.orderStatus] = sg._count.id;
+  });
 
   const totalPages = Math.ceil(total / pageSize);
   const items = await Promise.all(records.map(formatOrder));
 
   return {
     items,
+    stats: {
+      totalOrders: totalInScope,
+      totalRevenue: Number(revenueAgg._sum.total) || 0,
+      confirmedCount: (statusMap['CONFIRMED'] || 0) + (statusMap['PENDING'] || 0),
+      shippingCount: statusMap['SHIPPING'] || 0,
+      deliveredCount: statusMap['DELIVERED'] || 0,
+      cancelledCount: statusMap['CANCELLED'] || 0,
+      memberCount: totalMembersInScope,
+      guestCount: totalGuestsInScope,
+    },
     pagination: {
       total,
       page: currentPage,

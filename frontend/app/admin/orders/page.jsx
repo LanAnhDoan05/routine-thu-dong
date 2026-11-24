@@ -23,6 +23,7 @@ const ORDER_STATUS_LABELS = {
 export default function AdminOrdersPage() {
   const { showToast } = useToast();
   const [orders, setOrders] = useState([]);
+  const [serverStats, setServerStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Filters
@@ -48,6 +49,9 @@ export default function AdminOrdersPage() {
         limit: 100,
       });
       setOrders(res?.items || []);
+      if (res?.stats) {
+        setServerStats(res.stats);
+      }
     } catch (err) {
       console.error("Failed to load admin orders:", err);
       showToast(err?.message || "Lỗi khi tải danh sách đơn hàng", "error");
@@ -98,6 +102,10 @@ export default function AdminOrdersPage() {
 
   // Calculate KPIs
   const stats = useMemo(() => {
+    if (serverStats) {
+      return serverStats;
+    }
+
     const totalOrders = orders.length;
     let totalRevenue = 0;
     let confirmedCount = 0;
@@ -134,7 +142,7 @@ export default function AdminOrdersPage() {
       memberCount,
       guestCount,
     };
-  }, [orders]);
+  }, [orders, serverStats]);
 
   // Client-side filtering for payment, source & customer type
   const filteredOrders = useMemo(() => {
@@ -249,7 +257,7 @@ export default function AdminOrdersPage() {
           <span className={styles.statLabel}>📦 Tổng số đơn hàng</span>
           <span className={styles.statValue}>{stats.totalOrders}</span>
           <span className={styles.statSub}>
-            <strong>{stats.memberCount}</strong> thành viên · <strong>{stats.guestCount}</strong> vãng lai
+            <strong>{stats.totalOrders - stats.cancelledCount}</strong> thành công · <strong>{stats.cancelledCount}</strong> đã huỷ
           </span>
         </div>
         <div className={styles.statCard}>

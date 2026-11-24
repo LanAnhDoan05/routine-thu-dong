@@ -119,7 +119,7 @@ export default function DashboardPage() {
         <StatCard
           label="Tổng Đơn Hàng"
           value={kpi ? formatNumber(kpi.totalOrders) : "—"}
-          helper={kpi ? `${kpi.validOrders} thành công · ${kpi.statusBreakdown?.cancelled || 0} đã huỷ` : undefined}
+          helper={kpi ? `${kpi.validOrders} thành công · ${kpi.statusBreakdown?.cancelled || 0} đã huỷ (Tổng ${kpi.totalOrders})` : undefined}
           icon={<IconOrders size={16} />}
         />
         <StatCard
@@ -193,13 +193,13 @@ export default function DashboardPage() {
             <div style={{ background: "#ecfdf5", padding: "12px 14px", borderRadius: 8, border: "1px solid #a7f3d0" }}>
               <div style={{ fontSize: 11.5, color: "#065f46", fontWeight: 600 }}>5. Đơn Thành Công</div>
               <div style={{ fontSize: 19, fontWeight: 700, color: "#047857", margin: "4px 0" }}>{formatNumber(dashboard.funnel.successfulOrders)}</div>
-              <div style={{ fontSize: 11, color: "#059669" }}>30 đơn đặt chuẩn</div>
+              <div style={{ fontSize: 11, color: "#059669" }}>{dashboard.funnel.successfulOrders} đơn hoàn tất</div>
             </div>
 
             <div style={{ background: "#fef2f2", padding: "12px 14px", borderRadius: 8, border: "1px solid #fecaca" }}>
               <div style={{ fontSize: 11.5, color: "#991b1b", fontWeight: 600 }}>6. Đơn Bị Hủy</div>
               <div style={{ fontSize: 19, fontWeight: 700, color: "#b91c1c", margin: "4px 0" }}>{formatNumber(dashboard.funnel.cancelledOrders)}</div>
-              <div style={{ fontSize: 11, color: "#dc2626" }}>Tối đa 6 (Đạt chuẩn: 4)</div>
+              <div style={{ fontSize: 11, color: "#dc2626" }}>{dashboard.funnel.cancelledOrders} đơn đã huỷ</div>
             </div>
 
             <div style={{ background: "#f0fdf4", padding: "12px 14px", borderRadius: 8, border: "1px solid #bbf7d0" }}>

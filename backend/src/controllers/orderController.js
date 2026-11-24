@@ -108,7 +108,7 @@ async function reorder(req, res, next) {
  */
 async function getAllOrdersForAdmin(req, res, next) {
   try {
-    const { status, page, limit, search, source, paymentStatus, customerType } = req.query;
+    const { status, page, limit, search, source, paymentStatus, customerType, scope } = req.query;
     const result = await orderService.getAllOrdersForAdmin({
       status,
       page,
@@ -117,6 +117,7 @@ async function getAllOrdersForAdmin(req, res, next) {
       source,
       paymentStatus,
       customerType,
+      scope,
     });
     return sendSuccess(res, result, 'Lấy danh sách toàn bộ đơn hàng thành công');
   } catch (error) {

@@ -1,6 +1,6 @@
 {
   "testSuite": "Routine Thu Đông Master System Acceptance",
-  "timestamp": "2026-11-24T17:22:51.716Z",
+  "timestamp": "2026-11-24T18:40:21.719Z",
   "frontendUrl": "http://localhost:3000",
   "backendUrl": "https://routine-thu-dong-henna.vercel.app/api/v1",
   "summary": {
@@ -20,7 +20,7 @@
         "productCount": 60,
         "currentDb": "routine_test_db"
       },
-      "timestamp": "2026-11-24T17:21:35.542Z"
+      "timestamp": "2026-11-24T18:38:51.711Z"
     },
     {
       "id": "CAT-02",
@@ -32,7 +32,7 @@
         "contentType": "image/png",
         "contentLength": "416595"
       },
-      "timestamp": "2026-11-24T17:21:35.551Z"
+      "timestamp": "2026-11-24T18:38:51.764Z"
     },
     {
       "id": "CAT-03",
@@ -43,7 +43,7 @@
         "totalAudited": 60,
         "standardizedCount": 20
       },
-      "timestamp": "2026-11-24T17:21:35.552Z"
+      "timestamp": "2026-11-24T18:38:51.767Z"
     },
     {
       "id": "CAT-04",
@@ -53,7 +53,7 @@
       "details": {
         "count": 10
       },
-      "timestamp": "2026-11-24T17:21:37.740Z"
+      "timestamp": "2026-11-24T18:38:54.408Z"
     },
     {
       "id": "CAT-05",
@@ -65,7 +65,7 @@
         "name": "Áo Khoác Denim Nam Nhãn Vải ROUTINE Form Loose",
         "variantCount": 4
       },
-      "timestamp": "2026-11-24T17:21:38.975Z"
+      "timestamp": "2026-11-24T18:38:55.449Z"
     },
     {
       "id": "CAT-06",
@@ -76,7 +76,7 @@
         "testedProductId": "p_10f25dja007",
         "testedPrice": 799000
       },
-      "timestamp": "2026-11-24T17:21:39.087Z"
+      "timestamp": "2026-11-24T18:38:55.552Z"
     },
     {
       "id": "CAT-07",
@@ -87,7 +87,7 @@
         "standardFee": 30000,
         "freeShippingThreshold": 700000
       },
-      "timestamp": "2026-11-24T17:21:39.087Z"
+      "timestamp": "2026-11-24T18:38:55.552Z"
     },
     {
       "id": "CAT-08",
@@ -99,7 +99,7 @@
         "hashPresent": true,
         "qrPrefix": "data:image/png;base64,iVBORw0K"
       },
-      "timestamp": "2026-11-24T17:21:41.145Z"
+      "timestamp": "2026-11-24T18:38:57.685Z"
     },
     {
       "id": "CAT-09",
@@ -111,7 +111,7 @@
         "rspCode": "02",
         "message": "Order already confirmed"
       },
-      "timestamp": "2026-11-24T17:21:41.571Z"
+      "timestamp": "2026-11-24T18:38:58.098Z"
     },
     {
       "id": "CAT-10",
@@ -122,7 +122,7 @@
         "service": "emailService",
         "transporter": "Ready"
       },
-      "timestamp": "2026-11-24T17:21:41.571Z"
+      "timestamp": "2026-11-24T18:38:58.099Z"
     },
     {
       "id": "CAT-11",
@@ -130,11 +130,11 @@
       "description": "Simulated revenue hits target (25M-30M VNĐ) with strict DEMO_DATASET separation",
       "status": "PASSED",
       "details": {
-        "demoPaidOrders": 30,
-        "demoPaidRevenue": "27.500.000 VNĐ",
+        "demoPaidOrders": 35,
+        "demoPaidRevenue": "25.432.000 VNĐ",
         "targetRange": "25.000.000 - 30.000.000 VNĐ"
       },
-      "timestamp": "2026-11-24T17:21:41.790Z"
+      "timestamp": "2026-11-24T18:38:58.318Z"
     },
     {
       "id": "CAT-12",
@@ -143,12 +143,12 @@
       "status": "PASSED",
       "details": {
         "totalProducts": 60,
-        "totalOrders": 34,
-        "validRevenue": "27.500.000 VNĐ",
-        "paidRevenue": "27.500.000 VNĐ",
-        "aov": "916.667 VNĐ"
+        "totalOrders": 44,
+        "validRevenue": "25.432.000 VNĐ",
+        "paidRevenue": "25.432.000 VNĐ",
+        "aov": "726.629 VNĐ"
       },
-      "timestamp": "2026-11-24T17:21:42.611Z"
+      "timestamp": "2026-11-24T18:38:59.470Z"
     },
     {
       "id": "CAT-13",
@@ -157,9 +157,9 @@
       "status": "PASSED",
       "details": {
         "source": "GEMINI_AI",
-        "answerExcerpt": "Doanh thu thực tế đã thanh toán của hệ thống hiện tại là **27.500.000 VNĐ** (từ 30 đơn hàng hợp lệ)."
+        "answerExcerpt": "Doanh thu thực tế đã thanh toán của hệ thống hiện tại là: **25.432.000 VNĐ**.\n\nThông tin chi tiết:\n*   **Số đơn hàng hợp lệ:** 35 đơn.\n*   **Giá trị t"
       },
-      "timestamp": "2026-11-24T17:21:48.232Z"
+      "timestamp": "2026-11-24T18:39:40.954Z"
     },
     {
       "id": "CAT-14",
@@ -167,9 +167,9 @@
       "description": "AI Stylist queried product catalog and recommended tailored autumn-winter items",
       "status": "PASSED",
       "details": {
-        "responseExcerpt": "Chào bạn! Với thời tiết se lạnh của mùa đông, một chiếc áo khoác với phom dáng tiêu chuẩn sẽ là lựa chọn tuyệt vời để giữ ấm mà vẫn giữ được nét lịch "
+        "responseExcerpt": "Routine tìm thấy **2** mẫu áo len màu be dưới 1 triệu phù hợp cho bạn trong bộ sưu tập mùa đông này (màu trắng hiện chưa có sản phẩm sẵn trong tầm giá"
       },
-      "timestamp": "2026-11-24T17:22:28.986Z"
+      "timestamp": "2026-11-24T18:40:13.802Z"
     },
     {
       "id": "CAT-15",
@@ -177,9 +177,9 @@
       "description": "AI Stylist preserved contextual memory across conversation turns",
       "status": "PASSED",
       "details": {
-        "responseExcerpt": "Dạ, để em có thể tư vấn chiếc áo khoác phù hợp nhất cho anh/chị, anh/chị đang nhắc đến chiếc áo nào ạ? \n\nAnh/chị vui lòng cho em xin tên hoặc mã sản p"
+        "responseExcerpt": "Dạ, để em có thể tìm chiếc áo khoác phù hợp nhất cho anh/chị, anh/chị có thể cho em biết cụ thể hơn về **mã sản phẩm hoặc kiểu dáng của chiếc áo** mà "
       },
-      "timestamp": "2026-11-24T17:22:30.361Z"
+      "timestamp": "2026-11-24T18:40:15.352Z"
     },
     {
       "id": "CAT-16",
@@ -187,9 +187,9 @@
       "description": "AI Stylist handles customer care escalation and human staff handoff gracefully",
       "status": "PASSED",
       "details": {
-        "responseExcerpt": "Dạ, tôi rất sẵn lòng hỗ trợ bạn trong việc đổi size sản phẩm của Routine! \n\nHiện tại bạn đang muốn đổi size cho sản phẩm nào (có thể cho tôi xin mã sả"
+        "responseExcerpt": "Dạ, chào bạn! Hiện tại các hệ thống tư vấn trực tuyến và cửa hàng của Routine đều sẵn sàng hỗ trợ bạn đổi size một cách nhanh chóng nhất ạ. \n\nĐể Routi"
       },
-      "timestamp": "2026-11-24T17:22:47.103Z"
+      "timestamp": "2026-11-24T18:40:17.019Z"
     },
     {
       "id": "CAT-17",
@@ -201,7 +201,7 @@
         "role": "CUSTOMER",
         "tokenIssued": true
       },
-      "timestamp": "2026-11-24T17:22:47.436Z"
+      "timestamp": "2026-11-24T18:40:17.225Z"
     },
     {
       "id": "CAT-18",
@@ -211,7 +211,7 @@
       "details": {
         "adminEmail": "admin_new@routine.vn"
       },
-      "timestamp": "2026-11-24T17:22:50.689Z"
+      "timestamp": "2026-11-24T18:40:20.341Z"
     },
     {
       "id": "CAT-19",
@@ -222,7 +222,7 @@
         "totalProducts": 60,
         "totalVariants": 182
       },
-      "timestamp": "2026-11-24T17:22:51.098Z"
+      "timestamp": "2026-11-24T18:40:20.844Z"
     },
     {
       "id": "CAT-20",
@@ -233,7 +233,7 @@
         "categories": 26,
         "styles": 6
       },
-      "timestamp": "2026-11-24T17:22:51.507Z"
+      "timestamp": "2026-11-24T18:40:21.512Z"
     },
     {
       "id": "CAT-21",
@@ -243,7 +243,7 @@
       "details": {
         "outfitsCount": 9
       },
-      "timestamp": "2026-11-24T17:22:51.713Z"
+      "timestamp": "2026-11-24T18:40:21.707Z"
     },
     {
       "id": "CAT-22",
@@ -255,7 +255,7 @@
         "streamId": "16398654820",
         "eventsPassed": "19/19"
       },
-      "timestamp": "2026-11-24T17:22:51.715Z"
+      "timestamp": "2026-11-24T18:40:21.719Z"
     }
   ]
 }

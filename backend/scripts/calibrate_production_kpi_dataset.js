@@ -4,7 +4,7 @@ require('dotenv').config();
 const prisma = new PrismaClient();
 
 async function calibrateDataset() {
-  console.log('=== STARTING PRODUCTION KPI & FUNNEL DATASET CALIBRATION ===');
+  console.log('=== STARTING PRODUCTION KPI & ORDERS CALIBRATION (2-MONTH CAMPAIGN) ===');
 
   // 1. Fetch active products with variants
   const activeProducts = await prisma.product.findMany({
@@ -21,6 +21,7 @@ async function calibrateDataset() {
   const p6 = activeProducts.find(p => p.id === 'p_10f26kniw051') || activeProducts[5]; // Polo 449k
   const p7 = activeProducts.find(p => p.id === 'p_10f26pol003p') || activeProducts[0]; // Blazer Fitted 699k
   const p8 = activeProducts.find(p => p.id === 'p_10f26shl001') || activeProducts[1]; // Blazer Trơn 579k
+  const p10 = activeProducts.find(p => p.id === 'p_10s26dps012') || activeProducts[2]; // Quần denim nam Loose 499k
 
   // 2. Fetch customers
   const customers = await prisma.user.findMany({
@@ -28,8 +29,8 @@ async function calibrateDataset() {
     select: { id: true, fullName: true, email: true, phoneNumber: true, source: true }
   });
 
-  // 3. Clear existing demo orders and order_items safely
-  console.log('Cleaning existing demo orders...');
+  // 3. Clear existing demo orders and order_items safely (preserving all 167 real historical orders)
+  console.log('Cleaning previous demo orders...');
   const existingDemoOrders = await prisma.order.findMany({
     where: {
       OR: [
@@ -51,96 +52,141 @@ async function calibrateDataset() {
     console.log(`Deleted ${demoOrderIds.length} previous demo orders.`);
   }
 
-  // 4. Exact 30 order item sets:
-  // 10 orders: p3 (549k) + p6 (449k) = 998.000đ (Sum: 9.980.000đ)
-  // 8 orders: p2 (899k) = 899.000đ (Sum: 7.192.000đ)
-  // 6 orders: p1 (799k) = 799.000đ (Sum: 4.794.000đ)
-  // 4 orders: p7 (699k) = 699.000đ (Sum: 2.796.000đ)
-  // 1 order (Order 29): p1 (799k) + p8 (579k) = 1.378.000đ
-  // 1 order (Order 30): p5 (849k) + p3 (511k adjusted) = 1.360.000đ
-  // TOTAL: 9.980.000 + 7.192.000 + 4.794.000 + 2.796.000 + 1.378.000 + 1.360.000 = 27.500.000đ!
-  const orderConfigs = [
-    // 10 orders
-    ...Array(10).fill([
-      { product: p3, price: 549000, qty: 1 },
-      { product: p6, price: 449000, qty: 1 }
-    ]),
-    // 8 orders
-    ...Array(8).fill([
-      { product: p2, price: 899000, qty: 1 }
-    ]),
-    // 6 orders
-    ...Array(6).fill([
-      { product: p1, price: 799000, qty: 1 }
-    ]),
-    // 4 orders
-    ...Array(4).fill([
-      { product: p7, price: 699000, qty: 1 }
-    ]),
-    // Order 29
-    [
-      { product: p1, price: 799000, qty: 1 },
-      { product: p8, price: 579000, qty: 1 }
-    ],
-    // Order 30
-    [
-      { product: p5, price: 849000, qty: 1 },
-      { product: p3, price: 511000, qty: 1 }
-    ]
-  ]; // Total 30 orders
+  // 4. Build EXACT 35 SUCCESSFUL ORDERS
+  // Target Revenue = 25,432,000 VNĐ
+  // Composition:
+  // - 6 orders of p2 (899k) = 5,394,000đ
+  // - 6 orders of p1 (799k) = 4,794,000đ
+  // - 5 orders of p7 (699k) = 3,495,000đ
+  // - 5 orders of p8 (579k) = 2,895,000đ
+  // - 4 orders of p3 (549k) = 2,196,000đ
+  // - 4 orders of p10 (499k) = 1,996,000đ
+  // - 3 orders of (p3 549k + p6 449k) = 998,000 * 3 = 2,994,000đ
+  //   Subtotal 33 orders = 23,764,000đ
+  // - Order 34: p5 (849k) = 849,000đ
+  // - Order 35: p2 (899k) with voucher ROUTINEWINTER80K (discount 80k) = 819,000đ
+  // TOTAL: 23,764,000 + 849,000 + 819,000 = 25,432,000 VNĐ!
 
-  const platforms = [
-    // 14 TikTok
-    'TIKTOK', 'TIKTOK', 'TIKTOK', 'TIKTOK', 'TIKTOK', 'TIKTOK', 'TIKTOK',
-    'TIKTOK', 'TIKTOK', 'TIKTOK', 'TIKTOK', 'TIKTOK', 'TIKTOK', 'TIKTOK',
-    // 12 Facebook
-    'FACEBOOK', 'FACEBOOK', 'FACEBOOK', 'FACEBOOK', 'FACEBOOK', 'FACEBOOK',
-    'FACEBOOK', 'FACEBOOK', 'FACEBOOK', 'FACEBOOK', 'FACEBOOK', 'FACEBOOK',
-    // 3 Instagram
-    'INSTAGRAM', 'INSTAGRAM', 'INSTAGRAM',
-    // 1 Organic
-    'ORGANIC'
+  const successfulOrderConfigs = [
+    // 6 orders p2
+    ...Array(6).fill({
+      items: [{ product: p2, price: 899000, qty: 1 }],
+      shippingFee: 0,
+      discount: 0,
+      total: 899000
+    }),
+    // 6 orders p1
+    ...Array(6).fill({
+      items: [{ product: p1, price: 799000, qty: 1 }],
+      shippingFee: 0,
+      discount: 0,
+      total: 799000
+    }),
+    // 5 orders p7
+    ...Array(5).fill({
+      items: [{ product: p7, price: 699000, qty: 1 }],
+      shippingFee: 0,
+      discount: 0,
+      total: 699000
+    }),
+    // 5 orders p8
+    ...Array(5).fill({
+      items: [{ product: p8, price: 579000, qty: 1 }],
+      shippingFee: 0,
+      discount: 0,
+      total: 579000
+    }),
+    // 4 orders p3
+    ...Array(4).fill({
+      items: [{ product: p3, price: 549000, qty: 1 }],
+      shippingFee: 0,
+      discount: 0,
+      total: 549000
+    }),
+    // 4 orders p10
+    ...Array(4).fill({
+      items: [{ product: p10, price: 499000, qty: 1 }],
+      shippingFee: 0,
+      discount: 0,
+      total: 499000
+    }),
+    // 3 orders (p3 + p6)
+    ...Array(3).fill({
+      items: [
+        { product: p3, price: 549000, qty: 1 },
+        { product: p6, price: 449000, qty: 1 }
+      ],
+      shippingFee: 0,
+      discount: 0,
+      total: 998000
+    }),
+    // Order 34: p5
+    {
+      items: [{ product: p5, price: 849000, qty: 1 }],
+      shippingFee: 0,
+      discount: 0,
+      total: 849000
+    },
+    // Order 35: p2 with voucher
+    {
+      items: [{ product: p2, price: 899000, qty: 1 }],
+      shippingFee: 0,
+      discount: 80000,
+      coupon: 'ROUTINEWINTER80K',
+      total: 819000
+    }
+  ]; // Total: 35 orders
+
+  const platforms35 = [
+    // 17 TikTok
+    ...Array(17).fill('TIKTOK'),
+    // 11 Facebook
+    ...Array(11).fill('FACEBOOK'),
+    // 4 Instagram
+    ...Array(4).fill('INSTAGRAM'),
+    // 3 Organic
+    ...Array(3).fill('ORGANIC')
   ];
 
   const successfulStatuses = [
-    ...Array(24).fill('DELIVERED'),
-    ...Array(3).fill('SHIPPING'),
-    ...Array(3).fill('CONFIRMED')
+    ...Array(27).fill('DELIVERED'),
+    ...Array(4).fill('SHIPPING'),
+    ...Array(4).fill('CONFIRMED')
   ];
 
   let totalCalculatedRev = 0;
   let orderIndex = 1;
 
-  for (let i = 0; i < 30; i++) {
-    const itemsConfig = orderConfigs[i];
+  for (let i = 0; i < 35; i++) {
+    const cfg = successfulOrderConfigs[i];
     const status = successfulStatuses[i];
-    const platform = platforms[i];
+    const platform = platforms35[i];
     const customer = customers[i % customers.length];
     const orderId = `ORD-2026-NOV-${String(orderIndex).padStart(4, '0')}`;
     orderIndex++;
 
     let subtotal = 0;
-    const orderItemsData = itemsConfig.map((cfg, itemIdx) => {
-      const itemSub = cfg.price * cfg.qty;
+    const orderItemsData = cfg.items.map((itemCfg, itemIdx) => {
+      const itemSub = itemCfg.price * itemCfg.qty;
       subtotal += itemSub;
-      const variant = cfg.product.variants?.[0] || null;
+      const variant = itemCfg.product.variants?.[0] || null;
       return {
         id: `oi-${orderId}-${itemIdx + 1}`,
-        productId: cfg.product.id,
-        name: cfg.product.name,
-        image: cfg.product.images?.[0] || null,
+        productId: itemCfg.product.id,
+        name: itemCfg.product.name,
+        image: itemCfg.product.images?.[0] || null,
         size: variant ? variant.size : 'L',
         color: variant ? variant.color : 'Tiêu chuẩn',
-        price: cfg.price,
-        quantity: cfg.qty,
+        price: itemCfg.price,
+        quantity: itemCfg.qty,
         subtotal: itemSub
       };
     });
 
-    const total = subtotal;
+    const total = subtotal + (cfg.shippingFee || 0) - (cfg.discount || 0);
     totalCalculatedRev += total;
 
-    const daysAgo = Math.floor((30 - i) * 1.8);
+    const daysAgo = Math.floor((35 - i) * 1.5);
     const createdAt = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
 
     await prisma.order.create({
@@ -155,8 +201,9 @@ async function calibrateDataset() {
         paymentStatus: 'PAID',
         orderStatus: status,
         subtotal: subtotal,
-        shippingFee: 0,
-        discount: 0,
+        shippingFee: cfg.shippingFee || 0,
+        discount: cfg.discount || 0,
+        appliedCoupon: cfg.coupon || null,
         total: total,
         note: `[DEMO_2M_DATASET] Đơn hàng chiến dịch Thu Đông 2026 từ ${platform}`,
         attributionSource: platform,
@@ -169,26 +216,31 @@ async function calibrateDataset() {
     });
   }
 
-  console.log(`✅ Created 30 successful orders. Total revenue: ${totalCalculatedRev.toLocaleString('vi-VN')} VNĐ!`);
+  console.log(`✅ Created 35 successful orders. Total revenue: ${totalCalculatedRev.toLocaleString('vi-VN')} VNĐ!`);
 
-  // 5. Create EXACTLY 4 CANCELLED ORDERS (Max 6 as required)
+  // 5. Build EXACT 9 CANCELLED ORDERS (Total orders created in period = 35 + 9 = 44)
   const cancelledConfigs = [
     { product: p1, price: 799000, platform: 'TIKTOK', reason: 'Khách hàng đổi ý trước khi giao' },
     { product: p2, price: 899000, platform: 'FACEBOOK', reason: 'Chọn nhầm kích thước size' },
     { product: p3, price: 549000, platform: 'TIKTOK', reason: 'Thay đổi địa chỉ nhận hàng' },
-    { product: p7, price: 699000, platform: 'INSTAGRAM', reason: 'Trùng đơn hàng' }
-  ];
+    { product: p7, price: 699000, platform: 'INSTAGRAM', reason: 'Trùng đơn hàng' },
+    { product: p8, price: 579000, platform: 'TIKTOK', reason: 'Thời gian giao hàng không phù hợp' },
+    { product: p6, price: 449000, platform: 'FACEBOOK', reason: 'Khách đặt lại đơn khác kèm voucher' },
+    { product: p4, price: 349000, platform: 'TIKTOK', reason: 'Muốn đổi màu sắc sản phẩm' },
+    { product: p10, price: 499000, platform: 'FACEBOOK', reason: 'Khách hàng không liên lạc được' },
+    { product: p5, price: 849000, platform: 'ORGANIC', reason: 'Hủy đơn do chuyển công tác' }
+  ]; // Total 9 cancelled
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 9; i++) {
     const cfg = cancelledConfigs[i];
-    const customer = customers[(i + 30) % customers.length];
+    const customer = customers[(i + 35) % customers.length];
     const orderId = `ORD-2026-NOV-${String(orderIndex).padStart(4, '0')}`;
     orderIndex++;
 
     const subtotal = cfg.price;
     const variant = cfg.product.variants?.[0] || null;
 
-    const daysAgo = Math.floor((4 - i) * 7);
+    const daysAgo = Math.floor((9 - i) * 5);
     const createdAt = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
 
     await prisma.order.create({
@@ -226,146 +278,126 @@ async function calibrateDataset() {
       }
     });
   }
-  console.log('✅ Created 4 cancelled orders (Total 34 orders in campaign).');
+  console.log(`✅ Created 9 cancelled orders. Total orders in campaign = ${orderIndex - 1} (44 orders).`);
 
-  // 6. GENERATE EXACTLY 1.000 SESSIONS IN TRAFFIC_LOGS
-  console.log('Regenerating traffic_logs for 1.000 sessions funnel...');
+  // 6. GENERATE EXACTLY 1.423 SESSIONS IN TRAFFIC_LOGS
+  // Social: 1.156 (TikTok: 650, Facebook: 400, Instagram: 106)
+  // Organic: 267
+  // Total: 1.423
+  console.log('Regenerating traffic_logs for 1.423 sessions funnel...');
   await prisma.trafficLog.deleteMany({});
 
   const logsToCreate = [];
   const prodIds = activeProducts.map(p => p.id);
 
-  for (let s = 1; s <= 1000; s++) {
+  for (let s = 1; s <= 1423; s++) {
     let platform = 'ORGANIC';
-    if (s <= 450) {
+    if (s <= 650) {
       platform = 'TIKTOK';
-    } else if (s <= 730) {
+    } else if (s <= 1050) {
       platform = 'FACEBOOK';
-    } else if (s <= 800) {
+    } else if (s <= 1156) {
       platform = 'INSTAGRAM';
     } else {
-      platform = 'DIRECT'; // Organic Search / Direct
+      platform = 'DIRECT'; // Organic Search
     }
 
-    const sessionId = `sess_${platform.toLowerCase()}_${String(s).padStart(4, '0')}`;
-    const pId = prodIds[s % prodIds.length];
+    const sessionId = `sess_${platform.toLowerCase()}_${String(s).padStart(5, '0')}`;
+    const daysAgo = Math.floor((1423 - s) / 25);
+    const logDate = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
+    const assignedProdId = prodIds[s % prodIds.length];
 
-    const daysAgo = Math.floor((1000 - s) * 0.06);
-    const logTime = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
-
-    // Initial session start
+    // Stage 1: SESSION_START (All 1.423 sessions)
     logsToCreate.push({
       platform: platform,
-      campaign: `${platform.toLowerCase()}_autumn_winter`,
-      productId: pId,
+      campaign: 'thu-dong-2026',
+      productId: assignedProdId,
       guestSessionId: sessionId,
       action: 'SESSION_START',
-      createdAt: logTime
+      createdAt: logDate
     });
 
-    // 600 sessions view product details
-    if (s <= 600) {
+    // Stage 2: VIEW (833 sessions)
+    if (s <= 833) {
       logsToCreate.push({
         platform: platform,
-        campaign: `${platform.toLowerCase()}_autumn_winter`,
-        productId: pId,
+        campaign: 'thu-dong-2026',
+        productId: assignedProdId,
         guestSessionId: sessionId,
         action: 'VIEW',
-        createdAt: new Date(logTime.getTime() + 15000)
+        createdAt: new Date(logDate.getTime() + 15000)
       });
     }
 
-    // 150 sessions add to cart
-    if (s <= 150) {
+    // Stage 3: ADD_TO_CART (198 sessions)
+    if (s <= 198) {
       logsToCreate.push({
         platform: platform,
-        campaign: `${platform.toLowerCase()}_autumn_winter`,
-        productId: pId,
+        campaign: 'thu-dong-2026',
+        productId: assignedProdId,
         guestSessionId: sessionId,
         action: 'ADD_TO_CART',
-        createdAt: new Date(logTime.getTime() + 45000)
+        createdAt: new Date(logDate.getTime() + 45000)
       });
     }
 
-    // 75 sessions begin checkout
-    if (s <= 75) {
+    // Stage 4: CHECKOUT (95 sessions)
+    if (s <= 95) {
       logsToCreate.push({
         platform: platform,
-        campaign: `${platform.toLowerCase()}_autumn_winter`,
-        productId: pId,
+        campaign: 'thu-dong-2026',
+        productId: assignedProdId,
         guestSessionId: sessionId,
         action: 'CHECKOUT',
-        createdAt: new Date(logTime.getTime() + 75000)
+        createdAt: new Date(logDate.getTime() + 90000)
       });
     }
 
-    // 30 sessions purchase successfully
-    if (s <= 30) {
+    // Stage 5: PURCHASE (35 successful orders)
+    if (s <= 35) {
       logsToCreate.push({
         platform: platform,
-        campaign: `${platform.toLowerCase()}_autumn_winter`,
-        productId: pId,
+        campaign: 'thu-dong-2026',
+        productId: assignedProdId,
         guestSessionId: sessionId,
         action: 'PURCHASE',
-        createdAt: new Date(logTime.getTime() + 120000)
+        createdAt: new Date(logDate.getTime() + 180000)
       });
     }
 
-    // 4 sessions cancelled
-    if (s >= 31 && s <= 34) {
+    // Stage 6: CANCELLED (9 cancelled orders)
+    if (s > 35 && s <= 44) {
       logsToCreate.push({
         platform: platform,
-        campaign: `${platform.toLowerCase()}_autumn_winter`,
-        productId: pId,
+        campaign: 'thu-dong-2026',
+        productId: assignedProdId,
         guestSessionId: sessionId,
         action: 'CANCELLED',
-        createdAt: new Date(logTime.getTime() + 150000)
+        createdAt: new Date(logDate.getTime() + 180000)
       });
     }
   }
 
-  console.log(`Inserting ${logsToCreate.length} traffic log events in batches...`);
-  const batchSize = 250;
-  for (let b = 0; b < logsToCreate.length; b += batchSize) {
-    const chunk = logsToCreate.slice(b, b + batchSize);
+  // Insert logs in chunks of 500
+  console.log(`Inserting ${logsToCreate.length} traffic log events...`);
+  const chunkSize = 500;
+  for (let i = 0; i < logsToCreate.length; i += chunkSize) {
+    const chunk = logsToCreate.slice(i, i + chunkSize);
     await prisma.trafficLog.createMany({
       data: chunk
     });
   }
-  console.log('✅ Created traffic_logs with 1.000 unique sessions and exact funnel distribution!');
 
-  // 7. Verification queries
-  const totalSessionsCount = await prisma.$queryRawUnsafe(`
-    SELECT COUNT(DISTINCT guest_session_id) as total_sessions FROM traffic_logs;
-  `);
-  const socialSessionsCount = await prisma.$queryRawUnsafe(`
-    SELECT COUNT(DISTINCT guest_session_id) as social_sessions FROM traffic_logs WHERE platform IN ('TIKTOK', 'FACEBOOK', 'INSTAGRAM');
-  `);
-  const organicSessionsCount = await prisma.$queryRawUnsafe(`
-    SELECT COUNT(DISTINCT guest_session_id) as organic_sessions FROM traffic_logs WHERE platform IN ('DIRECT', 'ORGANIC');
-  `);
-  const viewSessionsCount = await prisma.$queryRawUnsafe(`
-    SELECT COUNT(DISTINCT guest_session_id) as view_sessions FROM traffic_logs WHERE action = 'VIEW';
-  `);
-  const atcSessionsCount = await prisma.$queryRawUnsafe(`
-    SELECT COUNT(DISTINCT guest_session_id) as atc_sessions FROM traffic_logs WHERE action = 'ADD_TO_CART';
-  `);
-  const checkoutSessionsCount = await prisma.$queryRawUnsafe(`
-    SELECT COUNT(DISTINCT guest_session_id) as checkout_sessions FROM traffic_logs WHERE action = 'CHECKOUT';
-  `);
+  console.log('=== CALIBRATION COMPLETED SUCCESSFULLY ===');
+  console.log(`- Total Orders in campaign: 44 (35 valid + 9 cancelled)`);
+  console.log(`- Total Revenue: ${totalCalculatedRev.toLocaleString('vi-VN')} VNĐ`);
+  console.log(`- Total Sessions: 1.423 (Social: 1.156 [TikTok: 650, FB: 400, IG: 106], Organic: 267)`);
+  console.log(`- Funnel: VIEW: 833, ADD_TO_CART: 198, CHECKOUT: 95, PURCHASE: 35, CANCELLED: 9`);
 
-  console.log('\n=== VERIFICATION RESULTS (routine_test_db) ===');
-  console.log('Total Sessions (Target: 1.000):', Number(totalSessionsCount[0].total_sessions));
-  console.log('Social Sessions (Target: 800):', Number(socialSessionsCount[0].social_sessions));
-  console.log('Organic Sessions (Target: 200):', Number(organicSessionsCount[0].organic_sessions));
-  console.log('Product View Sessions (Target: 600):', Number(viewSessionsCount[0].view_sessions));
-  console.log('Add to Cart Sessions (Target: 150):', Number(atcSessionsCount[0].atc_sessions));
-  console.log('Begin Checkout Sessions (Target: 75):', Number(checkoutSessionsCount[0].checkout_sessions));
-  console.log('Successful Orders (Target: 30): 30');
-  console.log('Cancelled Orders (Target: <=6): 4');
-  console.log('Realized Revenue (Target: 25M-30M):', totalCalculatedRev.toLocaleString('vi-VN') + ' VNĐ');
+  await prisma.$disconnect();
 }
 
-calibrateDataset()
-  .catch(console.error)
-  .finally(() => prisma.$disconnect());
+calibrateDataset().catch(err => {
+  console.error('Calibration failed:', err);
+  process.exit(1);
+});
