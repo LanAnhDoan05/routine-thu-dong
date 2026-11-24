@@ -42,7 +42,7 @@ const social = [
   },
   {
     name: "TikTok",
-    href: "https://www.tiktok.com/@routine.ptit?_r=1&_t=ZS-9A1zNiAXhKb",
+    href: "https://www.tiktok.com/@routine.ptit?_r=1&_t=ZS-9AxOVb0TKUr",
   },
 ];
 

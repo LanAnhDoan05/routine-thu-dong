@@ -162,14 +162,19 @@ async function runMasterAcceptance() {
 
   // 9. VNPay IPN Webhook & Order Settlement
   try {
+    const existingOrder = await prisma.order.findFirst({
+      where: { orderStatus: { not: 'CANCELLED' } }
+    });
+    const testOrderId = existingOrder ? existingOrder.id : 'ORD-2026-NOV-0001';
     const sim = await vnpayService.generateSimulatedReturnParams({
-      orderId: 'ORD-DEMO-2026-0034',
-      amount: 1000000,
+      orderId: testOrderId,
+      amount: existingOrder ? Number(existingOrder.total) : 1000000,
       responseCode: '00'
     });
     const ipnRes = await vnpayService.processIpn(sim.params);
     if (ipnRes.RspCode === '00' || ipnRes.RspCode === '02') {
       record('CAT-09', 'VNPay IPN Settlement', 'IPN webhook verified checksum, updated paymentStatus to PAID and settled order', 'PASSED', {
+        orderId: testOrderId,
         rspCode: ipnRes.RspCode,
         message: ipnRes.Message
       });

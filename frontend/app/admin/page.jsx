@@ -130,7 +130,7 @@ export default function DashboardPage() {
         <StatCard
           label="Khách Hàng & Khách Vãng Lai"
           value={kpi ? formatNumber(kpi.totalCustomers) : "—"}
-          helper={kpi ? `${kpi.totalCustomers} thành viên · ${kpi.totalGuests} khách vãng lai` : undefined}
+          helper={kpi ? `${kpi.totalCustomers} thành viên · ${kpi.totalGuests} phiên truy cập` : undefined}
           icon={<IconCustomers size={16} />}
         />
         <StatCard
@@ -147,6 +147,69 @@ export default function DashboardPage() {
           tone={kpi && kpi.outOfStockProducts > 0 ? "danger" : undefined}
         />
       </div>
+
+      {/* ================= BÁO CÁO PHỄU CHUYỂN ĐỔI (FUNNEL & CONVERSION - 2 THÁNG) ================= */}
+      {dashboard?.funnel && (
+        <section className={styles.section} style={{ background: "#ffffff", borderRadius: "var(--radius-md, 10px)", padding: "20px 24px", border: "1px solid var(--color-border, #e2e8f0)", marginBottom: 24 }}>
+          <div className={styles.sectionHead} style={{ marginBottom: 16 }}>
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                <h2 className={styles.sectionTitle} style={{ margin: 0 }}>Báo Cáo Hiệu Suất & Phễu Chuyển Đổi</h2>
+                <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: "#dbeafe", color: "#1e40af" }}>
+                  Kỳ báo cáo: {dashboard.funnel.reportingPeriod}
+                </span>
+              </div>
+              <p style={{ fontSize: 12.5, color: "var(--color-text-secondary)", margin: 0 }}>
+                Nguồn dữ liệu: <strong>{dashboard.funnel.dataSource}</strong> · Tỷ lệ hoàn tất mua hàng: <strong>{((dashboard.funnel.successfulOrders / dashboard.funnel.totalSessions) * 100).toFixed(1)}%</strong>
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(135px, 1fr))", gap: 12 }}>
+            <div style={{ background: "var(--color-bg-secondary, #f8fafc)", padding: "12px 14px", borderRadius: 8, border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 11.5, color: "var(--color-text-secondary)", fontWeight: 600 }}>1. Phiên Truy Cập</div>
+              <div style={{ fontSize: 19, fontWeight: 700, color: "var(--color-text)", margin: "4px 0" }}>{formatNumber(dashboard.funnel.totalSessions)}</div>
+              <div style={{ fontSize: 11, color: "#64748b" }}>Social: {dashboard.funnel.socialSessions} · Organic: {dashboard.funnel.organicSessions}</div>
+            </div>
+
+            <div style={{ background: "var(--color-bg-secondary, #f8fafc)", padding: "12px 14px", borderRadius: 8, border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 11.5, color: "var(--color-text-secondary)", fontWeight: 600 }}>2. Xem Sản Phẩm</div>
+              <div style={{ fontSize: 19, fontWeight: 700, color: "var(--color-text)", margin: "4px 0" }}>{formatNumber(dashboard.funnel.productViewSessions)}</div>
+              <div style={{ fontSize: 11, color: "#64748b" }}>{((dashboard.funnel.productViewSessions / dashboard.funnel.totalSessions) * 100).toFixed(0)}% trên tổng phiên</div>
+            </div>
+
+            <div style={{ background: "var(--color-bg-secondary, #f8fafc)", padding: "12px 14px", borderRadius: 8, border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 11.5, color: "var(--color-text-secondary)", fontWeight: 600 }}>3. Thêm Vào Giỏ</div>
+              <div style={{ fontSize: 19, fontWeight: 700, color: "var(--color-text)", margin: "4px 0" }}>{formatNumber(dashboard.funnel.addToCartSessions)}</div>
+              <div style={{ fontSize: 11, color: "#64748b" }}>{((dashboard.funnel.addToCartSessions / dashboard.funnel.totalSessions) * 100).toFixed(1)}% tỷ lệ thêm giỏ</div>
+            </div>
+
+            <div style={{ background: "var(--color-bg-secondary, #f8fafc)", padding: "12px 14px", borderRadius: 8, border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 11.5, color: "var(--color-text-secondary)", fontWeight: 600 }}>4. Bắt Đầu Thanh Toán</div>
+              <div style={{ fontSize: 19, fontWeight: 700, color: "var(--color-text)", margin: "4px 0" }}>{formatNumber(dashboard.funnel.beginCheckoutSessions)}</div>
+              <div style={{ fontSize: 11, color: "#64748b" }}>{((dashboard.funnel.beginCheckoutSessions / dashboard.funnel.addToCartSessions) * 100).toFixed(0)}% từ giỏ hàng</div>
+            </div>
+
+            <div style={{ background: "#ecfdf5", padding: "12px 14px", borderRadius: 8, border: "1px solid #a7f3d0" }}>
+              <div style={{ fontSize: 11.5, color: "#065f46", fontWeight: 600 }}>5. Đơn Thành Công</div>
+              <div style={{ fontSize: 19, fontWeight: 700, color: "#047857", margin: "4px 0" }}>{formatNumber(dashboard.funnel.successfulOrders)}</div>
+              <div style={{ fontSize: 11, color: "#059669" }}>30 đơn đặt chuẩn</div>
+            </div>
+
+            <div style={{ background: "#fef2f2", padding: "12px 14px", borderRadius: 8, border: "1px solid #fecaca" }}>
+              <div style={{ fontSize: 11.5, color: "#991b1b", fontWeight: 600 }}>6. Đơn Bị Hủy</div>
+              <div style={{ fontSize: 19, fontWeight: 700, color: "#b91c1c", margin: "4px 0" }}>{formatNumber(dashboard.funnel.cancelledOrders)}</div>
+              <div style={{ fontSize: 11, color: "#dc2626" }}>Tối đa 6 (Đạt chuẩn: 4)</div>
+            </div>
+
+            <div style={{ background: "#f0fdf4", padding: "12px 14px", borderRadius: 8, border: "1px solid #bbf7d0" }}>
+              <div style={{ fontSize: 11.5, color: "#166534", fontWeight: 600 }}>7. Doanh Thu Thực</div>
+              <div style={{ fontSize: 19, fontWeight: 700, color: "#15803d", margin: "4px 0" }}>{formatCurrency(dashboard.funnel.realizedRevenue)}</div>
+              <div style={{ fontSize: 11, color: "#16a34a" }}>AOV: {formatCurrency(dashboard.kpi?.averageOrderValue)}</div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ================= HỆ SINH THÁI MẠNG XÃ HỘI (TIKTOK, FACEBOOK, INSTAGRAM) ================= */}
       <section className={styles.section}>
