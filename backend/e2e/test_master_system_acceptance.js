@@ -193,7 +193,13 @@ async function runMasterAcceptance() {
   // 11. 2-Month Simulated Dataset Separation (25M - 30M VNĐ)
   try {
     const demoAgg = await prisma.order.aggregate({
-      where: { attributionSource: 'DEMO_DATASET', paymentStatus: 'PAID' },
+      where: {
+        orderStatus: { not: 'CANCELLED' },
+        OR: [
+          { note: { contains: '[DEMO_2M_DATASET]' } },
+          { attributionSource: 'DEMO_DATASET' }
+        ]
+      },
       _sum: { total: true },
       _count: { id: true }
     });
