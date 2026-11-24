@@ -32,7 +32,8 @@ async function track(req, res) {
  */
 async function getOverview(req, res) {
   try {
-    const stats = await analyticsService.getEcosystemStats();
+    const { scope } = req.query;
+    const stats = await analyticsService.getEcosystemStats({ scope });
     return sendSuccess(res, stats, 'Lấy báo cáo hệ sinh thái thành công');
   } catch (err) {
     return sendError(res, err.message, 500);
@@ -44,7 +45,8 @@ async function getOverview(req, res) {
  */
 async function getDashboard(req, res) {
   try {
-    const data = await analyticsService.getDashboardStats();
+    const { scope } = req.query;
+    const data = await analyticsService.getDashboardStats({ scope });
     return sendSuccess(res, data, 'Lấy dữ liệu Dashboard quản trị thành công');
   } catch (err) {
     return sendError(res, err.message, 500);

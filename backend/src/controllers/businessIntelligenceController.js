@@ -6,7 +6,8 @@ const { sendSuccess, sendError } = require('../utils/response');
  */
 async function getOverview(req, res) {
   try {
-    const data = await biService.getOverviewKpis();
+    const { scope } = req.query;
+    const data = await biService.getOverviewKpis({ scope });
     return sendSuccess(res, data, 'Lấy tổng quan KPI kinh doanh thành công');
   } catch (error) {
     return sendError(res, error.message, 500);

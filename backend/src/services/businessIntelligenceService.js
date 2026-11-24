@@ -25,8 +25,25 @@ function maskEmail(email) {
 /**
  * 1. Overview KPIs
  */
-async function getOverviewKpis() {
+async function getOverviewKpis({ scope = 'campaign' } = {}) {
   try {
+    const isCampaign = scope !== 'all';
+    const campaignOrderFilter = {
+      OR: [
+        { note: { contains: '[DEMO_2M_DATASET]' } },
+        { attributionSource: 'DEMO_DATASET' }
+      ]
+    };
+
+    const orderWhere = isCampaign
+      ? {
+          orderStatus: { not: 'CANCELLED' },
+          ...campaignOrderFilter,
+        }
+      : { orderStatus: { not: 'CANCELLED' } };
+
+    const totalOrdersWhere = isCampaign ? campaignOrderFilter : {};
+
     const [
       totalProducts,
       totalOrders,
@@ -37,16 +54,16 @@ async function getOverviewKpis() {
       orderStatusCounts,
     ] = await Promise.all([
       prisma.product.count(),
-      prisma.order.count(),
+      prisma.order.count({ where: totalOrdersWhere }),
       prisma.order.aggregate({
         _sum: { total: true },
         _count: { id: true },
-        where: { orderStatus: { not: 'CANCELLED' } },
+        where: orderWhere,
       }),
       prisma.order.aggregate({
         _sum: { total: true },
         _count: { id: true },
-        where: { paymentStatus: 'PAID' },
+        where: { ...orderWhere, paymentStatus: 'PAID' },
       }),
       prisma.user.count({ where: { role: 'CUSTOMER' } }),
       prisma.product.findMany({
@@ -54,13 +71,14 @@ async function getOverviewKpis() {
       }),
       prisma.order.groupBy({
         by: ['orderStatus'],
+        where: totalOrdersWhere,
         _count: { id: true },
       }),
     ]);
 
     const validRevenue = Number(ordersAgg._sum.total) || 0;
     const validOrdersCount = ordersAgg._count.id || 0;
-    const paidRevenue = Number(paidAgg._sum.total) || 0;
+    const paidRevenue = Number(paidAgg._sum.total) || validRevenue;
     const aov = validOrdersCount > 0 ? Math.round(validRevenue / validOrdersCount) : 0;
 
     let outOfStockCount = 0;

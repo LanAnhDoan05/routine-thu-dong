@@ -2,8 +2,14 @@
 export function getApiBase() {
   if (typeof window !== 'undefined') {
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const envBase = (process.env.NEXT_PUBLIC_API_URL || '').trim().replace(/\/+$/, '');
+    let envBase = (process.env.NEXT_PUBLIC_API_URL || '').trim().replace(/\/+$/, '');
     
+    // Bảo vệ Production: nếu trỏ vào backend cũ routine-thu-dong.vercel.app (thiếu -henna),
+    // tự động điều hướng sang backend đang vận hành routine-thu-dong-henna.vercel.app
+    if (envBase.includes('routine-thu-dong.vercel.app') && !envBase.includes('routine-thu-dong-henna')) {
+      envBase = 'https://routine-thu-dong-henna.vercel.app';
+    }
+
     if (envBase && (!envBase.includes('localhost') || isLocal)) {
       return envBase.endsWith('/api/v1') ? envBase : `${envBase}/api/v1`;
     }
@@ -16,7 +22,10 @@ export function getApiBase() {
     return 'https://routine-thu-dong-henna.vercel.app/api/v1';
   }
 
-  const raw = (process.env.NEXT_PUBLIC_API_URL || 'https://routine-thu-dong-henna.vercel.app').trim().replace(/\/+$/, '');
+  let raw = (process.env.NEXT_PUBLIC_API_URL || 'https://routine-thu-dong-henna.vercel.app').trim().replace(/\/+$/, '');
+  if (raw.includes('routine-thu-dong.vercel.app') && !raw.includes('routine-thu-dong-henna')) {
+    raw = 'https://routine-thu-dong-henna.vercel.app';
+  }
   return raw.endsWith('/api/v1') ? raw : `${raw}/api/v1`;
 }
 

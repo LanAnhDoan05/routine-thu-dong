@@ -82,7 +82,7 @@ async function trackEvent({
 /**
  * Lấy số liệu thống kê tổng hợp hệ sinh thái (Admin Dashboard)
  */
-async function getEcosystemStats() {
+async function getEcosystemStats({ scope = 'campaign' } = {}) {
   const platforms = ['TIKTOK', 'FACEBOOK', 'INSTAGRAM', 'DIRECT', 'OTHER'];
   const breakdown = {};
 
@@ -99,6 +99,8 @@ async function getEcosystemStats() {
   });
 
   try {
+    const isCampaign = scope !== 'all';
+
     // 1. Thống kê click & guest theo nền tảng
     const clickStats = await prisma.$queryRawUnsafe(`
       SELECT 
@@ -137,16 +139,25 @@ async function getEcosystemStats() {
       });
     }
 
-    // 3. Thống kê đơn hàng và doanh thu theo nguồn tiếp thị
-    const orderStats = await prisma.$queryRawUnsafe(`
-      SELECT 
-        attribution_source, 
-        COUNT(*) as total_orders,
-        SUM(total) as total_revenue
-      FROM orders
-      WHERE order_status != 'CANCELLED'
-      GROUP BY attribution_source;
-    `);
+    // 3. Thống kê đơn hàng và doanh thu theo nguồn tiếp thị (Ưu tiên kỳ chiến dịch 2 tháng Thu Đông)
+    const orderStatsQuery = isCampaign
+      ? `SELECT 
+          attribution_source, 
+          COUNT(*) as total_orders,
+          SUM(total) as total_revenue
+        FROM orders
+        WHERE order_status != 'CANCELLED'
+          AND (note LIKE '%[DEMO_2M_DATASET]%' OR attribution_source = 'DEMO_DATASET')
+        GROUP BY attribution_source;`
+      : `SELECT 
+          attribution_source, 
+          COUNT(*) as total_orders,
+          SUM(total) as total_revenue
+        FROM orders
+        WHERE order_status != 'CANCELLED'
+        GROUP BY attribution_source;`;
+
+    const orderStats = await prisma.$queryRawUnsafe(orderStatsQuery);
 
     if (Array.isArray(orderStats)) {
       orderStats.forEach((row) => {
@@ -355,8 +366,25 @@ async function getGuestVisitors({ page = 1, limit = 20, platform = 'ALL', search
 /**
  * Lấy toàn bộ số liệu thống kê thời gian thực từ Database cho Admin Dashboard
  */
-async function getDashboardStats() {
+async function getDashboardStats({ scope = 'campaign' } = {}) {
   try {
+    const isCampaign = scope !== 'all';
+    const campaignOrderFilter = {
+      OR: [
+        { note: { contains: '[DEMO_2M_DATASET]' } },
+        { attributionSource: 'DEMO_DATASET' }
+      ]
+    };
+
+    const orderWhere = isCampaign
+      ? {
+          orderStatus: { not: 'CANCELLED' },
+          ...campaignOrderFilter,
+        }
+      : { orderStatus: { not: 'CANCELLED' } };
+
+    const totalOrdersWhere = isCampaign ? campaignOrderFilter : {};
+
     const [
       totalProducts,
       activeProducts,
@@ -379,19 +407,20 @@ async function getDashboardStats() {
       prisma.product.count({ where: { stockQuantity: { gt: 0 } } }),
       prisma.product.count({ where: { stockQuantity: { lte: 15, gt: 0 } } }),
       prisma.product.count({ where: { stockQuantity: 0 } }),
-      prisma.order.count(),
+      prisma.order.count({ where: totalOrdersWhere }),
       prisma.order.aggregate({
         _sum: { total: true },
         _count: { id: true },
-        where: { orderStatus: { not: 'CANCELLED' } },
+        where: orderWhere,
       }),
       prisma.order.aggregate({
         _sum: { total: true },
         _count: { id: true },
-        where: { paymentStatus: 'PAID' },
+        where: { ...orderWhere, paymentStatus: 'PAID' },
       }),
       prisma.order.groupBy({
         by: ['orderStatus'],
+        where: totalOrdersWhere,
         _count: { id: true },
       }),
       prisma.user.count({ where: { role: 'CUSTOMER' } }),
@@ -401,6 +430,7 @@ async function getDashboardStats() {
         _avg: { rating: true },
       }),
       prisma.order.findMany({
+        where: totalOrdersWhere,
         take: 10,
         orderBy: { createdAt: 'desc' },
         include: {
@@ -424,6 +454,7 @@ async function getDashboardStats() {
         JOIN products p ON oi.product_id = p.id
         LEFT JOIN categories c ON p.category_id = c.id
         WHERE o.order_status != 'CANCELLED'
+          ${isCampaign ? "AND (o.note LIKE '%[DEMO_2M_DATASET]%' OR o.attribution_source = 'DEMO_DATASET')" : ""}
         GROUP BY oi.product_id, p.name, p.price, p.images, p.stock_quantity, p.category_id, c.name
         ORDER BY total_sold DESC
         LIMIT 5;
@@ -440,7 +471,7 @@ async function getDashboardStats() {
         orderBy: { updatedAt: 'desc' },
         include: { category: true },
       }),
-      getEcosystemStats(),
+      getEcosystemStats({ scope }),
     ]);
 
     const totalRevenue = ordersAggregate._sum.total || 0;
